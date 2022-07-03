@@ -9,6 +9,12 @@ const router = express.Router();
 router
   .get("/", getItems)
   .get("/:id", getItem)
+
+  /* 
+    admin routes
+  */
+
+  /* Creating a new item. */
   .post("/", createItem);
 
 module.exports = router;
