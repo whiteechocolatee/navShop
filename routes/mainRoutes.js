@@ -15,6 +15,6 @@ router
   */
 
   /* Creating a new item. */
-  .post("/", createItem);
+  .post("/createItem", createItem);
 
 module.exports = router;
