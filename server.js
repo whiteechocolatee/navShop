@@ -1,10 +1,13 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const formData = require("express-form-data");
-
+const connectionDataBase = require("./config/mongoDB");
 const app = express();
 
 require("dotenv").config();
+
+/* Connecting to the database. */
+connectionDataBase();
 
 /* Setting the port to 5000 if the environment variable PORT is not set. */
 const port = process.env.PORT || 5000;
@@ -16,11 +19,6 @@ app
   .use(express.urlencoded({ extended: true }))
   .use("/api/items", require("./routes/mainRoutes"));
 
-/* Connecting to the mongoDB database and then starting the server. */
-mongoose
-  .connect(`mongodb://127.0.0.1:27017/shop`)
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`server was started at port - ${port}`);
-    });
-  });
+app.listen(port, () => {
+  console.log(`server was started at port - ${port}`);
+});
