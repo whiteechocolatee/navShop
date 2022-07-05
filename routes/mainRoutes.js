@@ -4,12 +4,22 @@ const {
   getItem,
   createItem,
 } = require("../controllers/itemControllers");
+const {
+  postTestItems,
+  postTestUsers,
+} = require("../insertData/insertDataControllers");
 const router = express.Router();
 
 router
   .get("/", getItems)
   .get("/:id", getItem)
 
+  /*
+    testing posts
+  */
+
+  .post("/postTestItems", postTestItems)
+  .post("/postTestUsers", postTestUsers)
   /* 
     admin routes
   */
