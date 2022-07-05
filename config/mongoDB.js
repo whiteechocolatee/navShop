@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connectionDataBase = async () => {
   try {
-    const connection = mongoose.connect(
+    const connection = await mongoose.connect(
       process.env.MONGODB,
       {
         useNewUrlParser: true,
