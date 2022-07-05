@@ -3,7 +3,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 14px 35px;
-  width: 120px;
+  width: 159px;
   gap: 10px;
   background: linear-gradient(
     93.77deg,
@@ -11,6 +11,7 @@
     #b5e0fd 99.02%
   );
   border-radius: 40px;
+  cursor: pointer;
 }
 
 .button {
@@ -18,7 +19,7 @@
   height: 18px;
   font-family: "ICTV";
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 16px;
   color: #242424;
 }
