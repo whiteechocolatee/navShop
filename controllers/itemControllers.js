@@ -18,17 +18,17 @@ const getItems = async (req, res) => {
 };
 
 /**
- * It gets an item from the database by its id
+ * It gets an item by its id
  * @param req - The request object. This contains information about the HTTP request that raised the
  * event.
  * @param res - the response object
  */
 const getItem = async (req, res) => {
   try {
-    const item = await Items.find({ _id: req.params.id });
+    const item = await Items.findById(req.params.id);
     res.status(200).json(item);
   } catch (error) {
-    res.status(400).json({
+    res.status(404).json({
       message: "Похоже, такого товара не существует!",
     });
   }

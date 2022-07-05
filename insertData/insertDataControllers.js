@@ -4,12 +4,14 @@ const items = require("../data/items");
 const users = require("../data/users");
 
 const postTestItems = async (req, res) => {
+  await Item.remove();
   const data = await Item.insertMany(items);
 
   res.send(data);
 };
 
 const postTestUsers = async (req, res) => {
+  await Users.remove();
   const data = await Users.insertMany(users);
 
   res.send(data);
