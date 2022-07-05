@@ -1,0 +1,24 @@
+.footer {
+  background: #242424;
+  height: 310px;
+}
+
+.aboutUs {
+  color: white;
+  margin: 54px 0;
+}
+
+.networks {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  justify-content: space-around;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-around;
+  font-size: 25px;
+}
