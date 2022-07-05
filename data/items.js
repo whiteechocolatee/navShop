@@ -1,4 +1,4 @@
-export const items = [
+const items = [
   {
     title: "Silicon case",
     description: "first test",
@@ -40,3 +40,5 @@ export const items = [
       "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
   },
 ];
+
+module.exports = items;
