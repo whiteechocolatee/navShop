@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchInput {
+  width: 700px;
+  border: none;
+  outline: none;
+  height: 50px;
+  font-size: 18px;
+}
+
+.searchInput:focus {
+  border-bottom: 2px solid #000;
+}
+
+.callback {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+  cursor: pointer;
+}
+
+.callbackTitle {
+  font-size: 14px;
+  border-bottom: 2px solid #000;
+}
+
+.userActivity {
+  font-size: 20px;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
+
+.link:hover {
+  color: #000;
+}
