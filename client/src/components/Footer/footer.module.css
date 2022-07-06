@@ -8,17 +8,24 @@
   color: white;
   margin-top: 54px;
   width: 100%;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .networks {
   text-align: center;
   height: 80px;
   width: 200px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .socials {
   font-size: 25px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .links {
@@ -53,18 +60,33 @@
   font-weight: 400;
 }
 
-@media (max-width: 400px) {
-  .aboutUs {
-    display: flex;
-    justify-content: center;
-  }
-  .networks,
+@media (max-width: 500px) {
   .contact,
   .menu {
     width: 100%;
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 710px) {
+  .aboutUs {
+    justify-content: space-around;
+  }
+
+  .contact,
+  .menu {
+    width: 200px;
     margin: 10px;
   }
+  .networks {
+    width: 100%;
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 875px) {
   .description {
+    margin: 30px;
     height: 20px;
   }
 }

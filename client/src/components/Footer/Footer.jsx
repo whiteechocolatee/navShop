@@ -9,16 +9,15 @@ import {
 
 export const Footer = () => {
   return (
-    <div
-      className={`container-fluid overflow-auto fixed-bottom ${styles.footer}`}>
+    <footer
+      className={`container-fluid overflow-auto ${styles.footer}`}>
       <ContentWrapper className={styles.wrapper}>
-        <div
-          className={`d-flex justify-content-lg-between ${styles.aboutUs}`}>
+        <div className={`${styles.aboutUs}`}>
           <div
-            className={`d-flex justify-content-between flex-column ${styles.networks}`}>
+            className={`${styles.networks}`}>
             HERE WILL BE LOGO
             <div
-              className={`d-flex justify-content-around ${styles.socials}`}>
+              className={`${styles.socials}`}>
               <FaInstagram />
               <FaTelegramPlane />
               <FaFacebook />
@@ -51,13 +50,13 @@ export const Footer = () => {
             </p>
           </div>
           <div
-            className={`d-flex align-items-lg-end ${styles.description}`}>
+            className={`d-flex align-items-end ${styles.description}`}>
             <p className={styles.descriptionTitle}>
               © electronics store 2022
             </p>
           </div>
         </div>
       </ContentWrapper>
-    </div>
+    </footer>
   );
 };
