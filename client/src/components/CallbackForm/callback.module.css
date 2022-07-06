@@ -52,8 +52,7 @@
 }
 
 @media (max-width: 412px) {
-    .callback {
-      height: 514px;
-    }
+  .callback {
+    height: 514px;
   }
-  
+}

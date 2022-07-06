@@ -30,7 +30,7 @@ export const CallbackBlock = () => {
             />
             <Button
               containerClassName={styles.callbackBtn}
-              children={`Попросить звонок`}
+              children={`Заказать звонок`}
             />
           </form>
         </div>
