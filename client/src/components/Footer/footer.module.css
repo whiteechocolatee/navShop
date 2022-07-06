@@ -1,24 +1,70 @@
 .footer {
   background: #242424;
   height: 310px;
+  font-family: "ICTV", sans-serif;
 }
 
 .aboutUs {
   color: white;
-  margin: 54px 0;
+  margin-top: 54px;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .networks {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  height: 150px;
+  height: 80px;
   width: 200px;
-  justify-content: space-around;
 }
 
 .socials {
-  display: flex;
-  justify-content: space-around;
   font-size: 25px;
+}
+
+.links {
+  margin-bottom: 7px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.links a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.menuTitle,
+.contactTitle {
+  border-bottom: 1px solid #fff;
+  width: 178px;
+  font-size: 18px;
+}
+
+.description {
+  height: 220px;
+}
+
+.descriptionTitle {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+@media (max-width: 400px) {
+  .aboutUs {
+    display: flex;
+    justify-content: center;
+  }
+  .networks,
+  .contact,
+  .menu {
+    width: 100%;
+    margin: 10px;
+  }
+  .description {
+    height: 20px;
+  }
 }
