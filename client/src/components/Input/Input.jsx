@@ -7,15 +7,16 @@ export const Input = ({
   type = "",
   placeholder = "",
   name = "",
+  inputClassName = "",
 }) => {
   return (
-    <div className={`${className} ${styles.container}`}>
+    <div className={`${className}`}>
       <input
         type={type}
         placeholder={placeholder}
         name={name}
         onChange={onChange}
-        className={styles.input}
+        className={`${styles.input}`}
       />
     </div>
   );
