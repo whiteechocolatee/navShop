@@ -81,7 +81,7 @@ export const Header = () => {
                 <NavLink
                   className={`dropdown-item`}
                   to={"/asdasd"}>
-                  Акссесуары для компьютеров
+                  Для компьютеров
                 </NavLink>
               </li>
               <li>
