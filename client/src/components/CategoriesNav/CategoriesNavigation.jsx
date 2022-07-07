@@ -41,7 +41,7 @@ export const CategoriesNavigation = () => {
             <li className={styles.navBtn}>
               <RiComputerLine />
               <NavLink to={`/`}>
-                Акссесуары для компьютеров
+                Для компьютеров
               </NavLink>
             </li>
             <li className={styles.navBtn}>
