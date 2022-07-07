@@ -7,10 +7,10 @@ export const Main = () => {
   return (
     <React.Fragment>
       <Header />
-      <div className='fixed-bottom'>
-        <CallbackBlock />
-        <Footer />
-      </div>
+      {/* <div className='fixed-bottom'> */}
+      <CallbackBlock />
+      <Footer />
+      {/* </div> */}
     </React.Fragment>
   );
 };
