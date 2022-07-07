@@ -5,7 +5,6 @@ import {
   FaRegHeart,
   FaPhoneAlt,
 } from "react-icons/fa";
-// GrNavigate GrApps
 
 import { GrApps } from "react-icons/gr";
 
@@ -37,7 +36,8 @@ export const Header = () => {
         <div
           className={`collapse navbar-collapse ${styles.navContainer}`}
           id='navbarNav'>
-          <div className={`dropdown ${styles.dropdownMenu}`}>
+          <div
+            className={`dropdown ${styles.dropdownMenu}`}>
             <button
               className={`dropdown-toggle ${styles.dropdownBtn}`}
               type='button'
@@ -82,6 +82,13 @@ export const Header = () => {
                   className={`dropdown-item`}
                   to={"/asdasd"}>
                   Акссесуары для компьютеров
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={`dropdown-item`}
+                  to={"/ыфвфывфыв"}>
+                  Для авто
                 </NavLink>
               </li>
             </ul>
