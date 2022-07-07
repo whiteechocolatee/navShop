@@ -4,52 +4,82 @@ import {
   FaRegUser,
   FaRegHeart,
   FaPhoneAlt,
-  FaEllo,
 } from "react-icons/fa";
+// GrNavigate GrApps
+
+import { GrApps } from "react-icons/gr";
+
 import { IoCartOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
+import { Input } from "../Input/Input";
 
 export const Header = () => {
   return (
     <ContentWrapper>
-      <header className={styles.navbar}>
-        <div className={styles.header}>
-          <h2 className={styles.logo}>
-            <FaEllo />
-            LOGO
-          </h2>
-          <div className={styles.search}>
-            <input
-              name='search'
-              type='text'
-              className={styles.searchInput}
-              placeholder='Поиск'
-              onChange={() => null}
-            />
-            <FaSearch />
-          </div>
-          <div className={styles.callback}>
-            <FaPhoneAlt />
-            <span className={styles.callbackTitle}>
-              Позвонить
-            </span>
-          </div>
-          <div className={styles.userActivity}>
-            <Link className={styles.link} to={`#`}>
-              <FaRegUser />
-            </Link>
-            <Link className={styles.link} to={`#`}>
-              <FaRegHeart />
-            </Link>
-            <Link className={styles.link} to={`#`}>
-              <IoCartOutline />
-            </Link>
-          </div>
+      <nav
+        className={`navbar navbar-expand-md ${styles.navigation}`}>
+        <b>LOGO</b>
+        <button
+          className={`${styles.toggler}`}
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNav'
+          aria-controls='navbarNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'>
+          <span className={`navbar-toggler-icon`}>
+            <GrApps />
+          </span>
+        </button>
+        <div
+          className={`collapse navbar-collapse ${styles.navContainer}`}
+          id='navbarNav'>
+          <ul className={styles.navBtns}>
+            <li
+              className={`${styles.navBtn} ${styles.searchBlock}`}>
+              <Input
+                type={`text`}
+                placeholder={`Поиск`}
+                className={styles.inputSearch}
+              />
+              <FaSearch />
+            </li>
+            <li
+              className={`nav-item ${styles.navBtn} ${styles.callBlock}`}>
+              <FaPhoneAlt />
+              <NavLink
+                aria-current='page'
+                className={`nav-link`}
+                to='#contact'>
+                Позвонить
+              </NavLink>
+            </li>
+            <li className={`nav-item ${styles.navBtn}`}>
+              <NavLink
+                aria-current='page'
+                className={`nav-link`}
+                to='/'>
+                <FaRegUser />
+              </NavLink>
+              <NavLink
+                aria-current='page'
+                className={`nav-link`}
+                to='/'>
+                <FaRegHeart />
+              </NavLink>
+              <NavLink
+                aria-current='page'
+                className={`nav-link`}
+                to='/'>
+                <IoCartOutline />
+              </NavLink>
+            </li>
+          </ul>
         </div>
-      </header>
+      </nav>
     </ContentWrapper>
   );
 };

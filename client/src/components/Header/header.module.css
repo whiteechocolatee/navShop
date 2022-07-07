@@ -1,48 +1,86 @@
-.header {
+.navBtns {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  list-style: none;
+  margin: 0;
   justify-content: space-between;
-  align-items: center;
 }
 
-.searchInput {
-  width: 700px;
-  border: none;
-  outline: none;
-  height: 50px;
-  font-size: 18px;
-}
-
-.searchInput:focus {
-  border-bottom: 2px solid #000;
-}
-
-.callback {
+.navBtn {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 100px;
-  cursor: pointer;
+  margin: 10px;
 }
 
-.callbackTitle {
-  font-size: 14px;
-  border-bottom: 2px solid #000;
+.callBlock {
+  max-width: 130px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.userActivity {
+.callBlock a {
+  border-bottom: 2px dashed black;
+  margin: 0;
+  padding: 0;
+}
+
+.navBtn svg {
   font-size: 20px;
-  width: 100px;
-  display: flex;
-  justify-content: space-between;
 }
 
-.link {
+.navBtn a,
+.navBtn a:hover,
+.navBtn a:focus {
   text-decoration: none;
-  cursor: pointer;
   color: #000;
 }
 
-.link:hover {
-  color: #000;
+.searchBlock {
+  max-width: 750px;
+  width: 100%;
+}
+
+.inputSearch {
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.toggler {
+  display: none;
+}
+.toggler,
+.toggler:active,
+.toggler:focus {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+}
+.toggler::-moz-focus-inner {
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .toggler {
+    display: block;
+  }
+}
+
+@media (max-width: 650px) {
+  .navBtns {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .searchBlock {
+    order: 1;
+  }
+}
+
+@media (max-width: 350px) {
+  .navBtns {
+    justify-content: center;
+  }
 }
