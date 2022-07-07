@@ -19,12 +19,14 @@ export const CallbackBlock = () => {
             <Input
               name={`name`}
               type={`text`}
+              className={styles.input}
               onChange={() => null}
               placeholder={`Имя`}
             />
             <Input
               name={`name`}
               type={`text`}
+              className={styles.input}
               onChange={() => null}
               placeholder={`Телефон`}
             />
