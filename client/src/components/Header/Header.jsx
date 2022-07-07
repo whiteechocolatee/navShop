@@ -19,7 +19,7 @@ import { Input } from "../Input/Input";
 export const Header = () => {
   return (
     <ContentWrapper>
-      <nav
+      <header
         className={`navbar navbar-expand-md ${styles.navigation}`}>
         <b>LOGO</b>
         <button
@@ -37,6 +37,55 @@ export const Header = () => {
         <div
           className={`collapse navbar-collapse ${styles.navContainer}`}
           id='navbarNav'>
+          <div className={`dropdown ${styles.dropdownMenu}`}>
+            <button
+              className={`dropdown-toggle ${styles.dropdownBtn}`}
+              type='button'
+              id='dropdownMenuButton1'
+              data-bs-toggle='dropdown'
+              aria-expanded='false'>
+              Категории
+            </button>
+            <ul
+              className={`dropdown-menu`}
+              aria-labelledby='dropdownMenuButton1'>
+              <li>
+                <NavLink
+                  className={`dropdown-item ${styles.dropdownLink}`}
+                  to={"/as"}>
+                  Зарядные
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={`dropdown-item`}
+                  to={"/asd"}>
+                  Защитные акссесуары
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={`dropdown-item`}
+                  to={"/asdf"}>
+                  Гаджеты
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={`dropdown-item`}
+                  to={"/asdfg"}>
+                  Аудио
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={`dropdown-item`}
+                  to={"/asdasd"}>
+                  Акссесуары для компьютеров
+                </NavLink>
+              </li>
+            </ul>
+          </div>
           <ul className={styles.navBtns}>
             <li
               className={`${styles.navBtn} ${styles.searchBlock}`}>
@@ -79,7 +128,7 @@ export const Header = () => {
             </li>
           </ul>
         </div>
-      </nav>
+      </header>
     </ContentWrapper>
   );
 };
