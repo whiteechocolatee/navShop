@@ -27,7 +27,7 @@ export const Footer = () => {
             <p className={styles.contactTitle}>
               Наши контакты
             </p>
-            <p className={styles.links}>
+            <p id='contact' className={styles.links}>
               <a href='tel:+380500300777'>380500300777</a>
             </p>
           </div>
