@@ -9,6 +9,7 @@ import {
   GiPowerGenerator,
   GiAudioCassette,
 } from "react-icons/gi";
+import { FaCarSide } from "react-icons/fa";
 
 import styles from "./nav.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
@@ -41,6 +42,12 @@ export const CategoriesNavigation = () => {
               <RiComputerLine />
               <NavLink to={`/`}>
                 Акссесуары для компьютеров
+              </NavLink>
+            </li>
+            <li className={styles.navBtn}>
+              <FaCarSide />
+              <NavLink to={`/`}>
+                Для авто
               </NavLink>
             </li>
           </ul>
