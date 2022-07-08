@@ -1,0 +1,63 @@
+.cardBody {
+  width: 291px;
+  height: 500px;
+  margin: 20px;
+}
+
+.cardImageBlock {
+  box-shadow: 10px 10px 20px #f5f5f5;
+  border-radius: 30px;
+  background: #ffffff;
+  width: 282px;
+  height: 330px;
+  padding: 23.5px;
+}
+
+.cardImg {
+  width: 240px;
+  height: 287px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.cardImg img {
+  width: 100%;
+  height: auto;
+}
+
+.addToFavorite {
+  display: flex;
+  justify-content: flex-end;
+  color: grey;
+  font-size: 20px;
+}
+
+.description {
+  width: 90%;
+  margin: 23px 10px;
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+
+.btnText {
+  border-bottom: 1px solid #000;
+  line-height: 16px;
+}
+
+.btnContainer {
+  width: 80px;
+  margin: 0 0 38px 10px;
+}
+
+.addToCart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 30px 40px 0;
+}
