@@ -1,0 +1,64 @@
+.ul {
+  display: flex;
+  list-style: none;
+  width: 1000px;
+  overflow: hidden;
+  justify-content: space-between;
+  margin-top: 500px;
+}
+
+.li a,
+.li a:hover,
+.li a:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes afterLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+@keyframes beforeLine {
+  from {
+    width: 120px;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.active:after {
+  width: 120px;
+  content: "";
+  border-bottom: 2px solid #000;
+  display: block;
+  position: relative;
+  float: right;
+  top: 18px;
+  margin: 0 0 0 10px;
+  animation-name: afterLine;
+  animation-duration: 0.5s;
+}
+
+.active:before {
+  width: 0;
+  content: "";
+  border-bottom: 2px solid #000;
+  display: block;
+  position: relative;
+  float: left;
+  top: 18px;
+  /* margin: 0 10px 0 0; */
+  animation-name: beforeLine;
+  animation-duration: 0.5s;
+}
+
+.a {
+  font-size: 24px;
+}
