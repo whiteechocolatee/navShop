@@ -33,7 +33,9 @@ export const CategoryCards = () => {
           <div className={styles.smallerBlocksTitle}>
             <h1>Категории</h1>
             <p className={styles.links}>
-              <NavLink className={styles.link} to={"#"}>Посмотреть все</NavLink>
+              <NavLink className={styles.link} to={"#"}>
+                Посмотреть все
+              </NavLink>
               <BsArrowUpRight />
             </p>
           </div>
