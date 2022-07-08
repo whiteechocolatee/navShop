@@ -7,6 +7,15 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "ICTV";
+  src: url("../public/fonts/ICTV-Bold.woff2"),
+    url("../public/fonts/ICTV-Bold.woff");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
