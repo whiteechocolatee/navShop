@@ -6,6 +6,7 @@ import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesN
 import { CategoryCards } from "../../components/CategoryCard/CategoryCards";
 import { Brands } from "../../components/BrandsLine/Brands";
 import { Loader } from "../../components/Loader/Loader";
+import { Item } from '../../components/ItemCard/Item';
 
 export const Main = () => {
   const loading = false;
@@ -16,12 +17,14 @@ export const Main = () => {
 
   return (
     <React.Fragment>
-      <Header />
+      {/* <Header />
       <CategoriesNavigation />
       <Brands />
       <CategoryCards />
       <CallbackBlock />
-      <Footer />
+      <Footer /> */}
+
+      <Item/>
     </React.Fragment>
   );
 };
