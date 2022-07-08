@@ -18,19 +18,17 @@ export const Item = ({
           <FaRegHeart />
         </div>
         <div className={styles.cardImg}>
-          <img src={img} alt='image' />
+          <img src={itemImg} alt='image' />
         </div>
       </div>
-      <div className={styles.description}>
-        testing description 256gb + one more text
-      </div>
+      <div className={styles.description}>{title}</div>
       <div className={styles.addToCart}>
         <Button
           className={styles.btnText}
           containerClassName={styles.btnContainer}
           children={`В корзину`}
         />
-        <span className={styles.price}>1000 ₴</span>
+        <span className={styles.price}>{price} ₴</span>
       </div>
     </div>
   );
