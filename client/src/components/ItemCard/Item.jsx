@@ -4,8 +4,6 @@ import styles from "./item.module.css";
 import { FaRegHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 
-import img from "./img/testImg.jpeg";
-
 export const Item = ({
   title = "",
   price = "",
