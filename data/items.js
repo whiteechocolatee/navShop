@@ -35,7 +35,87 @@ const items = [
     price: 999,
     rating: 5,
     numReviews: 10,
+    category: "cover",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "auto",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "charger",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
     category: "glass",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "audio",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "glass",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "glass",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "computer",
+    itemImage:
+      "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
+  },
+  {
+    title: "Silicon case 4",
+    description: "fourth test",
+    price: 999,
+    rating: 5,
+    numReviews: 10,
+    category: "cover",
     itemImage:
       "https://static.independent.co.uk/2021/12/16/12/Best%20iphone%2013%20cases%20copy.jpg?quality=75&width=1200&auto=webp",
   },
