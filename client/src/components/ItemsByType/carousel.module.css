@@ -1,3 +1,5 @@
-.cardContent {
+.paginate {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
