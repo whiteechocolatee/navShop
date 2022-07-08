@@ -34,6 +34,7 @@
 }
 
 .description {
+  font-size: 18px;
   width: 90%;
   margin: 23px 10px;
   white-space: wrap;
@@ -58,6 +59,6 @@
 
 .price {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
   margin: 0 30px 40px 0;
 }
