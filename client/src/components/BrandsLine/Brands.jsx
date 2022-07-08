@@ -20,7 +20,7 @@ import {
 export const Brands = () => {
   return (
     <ContentWrapper>
-      <div className={styles.logos}>
+      <div className={`${styles.logos} mt-5 mb-5`}>
         <div className={styles.logo}>
           <FaApple />
         </div>
