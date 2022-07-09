@@ -28,11 +28,23 @@ export const getItemsByCategoryCarousel = createAsyncThunk(
   },
 );
 
+export const getDiscountItemsCarousel = createAsyncThunk(
+  "getDiscountCarousel",
+  async (_, thunkAPI) => {
+    try {
+      return await carouselService.getDiscountItems();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const carouselMainPage = createSlice({
   name: "carouselItems",
   initialState: {
     items: [],
     itemsByCategory: [],
+    discountItems: [],
     isLoading: false,
     isError: false,
     message: "",
@@ -75,6 +87,27 @@ const carouselMainPage = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.itemsByCategory = null;
+          state.isError = action.error.message;
+        },
+      )
+      .addCase(
+        getDiscountItemsCarousel.pending,
+        (state) => {
+          state.isLoading = true;
+        },
+      )
+      .addCase(
+        getDiscountItemsCarousel.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.discountItems = action.payload;
+        },
+      )
+      .addCase(
+        getDiscountItemsCarousel.rejected,
+        (state, action) => {
+          state.isLoading = false;
+          state.discountItems = null;
           state.isError = action.error.message;
         },
       );
