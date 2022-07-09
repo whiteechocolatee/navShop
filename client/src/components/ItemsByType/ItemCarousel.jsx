@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
-import styles from "./carousel.module.css";
-import { ContentWrapper } from "../contentWrapper/ContentWrapper";
+import { useDispatch, useSelector } from "react-redux";
 
+import styles from "./carousel.module.css";
+
+import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { ItemsContainer } from "../ItemsContainer/ItemsContainer";
-import axios from "axios";
 import { Pagination } from "../Paginate/Pagination";
+import { getItemsMainCarousel } from "../../store/carouselMainPage/carouselMainSlice";
 
 export const ItemCarousel = () => {
-  const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
+  const dispatch = useDispatch();
+
+  const loading = useSelector((state) => {
+    return state.carousel.isLoading;
+  });
+
+  const items = useSelector((state) => {
+    return state.carousel.items;
+  });
 
   useEffect(() => {
-    const getItems = async () => {
-      let res = await axios.get("/api/items/");
-
-      console.log(res.data);
-      setItems(res.data);
-    };
-    getItems();
-  }, []);
+    dispatch(getItemsMainCarousel());
+  }, [dispatch]);
 
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
