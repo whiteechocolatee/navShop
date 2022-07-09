@@ -10,7 +10,8 @@ export const Block = ({
   title = "",
 }) => {
   return (
-    <div className={`${styles.accessories} ${containerClass}`}>
+    <div
+      className={`${styles.accessories} ${containerClass}`}>
       <h3 className={styles.accessoriesTitle}>{title}</h3>
       <Button
         children={"Еще"}
