@@ -39,8 +39,8 @@ export const ItemCarousel = () => {
         <ItemsContainer currentItems={currentItems} />
         <div className={styles.paginate}>
           <Pagination
-            postsPerPage={itemsPerPage}
-            totalPosts={items.length}
+            itemsPerPage={itemsPerPage}
+            totalItems={items.length}
             paginate={paginate}
             currentPage={currentPage}
           />
