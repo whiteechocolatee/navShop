@@ -4,27 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./carousel.module.css";
 
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
-import { ItemsContainer } from "../ItemsContainer/ItemsContainer";
 import { Pagination } from "../Paginate/Pagination";
-import { getItemsMainCarousel } from "../../store/carouselMainPage/carouselMainSlice";
 
 export const ItemCarousel = ({
   title = "",
-  service,
-  serviceParams = null,
   Component,
+  items,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
-  const dispatch = useDispatch();
-
-  const items = useSelector((state) => {
-    return state.carousel.items;
-  });
-
-  useEffect(() => {
-    dispatch(service(serviceParams));
-  }, [dispatch]);
 
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
