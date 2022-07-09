@@ -4,11 +4,24 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 
-export const getItemsMainCarousel = createAsyncThunk(
-  "getCarousel",
+export const getNewItemsCarousel = createAsyncThunk(
+  "getCarouselNew",
   async (_, thunkAPI) => {
     try {
       return await carouselService.getNewItems();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const getItemsByCategoryCarousel = createAsyncThunk(
+  "getCarouselByCategory",
+  async (category, thunkAPI) => {
+    try {
+      return await carouselService.getItemsByCategory(
+        category,
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -19,27 +32,49 @@ const carouselMainPage = createSlice({
   name: "carouselItems",
   initialState: {
     items: [],
+    itemsByCategory: [],
     isLoading: false,
     isError: false,
     message: "",
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getItemsMainCarousel.pending, (state) => {
+      .addCase(getNewItemsCarousel.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(
-        getItemsMainCarousel.fulfilled,
+        getNewItemsCarousel.fulfilled,
         (state, action) => {
           state.isLoading = false;
           state.items = action.payload;
         },
       )
       .addCase(
-        getItemsMainCarousel.rejected,
+        getNewItemsCarousel.rejected,
         (state, action) => {
           state.isLoading = false;
           state.items = null;
+          state.isError = action.error.message;
+        },
+      )
+      .addCase(
+        getItemsByCategoryCarousel.pending,
+        (state) => {
+          state.isLoading = true;
+        },
+      )
+      .addCase(
+        getItemsByCategoryCarousel.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.itemsByCategory = action.payload;
+        },
+      )
+      .addCase(
+        getItemsByCategoryCarousel.rejected,
+        (state, action) => {
+          state.isLoading = false;
+          state.itemsByCategory = null;
           state.isError = action.error.message;
         },
       );
