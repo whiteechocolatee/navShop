@@ -8,7 +8,12 @@ import { ItemsContainer } from "../ItemsContainer/ItemsContainer";
 import { Pagination } from "../Paginate/Pagination";
 import { getItemsMainCarousel } from "../../store/carouselMainPage/carouselMainSlice";
 
-export const ItemCarousel = () => {
+export const ItemCarousel = ({
+  title = "",
+  service,
+  serviceParams = null,
+  Component,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const dispatch = useDispatch();
@@ -18,7 +23,7 @@ export const ItemCarousel = () => {
   });
 
   useEffect(() => {
-    dispatch(getItemsMainCarousel());
+    dispatch(service(serviceParams));
   }, [dispatch]);
 
   const lastItemIndex = currentPage * itemsPerPage;
@@ -35,8 +40,8 @@ export const ItemCarousel = () => {
   return (
     <ContentWrapper>
       <div className={styles.cardContent}>
-        <h1 className={styles.itemsTitle}>Новые товары</h1>
-        <ItemsContainer currentItems={currentItems} />
+        <h1 className={styles.itemsTitle}>{title}</h1>
+        <Component currentItems={currentItems} />
         <div className={styles.paginate}>
           <Pagination
             itemsPerPage={itemsPerPage}
