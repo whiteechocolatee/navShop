@@ -3,11 +3,11 @@ const {
   getItems,
   getItem,
   getLimitedItemsByCategory,
+  getDiscountItems,
   getLimitedNewItems,
   createItem,
 } = require("../controllers/itemControllers");
 const {
-  postTestItems,
   postTestUsers,
 } = require("../insertData/insertDataControllers");
 const router = express.Router();
@@ -16,13 +16,15 @@ router
   .get("/", getItems)
   .get("/:id", getItem)
   .get("/limit/lastAdded", getLimitedNewItems)
-  .get("/limit/existingItems/:category", getLimitedItemsByCategory)
+  .get("/limit/discount", getDiscountItems)
+  .get(
+    "/limit/existingItems/:category",
+    getLimitedItemsByCategory,
+  )
 
   /*
     testing posts
   */
-
-  .post("/postTestItems", postTestItems)
   .post("/postTestUsers", postTestUsers)
   /* 
     admin routes
