@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "../../components/Header/Header";
 import { CallbackBlock } from "../../components/CallbackForm/CallbackBlock";
 import { Footer } from "../../components/Footer/Footer";
 import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
 import { CategoryCards } from "../../components/CategoryCard/CategoryCards";
 import { Brands } from "../../components/BrandsLine/Brands";
-import { Loader } from "../../components/Loader/Loader";
 import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
 import { ItemsContainer } from "../../components/ItemsContainer/ItemsContainer";
 
-import { getItemsMainCarousel } from "../../store/carouselMainPage/carouselMainSlice";
+import { useSelector } from "react-redux";
+
+import {
+  getNewItemsCarousel,
+  getItemsByCategoryCarousel,
+} from "../../store/carouselMainPage/carouselMainSlice";
+
+import { useDispatch } from "react-redux";
 
 export const Main = () => {
-  const loading = false;
+  const itemsData = useSelector((state) => {
+    return state.carousel;
+  });
 
-  if (loading) {
-    return <Loader />;
-  }
+  console.log(itemsData);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNewItemsCarousel());
+    dispatch(getItemsByCategoryCarousel("charger"));
+  }, []);
 
   return (
     <React.Fragment>
@@ -25,10 +38,15 @@ export const Main = () => {
       <Brands />
       <ItemCarousel
         title={"Новые товары"}
-        service={getItemsMainCarousel}
         Component={ItemsContainer}
+        items={itemsData.items}
       />
       <CategoryCards />
+      <ItemCarousel
+        title={"Зарядные"}
+        Component={ItemsContainer}
+        items={itemsData.itemsByCategory}
+      />
       <CallbackBlock />
       <Footer />
     </React.Fragment>
