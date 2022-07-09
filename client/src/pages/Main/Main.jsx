@@ -7,6 +7,9 @@ import { CategoryCards } from "../../components/CategoryCard/CategoryCards";
 import { Brands } from "../../components/BrandsLine/Brands";
 import { Loader } from "../../components/Loader/Loader";
 import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
+import { ItemsContainer } from "../../components/ItemsContainer/ItemsContainer";
+
+import { getItemsMainCarousel } from "../../store/carouselMainPage/carouselMainSlice";
 
 export const Main = () => {
   const loading = false;
@@ -20,7 +23,11 @@ export const Main = () => {
       <Header />
       <CategoriesNavigation />
       <Brands />
-      <ItemCarousel />
+      <ItemCarousel
+        title={"Новые товары"}
+        service={getItemsMainCarousel}
+        Component={ItemsContainer}
+      />
       <CategoryCards />
       <CallbackBlock />
       <Footer />
