@@ -18,9 +18,16 @@ const getItemsByCategory = async (category) => {
   return res.data;
 };
 
+const getDiscountItems = async () => {
+  let res = await axios.get("/api/items/limit/discount");
+
+  return res.data;
+};
+
 const carouselService = {
   getNewItems,
   getItemsByCategory,
+  getDiscountItems,
 };
 
 export default carouselService;
