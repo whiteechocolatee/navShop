@@ -34,13 +34,12 @@ const getItem = async (req, res) => {
   }
 };
 
-
 /**
  * It gets 16 items from the database that match the category specified in the request
  * @param req - The request object.
  * @param res - the response object
  */
-const getItemByCategory = async (req, res) => {
+const getLimitedItemsByCategory = async (req, res) => {
   try {
     const itemsByCategory = await Items.find({
       category: req.params.category,
@@ -51,6 +50,20 @@ const getItemByCategory = async (req, res) => {
     res.status(500).json({
       message: "Ошибка, попробуйте позже.",
     });
+  }
+};
+
+const getLimitedNewItems = async (req, res) => {
+  try {
+    const newItems = await Items.find()
+      .sort({ _id: -1 })
+      .limit(16);
+
+    res.status(200).json(newItems);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Ошибка, попробуйте позже." });
   }
 };
 
@@ -91,6 +104,7 @@ const createItem = async (req, res) => {
 module.exports = {
   getItems,
   getItem,
-  getItemByCategory,
+  getLimitedItemsByCategory,
+  getLimitedNewItems,
   createItem,
 };
