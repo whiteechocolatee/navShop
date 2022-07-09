@@ -13,6 +13,7 @@ export const ItemsContainer = ({ currentItems = [] }) => {
           title={item.title}
           price={item.price}
           itemImg={item.itemImage}
+          sale={item.sale}
         />
       ))}
     </div>
