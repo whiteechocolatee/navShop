@@ -3,3 +3,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.cardContent {
+  margin-top: 65px;
+}

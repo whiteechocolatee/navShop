@@ -13,11 +13,9 @@ export const Footer = () => {
       className={`container-fluid overflow-auto ${styles.footer}`}>
       <ContentWrapper className={styles.wrapper}>
         <div className={`${styles.aboutUs}`}>
-          <div
-            className={`${styles.networks}`}>
+          <div className={`${styles.networks}`}>
             HERE WILL BE LOGO
-            <div
-              className={`${styles.socials}`}>
+            <div className={`${styles.socials}`}>
               <FaInstagram />
               <FaTelegramPlane />
               <FaFacebook />

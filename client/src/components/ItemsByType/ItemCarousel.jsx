@@ -13,10 +13,6 @@ export const ItemCarousel = () => {
   const [itemsPerPage] = useState(4);
   const dispatch = useDispatch();
 
-  const loading = useSelector((state) => {
-    return state.carousel.isLoading;
-  });
-
   const items = useSelector((state) => {
     return state.carousel.items;
   });
