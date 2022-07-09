@@ -53,6 +53,11 @@ const getLimitedItemsByCategory = async (req, res) => {
   }
 };
 
+/**
+ * It gets the 16 most recent items from the database and sends them to the client
+ * @param req - The request object.
+ * @param res - the response object
+ */
 const getLimitedNewItems = async (req, res) => {
   try {
     const newItems = await Items.find()
@@ -60,6 +65,26 @@ const getLimitedNewItems = async (req, res) => {
       .limit(16);
 
     res.status(200).json(newItems);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Ошибка, попробуйте позже." });
+  }
+};
+
+/**
+ * It gets 16 the items that are for sale
+ * @param req - The request object. This contains information about the HTTP request that raised the
+ * event.
+ * @param res - the response object
+ */
+const getDiscountItems = async (req, res) => {
+  try {
+    const discountItem = await Items.find({
+      discount: { $gt: 0 },
+    });
+
+    res.status(200).json(discountItem);
   } catch (error) {
     res
       .status(500)
@@ -105,6 +130,7 @@ module.exports = {
   getItems,
   getItem,
   getLimitedItemsByCategory,
+  getDiscountItems,
   getLimitedNewItems,
   createItem,
 };
