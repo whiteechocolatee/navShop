@@ -1,14 +1,5 @@
-const Item = require("../models/itemModel");
 const Users = require("../models/userModel");
-const items = require("../data/items");
 const users = require("../data/users");
-
-const postTestItems = async (req, res) => {
-  await Item.remove();
-  const data = await Item.insertMany(items);
-
-  res.send(data);
-};
 
 const postTestUsers = async (req, res) => {
   await Users.remove();
@@ -17,4 +8,4 @@ const postTestUsers = async (req, res) => {
   res.send(data);
 };
 
-module.exports = { postTestItems, postTestUsers };
+module.exports = { postTestUsers };
