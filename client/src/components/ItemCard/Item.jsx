@@ -9,10 +9,20 @@ export const Item = ({
   price = "",
   itemImg = "",
 }) => {
+
+  
+  const sale = false;
+
   return (
     <div className={styles.cardBody}>
       <div className={styles.cardImageBlock}>
         <div className={styles.addToFavorite}>
+          <div
+            className={`${
+              sale ? styles.sale : styles.saleNone
+            }`}>
+            % sale
+          </div>
           <FaRegHeart />
         </div>
         <div className={styles.cardImg}>

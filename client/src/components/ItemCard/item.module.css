@@ -28,9 +28,24 @@
 
 .addToFavorite {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   color: grey;
   font-size: 20px;
+}
+
+.sale {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.saleNone {
+  opacity: 0;
 }
 
 .description {
