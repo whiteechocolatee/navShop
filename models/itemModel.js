@@ -29,6 +29,10 @@ const itemModel = mongoose.Schema({
     type: Number,
     required: true,
   },
+  sale: {
+    type: Number,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
