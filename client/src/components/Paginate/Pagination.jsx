@@ -25,7 +25,7 @@ export const Pagination = ({
   }
 
   return (
-    <div>
+    <div className={styles.paginateContainer}>
       <ul className={styles.ul}>
         {pageNumbers.map((number) => {
           return (
