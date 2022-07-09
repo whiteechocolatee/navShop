@@ -10,19 +10,17 @@ export const Item = ({
   title = "",
   price = "",
   itemImg = "",
-  sale = "",
+  discount = "",
 }) => {
-  // const sale = false;
-
   return (
     <div className={styles.cardBody}>
       <div className={styles.cardImageBlock}>
         <div className={styles.addToFavorite}>
           <div
             className={`${
-              sale !== "" ? styles.sale : styles.saleNone
+              discount > 0 ? styles.sale : styles.saleNone
             }`}>
-            {sale} %
+            {discount} %
           </div>
           <FaRegHeart />
         </div>
@@ -42,8 +40,8 @@ export const Item = ({
           children={`В корзину`}
         />
         <span className={styles.price}>
-          {sale != ""
-            ? Math.ceil(price - (price / 100) * sale)
+          {discount > 0
+            ? Math.ceil(price - (price / 100) * discount)
             : price}{" "}
           ₴
         </span>
