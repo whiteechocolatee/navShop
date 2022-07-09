@@ -4,13 +4,13 @@ import styles from "./item.module.css";
 import { FaRegHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 
+import { Image } from "cloudinary-react";
+
 export const Item = ({
   title = "",
   price = "",
   itemImg = "",
 }) => {
-
-  
   const sale = false;
 
   return (
@@ -26,7 +26,11 @@ export const Item = ({
           <FaRegHeart />
         </div>
         <div className={styles.cardImg}>
-          <img src={itemImg} alt='image' />
+          <Image
+            cloudName='dmhqzwtnd'
+            publicId={itemImg}
+            alt='image'
+          />
         </div>
       </div>
       <div className={styles.description}>{title}</div>
