@@ -6,12 +6,21 @@ import axios from "axios";
  * @returns An array of objects
  */
 const getNewItems = async () => {
-  let res = await axios.get("/api/items/");
+  let res = await axios.get("/api/items/limit/lastAdded");
+  return res.data;
+};
+
+const getItemsByCategory = async (category) => {
+  let res = await axios.get(
+    `/api/items/limit/existingItems/${category}`,
+  );
+
   return res.data;
 };
 
 const carouselService = {
   getNewItems,
+  getItemsByCategory,
 };
 
 export default carouselService;
