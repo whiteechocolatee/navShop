@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import {
   getNewItemsCarousel,
   getItemsByCategoryCarousel,
+  getDiscountItemsCarousel,
 } from "../../store/carouselMainPage/carouselMainSlice";
 
 import { useDispatch } from "react-redux";
@@ -29,7 +30,8 @@ export const Main = () => {
   useEffect(() => {
     dispatch(getNewItemsCarousel());
     dispatch(getItemsByCategoryCarousel("charger"));
-  }, []);
+    dispatch(getDiscountItemsCarousel());
+  }, [dispatch]);
 
   return (
     <React.Fragment>
@@ -41,11 +43,16 @@ export const Main = () => {
         Component={ItemsContainer}
         items={itemsData.items}
       />
-      <CategoryCards />
       <ItemCarousel
         title={"Зарядные"}
         Component={ItemsContainer}
         items={itemsData.itemsByCategory}
+      />
+      <CategoryCards />
+      <ItemCarousel
+        title={"Предложения"}
+        Component={ItemsContainer}
+        items={itemsData.discountItems}
       />
       <CallbackBlock />
       <Footer />
