@@ -34,6 +34,26 @@ const getItem = async (req, res) => {
   }
 };
 
+
+/**
+ * It gets 16 items from the database that match the category specified in the request
+ * @param req - The request object.
+ * @param res - the response object
+ */
+const getItemByCategory = async (req, res) => {
+  try {
+    const itemsByCategory = await Items.find({
+      category: req.params.category,
+    }).limit(16);
+
+    res.status(200).json(itemsByCategory);
+  } catch (error) {
+    res.status(500).json({
+      message: "Ошибка, попробуйте позже.",
+    });
+  }
+};
+
 /**
  * It creates an item in the database
  * @param req - The request object. This contains information about the HTTP request that raised the
@@ -68,4 +88,9 @@ const createItem = async (req, res) => {
   }
 };
 
-module.exports = { getItems, getItem, createItem };
+module.exports = {
+  getItems,
+  getItem,
+  getItemByCategory,
+  createItem,
+};

@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getItems,
   getItem,
+  getItemByCategory,
   createItem,
 } = require("../controllers/itemControllers");
 const {
@@ -13,6 +14,7 @@ const router = express.Router();
 router
   .get("/", getItems)
   .get("/:id", getItem)
+  .get("/category/:category", getItemByCategory)
 
   /*
     testing posts
