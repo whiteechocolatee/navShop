@@ -13,12 +13,14 @@
 }
 
 .bannerContent {
-  padding-top: 58px;
+  padding-top: 98px;
   height: 100%;
   max-width: 1283px;
   width: 100%;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
@@ -36,13 +38,14 @@
 }
 
 .bannerImg {
+  margin-top: 30px;
   width: 721px;
   height: auto;
   transform: rotate(12.2deg);
 }
 
 .offerTitle {
-  font-size: 24px;
+  font-size: 22px;
   line-height: 36px;
 }
 
@@ -50,4 +53,143 @@
   margin-top: 28px;
   border: 1px solid #fff;
   width: 160px;
+}
+
+@media (max-width: 1281px) {
+  .offer {
+    justify-content: space-evenly;
+  }
+  .title {
+    font-size: 115px;
+    line-height: 130px;
+  }
+  .offerTitle {
+    font-size: 16px;
+    line-height: 32px;
+  }
+  .bannerImg {
+    width: 651px;
+  }
+}
+
+@media (max-width: 1022px) {
+  .banner {
+    height: 380px;
+  }
+  .offer {
+    justify-content: space-between;
+  }
+
+  .bannerContent {
+    padding-top: 50px;
+  }
+
+  .title {
+    font-size: 100px;
+    line-height: 110px;
+  }
+  .bannerImg {
+    width: 521px;
+  }
+}
+
+@media (max-width: 936px) {
+  .title {
+    font-size: 90px;
+    line-height: 110px;
+  }
+  .bannerImg {
+    margin-top: 50px;
+    width: 461px;
+  }
+  .offerTitle {
+    font-size: 14px;
+    line-height: 25px;
+  }
+  .banner {
+    height: 330px;
+  }
+}
+
+@media (max-width: 830px) {
+  .title {
+    font-size: 75px;
+    line-height: 100px;
+  }
+  .bannerImg {
+    margin-top: 50px;
+    width: 400px;
+  }
+  .offerTitle {
+    font-size: 12px;
+    line-height: 25px;
+  }
+  .banner {
+    height: 300px;
+  }
+}
+
+@media (max-width: 720px) {
+  .title {
+    font-size: 65px;
+    line-height: 100px;
+  }
+  .bannerImg {
+    margin-top: 50px;
+    width: 350px;
+  }
+  .offerTitle {
+    font-size: 12px;
+    line-height: 25px;
+  }
+  .banner {
+    height: 300px;
+  }
+
+  .button {
+    margin-top: 28px;
+    border: 1px solid #fff;
+    width: 100px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 670px) {
+  .title {
+    font-size: 10vw;
+    line-height: 100px;
+  }
+  .bannerImg {
+    display: none;
+  }
+  .offerTitle {
+    font-size: 14px;
+    line-height: 25px;
+  }
+  .banner {
+    height: 250px;
+  }
+
+  .bannerContent {
+    padding: 0;
+  }
+
+  .offer {
+    margin: 0;
+    justify-content: center;
+  }
+
+  .button {
+    margin-top: 28px;
+    border: 1px solid #fff;
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .offerTitle {
+    font-size: 3.5vw;
+    line-height: 25px;
+  }
 }

@@ -8,16 +8,20 @@ export const Banner = () => {
   return (
     <div className={`container-fluid ${styles.banner}`}>
       <div className={styles.bannerContent}>
-        <h1 className={styles.title}>OCULUS QUEST 2</h1>
+        <h1 className={styles.title}>Заказать товар</h1>
         <div className={styles.offer}>
-          <img src={oculusImg} className={styles.bannerImg} alt='bannerImage' />
+          <img
+            src={oculusImg}
+            className={styles.bannerImg}
+            alt='bannerImage'
+          />
           <div className={styles.offerText}>
             <h6 className={styles.offerTitle}>
-              special offer only in online store
+              Специальные предложения только на сайте
             </h6>
             <Button
               containerClassName={styles.button}
-              children='ещё'
+              children='Связаться'
             />
           </div>
         </div>
