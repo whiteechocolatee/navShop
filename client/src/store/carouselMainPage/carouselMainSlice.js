@@ -42,72 +42,78 @@ export const getDiscountItemsCarousel = createAsyncThunk(
 const carouselMainPage = createSlice({
   name: "carouselItems",
   initialState: {
-    items: [],
-    itemsByCategory: [],
-    discountItems: [],
-    isLoading: false,
+    items: {
+      newItems: [],
+      itemsByCategory: [],
+      discountItems: [],
+    },
+    isLoading: {
+      newItemsLoading: false,
+      ItemsByCategoryLoading: false,
+      discountItemsLoading: false,
+    },
     isError: false,
     message: "",
   },
   extraReducers: (builder) => {
     builder
       .addCase(getNewItemsCarousel.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading.newItemsLoading = true;
       })
       .addCase(
         getNewItemsCarousel.fulfilled,
         (state, action) => {
-          state.isLoading = false;
-          state.items = action.payload;
+          state.isLoading.newItemsLoading = false;
+          state.items.newItems = action.payload;
         },
       )
       .addCase(
         getNewItemsCarousel.rejected,
         (state, action) => {
-          state.isLoading = false;
-          state.items = null;
+          state.isLoading.newItemsLoading = false;
+          state.items.newItems = null;
           state.isError = action.error.message;
         },
       )
       .addCase(
         getItemsByCategoryCarousel.pending,
         (state) => {
-          state.isLoading = true;
+          state.isLoading.ItemsByCategoryLoading = true;
         },
       )
       .addCase(
         getItemsByCategoryCarousel.fulfilled,
         (state, action) => {
-          state.isLoading = false;
-          state.itemsByCategory = action.payload;
+          state.isLoading.ItemsByCategoryLoading = false;
+          state.items.itemsByCategory = action.payload;
         },
       )
       .addCase(
         getItemsByCategoryCarousel.rejected,
         (state, action) => {
-          state.isLoading = false;
-          state.itemsByCategory = null;
+          state.isLoading.ItemsByCategoryLoading = false;
+          state.items.itemsByCategory = null;
           state.isError = action.error.message;
         },
       )
       .addCase(
         getDiscountItemsCarousel.pending,
         (state) => {
-          state.isLoading = true;
+          state.isLoading.discountItemsLoading = true;
         },
       )
       .addCase(
         getDiscountItemsCarousel.fulfilled,
         (state, action) => {
-          state.isLoading = false;
-          state.discountItems = action.payload;
+          state.isLoading.discountItemsLoading = false;
+          state.items.discountItems = action.payload;
         },
       )
       .addCase(
         getDiscountItemsCarousel.rejected,
         (state, action) => {
-          state.isLoading = false;
-          state.discountItems = null;
+          state.isLoading.discountItemsLoading = false;
+          state.items.discountItems = null;
           state.isError = action.error.message;
         },
       );
