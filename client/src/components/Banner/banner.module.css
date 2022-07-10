@@ -1,0 +1,53 @@
+.banner {
+  height: 458px;
+  background: linear-gradient(
+    94.56deg,
+    #abafe9 0%,
+    #b5e0fd 29.87%,
+    #b1cdf5 64.79%,
+    #abafe9 100%
+  );
+  font-family: "ICTV";
+  font-style: normal;
+  margin-bottom: 150px;
+}
+
+.bannerContent {
+  padding-top: 58px;
+  height: 100%;
+  max-width: 1283px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 140px;
+  line-height: 140px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.offer {
+  display: flex;
+  align-items: center;
+  margin-top: -100px;
+}
+
+.bannerImg {
+  width: 721px;
+  height: auto;
+  transform: rotate(12.2deg);
+}
+
+.offerTitle {
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.button {
+  margin-top: 28px;
+  border: 1px solid #fff;
+  width: 160px;
+}
