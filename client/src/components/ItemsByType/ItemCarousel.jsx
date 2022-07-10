@@ -5,11 +5,13 @@ import styles from "./carousel.module.css";
 
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Pagination } from "../Paginate/Pagination";
+import { Loader } from "../Loader/Loader";
 
 export const ItemCarousel = ({
   title = "",
   Component,
   items,
+  loading,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
@@ -24,6 +26,10 @@ export const ItemCarousel = ({
 
   const paginate = (pageNumber) =>
     setCurrentPage(pageNumber);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <ContentWrapper>
