@@ -7,6 +7,7 @@ import { CategoryCards } from "../../components/CategoryCard/CategoryCards";
 import { Brands } from "../../components/BrandsLine/Brands";
 import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
 import { ItemsContainer } from "../../components/ItemsContainer/ItemsContainer";
+import { Banner } from "../../components/Banner/Banner";
 
 import { useSelector } from "react-redux";
 
@@ -42,6 +43,7 @@ export const Main = () => {
         items={items.newItems}
         loading={isLoading.newItemsLoading}
       />
+      <Banner />
       <ItemCarousel
         title={"Зарядные"}
         Component={ItemsContainer}
