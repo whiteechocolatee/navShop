@@ -14,21 +14,21 @@ import { BsArrowUpRight } from "react-icons/bs";
 export const CategoryCards = () => {
   return (
     <ContentWrapper>
-      <div className={`${styles.content} mt-5`}>
-        <Block
-          containerClass={styles.main}
-          img={phoneimg}
-          alt={`Для телефона`}
-          title={`Для телефона`}
-          imgClassList={styles.imgPhone}
-        />
-        <Block
-          containerClass={styles.main}
-          img={gadgetImg}
-          alt={`Гаджеты`}
-          title={`Гаджеты`}
-          imgClassList={styles.imgGadget}
-        />
+      <div className={`${styles.content}`}>
+          <Block
+            containerClass={styles.main}
+            img={phoneimg}
+            alt={`Для телефона`}
+            title={`Для телефона`}
+            imgClassList={styles.imgPhone}
+          />
+          <Block
+            containerClass={styles.main}
+            img={gadgetImg}
+            alt={`Гаджеты`}
+            title={`Гаджеты`}
+            imgClassList={styles.imgGadget}
+          />
         <div className={styles.smallerBlocks}>
           <div className={styles.smallerBlocksTitle}>
             <h1>Категории</h1>

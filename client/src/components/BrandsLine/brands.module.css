@@ -26,3 +26,9 @@
   color: grey;
   opacity: 10%;
 }
+
+@media (max-width: 650px) {
+  .logos {
+    display: none;
+  }
+}
