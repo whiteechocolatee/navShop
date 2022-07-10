@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import styles from "./style.module.css";
-import { Loader } from "../Loader/Loader";
 
 export const Pagination = ({
   itemsPerPage,
   totalItems,
   paginate,
-  loading,
   currentPage,
 }) => {
   const pageNumbers = [];
@@ -18,10 +16,6 @@ export const Pagination = ({
     i++
   ) {
     pageNumbers.push(i);
-  }
-
-  if (loading) {
-    return <Loader />;
   }
 
   return (
