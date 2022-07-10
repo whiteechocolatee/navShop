@@ -19,11 +19,9 @@ import {
 import { useDispatch } from "react-redux";
 
 export const Main = () => {
-  const itemsData = useSelector((state) => {
+  const { items, isLoading } = useSelector((state) => {
     return state.carousel;
   });
-
-  console.log(itemsData);
 
   const dispatch = useDispatch();
 
@@ -41,18 +39,21 @@ export const Main = () => {
       <ItemCarousel
         title={"Новые товары"}
         Component={ItemsContainer}
-        items={itemsData.items}
+        items={items.newItems}
+        loading={isLoading.newItemsLoading}
       />
       <ItemCarousel
         title={"Зарядные"}
         Component={ItemsContainer}
-        items={itemsData.itemsByCategory}
+        items={items.itemsByCategory}
+        loading={isLoading.itemsByCategoryLoading}
       />
       <CategoryCards />
       <ItemCarousel
         title={"Предложения"}
         Component={ItemsContainer}
-        items={itemsData.discountItems}
+        items={items.discountItems}
+        loading={isLoading.discountItemsLoading}
       />
       <CallbackBlock />
       <Footer />
