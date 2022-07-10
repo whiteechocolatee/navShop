@@ -18,6 +18,7 @@ import {
 } from "../../store/carouselMainPage/carouselMainSlice";
 
 import { useDispatch } from "react-redux";
+import { BannersSlider } from '../../components/BannersSlider/BannersSlider';
 
 export const Main = () => {
   const { items, isLoading } = useSelector((state) => {
@@ -36,6 +37,7 @@ export const Main = () => {
     <React.Fragment>
       <Header />
       <CategoriesNavigation />
+      <BannersSlider/>
       <Brands />
       <ItemCarousel
         title={"Новые товары"}
