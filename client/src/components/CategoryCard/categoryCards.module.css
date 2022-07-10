@@ -1,8 +1,8 @@
 .content {
   display: flex;
   height: 610px;
-  justify-content: space-between;
   margin-bottom: 174px;
+  flex-wrap: nowrap;
 }
 
 .main {
@@ -76,4 +76,83 @@
 
 .links svg {
   font-weight: bold;
+}
+
+@media (max-width: 1100px) {
+  .content {
+    display: flex;
+    height: 910px;
+    margin-bottom: 120px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .main {
+    width: 45%;
+  }
+
+  .smallerBlocksTitle {
+    width: 45%;
+    height: 50px;
+  }
+
+  .smallerBlocks {
+    margin: 0;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 0 20px;
+  }
+
+  .game {
+    order: 1;
+    margin-top: -160px;
+    width: 47%;
+  }
+
+  .home {
+    width: 47%;
+  }
+
+  .imgPhone {
+    position: relative;
+    width: 140%;
+    height: auto;
+    top: 120px;
+    left: 25px;
+  }
+}
+
+@media (max-width: 650px) {
+  .content {
+    height: 100%;
+    min-height: 1000px;
+  }
+  .smallerBlocks {
+    margin-top: 50px;
+    height: 600px;
+    justify-content: space-between;
+  }
+
+  .imgGadget,
+  .imgPhone,
+  .imgGame,
+  .imgHome {
+    display: none;
+  }
+
+  .main,
+  .game,
+  .home {
+    width: 100%;
+    margin: 20px 0;
+    height: 200px;
+  }
+
+    .smallerBlocksTitle {
+    width: 45%;
+    height: 100px;
+  }
 }
