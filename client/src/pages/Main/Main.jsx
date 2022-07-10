@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Header } from "../../components/Header/Header";
 import { CallbackBlock } from "../../components/CallbackForm/CallbackBlock";
 import { Footer } from "../../components/Footer/Footer";
@@ -8,17 +10,13 @@ import { Brands } from "../../components/BrandsLine/Brands";
 import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
 import { ItemsContainer } from "../../components/ItemsContainer/ItemsContainer";
 import { Banner } from "../../components/Banner/Banner";
-
-import { useSelector } from "react-redux";
+import { BannersSlider } from "../../components/BannersSlider/BannersSlider";
 
 import {
   getNewItemsCarousel,
   getItemsByCategoryCarousel,
   getDiscountItemsCarousel,
 } from "../../store/carouselMainPage/carouselMainSlice";
-
-import { useDispatch } from "react-redux";
-import { BannersSlider } from '../../components/BannersSlider/BannersSlider';
 
 export const Main = () => {
   const { items, isLoading } = useSelector((state) => {
@@ -37,7 +35,7 @@ export const Main = () => {
     <React.Fragment>
       <Header />
       <CategoriesNavigation />
-      <BannersSlider/>
+      <BannersSlider />
       <Brands />
       <ItemCarousel
         title={"Новые товары"}
