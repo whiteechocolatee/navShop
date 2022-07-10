@@ -1,0 +1,17 @@
+.carousel {
+  margin: 0;
+  padding: 0;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.slider {
+  margin: 50px 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+}
