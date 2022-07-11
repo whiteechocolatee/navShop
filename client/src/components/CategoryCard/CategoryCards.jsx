@@ -3,11 +3,6 @@ import styles from "./categoryCards.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Block } from "./block/Block";
 
-import phoneimg from "./img/iphone_back.png";
-import gadgetImg from "./img/ipad_back.png";
-import gameImg from "./img/games.jpeg";
-import homeImg from "./img/home.png";
-
 import { NavLink } from "react-router-dom";
 import { BsArrowUpRight } from "react-icons/bs";
 
@@ -15,20 +10,20 @@ export const CategoryCards = () => {
   return (
     <ContentWrapper>
       <div className={`${styles.content}`}>
-          <Block
-            containerClass={styles.main}
-            img={phoneimg}
-            alt={`Для телефона`}
-            title={`Для телефона`}
-            imgClassList={styles.imgPhone}
-          />
-          <Block
-            containerClass={styles.main}
-            img={gadgetImg}
-            alt={`Гаджеты`}
-            title={`Гаджеты`}
-            imgClassList={styles.imgGadget}
-          />
+        <Block
+          containerClass={styles.main}
+          img={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1657382901/assets/iphone_back_gbuhxh.png`}
+          alt={`Для телефона`}
+          title={`Для телефона`}
+          imgClassList={styles.imgPhone}
+        />
+        <Block
+          containerClass={styles.main}
+          img={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1657382898/assets/ipad_back_ykceo9.png`}
+          alt={`Гаджеты`}
+          title={`Гаджеты`}
+          imgClassList={styles.imgGadget}
+        />
         <div className={styles.smallerBlocks}>
           <div className={styles.smallerBlocksTitle}>
             <h1>Категории</h1>
@@ -41,14 +36,14 @@ export const CategoryCards = () => {
           </div>
           <Block
             containerClass={styles.game}
-            img={gameImg}
+            img={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1657382897/assets/games_z3v72h.jpg`}
             alt={`Для геймеров`}
             title={`Для геймеров`}
             imgClassList={styles.imgGame}
           />
           <Block
             containerClass={styles.home}
-            img={homeImg}
+            img={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1657382898/assets/home_wneac1.png`}
             alt={`Для дома`}
             title={`Для дома`}
             imgClassList={styles.imgHome}
