@@ -2,25 +2,20 @@ const express = require("express");
 const {
   getItems,
   getItem,
-  getLimitedItemsByCategory,
-  getDiscountItems,
-  getLimitedNewItems,
+  getItemsByCategory,
   createItem,
 } = require("../controllers/itemControllers");
+
 const {
   postTestUsers,
 } = require("../insertData/insertDataControllers");
+
 const router = express.Router();
 
 router
   .get("/", getItems)
   .get("/:id", getItem)
-  .get("/limit/lastAdded", getLimitedNewItems)
-  .get("/limit/discount", getDiscountItems)
-  .get(
-    "/limit/existingItems/:category",
-    getLimitedItemsByCategory,
-  )
+  .get("/existingItems/:category", getItemsByCategory)
 
   /*
     testing posts
