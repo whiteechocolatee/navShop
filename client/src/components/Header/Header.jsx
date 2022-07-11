@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  FaSearch,
   FaRegUser,
   FaRegHeart,
   FaPhoneAlt,
@@ -13,9 +12,9 @@ import { NavLink } from "react-router-dom";
 
 import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
-import { Input } from "../Input/Input";
+import { Search } from "../SearchBar/Search";
 
-export const Header = () => {
+export const Header = ({ data }) => {
   return (
     <ContentWrapper>
       <header
@@ -94,7 +93,13 @@ export const Header = () => {
             </ul>
           </div>
           <ul className={styles.navBtns}>
-            <li
+            <Search
+              data={data}
+              navStyles={styles.navBtn}
+              searchStyles={styles.searchBlock}
+              inputStyles={styles.inputSearch}
+            />
+            {/* <li
               className={`${styles.navBtn} ${styles.searchBlock}`}>
               <Input
                 type={`text`}
@@ -102,7 +107,7 @@ export const Header = () => {
                 className={styles.inputSearch}
               />
               <FaSearch />
-            </li>
+            </li> */}
             <li
               className={`nav-item ${styles.navBtn} ${styles.callBlock}`}>
               <FaPhoneAlt />
