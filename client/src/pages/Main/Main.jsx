@@ -11,12 +11,9 @@ import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
 import { ItemsContainer } from "../../components/ItemsContainer/ItemsContainer";
 import { Banner } from "../../components/Banner/Banner";
 import { BannersSlider } from "../../components/BannersSlider/BannersSlider";
+import { Loader } from "../../components/Loader/Loader";
 
-import {
-  getNewItemsCarousel,
-  getItemsByCategoryCarousel,
-  getDiscountItemsCarousel,
-} from "../../store/carouselMainPage/carouselMainSlice";
+import { getNewItemsCarousel } from "../../store/carouselMainPage/carouselMainSlice";
 
 export const Main = () => {
   const { items, isLoading } = useSelector((state) => {
@@ -27,9 +24,23 @@ export const Main = () => {
 
   useEffect(() => {
     dispatch(getNewItemsCarousel());
-    dispatch(getItemsByCategoryCarousel("charger"));
-    dispatch(getDiscountItemsCarousel());
   }, [dispatch]);
+
+  const category = items.filter((elem) => {
+    if (elem.category === "charger") {
+      return elem;
+    }
+  });
+
+  const discount = items.filter((elem) => {
+    if (elem.discount > 0) {
+      return elem;
+    }
+  });
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <React.Fragment>
@@ -39,23 +50,17 @@ export const Main = () => {
       <Brands />
       <ItemCarousel
         title={"Новые товары"}
-        Component={ItemsContainer}
-        items={items.newItems}
-        loading={isLoading.newItemsLoading}
+        items={items}
       />
       <Banner />
       <ItemCarousel
         title={"Зарядные"}
-        Component={ItemsContainer}
-        items={items.itemsByCategory}
-        loading={isLoading.itemsByCategoryLoading}
+        items={category}
       />
       <CategoryCards />
       <ItemCarousel
         title={"Предложения"}
-        Component={ItemsContainer}
-        items={items.discountItems}
-        loading={isLoading.discountItemsLoading}
+        items={discount}
       />
       <CallbackBlock />
       <Footer />
