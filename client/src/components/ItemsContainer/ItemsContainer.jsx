@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Item } from "../ItemCard/Item";
 import styles from "./ItemsContainer.module.css";
 

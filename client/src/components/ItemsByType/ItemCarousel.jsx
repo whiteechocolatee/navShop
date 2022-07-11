@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import styles from "./carousel.module.css";
 
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Pagination } from "../Paginate/Pagination";
-import { Loader } from "../Loader/Loader";
 import { ItemsContainer } from "../ItemsContainer/ItemsContainer";
 
 export const ItemCarousel = ({
