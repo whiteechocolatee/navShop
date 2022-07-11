@@ -8,7 +8,6 @@ import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesN
 import { CategoryCards } from "../../components/CategoryCard/CategoryCards";
 import { Brands } from "../../components/BrandsLine/Brands";
 import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
-import { ItemsContainer } from "../../components/ItemsContainer/ItemsContainer";
 import { Banner } from "../../components/Banner/Banner";
 import { BannersSlider } from "../../components/BannersSlider/BannersSlider";
 import { Loader } from "../../components/Loader/Loader";
@@ -27,15 +26,11 @@ export const Main = () => {
   }, [dispatch]);
 
   const category = items.filter((elem) => {
-    if (elem.category === "charger") {
-      return elem;
-    }
+    return elem.category === "charger";
   });
 
   const discount = items.filter((elem) => {
-    if (elem.discount > 0) {
-      return elem;
-    }
+    return elem.discount > 0;
   });
 
   if (isLoading) {
@@ -44,19 +39,13 @@ export const Main = () => {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header data={items} />
       <CategoriesNavigation />
       <BannersSlider />
       <Brands />
-      <ItemCarousel
-        title={"Новые товары"}
-        items={items}
-      />
+      <ItemCarousel title={"Новые товары"} items={items} />
       <Banner />
-      <ItemCarousel
-        title={"Зарядные"}
-        items={category}
-      />
+      <ItemCarousel title={"Зарядные"} items={category} />
       <CategoryCards />
       <ItemCarousel
         title={"Предложения"}
