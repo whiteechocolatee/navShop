@@ -2,3 +2,9 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+@media (max-width: 520px) {
+  .container {
+    flex-wrap: wrap;
+  }
+}
