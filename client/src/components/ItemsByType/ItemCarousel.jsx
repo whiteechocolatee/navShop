@@ -5,15 +5,16 @@ import styles from "./carousel.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Pagination } from "../Paginate/Pagination";
 import { Loader } from "../Loader/Loader";
+import { ItemsContainer } from "../ItemsContainer/ItemsContainer";
 
 export const ItemCarousel = ({
   title = "",
-  Component,
-  items,
-  loading,
+  items = [],
 }) => {
+  items = items.slice(0, 16);
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(0);
+  const [itemsPerPage] = useState(4);
 
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
@@ -26,42 +27,11 @@ export const ItemCarousel = ({
   const paginate = (pageNumber) =>
     setCurrentPage(pageNumber);
 
-  const [windowSize, setWindowSize] = useState(
-    getWindowSize(),
-  );
-
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-
-    if (windowSize.innerWidth > 1300) {
-      setItemsPerPage(4);
-    } else if (windowSize.innerWidth < 1000) {
-      setItemsPerPage(2);
-    }
-
-    return () => {
-      window.removeEventListener(
-        "resize",
-        handleWindowResize,
-      );
-    };
-  }, []);
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  console.log(windowSize.innerWidth);
-
   return (
     <ContentWrapper>
       <div className={styles.cardContent}>
         <h1 className={styles.itemsTitle}>{title}</h1>
-        <Component currentItems={currentItems} />
+        <ItemsContainer currentItems={currentItems} />
         <div className={styles.paginate}>
           <Pagination
             itemsPerPage={itemsPerPage}
@@ -74,8 +44,3 @@ export const ItemCarousel = ({
     </ContentWrapper>
   );
 };
-
-function getWindowSize() {
-  const { innerWidth, innerHeight } = window;
-  return { innerWidth, innerHeight };
-}
