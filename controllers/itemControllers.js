@@ -7,7 +7,7 @@ const Items = require("../models/itemModel");
  */
 const getItems = async (req, res) => {
   try {
-    const items = await Items.find();
+    const items = await Items.find().sort({ _id: -1 });
     res.status(200).json(items);
   } catch (error) {
     res.status(500).json({
@@ -39,56 +39,17 @@ const getItem = async (req, res) => {
  * @param req - The request object.
  * @param res - the response object
  */
-const getLimitedItemsByCategory = async (req, res) => {
+const getItemsByCategory = async (req, res) => {
   try {
     const itemsByCategory = await Items.find({
       category: req.params.category,
-    }).limit(16);
+    });
 
     res.status(200).json(itemsByCategory);
   } catch (error) {
     res.status(500).json({
       message: "Ошибка, попробуйте позже.",
     });
-  }
-};
-
-/**
- * It gets the 16 most recent items from the database and sends them to the client
- * @param req - The request object.
- * @param res - the response object
- */
-const getLimitedNewItems = async (req, res) => {
-  try {
-    const newItems = await Items.find()
-      .sort({ _id: -1 })
-      .limit(16);
-
-    res.status(200).json(newItems);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Ошибка, попробуйте позже." });
-  }
-};
-
-/**
- * It gets 16 the items that are for sale
- * @param req - The request object. This contains information about the HTTP request that raised the
- * event.
- * @param res - the response object
- */
-const getDiscountItems = async (req, res) => {
-  try {
-    const discountItem = await Items.find({
-      discount: { $gt: 0 },
-    });
-
-    res.status(200).json(discountItem);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Ошибка, попробуйте позже." });
   }
 };
 
@@ -129,8 +90,6 @@ const createItem = async (req, res) => {
 module.exports = {
   getItems,
   getItem,
-  getLimitedItemsByCategory,
-  getDiscountItems,
-  getLimitedNewItems,
+  getItemsByCategory,
   createItem,
 };
