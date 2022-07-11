@@ -3,7 +3,7 @@
   justify-content: space-evenly;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 1280px) {
   .container {
     flex-wrap: wrap;
   }
