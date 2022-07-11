@@ -5,29 +5,22 @@ import axios from "axios";
  * and returns the data from the response
  * @returns An array of objects
  */
-const getNewItems = async () => {
-  let res = await axios.get("/api/items/limit/lastAdded");
+const getItems = async () => {
+  let res = await axios.get("/api/items/");
   return res.data;
 };
 
 const getItemsByCategory = async (category) => {
   let res = await axios.get(
-    `/api/items/limit/existingItems/${category}`,
+    `/api/items/existingItems/${category}`,
   );
 
   return res.data;
 };
 
-const getDiscountItems = async () => {
-  let res = await axios.get("/api/items/limit/discount");
-
-  return res.data;
-};
-
-const carouselService = {
-  getNewItems,
+const mainService = {
+  getItems,
   getItemsByCategory,
-  getDiscountItems,
 };
 
-export default carouselService;
+export default mainService;
