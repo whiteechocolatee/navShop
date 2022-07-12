@@ -9,10 +9,9 @@ export const Button = ({
 }) => {
   return (
     <div
-      className={`${containerClassName} ${styles.buttonContainer}`}>
-      <span
-        className={`${styles.button} ${className}`}
-        onClick={onClick}>
+      className={`${containerClassName} ${styles.buttonContainer}`}
+      onClick={onClick}>
+      <span className={`${styles.button} ${className}`}>
         {children}
       </span>
     </div>
