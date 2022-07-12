@@ -48,6 +48,15 @@
   border-bottom: 2px solid #000;
 }
 
+.hide {
+  display: none;
+}
+
+.error {
+  font-size: 15px;
+  color: rgb(255, 0, 111);
+}
+
 @media (max-width: 711px) {
   .callback {
     height: 414px;
