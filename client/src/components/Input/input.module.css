@@ -9,6 +9,15 @@
 }
 
 .input::placeholder {
-  color: #000000;
+  color: #00000065;
   font-size: 16px;
+}
+
+.error {
+  font-size: 15px;
+  color: rgb(255, 0, 111);
+}
+
+.inputClassName {
+  width: 100%;
 }
