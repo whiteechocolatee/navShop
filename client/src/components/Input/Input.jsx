@@ -7,17 +7,22 @@ export const Input = ({
   type = "",
   placeholder = "",
   name = "",
-  inputClassName = "",
+  error = "",
 }) => {
   return (
-    <div className={`${className}`}>
-      <input
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        onChange={onChange}
-        className={`${styles.input}`}
-      />
+    <div className={styles.inputClassName}>
+      <div className={`${className}`}>
+        <input
+          type={type}
+          placeholder={placeholder}
+          name={name}
+          onChange={onChange}
+          className={`${styles.input}`}
+        />
+      </div>
+      {error && (
+        <span className={styles.error}>{error}</span>
+      )}
     </div>
   );
 };
