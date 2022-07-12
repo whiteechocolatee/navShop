@@ -99,15 +99,6 @@ export const Header = ({ data }) => {
               searchStyles={styles.searchBlock}
               inputStyles={styles.inputSearch}
             />
-            {/* <li
-              className={`${styles.navBtn} ${styles.searchBlock}`}>
-              <Input
-                type={`text`}
-                placeholder={`Поиск`}
-                className={styles.inputSearch}
-              />
-              <FaSearch />
-            </li> */}
             <li
               className={`nav-item ${styles.navBtn} ${styles.callBlock}`}>
               <FaPhoneAlt />
