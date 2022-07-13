@@ -13,6 +13,7 @@ import { FaCarSide } from "react-icons/fa";
 
 import styles from "./nav.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
+import { paths } from "../../paths";
 
 export const CategoriesNavigation = () => {
   return (
@@ -22,31 +23,37 @@ export const CategoriesNavigation = () => {
           <ul className={styles.navBtns}>
             <li className={styles.navBtn}>
               <RiBattery2ChargeLine />
-              <NavLink to={`/`}>Зарядные</NavLink>
+              <NavLink to={`${paths.category}/charger`}>
+                Зарядные
+              </NavLink>
             </li>
             <li className={styles.navBtn}>
               <RiDeviceRecoverLine />
-              <NavLink to={`/`}>
+              <NavLink to={`${paths.category}/cover`}>
                 Защитные акссесуары
               </NavLink>
             </li>
             <li className={styles.navBtn}>
               <GiPowerGenerator />
-              <NavLink to={`/`}>Гаджеты</NavLink>
+              <NavLink to={`${paths.category}/gadget`}>
+                Гаджеты
+              </NavLink>
             </li>
             <li className={styles.navBtn}>
               <GiAudioCassette />
-              <NavLink to={`/`}>Аудио</NavLink>
+              <NavLink to={`${paths.category}/audio`}>
+                Аудио
+              </NavLink>
             </li>
             <li className={styles.navBtn}>
               <RiComputerLine />
-              <NavLink to={`/`}>
+              <NavLink to={`${paths.category}/pc`}>
                 Для компьютеров
               </NavLink>
             </li>
             <li className={styles.navBtn}>
               <FaCarSide />
-              <NavLink to={`/`}>
+              <NavLink to={`${paths.category}/auto`}>
                 Для авто
               </NavLink>
             </li>
