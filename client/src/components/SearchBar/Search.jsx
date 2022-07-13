@@ -4,15 +4,17 @@ import { Input } from "../Input/Input";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { paths } from "../../paths";
+import { useSelector } from "react-redux";
 
 export const Search = ({
-  data,
   inputStyles,
   navStyles,
   searchStyles,
 }) => {
-
   
+  let data = useSelector((state) => {
+    return state.itemsReducer.items;
+  });
 
   const [filteredData, setFilteredData] = useState([]);
 
