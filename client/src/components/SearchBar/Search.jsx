@@ -3,6 +3,7 @@ import styles from "./search.module.css";
 import { Input } from "../Input/Input";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { paths } from "../../paths";
 
 export const Search = ({
   data,
@@ -10,6 +11,9 @@ export const Search = ({
   navStyles,
   searchStyles,
 }) => {
+
+  
+
   const [filteredData, setFilteredData] = useState([]);
 
   const handleFilter = (e) => {
@@ -19,7 +23,7 @@ export const Search = ({
         .toLowerCase()
         .includes(searchWord.toLowerCase());
     });
-    if ((searchWord === "")) {
+    if (searchWord === "") {
       setFilteredData([]);
     } else {
       setFilteredData(filteredArray);
@@ -39,7 +43,9 @@ export const Search = ({
         <div className={styles.showResult}>
           <ul className={styles.searchElements}>
             {filteredData.map((el) => (
-              <Link key={el._id} to={`/item/${el._id}`}>
+              <Link
+                key={el._id}
+                to={`${paths.itemPage}/${el._id}`}>
                 <li className={styles.searchElement}>
                   <span>{el.title}</span>
                   <span>{el.price}</span>
