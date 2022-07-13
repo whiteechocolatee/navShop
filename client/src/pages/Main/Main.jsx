@@ -39,15 +39,24 @@ export const Main = () => {
 
   return (
     <React.Fragment>
-      <Header/>
+      <Header />
       <CategoriesNavigation />
       <BannersSlider />
       <Brands />
-      <ItemCarousel title={"Новые товары"} items={items} />
+      <ItemCarousel
+        itemsQuantity={4}
+        title={"Новые товары"}
+        items={items}
+      />
       <Banner />
-      <ItemCarousel title={"Зарядные"} items={category} />
+      <ItemCarousel
+        itemsQuantity={4}
+        title={"Зарядные"}
+        items={category}
+      />
       <CategoryCards />
       <ItemCarousel
+        itemsQuantity={4}
         title={"Предложения"}
         items={discount}
       />
