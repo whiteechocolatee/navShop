@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import styles from "./callback.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Input } from "../Input/Input";
@@ -18,7 +18,7 @@ export const CallbackBlock = () => {
   const [error, setError] = useState(styles.hide);
 
   const { errors } = useSelector((state) => {
-    return state.form;
+    return state.formReducer;
   });
 
   const handleCallbackForm = async () => {
@@ -86,9 +86,7 @@ export const CallbackBlock = () => {
           </form>
           <div
             className={`${styles.changeForm} ${lineClass}`}>
-            <h1 className={styles.advice}>
-              Благодарим!
-            </h1>
+            <h1 className={styles.advice}>Благодарим!</h1>
             <p className={styles.description}>
               {`Как только мы получим заявку -\n сразу же вам перезвоним!  `}
             </p>
