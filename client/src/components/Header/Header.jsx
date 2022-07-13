@@ -14,7 +14,7 @@ import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Search } from "../SearchBar/Search";
 
-export const Header = ({ data }) => {
+export const Header = () => {
   return (
     <ContentWrapper>
       <header
@@ -94,7 +94,6 @@ export const Header = ({ data }) => {
           </div>
           <ul className={styles.navBtns}>
             <Search
-              data={data}
               navStyles={styles.navBtn}
               searchStyles={styles.searchBlock}
               inputStyles={styles.inputSearch}

@@ -39,7 +39,7 @@ export const Main = () => {
 
   return (
     <React.Fragment>
-      <Header data={items} />
+      <Header/>
       <CategoriesNavigation />
       <BannersSlider />
       <Brands />
