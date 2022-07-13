@@ -12,17 +12,17 @@ import { Banner } from "../../components/Banner/Banner";
 import { BannersSlider } from "../../components/BannersSlider/BannersSlider";
 import { Loader } from "../../components/Loader/Loader";
 
-import { getNewItemsCarousel } from "../../store/carouselMainPage/carouselMainSlice";
+import { getItems } from "../../store/items/itemsSlice";
 
 export const Main = () => {
   const { items, isLoading } = useSelector((state) => {
-    return state.carousel;
+    return state.itemsReducer;
   });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getNewItemsCarousel());
+    dispatch(getItems());
   }, [dispatch]);
 
   const category = items.filter((elem) => {
