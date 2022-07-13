@@ -4,7 +4,7 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 
-export const getNewItemsCarousel = createAsyncThunk(
+export const getItems = createAsyncThunk(
   "getCarouselNew",
   async (_, thunkAPI) => {
     try {
@@ -15,8 +15,8 @@ export const getNewItemsCarousel = createAsyncThunk(
   },
 );
 
-const carouselMainPage = createSlice({
-  name: "carouselItems",
+const ItemsSlice = createSlice({
+  name: "itemsSlice",
   initialState: {
     items: [],
     isLoading: false,
@@ -25,18 +25,18 @@ const carouselMainPage = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getNewItemsCarousel.pending, (state) => {
+      .addCase(getItems.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(
-        getNewItemsCarousel.fulfilled,
+        getItems.fulfilled,
         (state, action) => {
           state.isLoading = false;
           state.items = action.payload;
         },
       )
       .addCase(
-        getNewItemsCarousel.rejected,
+        getItems.rejected,
         (state, action) => {
           state.isLoading = false;
           state.items = null;
@@ -46,4 +46,4 @@ const carouselMainPage = createSlice({
   },
 });
 
-export default carouselMainPage.reducer;
+export default ItemsSlice.reducer;

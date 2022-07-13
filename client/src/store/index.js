@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import carouselMainSlice from "./carouselMainPage/carouselMainSlice";
-import fromsSlice from "./form/formsSlice";
+import itemsSlice from "./items/itemsSlice";
+import formsSlice from "./form/formsSlice";
 
 export const store = configureStore({
   reducer: {
-    carousel: carouselMainSlice,
-    form: fromsSlice,
+    itemsReducer: itemsSlice,
+    formReducer: formsSlice,
   },
 });
