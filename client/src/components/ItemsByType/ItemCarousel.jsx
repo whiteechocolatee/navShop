@@ -9,11 +9,12 @@ import { ItemsContainer } from "../ItemsContainer/ItemsContainer";
 export const ItemCarousel = ({
   title = "",
   items = [],
+  itemsQuantity,
 }) => {
   items = items.slice(0, 16);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(4);
+  const [itemsPerPage] = useState(itemsQuantity);
 
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
