@@ -5,10 +5,21 @@ import {
 } from "@reduxjs/toolkit";
 
 export const getItems = createAsyncThunk(
-  "getCarouselNew",
+  "getAllItems",
   async (_, thunkAPI) => {
     try {
       return await mainService.getItems();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const getItemsByCategory = createAsyncThunk(
+  "getItemsByCategory",
+  async (category, thunkAPI) => {
+    try {
+      return await mainService.getItemsByCategory(category);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -28,21 +39,28 @@ const ItemsSlice = createSlice({
       .addCase(getItems.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(
-        getItems.fulfilled,
-        (state, action) => {
-          state.isLoading = false;
-          state.items = action.payload;
-        },
-      )
-      .addCase(
-        getItems.rejected,
-        (state, action) => {
-          state.isLoading = false;
-          state.items = null;
-          state.isError = action.error.message;
-        },
-      );
+      .addCase(getItems.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(getItems.rejected, (state, action) => {
+        state.isLoading = false;
+        state.items = null;
+        state.isError = action.error.message;
+      })
+      // get items by category builder
+      .addCase(getItemsByCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getItemsByCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(getItemsByCategory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.items = null;
+        state.isError = action.error.message;
+      })
   },
 });
 
