@@ -7,6 +7,7 @@ export const ItemsContainer = ({ currentItems = [] }) => {
     <div className={styles.container}>
       {currentItems.map((item, index) => (
         <Item
+          id={item._id}
           key={index}
           title={item.title}
           price={item.price}
