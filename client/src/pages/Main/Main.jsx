@@ -37,6 +37,18 @@ export const Main = () => {
     return <Loader />;
   }
 
+  let itemsQuantity = 4;
+
+  const width = window.innerWidth;
+
+  if (width <= 1285) {
+    itemsQuantity = 3;
+  }
+
+  if (width <= 890) {
+    itemsQuantity = 2;
+  }
+
   return (
     <React.Fragment>
       <Header />
@@ -44,19 +56,19 @@ export const Main = () => {
       <BannersSlider />
       <Brands />
       <ItemCarousel
-        itemsQuantity={4}
+        itemsQuantity={itemsQuantity}
         title={"Новые товары"}
         items={items}
       />
       <Banner />
       <ItemCarousel
-        itemsQuantity={4}
+        itemsQuantity={itemsQuantity}
         title={"Зарядные"}
         items={category}
       />
       <CategoryCards />
       <ItemCarousel
-        itemsQuantity={4}
+        itemsQuantity={itemsQuantity}
         title={"Предложения"}
         items={discount}
       />
