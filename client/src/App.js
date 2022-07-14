@@ -9,18 +9,18 @@ import {
 
 import { paths } from "./paths";
 import { Main } from "./pages/Main/Main";
-import { Error } from './pages/Error/Error';
+import { Error } from "./pages/Error/Error";
 import { CategoryPage } from "./pages/CategoryPage/CategoryPage";
 
 function App() {
-
-  
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path={paths.main} element={<Main />} />
-        <Route path={`${paths.category}/:categoryName`} element={<CategoryPage />} />
+        <Route
+          path={`${paths.category}/:categoryName`}
+          element={<CategoryPage />}
+        />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
