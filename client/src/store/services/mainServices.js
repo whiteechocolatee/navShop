@@ -10,17 +10,32 @@ const getItems = async () => {
   return res.data;
 };
 
+/**
+ * It takes a category as an argument, and returns an array of items that belong to that category
+ * @param category - the category of the item you want to get
+ * @returns An array of objects.
+ */
 const getItemsByCategory = async (category) => {
   let res = await axios.get(
     `/api/items/existingItems/${category}`,
   );
+  return res.data;
+};
 
+/**
+ * GetItem is an async function that returns the result of an axios get request to the url /
+ * @param id - the id of the item you want to get
+ * @returns a promise.
+ */
+const getItem = async (id) => {
+  let res = await axios.get(`/api/items/${id}`);
   return res.data;
 };
 
 const mainService = {
   getItems,
   getItemsByCategory,
+  getItem,
 };
 
 export default mainService;
