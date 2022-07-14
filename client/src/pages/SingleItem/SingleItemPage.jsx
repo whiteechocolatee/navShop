@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import { Header } from "../../components/Header/Header";
 import { getItem } from "../../store/item/itemSlice";
 import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
+import { Loader } from "../../components/Loader/Loader";
+
 import { Image } from "cloudinary-react";
 
 export const SingleItemPage = () => {
@@ -18,7 +21,9 @@ export const SingleItemPage = () => {
     dispatch(getItem(id));
   }, [dispatch, id]);
 
-  console.log(item, isLoading);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <React.Fragment>
