@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaRegUser,
   FaRegHeart,
@@ -13,13 +14,16 @@ import { NavLink } from "react-router-dom";
 import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Search } from "../SearchBar/Search";
+import { paths } from "../../paths";
 
 export const Header = () => {
   return (
     <ContentWrapper>
       <header
         className={`navbar navbar-expand-md ${styles.navigation}`}>
-        <b>LOGO</b>
+        <Link className={styles.mainLink} to={paths.main}>
+          <b>LOGO</b>
+        </Link>
         <button
           className={`${styles.toggler}`}
           type='button'
