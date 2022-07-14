@@ -13,6 +13,13 @@
   padding: 23.5px;
 }
 
+.itemLink,
+.itemLink:hover,
+.itemLink:focus {
+  text-decoration: none;
+  color: #000;
+}
+
 .cardImg {
   width: 240px;
   height: 287px;
