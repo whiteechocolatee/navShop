@@ -4,7 +4,7 @@ import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { createCallbackRequest } from "../../store/form/formsSlice";
+import { createCallbackRequest } from "../../store/forms/formsSlice";
 
 import { userSchema } from "../../Validation/formValidation";
 
