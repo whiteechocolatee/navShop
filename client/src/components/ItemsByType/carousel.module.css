@@ -7,3 +7,7 @@
 .cardContent {
   margin-top: 65px;
 }
+
+.hide {
+  display: none;
+}
