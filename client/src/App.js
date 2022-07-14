@@ -10,7 +10,8 @@ import {
 import { paths } from "./paths";
 import { Main } from "./pages/Main/Main";
 import { Error } from "./pages/Error/Error";
-import { CategoryPage } from "./pages/CategoryPage/CategoryPage";
+import { CategoryPage } from "./pages/Category/CategoryPage";
+import { SingleItemPage } from "./pages/SingleItem/SingleItemPage";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
         <Route
           path={`${paths.category}/:categoryName`}
           element={<CategoryPage />}
+        />
+        <Route
+          path={`${paths.itemPage}/:id`}
+          element={<SingleItemPage />}
         />
         <Route path='*' element={<Error />} />
       </Routes>
