@@ -18,8 +18,6 @@ export const CategoryPage = () => {
     return state.itemsReducer;
   });
 
-  console.log(items, isLoading);
-
   useEffect(() => {
     dispatch(getItemsByCategory(categoryName));
   }, [categoryName, dispatch]);
