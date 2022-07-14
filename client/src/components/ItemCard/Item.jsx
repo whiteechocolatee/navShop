@@ -17,7 +17,9 @@ export const Item = ({
 }) => {
   return (
     <div className={styles.cardBody}>
-      <Link className={styles.itemLink} to={`${paths.itemPage}/${id}`}>
+      <Link
+        className={styles.itemLink}
+        to={`${paths.itemPage}/${id}`}>
         <div className={styles.cardImageBlock}>
           <div className={styles.addToFavorite}>
             <div
