@@ -9,10 +9,6 @@ const {
   createItem,
 } = require("../controllers/itemControllers");
 
-const {
-  postTestUsers,
-} = require("../insertData/insertDataControllers");
-
 const router = express.Router();
 
 router
@@ -20,10 +16,6 @@ router
   .get("/:id", getItem)
   .get("/existingItems/:category", getItemsByCategory)
 
-  /*
-    testing posts
-  */
-  .post("/postTestUsers", postTestUsers)
   /* 
     admin routes
   */
