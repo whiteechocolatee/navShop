@@ -3,26 +3,26 @@ const mongoose = require("mongoose");
 const orderModel = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    require: true,
+    required: true,
     ref: "User",
   },
   orderItems: [
     {
       name: {
         type: String,
-        require: true,
+        required: true,
       },
       image: {
         type: String,
-        require: true,
+        required: true,
       },
       price: {
         type: Number,
-        require: true,
+        required: true,
       },
       product: {
         type: mongoose.Schema.Types.ObjectId,
-        require: true,
+        required: true,
         ref: "Item",
       },
     },
@@ -30,25 +30,25 @@ const orderModel = mongoose.Schema({
   shippingAddress: {
     address: {
       type: String,
-      require: true,
+      required: true,
     },
     city: {
       type: String,
-      require: true,
+      required: true,
     },
     postalCode: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   totalPrice: {
     type: Number,
-    require: true,
+    required: true,
     default: 0.0,
   },
   isDelivered: {
     type: Boolean,
-    require: true,
+    required: true,
     default: false,
   },
   deliveredAt: {

@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const CallbackModel = mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   phone: {
     type: String,
-    require: true,
+    required: true,
   },
   isCalled: {
     type: Boolean,
