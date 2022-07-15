@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 
 export const useSortItems = (items = []) => {
-  const [desc, setDesc] = useState(false);
+  const [desc, setDesc] = useState(true);
 
   const sortedItems = useMemo(() => {
     const sortableItems = [...items];
