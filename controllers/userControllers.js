@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const generateToken = require("../utils/generateToken");
 
 /**
  * It takes the email and password from the request body, finds a user with that email, and if the user
@@ -7,7 +8,7 @@ const User = require("../models/userModel");
  * string, parameters, body, HTTP headers, and so on.
  * @param res - The response object.
  */
-const login = async (req, res) => {
+const userLogin = async (req, res) => {
   try {
     console.log(req.body);
 
@@ -21,7 +22,7 @@ const login = async (req, res) => {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: null,
+        token: generateToken(user._id),
       });
     } else {
       res.status(401).json({
@@ -35,6 +36,98 @@ const login = async (req, res) => {
   }
 };
 
+/**
+ * It takes the user's name, email, and password from the request body, checks if the user with the
+ * same email already exists, and if not, creates a new user and returns the user's id, name, email,
+ * isAdmin status, and token
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns const userRegistration = async (req, res) => {
+ *   const errors = {};
+ */
+const userRegistration = async (req, res) => {
+  const errors = {};
+
+  if (!req.body.name) {
+    errors.name = { message: "Укажите имя!" };
+  }
+
+  if (!req.body.email) {
+    errors.email = { message: "Укажите почту!" };
+  }
+
+  if (!req.body.password) {
+    errors.password = { message: "Укажите пароль!" };
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json(errors);
+  }
+
+  try {
+    const { name, email, password } = req.body;
+
+    const isExists = await User.findOne({ email });
+
+    if (isExists) {
+      return res.status(400).json({
+        message:
+          "Пользователь с таким email уже существует!",
+      });
+    }
+
+    const newUser = await User.create({
+      name,
+      email,
+      password,
+    });
+
+    if (newUser) {
+      return res.status(201).json({
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        isAdmin: newUser.isAdmin,
+        token: generateToken(newUser._id),
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Ошибка на сервере, повторите позже!",
+    });
+  }
+};
+
+/**
+ * It finds a user by id and returns the user's name, email, and admin status
+ * @param req - The request object.
+ * @param res - The response object.
+ */
+const userProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      });
+    } else {
+      res
+        .status(404)
+        .json({ message: "Пользователь не найден!" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Ошибка на сервере, повторите позже!",
+    });
+  }
+};
+
 module.exports = {
-  login,
+  userLogin,
+  userRegistration,
+  userProfile,
 };
