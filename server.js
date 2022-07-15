@@ -17,7 +17,8 @@ app
   .use(express.json())
   .use(formData.parse())
   .use(express.urlencoded({ extended: true }))
-  .use("/api/items", require("./routes/mainRoutes"));
+  .use("/api/items", require("./routes/mainRoutes"))
+  .use("/api/users", require("./routes/userRoutes"));
 
 app.listen(port, () => {
   console.log(`server was started at port - ${port}`);
