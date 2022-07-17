@@ -29,25 +29,25 @@ export const CategoryPage = () => {
     dispatch(getItemsByCategory(categoryName));
   }, [categoryName, dispatch]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <React.Fragment>
       <Header />
       <CategoriesNavigation />
-      <ItemCarousel
-        itemsQuantity={16}
-        // title={`Category ${categoryName}`}
-        items={sortedItems}>
-        <Button
-          containerClassName={styles.sortButton}
-          onClick={() => setDesc(!desc)}>
-          Сортировать по цене:{" "}
-          {`${desc ? "по убыванию" : "по возрастанию"}`}
-        </Button>
-      </ItemCarousel>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ItemCarousel
+          itemsQuantity={16}
+          // title={`Category ${categoryName}`}
+          items={sortedItems}>
+          <Button
+            containerClassName={styles.sortButton}
+            onClick={() => setDesc(!desc)}>
+            Сортировать по цене:{" "}
+            {`${desc ? "по убыванию" : "по возрастанию"}`}
+          </Button>
+        </ItemCarousel>
+      )}
       <Footer />
     </React.Fragment>
   );
