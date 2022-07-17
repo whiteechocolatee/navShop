@@ -11,7 +11,7 @@ export const Input = ({
 }) => {
   return (
     <div className={styles.inputClassName}>
-      <div className={`${className}`}>
+      <div className={className}>
         <input
           type={type}
           placeholder={placeholder}
