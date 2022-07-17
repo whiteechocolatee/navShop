@@ -38,7 +38,6 @@ const formSlice = createSlice({
       .addCase(
         createCallbackRequest.rejected,
         (state, action) => {
-          console.log(action.payload);
           state.isLoading = false;
           state.isError = true;
           state.errors = action.payload;
