@@ -3,6 +3,7 @@
   height: 610px;
   margin-bottom: 174px;
   flex-wrap: nowrap;
+  justify-content: space-around;
 }
 
 .main {
@@ -151,7 +152,7 @@
     height: 200px;
   }
 
-    .smallerBlocksTitle {
+  .smallerBlocksTitle {
     width: 45%;
     height: 100px;
   }
