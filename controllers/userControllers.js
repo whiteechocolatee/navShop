@@ -9,15 +9,27 @@ const generateToken = require("../utils/generateToken");
  * @param res - The response object.
  */
 const userLogin = async (req, res) => {
-  try {
-    console.log(req.body);
+  const errors = {};
 
+  if (!req.body.email) {
+    errors.email = { message: "Укажите email!" };
+  }
+
+  if (!req.body.password) {
+    errors.password = { message: "Укажите пароль!" };
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json(errors);
+  }
+
+  try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
-      res.json({
+      res.status(200).json({
         _id: user._id,
         name: user.name,
         email: user.email,
@@ -25,7 +37,7 @@ const userLogin = async (req, res) => {
         token: generateToken(user._id),
       });
     } else {
-      res.status(401).json({
+      return res.status(401).json({
         message: "Неправильный логин или пароль!",
       });
     }
