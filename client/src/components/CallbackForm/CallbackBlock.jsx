@@ -6,7 +6,7 @@ import { Button } from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createCallbackRequest } from "../../store/forms/formsSlice";
 
-import { userSchema } from "../../Validation/formValidation";
+import { userSchema } from "../../Validation/callbackForm";
 
 export const CallbackBlock = () => {
   const dispatch = useDispatch();
