@@ -5,6 +5,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 
 import { paths } from "./paths";
@@ -14,11 +15,21 @@ import { CategoryPage } from "./pages/Category/CategoryPage";
 import { SingleItemPage } from "./pages/SingleItem/SingleItemPage";
 import { Registration } from "./pages/Registration/Registration";
 import { Login } from "./pages/Login/Login";
+import { UserAccount } from "./pages/userAccount/UserAccount";
 
 function App() {
+  const user = localStorage.getItem("userInfo");
+
   return (
     <BrowserRouter>
       <Routes>
+        {user && (
+          <Route
+            exact
+            path={paths.account}
+            element={<UserAccount />}
+          />
+        )}
         <Route exact path={paths.main} element={<Main />} />
         <Route
           exact
@@ -39,6 +50,11 @@ function App() {
           exact
           path={paths.login}
           element={<Login />}
+        />
+        <Route
+          exact
+          path={paths.account}
+          element={<Navigate replace to={paths.login} />}
         />
         <Route path='*' element={<Error />} />
       </Routes>
