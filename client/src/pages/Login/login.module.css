@@ -17,6 +17,11 @@
   height: 80%;
 }
 
+.submit {
+  background-color: transparent;
+  border: none;
+}
+
 .errorBlock {
   width: 100%;
   height: 70px;
