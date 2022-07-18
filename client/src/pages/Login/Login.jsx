@@ -10,7 +10,7 @@ import { Input } from "../../components/Input/Input";
 import { NavLink } from "react-router-dom";
 import { paths } from "../../paths";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../store/users/userSlice";
+import { userLogin } from "../../store/users/userLoginSlice";
 import { Loader } from "../../components/Loader/Loader";
 
 export const Login = () => {
@@ -18,7 +18,7 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const { errors, isLoading } = useSelector(
-    (state) => state.userReducer,
+    (state) => state.userLogReducer,
   );
 
   const dispatch = useDispatch();
@@ -29,7 +29,13 @@ export const Login = () => {
       password: password,
     };
 
-    dispatch(userLogin(data));
+    dispatch(userLogin(data)).then((res) => {
+      let response = res.type.split("/")[1] === "fulfilled";
+
+      if (response) {
+        window.location.replace(paths.account);
+      }
+    });
   };
 
   return (
@@ -46,7 +52,9 @@ export const Login = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              <form className={styles.form}>
+              <form
+                onSubmit={handleSubmit}
+                className={styles.form}>
                 {errors && errors.message ? (
                   <div className={styles.errorBlock}>
                     {errors.message}
@@ -54,12 +62,12 @@ export const Login = () => {
                 ) : (
                   ""
                 )}
-                <h4>Рады вас видеть</h4>
+                <h4>Рады вас видеть!</h4>
                 <Input
                   onChange={(e) => setEmail(e.target.value)}
                   name='email'
                   className={styles.input}
-                  type='text'
+                  type='email'
                   placeholder='Введите email'
                 />
                 {errors && errors.email ? (
@@ -85,10 +93,12 @@ export const Login = () => {
                 ) : (
                   ""
                 )}
-                <Button
-                  onClick={handleSubmit}
-                  containerClassName={styles.btn}>
-                  Войти
+                <Button containerClassName={styles.btn}>
+                  <input
+                    className={styles.submit}
+                    type='submit'
+                    value='Войти'
+                  />
                 </Button>
               </form>
             )}
