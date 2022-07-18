@@ -116,7 +116,7 @@ export const Header = () => {
               <NavLink
                 aria-current='page'
                 className={`nav-link`}
-                to={paths.signup}>
+                to={paths.account}>
                 <FaRegUser />
               </NavLink>
               <NavLink
