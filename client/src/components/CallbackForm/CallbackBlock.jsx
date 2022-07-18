@@ -65,7 +65,7 @@ export const CallbackBlock = () => {
               }
             />
             <Input
-              name={`name`}
+              name={`phone`}
               type={`text`}
               className={styles.input}
               onChange={(e) =>
