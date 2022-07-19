@@ -6,37 +6,57 @@ import { Button } from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createCallbackRequest } from "../../store/forms/formsSlice";
 
-import { userSchema } from "../../Validation/callbackForm";
-
 export const CallbackBlock = () => {
-  const dispatch = useDispatch();
-
-  const [name, setName] = useState();
-  const [phoneNumber, setPhoneNumber] = useState();
   const [lineClass, setLineClass] = useState(styles.hide);
   const [formClass, setFormClass] = useState("");
-  const [error, setError] = useState(styles.hide);
+  const [values, setValues] = useState({
+    name: "",
+    phone: "",
+  });
+
+  const dispatch = useDispatch();
 
   const { errors } = useSelector((state) => {
     return state.formReducer;
   });
 
-  const handleCallbackForm = async () => {
-    const formData = {
-      name: name,
-      phone: +phoneNumber,
-    };
+  const handleSubmitCallback = (e) => {
+    e.preventDefault();
 
-    const isValid = await userSchema.isValid(formData);
+    dispatch(createCallbackRequest(values)).then((res) => {
+      if (!res.error) {
+        setFormClass(styles.hide);
+        setLineClass("");
+      }
+    });
+  };
 
-    if (isValid) {
-      dispatch(createCallbackRequest(formData));
-      setError(styles.hide);
-      setFormClass(styles.hide);
-      setLineClass("");
-    } else {
-      setError("");
-    }
+  const inputs = [
+    {
+      id: 1,
+      name: "name",
+      placeholder: "Укажите имя",
+      errorMessage: "Имя не должно содержать пробелов.",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+      error: errors && errors.name.message,
+    },
+    {
+      id: 2,
+      name: "phone",
+      placeholder: "Укажите номер телефона",
+      errorMessage: "Номер должен состоять из 10-12 цифр.",
+      pattern: "^[0-9]{10,12}$",
+      required: true,
+      error: errors && errors.phone.message,
+    },
+  ];
+
+  const onChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -49,40 +69,25 @@ export const CallbackBlock = () => {
           </p>
         </div>
         <div>
-          <div className={`${error} ${styles.error}`}>
-            Корректно укажите данные!
-          </div>
           <form
+            onSubmit={handleSubmitCallback}
             className={`${styles.callbackForm} ${formClass}`}>
-            <Input
-              name={`name`}
-              type={`text`}
-              className={styles.input}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={`Имя`}
-              error={
-                errors && errors.name && errors.name.message
-              }
-            />
-            <Input
-              name={`phone`}
-              type={`text`}
-              className={styles.input}
-              onChange={(e) =>
-                setPhoneNumber(e.target.value)
-              }
-              placeholder={`380991234567`}
-              error={
-                errors &&
-                errors.phone &&
-                errors.phone.message
-              }
-            />
-            <Button
-              onClick={handleCallbackForm}
-              containerClassName={styles.callbackBtn}
-              children={`Заказать звонок`}
-            />
+            {inputs.map((input) => (
+              <Input
+                key={input.id}
+                {...input}
+                className={styles.input}
+                value={values[input.name]}
+                onChange={onChange}
+              />
+            ))}
+            <Button containerClassName={styles.callbackBtn}>
+              <input
+                className={styles.submit}
+                type='submit'
+                value='Заказать звонок!'
+              />
+            </Button>
           </form>
           <div
             className={`${styles.changeForm} ${lineClass}`}>
