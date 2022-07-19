@@ -6,6 +6,15 @@
   outline: none;
   font-size: 18px;
   line-height: 24px;
+  border-bottom: 2px solid black;
+}
+
+.input:invalid[focused="true"] {
+  box-shadow: 5px 26px 17px -12px rgba(185, 0, 0, 0.3);
+}
+
+.input:invalid[focused="true"] ~ span {
+  display: block;
 }
 
 .input::placeholder {
@@ -20,4 +29,12 @@
 
 .inputClassName {
   width: 100%;
+}
+
+.validate {
+  text-align: center;
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
 }
