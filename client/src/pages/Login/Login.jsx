@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "./login.module.css";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import Message from "react-message-block";
 
+import styles from "./login.module.css";
 import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import { NavLink } from "react-router-dom";
 import { paths } from "../../paths";
-import { useDispatch } from "react-redux";
 import { userLogin } from "../../store/users/userLoginSlice";
 import { Loader } from "../../components/Loader/Loader";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(false);
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
 
   const { errors, isLoading } = useSelector(
     (state) => state.userLogReducer,
@@ -23,18 +27,47 @@ export const Login = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
-    const data = {
-      email: email,
-      password: password,
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    dispatch(userLogin(data)).then((res) => {
-      let response = res.type.split("/")[1] === "fulfilled";
-
-      if (response) {
+    dispatch(userLogin(values)).then((res) => {
+      if (!res.error) {
         window.location.replace(paths.account);
+      } else {
+        setMessage(true);
       }
+    });
+  };
+
+  const inputs = [
+    {
+      id: 1,
+      name: "email",
+      type: "email",
+      placeholder: "Укажите почту",
+      errorMessage: "Укажите корректно почту!",
+      required: true,
+      error: errors && errors.email && errors.email.message,
+    },
+    {
+      id: 2,
+      name: "password",
+      type: "password",
+      placeholder: "Укажите пароль",
+      errorMessage: "Укажите пароль корректно!",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      required: true,
+      error:
+        errors &&
+        errors.password &&
+        errors.password.message,
+    },
+  ];
+
+  const onChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -55,44 +88,25 @@ export const Login = () => {
               <form
                 onSubmit={handleSubmit}
                 className={styles.form}>
-                {errors && errors.message ? (
-                  <div className={styles.errorBlock}>
-                    {errors.message}
-                  </div>
+                {message ? (
+                  <Message
+                    text={errors.message}
+                    type='error'
+                    onClose={() => {
+                      setMessage(false);
+                    }}
+                  />
                 ) : (
-                  ""
+                  <h4>Рады вас видеть!</h4>
                 )}
-                <h4>Рады вас видеть!</h4>
-                <Input
-                  onChange={(e) => setEmail(e.target.value)}
-                  name='email'
-                  className={styles.input}
-                  type='email'
-                  placeholder='Введите email'
-                />
-                {errors && errors.email ? (
-                  <span className={styles.errorMessage}>
-                    {errors.email.message}
-                  </span>
-                ) : (
-                  ""
-                )}
-                <Input
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
-                  name='password'
-                  className={styles.input}
-                  type='password'
-                  placeholder='Введите пароль'
-                />
-                {errors && errors.password ? (
-                  <span className={styles.errorMessage}>
-                    {errors.password.message}
-                  </span>
-                ) : (
-                  ""
-                )}
+                {inputs.map((input) => (
+                  <Input
+                    key={input.id}
+                    {...input}
+                    value={values[input.name]}
+                    onChange={onChange}
+                  />
+                ))}
                 <Button containerClassName={styles.btn}>
                   <input
                     className={styles.submit}

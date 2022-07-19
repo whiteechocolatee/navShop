@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import Message from "react-message-block";
 
 import styles from "./registration.module.css";
 import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
@@ -7,36 +9,87 @@ import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import { NavLink } from "react-router-dom";
 import { paths } from "../../paths";
 import { Loader } from "../../components/Loader/Loader";
 
 import { userRegister } from "../../store/users/userRegisterSlice";
 
 export const Registration = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(false);
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const dispatch = useDispatch();
 
   const { errors, isLoading } = useSelector(
     (state) => state.userSignReducer,
   );
 
-  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleSubmit = () => {
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    dispatch(userRegister(data)).then((res) => {
-      let response = res.type.split("/")[1] === "fulfilled";
-
-      if (response) {
+    dispatch(userRegister(values)).then((res) => {
+      if (!res.error) {
         window.location.replace(paths.account);
+      } else {
+        setMessage(true);
       }
+    });
+  };
+
+  const inputs = [
+    {
+      id: 1,
+      name: "name",
+      type: "text",
+      placeholder: "Укажите имя",
+      errorMessage: "Имя не должно содержать пробелов.",
+      pattern: "^[A-Za-z0-9]{3,10}$",
+      required: true,
+      error: errors && errors.name && errors.name.message,
+    },
+    {
+      id: 2,
+      name: "email",
+      type: "email",
+      placeholder: "Укажите почту",
+      errorMessage: "Укажите корректно почту!",
+      required: true,
+      error: errors && errors.email && errors.email.message,
+    },
+    {
+      id: 3,
+      name: "password",
+      type: "password",
+      placeholder: "Укажите пароль",
+      errorMessage:
+        "Пароль должен быть 8-20 символов и содержать как минимум - 1 букву, цифру и символ(!@#$%^&*)",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      required: true,
+      error:
+        errors &&
+        errors.password &&
+        errors.password.message,
+    },
+    {
+      id: 4,
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "Подтвердите пароль",
+      errorMessage: "Пароли не совпадают",
+      pattern: values.password,
+      required: true,
+    },
+  ];
+
+  const onChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -49,63 +102,34 @@ export const Registration = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              <form className={styles.form}>
-                {errors && errors.message ? (
-                  <div className={styles.errorBlock}>
-                    {errors.message}
-                  </div>
+              <form
+                onSubmit={handleSubmit}
+                className={styles.form}>
+                {message ? (
+                  <Message
+                    text={errors.message}
+                    type='error'
+                    onClose={() => {
+                      setMessage(false);
+                    }}
+                  />
                 ) : (
-                  ""
+                  <h4>Впервые на сайте?</h4>
                 )}
-                <h4>Впервые на сайте?</h4>
-                <Input
-                  name='name'
-                  className={styles.input}
-                  type='text'
-                  placeholder='Введите имя'
-                  onChange={(e) => setName(e.target.value)}
-                />
-                {errors && errors.name ? (
-                  <span className={styles.errorMessage}>
-                    {errors.name.message}
-                  </span>
-                ) : (
-                  ""
-                )}
-                <Input
-                  name='email'
-                  className={styles.input}
-                  type='text'
-                  placeholder='Введите email'
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {errors && errors.email ? (
-                  <span className={styles.errorMessage}>
-                    {errors.email.message}
-                  </span>
-                ) : (
-                  ""
-                )}
-                <Input
-                  name='password'
-                  className={styles.input}
-                  type='password'
-                  placeholder='Введите пароль'
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
-                />
-                {errors && errors.password ? (
-                  <span className={styles.errorMessage}>
-                    {errors.password.message}
-                  </span>
-                ) : (
-                  ""
-                )}
-                <Button
-                  onClick={handleSubmit}
-                  containerClassName={styles.btn}>
-                  Зарегестрироваться
+                {inputs.map((input) => (
+                  <Input
+                    key={input.id}
+                    {...input}
+                    value={values[input.name]}
+                    onChange={onChange}
+                  />
+                ))}
+                <Button containerClassName={styles.btn}>
+                  <input
+                    className={styles.signUp}
+                    type='submit'
+                    value={"Зарегестрироваться"}
+                  />
                 </Button>
               </form>
             )}
