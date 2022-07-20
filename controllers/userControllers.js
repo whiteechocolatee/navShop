@@ -119,12 +119,15 @@ const userProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
 
+    console.log(user);
+
     if (user) {
       res.json({
         _id: user._id,
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        createdAt: user.createdAt,
       });
     } else {
       res
@@ -138,37 +141,8 @@ const userProfile = async (req, res) => {
   }
 };
 
-const updateUserProfile = async (req, res) => {
-  try {
-    const user = await User.findById(req.user._id);
-
-    if (user) {
-      user.name = req.body.name || user.name;
-      user.email = req.body.email || user.email;
-      if (req.body.password) {
-        user.password = req.body.password;
-      }
-    }
-
-    const updatedUser = await user.save();
-
-    res.json({
-      _id: updatedUser._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(newUser._id),
-    });
-  } catch (error) {
-    res
-      .status(404)
-      .json({ message: "Пользователь не найден!" });
-  }
-};
-
 module.exports = {
   userLogin,
   userRegistration,
   userProfile,
-  updateUserProfile,
 };
