@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import Message from "react-message-block";
 
 import styles from "./login.module.css";
@@ -11,29 +10,39 @@ import { Header } from "../../components/Header/Header";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { paths } from "../../paths";
-import { userLogin } from "../../store/users/userLoginSlice";
+import {
+  checkIsAuth,
+  userLogin,
+} from "../../store/users/userAuthSlice";
 import { Loader } from "../../components/Loader/Loader";
 
 export const Login = () => {
+  const navigate = useNavigate();
+
   const [message, setMessage] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
+  const isAuth = useSelector(checkIsAuth);
   const { errors, isLoading } = useSelector(
-    (state) => state.userLogReducer,
+    (state) => state.userAuthReducer,
   );
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate(paths.account);
+    }
+  }, [isAuth, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(userLogin(values)).then((res) => {
-      if (!res.error) {
-        window.location.replace(paths.account);
-      } else {
+      if (res.error) {
         setMessage(true);
       }
     });

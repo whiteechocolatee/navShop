@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import Message from "react-message-block";
@@ -12,9 +12,14 @@ import { Input } from "../../components/Input/Input";
 import { paths } from "../../paths";
 import { Loader } from "../../components/Loader/Loader";
 
-import { userRegister } from "../../store/users/userRegisterSlice";
+import {
+  checkIsAuth,
+  userRegister,
+} from "../../store/users/userAuthSlice";
 
 export const Registration = () => {
+  const navigate = useNavigate();
+
   const [message, setMessage] = useState(false);
   const [values, setValues] = useState({
     name: "",
@@ -25,17 +30,22 @@ export const Registration = () => {
 
   const dispatch = useDispatch();
 
+  const isAuth = useSelector(checkIsAuth);
   const { errors, isLoading } = useSelector(
-    (state) => state.userSignReducer,
+    (state) => state.userAuthReducer,
   );
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate(paths.account);
+    }
+  }, [isAuth, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(userRegister(values)).then((res) => {
-      if (!res.error) {
-        window.location.replace(paths.account);
-      } else {
+      if (res.error) {
         setMessage(true);
       }
     });
