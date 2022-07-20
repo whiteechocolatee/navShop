@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./app.css";
 
 import {
@@ -16,18 +16,28 @@ import { SingleItemPage } from "./pages/SingleItem/SingleItemPage";
 import { Registration } from "./pages/Registration/Registration";
 import { Login } from "./pages/Login/Login";
 import { UserAccount } from "./pages/userAccount/UserAccount";
+import {
+  checkIsAuth,
+} from "./store/users/userAuthSlice";
+import { useSelector } from "react-redux";
 
 function App() {
-  const user = localStorage.getItem("userInfo");
+  const isAuth = useSelector(checkIsAuth);
 
   return (
     <BrowserRouter>
       <Routes>
-        {user && (
+        {isAuth ? (
           <Route
             exact
             path={paths.account}
             element={<UserAccount />}
+          />
+        ) : (
+          <Route
+            exact
+            path={paths.account}
+            element={<Navigate replace to={paths.login} />}
           />
         )}
         <Route exact path={paths.main} element={<Main />} />
@@ -50,11 +60,6 @@ function App() {
           exact
           path={paths.login}
           element={<Login />}
-        />
-        <Route
-          exact
-          path={paths.account}
-          element={<Navigate replace to={paths.login} />}
         />
         <Route path='*' element={<Error />} />
       </Routes>
