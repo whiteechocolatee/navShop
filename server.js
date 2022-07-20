@@ -3,6 +3,7 @@ const express = require("express");
 const formData = require("express-form-data");
 const connectionDataBase = require("./config/mongoDB");
 const app = express();
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -14,6 +15,7 @@ const port = process.env.PORT || 5000;
 
 /* This is a chain of middleware functions. */
 app
+  .use(cors())
   .use(express.json())
   .use(formData.parse())
   .use(express.urlencoded({ extended: true }))
