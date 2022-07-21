@@ -57,8 +57,9 @@ export const Registration = () => {
       name: "name",
       type: "text",
       placeholder: "Укажите имя",
-      errorMessage: "Имя не должно содержать пробелов.",
-      pattern: "^[A-Za-z0-9А-Яа-я]{3,10}$",
+      errorMessage:
+        "Имя не должно содержать цифры и символы.",
+      pattern: "^[ A-Za-zА-Яа-я]{3,25}$",
       required: true,
       error: errors && errors.name && errors.name.message,
     },
@@ -134,13 +135,11 @@ export const Registration = () => {
                     onChange={onChange}
                   />
                 ))}
-                <Button containerClassName={styles.btn}>
-                  <input
-                    className={styles.signUp}
-                    type='submit'
-                    value={"Зарегестрироваться"}
-                  />
-                </Button>
+                <Button
+                  containerClassName={styles.btn}
+                  className={styles.signUp}
+                  children={"Зарегестрироваться"}
+                />
               </form>
             )}
             <div className={styles.mobile}>

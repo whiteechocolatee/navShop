@@ -117,13 +117,11 @@ export const Login = () => {
                     onChange={onChange}
                   />
                 ))}
-                <Button containerClassName={styles.btn}>
-                  <input
-                    className={styles.submit}
-                    type='submit'
-                    value='Войти'
-                  />
-                </Button>
+                <Button
+                  containerClassName={styles.btn}
+                  className={styles.submit}
+                  children='Войти'
+                />
                 <div className={styles.mobile}>
                   <Link to={paths.signup}>
                     <p>

@@ -36,7 +36,8 @@ export const CallbackBlock = () => {
       id: 1,
       name: "name",
       placeholder: "Укажите имя",
-      errorMessage: "Имя не должно содержать цифр и символов.",
+      errorMessage:
+        "Имя не должно содержать цифр и символов.",
       pattern: "^[ A-Za-zА-Яа-я]{3,16}$",
       required: true,
       error: errors && errors.name.message,
@@ -81,13 +82,11 @@ export const CallbackBlock = () => {
                 onChange={onChange}
               />
             ))}
-            <Button containerClassName={styles.callbackBtn}>
-              <input
-                className={styles.submit}
-                type='submit'
-                value='Заказать звонок!'
-              />
-            </Button>
+            <Button
+              containerClassName={styles.callbackBtn}
+              className={styles.submit}
+              children='Заказать звонок!'
+            />
           </form>
           <div
             className={`${styles.changeForm} ${lineClass}`}>
