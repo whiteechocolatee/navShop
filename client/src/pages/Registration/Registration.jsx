@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Message from "react-message-block";
 
 import styles from "./registration.module.css";
@@ -145,9 +145,10 @@ export const Registration = () => {
             )}
           </div>
           <div className={styles.redirect}>
-            <NavLink to={paths.login}>
+            <Link to={paths.login}>
               <h4>Уже есть аккаунт?</h4>
-            </NavLink>
+              <p>Войти в аккаунт</p>
+            </Link>
           </div>
         </div>
       </ContentWrapper>

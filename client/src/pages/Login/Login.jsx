@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Message from "react-message-block";
 
 import styles from "./login.module.css";
@@ -86,9 +86,10 @@ export const Login = () => {
       <ContentWrapper>
         <div className={styles.loginPage}>
           <div className={styles.redirect}>
-            <NavLink to={paths.signup}>
+            <Link to={paths.signup}>
               <h4>Всё еще нет аккаунта?</h4>
-            </NavLink>
+              <p>Создать новый аккаунт</p>
+            </Link>
           </div>
           <div className={styles.formBlock}>
             {isLoading ? (
@@ -99,7 +100,7 @@ export const Login = () => {
                 className={styles.form}>
                 {message ? (
                   <Message
-                    text={errors.message}
+                    text={errors?.message}
                     type='error'
                     onClose={() => {
                       setMessage(false);
