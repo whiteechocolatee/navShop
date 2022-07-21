@@ -86,4 +86,5 @@
 .redirect a:hover {
   color: #000;
   text-decoration: none;
+  text-align: center;
 }

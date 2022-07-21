@@ -58,6 +58,15 @@
   display: none;
 }
 
+.dropdown li {
+  padding: 5px;
+  height: 35px;
+}
+
+.dropdown li:hover {
+  background-color: rgba(128, 128, 128, 0.294);
+}
+
 .dropdownMenu {
   display: none;
 }
