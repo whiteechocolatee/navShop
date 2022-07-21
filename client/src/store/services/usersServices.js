@@ -33,16 +33,16 @@ const userLogin = async ({ email, password }) => {
  * @returns The user's information.
  */
 const userRegister = async ({ name, email, password }) => {
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
   let res = await axios.post(
     "/api/users/",
     { name, email, password },
-    // config,
+    config,
   );
 
   localStorage.setItem(
@@ -77,10 +77,31 @@ const userProfile = async () => {
   return data;
 };
 
+const updateProfile = async ({name,email,password}) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const { data } = await axios.put(
+    "/api/users/profile",
+    {name,email,password},
+    config,
+  );
+
+  return data;
+};
+
 const userServices = {
   userLogin,
   userRegister,
   userProfile,
+  updateProfile,
 };
 
 export default userServices;
