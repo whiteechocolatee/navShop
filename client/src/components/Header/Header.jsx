@@ -16,7 +16,7 @@ import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Search } from "../SearchBar/Search";
 import { paths } from "../../paths";
 
-export const Header = () => {
+export const Header = ({ isAuth, handleLogout }) => {
   return (
     <ContentWrapper>
       <header
@@ -113,12 +113,43 @@ export const Header = () => {
               </NavLink>
             </li>
             <li className={`nav-item ${styles.navBtn}`}>
-              <NavLink
-                aria-current='page'
-                className={`nav-link`}
-                to={paths.account}>
-                <FaRegUser />
-              </NavLink>
+              <div className='btn-group'>
+                <button
+                  type='button'
+                  className={`dropdown-toggle ${styles.dropdownBtn}`}
+                  data-bs-toggle='dropdown'
+                  aria-expanded='false'>
+                  <FaRegUser />
+                </button>
+                <ul
+                  className={`dropdown-menu ${styles.dropdown}`}>
+                  {isAuth ? (
+                    <div>
+                      <li>
+                        <NavLink to={paths.account}>
+                          <button
+                            className={styles.dropdownBtn}>
+                            Аккаунт
+                          </button>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <button
+                          onClick={handleLogout}
+                          className={styles.dropdownBtn}>
+                          Выйти
+                        </button>
+                      </li>
+                    </div>
+                  ) : (
+                    <li>
+                      <NavLink to={paths.login}>
+                        Логин
+                      </NavLink>
+                    </li>
+                  )}
+                </ul>
+              </div>
               <NavLink
                 aria-current='page'
                 className={`nav-link`}
