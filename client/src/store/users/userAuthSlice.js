@@ -57,6 +57,7 @@ const userAuthSlice = createSlice({
     isLoading: false,
     isError: false,
     errors: null,
+    isChanged: null,
   },
   reducers: {
     logout: (state) => {
@@ -103,14 +104,17 @@ const userAuthSlice = createSlice({
       })
       // profile
       .addCase(userProfile.pending, (state) => {
+        state.isChanged = false;
         state.isLoading = true;
       })
       .addCase(userProfile.fulfilled, (state, action) => {
+        state.isChanged = false;
         state.isLoading = false;
         state.user = action.payload;
         state.token = action.payload.token;
       })
       .addCase(userProfile.rejected, (state, action) => {
+        state.isChanged = false;
         state.errors = action.payload.message;
         state.isError = true;
         state.isLoading = false;
@@ -118,17 +122,20 @@ const userAuthSlice = createSlice({
       // update profile
       .addCase(updateProfile.pending, (state) => {
         state.isLoading = true;
+        state.isChanged = false;
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isChanged = true;
         state.user = action.payload;
         state.token = action.payload?.token;
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.errors = action.payload?.message;
+        state.isChanged = null;
         state.isError = true;
         state.isLoading = false;
-      })
+      });
   },
 });
 
