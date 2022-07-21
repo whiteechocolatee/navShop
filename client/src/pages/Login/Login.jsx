@@ -83,11 +83,11 @@ export const Login = () => {
   return (
     <React.Fragment>
       <Header />
-      <ContentWrapper>
+      <ContentWrapper className={styles.wrapper}>
         <div className={styles.loginPage}>
           <div className={styles.redirect}>
             <Link to={paths.signup}>
-              <h4>Всё еще нет аккаунта?</h4>
+              <h4>Еще нет аккаунта?</h4>
               <p>Создать новый аккаунт</p>
             </Link>
           </div>
@@ -124,6 +124,14 @@ export const Login = () => {
                     value='Войти'
                   />
                 </Button>
+                <div className={styles.mobile}>
+                  <Link to={paths.signup}>
+                    <p>
+                      Еще нет аккаунта? Создать новый
+                      аккаунт.
+                    </p>
+                  </Link>
+                </div>
               </form>
             )}
           </div>

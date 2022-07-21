@@ -106,7 +106,7 @@ export const Registration = () => {
   return (
     <React.Fragment>
       <Header />
-      <ContentWrapper>
+      <ContentWrapper className={styles.wrapper}>
         <div className={styles.registrationPage}>
           <div className={styles.formBlock}>
             {isLoading ? (
@@ -143,6 +143,11 @@ export const Registration = () => {
                 </Button>
               </form>
             )}
+            <div className={styles.mobile}>
+              <Link to={paths.login}>
+                <p>Уже есть аккаунт? Войти в аккаунт</p>
+              </Link>
+            </div>
           </div>
           <div className={styles.redirect}>
             <Link to={paths.login}>
