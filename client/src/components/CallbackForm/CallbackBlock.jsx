@@ -37,7 +37,7 @@ export const CallbackBlock = () => {
       name: "name",
       placeholder: "Укажите имя",
       errorMessage: "Имя не должно содержать пробелов.",
-      pattern: "^[A-Za-z0-9]{3,16}$",
+      pattern: "^[A-Za-z0-9А-Яа-я]{3,16}$",
       required: true,
       error: errors && errors.name.message,
     },

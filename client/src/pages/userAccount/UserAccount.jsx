@@ -48,7 +48,7 @@ export const UserAccount = () => {
       type: "text",
       placeholder: "Изменить имя",
       errorMessage: "Имя не должно содержать пробелов.",
-      pattern: "^[A-Za-z0-9]{3,10}$",
+      pattern: "^[A-Za-z0-9А-Яа-я]{3,10}$",
       required: true,
       error: errors && errors.name && errors.name.message,
     },
