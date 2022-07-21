@@ -139,8 +139,15 @@ const userProfile = async (req, res) => {
   }
 };
 
+/**
+ * It finds a user by id, updates the user's name and email, and then saves the user
+ * @param req - The request object.
+ * @param res - The response object.
+ */
 const updateProfile = async (req, res) => {
   try {
+    console.log(req.user._id);
+
     const user = await User.findById(req.user._id);
 
     if (user) {
@@ -155,10 +162,11 @@ const updateProfile = async (req, res) => {
 
     res.json({
       _id: updatedUser._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(newUser._id),
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      createdAt: updatedUser.createdAt,
+      token: generateToken(updatedUser._id),
     });
   } catch (error) {
     res
