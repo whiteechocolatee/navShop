@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../components/Header/Header";
 import { CallbackBlock } from "../../components/CallbackForm/CallbackBlock";
@@ -12,18 +13,32 @@ import { Banner } from "../../components/Banner/Banner";
 import { BannersSlider } from "../../components/BannersSlider/BannersSlider";
 import { Loader } from "../../components/Loader/Loader";
 
+import {
+  logout,
+  checkIsAuth,
+} from "../../store/users/userAuthSlice";
+
 import { getItems } from "../../store/items/itemsSlice";
+import { paths } from "../../paths";
 
 export const Main = () => {
+  const isAuth = useSelector(checkIsAuth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { items, isLoading } = useSelector((state) => {
     return state.itemsReducer;
   });
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getItems());
   }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    window.localStorage.removeItem("token");
+    navigate(paths.main);
+  };
 
   const category = items.filter((elem) => {
     return elem.category === "charger";
@@ -51,7 +66,7 @@ export const Main = () => {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header handleLogout={handleLogout} isAuth={isAuth} />
       <CategoriesNavigation />
       <BannersSlider />
       <Brands />

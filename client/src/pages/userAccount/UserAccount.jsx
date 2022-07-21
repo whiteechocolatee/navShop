@@ -93,11 +93,9 @@ export const UserAccount = () => {
     });
   };
 
-  console.log(user);
-
   return (
     <div>
-      <Header />
+      <Header handleLogout={handleLogout} isAuth={user ? true : false} />
       <ContentWrapper>
         <div className={styles.profile}>
           {errors ? (
