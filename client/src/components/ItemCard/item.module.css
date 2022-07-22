@@ -64,12 +64,13 @@
 }
 
 .btnText {
-  border-bottom: 1px solid #000;
+  border-bottom: 2px solid #000;
   line-height: 16px;
 }
 
 .btnContainer {
-  width: 80px;
+  z-index: 2;
+  width: 120px;
   margin: 0 0 38px 10px;
 }
 
