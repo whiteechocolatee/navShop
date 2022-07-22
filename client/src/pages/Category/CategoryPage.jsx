@@ -43,8 +43,11 @@ export const CategoryPage = () => {
           <Button
             containerClassName={styles.sortButton}
             onClick={() => setDesc(!desc)}>
-            Сортировать по цене:{" "}
-            {`${desc ? "по убыванию" : "по возрастанию"}`}
+            {`${
+              desc
+                ? "Сортировать по цене: по убыванию"
+                : "Сортировать по цене: по возрастанию"
+            }`}
           </Button>
         </ItemCarousel>
       )}

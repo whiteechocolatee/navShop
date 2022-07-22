@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaRegUser,
@@ -8,19 +8,31 @@ import {
 
 import { GrApps } from "react-icons/gr";
 
-import { IoCartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Search } from "../SearchBar/Search";
 import { paths } from "../../paths";
+import { Cart } from "../Cart/Cart";
 
 export const Header = ({ isAuth, handleLogout }) => {
+  const [small, setSmall] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", () =>
+        setSmall(window.scrollY > 100),
+      );
+    }
+  }, []);
+
   return (
-    <ContentWrapper>
-      <header
-        className={`navbar navbar-expand-md ${styles.navigation}`}>
+    <header
+      className={`navbar navbar-expand-md  
+      ${small ? styles.header : styles.headerTop}
+      `}>
+      <ContentWrapper>
         <Link className={styles.mainLink} to={paths.main}>
           <b>LOGO</b>
         </Link>
@@ -156,16 +168,11 @@ export const Header = ({ isAuth, handleLogout }) => {
                 to='/'>
                 <FaRegHeart />
               </NavLink>
-              <NavLink
-                aria-current='page'
-                className={`nav-link`}
-                to='/'>
-                <IoCartOutline />
-              </NavLink>
+              <Cart />
             </li>
           </ul>
         </div>
-      </header>
-    </ContentWrapper>
+      </ContentWrapper>
+    </header>
   );
 };
