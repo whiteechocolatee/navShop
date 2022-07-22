@@ -74,9 +74,11 @@ const userAuthSlice = createSlice({
       .addCase(userLogin.pending, (state) => {
         state.isLoading = true;
         state.errors = null;
+        state.isError = false;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isError = false;
         state.user = action.payload;
         state.token = action.payload.token;
         state.errors = null;
@@ -90,12 +92,14 @@ const userAuthSlice = createSlice({
       .addCase(userRegister.pending, (state) => {
         state.isLoading = true;
         state.errors = null;
+        state.isError = false;
       })
       .addCase(userRegister.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
         state.token = action.payload.token;
         state.errors = null;
+        state.isError = false;
       })
       .addCase(userRegister.rejected, (state, action) => {
         state.isLoading = false;
@@ -106,10 +110,12 @@ const userAuthSlice = createSlice({
       .addCase(userProfile.pending, (state) => {
         state.isChanged = false;
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(userProfile.fulfilled, (state, action) => {
         state.isChanged = false;
         state.isLoading = false;
+        state.isError = false;
         state.user = action.payload;
         state.token = action.payload.token;
       })
@@ -123,10 +129,12 @@ const userAuthSlice = createSlice({
       .addCase(updateProfile.pending, (state) => {
         state.isLoading = true;
         state.isChanged = false;
+        state.isError = false;
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isChanged = true;
+        state.isError = false;
         state.user = action.payload;
         state.token = action.payload?.token;
       })
