@@ -6,9 +6,9 @@ import styles from "./item.module.css";
 import { FaRegHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 
-import { Image } from "cloudinary-react";
 import { Link } from "react-router-dom";
 import { paths } from "../../paths";
+import { ImageComponent } from "../Image/Image";
 import {
   removeItemFromCart,
   setItemInCart,
@@ -53,8 +53,7 @@ export const Item = ({ item }) => {
             <FaRegHeart />
           </div>
           <div className={styles.cardImg}>
-            <Image
-              cloudName='dmhqzwtnd'
+            <ImageComponent
               publicId={itemImage}
               alt={title}
             />
