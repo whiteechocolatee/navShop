@@ -17,6 +17,8 @@ import {
 import { Loader } from "../../components/Loader/Loader";
 
 export const Login = () => {
+  window.scroll(0, 0);
+
   const navigate = useNavigate();
 
   const [message, setMessage] = useState(false);

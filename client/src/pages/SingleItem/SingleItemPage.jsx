@@ -10,6 +10,7 @@ import { Loader } from "../../components/Loader/Loader";
 import { Image } from "cloudinary-react";
 
 export const SingleItemPage = () => {
+  window.scroll(0, 0);
   const { id } = useParams();
   const dispatch = useDispatch();
 

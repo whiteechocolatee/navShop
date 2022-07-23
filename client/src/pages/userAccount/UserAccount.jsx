@@ -21,6 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const UserAccount = () => {
+  window.scroll(0, 0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

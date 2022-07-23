@@ -18,6 +18,7 @@ import {
 } from "../../store/users/userAuthSlice";
 
 export const Registration = () => {
+  window.scroll(0, 0);
   const navigate = useNavigate();
 
   const [message, setMessage] = useState(false);
