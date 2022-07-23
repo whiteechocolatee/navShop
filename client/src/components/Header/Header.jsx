@@ -153,14 +153,14 @@ export const Header = () => {
                   className={`dropdown-menu ${styles.dropdown}`}>
                   {isAuth ? (
                     <div>
-                      <li>
-                        <NavLink to={paths.account}>
+                      <NavLink to={paths.account}>
+                        <li>
                           <button
                             className={styles.dropdownBtn}>
                             Аккаунт
                           </button>
-                        </NavLink>
-                      </li>
+                        </li>
+                      </NavLink>
                       <li>
                         <button
                           onClick={handleLogout}
@@ -170,11 +170,14 @@ export const Header = () => {
                       </li>
                     </div>
                   ) : (
-                    <li>
-                      <NavLink to={paths.login}>
-                        Логин
-                      </NavLink>
-                    </li>
+                    <NavLink to={paths.login}>
+                      <li>
+                        <button
+                          className={styles.dropdownBtn}>
+                          Логин
+                        </button>
+                      </li>
+                    </NavLink>
                   )}
                 </ul>
               </div>

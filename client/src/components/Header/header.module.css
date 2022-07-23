@@ -114,6 +114,7 @@
 
 .dropdownBtn {
   font-size: 16px;
+  width: 100%;
 }
 
 .dropdownLink a:active {
