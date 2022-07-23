@@ -1,8 +1,10 @@
 import React from "react";
-import styles from "./cart.module.css";
-import { IoCartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+import styles from "./cart.module.css";
+import { IoCartOutline } from "react-icons/io5";
+import { paths } from "../../paths";
 
 export const Cart = () => {
   const cart = useSelector((state) => {
@@ -13,7 +15,7 @@ export const Cart = () => {
     <NavLink
       aria-current='page'
       className={`nav-link`}
-      to='/'>
+      to={paths.order}>
       <div className={styles.cartBody}>
         <IoCartOutline />
         <div
