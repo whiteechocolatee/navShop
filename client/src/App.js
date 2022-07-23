@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./app.css";
 
 import {
@@ -9,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import { paths } from "./paths";
+
 import { Main } from "./pages/Main/Main";
 import { Error } from "./pages/Error/Error";
 import { CategoryPage } from "./pages/Category/CategoryPage";
@@ -16,10 +18,9 @@ import { SingleItemPage } from "./pages/SingleItem/SingleItemPage";
 import { Registration } from "./pages/Registration/Registration";
 import { Login } from "./pages/Login/Login";
 import { UserAccount } from "./pages/userAccount/UserAccount";
-import {
-  checkIsAuth,
-} from "./store/users/userAuthSlice";
-import { useSelector } from "react-redux";
+import { Order } from "./pages/Order/Order";
+
+import { checkIsAuth } from "./store/users/userAuthSlice";
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
@@ -60,6 +61,11 @@ function App() {
           exact
           path={paths.login}
           element={<Login />}
+        />
+        <Route
+          exact
+          path={paths.order}
+          element={<Order />}
         />
         <Route path='*' element={<Error />} />
       </Routes>
