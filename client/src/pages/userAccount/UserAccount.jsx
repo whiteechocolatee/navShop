@@ -29,6 +29,10 @@ export const UserAccount = () => {
     (state) => state.userAuthReducer,
   );
 
+  const isAdmin = user.isAdmin;
+
+  console.log(isAdmin);
+
   if (isChanged) {
     toast.success("Данные успешно изменены!", {
       position: "top-right",
@@ -74,7 +78,11 @@ export const UserAccount = () => {
             <Message text={errors} type='error' />
           ) : (
             <div className={styles.userInformation}>
-              <UserInformation {...user} />
+              {isAdmin ? (
+                "ADMIN ACCOUNT"
+              ) : (
+                <UserInformation {...user} />
+              )}
               <div className={styles.userData}>
                 <UpdateUserInfo
                   user={user}
