@@ -21,6 +21,7 @@ import { UserAccount } from "./pages/userAccount/UserAccount";
 import { Order } from "./pages/Order/Order";
 
 import { checkIsAuth } from "./store/users/userAuthSlice";
+import { Delivery } from './pages/Delivery/Delivery';
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
@@ -66,6 +67,11 @@ function App() {
           exact
           path={paths.order}
           element={<Order />}
+        />
+        <Route
+          exact
+          path={`${paths.order}/${paths.delivery}`}
+          element={<Delivery />}
         />
         <Route path='*' element={<Error />} />
       </Routes>
