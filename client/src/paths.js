@@ -4,5 +4,6 @@ export const paths = {
   itemPage: "/item",
   login: "/login",
   signup: "/signup",
-  account:'/account'
+  account:'/account',
+  order:'/order'
 };
