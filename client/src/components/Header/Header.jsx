@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { GrApps } from "react-icons/gr";
+import { NavLink } from "react-router-dom";
+
 import {
   FaRegUser,
   FaRegHeart,
   FaPhoneAlt,
 } from "react-icons/fa";
-
-import { GrApps } from "react-icons/gr";
-
-import { NavLink } from "react-router-dom";
 
 import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
@@ -16,8 +16,22 @@ import { Search } from "../SearchBar/Search";
 import { paths } from "../../paths";
 import { Cart } from "../Cart/Cart";
 
-export const Header = ({ isAuth, handleLogout }) => {
+import {
+  logout,
+  checkIsAuth,
+} from "../../store/users/userAuthSlice";
+
+export const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isAuth = useSelector(checkIsAuth);
   const [small, setSmall] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    window.localStorage.removeItem("token");
+    navigate(paths.main);
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -33,9 +47,11 @@ export const Header = ({ isAuth, handleLogout }) => {
       ${small ? styles.header : styles.headerTop}
       `}>
       <ContentWrapper>
-        <Link className={styles.mainLink} to={paths.main}>
+        <NavLink
+          className={styles.mainLink}
+          to={paths.main}>
           <b>LOGO</b>
-        </Link>
+        </NavLink>
         <button
           className={`${styles.toggler}`}
           type='button'
