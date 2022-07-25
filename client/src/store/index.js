@@ -15,4 +15,8 @@ export const store = configureStore({
     cartReducer: cartSlice,
     deliveryReducer: deliverySlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
