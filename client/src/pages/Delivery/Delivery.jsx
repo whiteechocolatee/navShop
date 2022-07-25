@@ -1,80 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import styles from "./delivery.module.css";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
-import axios from "axios";
-import { Input } from '../../components/Input/Input';
+import { useDispatch } from "react-redux";
+import { getRegions } from "../../store/deliveryAddresses/deliverySlice";
+import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
+import { Loader } from "../../components/Loader/Loader";
+
+import {
+  filteringByRegions,
+  filteringByCity,
+  filteringDepartments,
+} from "../../store/deliveryAddresses/deliverySlice";
 
 export const Delivery = () => {
-  const [value, setValue] = useState("");
-  const [result, setResult] = useState("");
+  const [region, setRegion] = useState("");
   const [city, setCity] = useState("");
   const [department, setDepartment] = useState("");
 
-  const handleSearch = async () => {
-    let config = {
-      apiKey: "d6a9f94157b12fe4993a41f31d276bef",
-      modelName: "Address",
-      calledMethod: "getWarehouses",
-    };
+  const dispatch = useDispatch();
 
-    let response = await axios.post(
-      "https://api.novaposhta.ua/v2.0/json/",
-      config,
-    );
+  useEffect(() => {
+    dispatch(getRegions());
+  }, [dispatch]);
 
-    const data = response.data.data.filter((item) => {
-      return item.SettlementAreaDescription.toLowerCase().includes(
-        value.toLowerCase(),
-      );
-    });
+  const { departments, isLoading } = useSelector(
+    (state) => state.deliveryReducer,
+  );
 
-    let result = data.filter((item) => {
-      return item.SettlementDescription.toLowerCase().includes(
-        city.toLowerCase(),
-      );
-    });
-
-    console.log(`delivery city >>>`, result);
-
-    let deliveryDepartmentArr = result.filter((item) => {
-      return item.Number.includes(department);
-    });
-
-    setResult(deliveryDepartmentArr);
-
-    console.log(
-      "delivery department >>>",
-      deliveryDepartmentArr,
-    );
+  const handleSearch = () => {
+    dispatch(filteringByRegions(region));
+    dispatch(filteringByCity(city));
+    dispatch(filteringDepartments(department));
   };
 
   return (
     <React.Fragment>
       <Header />
-      <ContentWrapper className={styles.wrapper}>
-        <Input
-          type='text'
-          onChange={(e) => setValue(e.target.value)}
-          placeholder='Укажите область'
-        />
-        <Input
-          type='text'
-          onChange={(e) => setCity(e.target.value)}
-          placeholder='Укажите город'
-        />
-        <Input
-          type='text'
-          onChange={(e) => setDepartment(e.target.value)}
-          placeholder='Укажите отделение'
-        />
-        <Button onClick={handleSearch}>Поиск</Button>
-        {result.length > 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ContentWrapper className={styles.wrapper}>
+          <h1>Знайти відділення (українською мовою)</h1>
+          <Input
+            type='text'
+            placeholder='Вкажіть область'
+            onChange={(e) => setRegion(e.target.value)}
+          />
+          <Input
+            type='text'
+            placeholder='Вкажіть місто'
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <Input
+            type='text'
+            placeholder='Вкажіть відділення'
+            onChange={(e) => setDepartment(e.target.value)}
+          />
+          <Button onClick={handleSearch}>Пошук</Button>
           <select>
-            {result.map((item) => (
+            {departments.map((item) => (
               <option
                 key={item.SiteKey}
                 value={item.ShortAddress}>
@@ -82,10 +71,8 @@ export const Delivery = () => {
               </option>
             ))}
           </select>
-        ) : (
-          ""
-        )}
-      </ContentWrapper>
+        </ContentWrapper>
+      )}
       <Footer />
     </React.Fragment>
   );
