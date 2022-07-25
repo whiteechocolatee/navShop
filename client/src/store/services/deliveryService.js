@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getCities = async () => {
+const getRegions = async () => {
   let config = {
     apiKey: "d6a9f94157b12fe4993a41f31d276bef",
     modelName: "Address",
@@ -18,7 +18,7 @@ const getCities = async () => {
 };
 
 const deliveryService = {
-  getCities,
+  getRegions,
 };
 
 export default deliveryService;
