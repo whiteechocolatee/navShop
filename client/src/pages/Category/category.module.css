@@ -17,3 +17,24 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
+.sortBlock {
+  margin: 50px 0 50px 530px;
+  border-bottom: 2px solid black;
+  width: 41%;
+}
+
+.sortBlock label,
+.sortBlock select {
+  margin-bottom: 5px;
+}
+
+.sortBlock label {
+  margin-right: 5px;
+}
+
+.sortBlock select {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
