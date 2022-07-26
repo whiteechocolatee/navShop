@@ -22,38 +22,62 @@ export const CategoriesNavigation = () => {
         <nav className={styles.nav}>
           <ul className={styles.navBtns}>
             <li className={styles.navBtn}>
-              <RiBattery2ChargeLine />
-              <NavLink to={`${paths.category}/charger`}>
+              <NavLink
+                to={`${paths.category}/charger`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <RiBattery2ChargeLine />
                 Зарядные
               </NavLink>
             </li>
             <li className={styles.navBtn}>
-              <RiDeviceRecoverLine />
-              <NavLink to={`${paths.category}/cover`}>
+              <NavLink
+                to={`${paths.category}/cover`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <RiDeviceRecoverLine />
                 Защитные акссесуары
               </NavLink>
             </li>
             <li className={styles.navBtn}>
-              <GiPowerGenerator />
-              <NavLink to={`${paths.category}/gadget`}>
+              <NavLink
+                to={`${paths.category}/gadget`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <GiPowerGenerator />
                 Гаджеты
               </NavLink>
             </li>
             <li className={styles.navBtn}>
-              <GiAudioCassette />
-              <NavLink to={`${paths.category}/audio`}>
+              <NavLink
+                to={`${paths.category}/audio`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <GiAudioCassette />
                 Аудио
               </NavLink>
             </li>
             <li className={styles.navBtn}>
-              <RiComputerLine />
-              <NavLink to={`${paths.category}/pc`}>
+              <NavLink
+                to={`${paths.category}/pc`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <RiComputerLine />
                 Для компьютеров
               </NavLink>
             </li>
             <li className={styles.navBtn}>
-              <FaCarSide />
-              <NavLink to={`${paths.category}/auto`}>
+              <NavLink
+                to={`${paths.category}/auto`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <FaCarSide />
                 Для авто
               </NavLink>
             </li>

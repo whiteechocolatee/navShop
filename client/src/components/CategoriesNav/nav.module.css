@@ -14,9 +14,10 @@
 
 .navBtn svg {
   font-size: 30px;
+  margin-right: 5px;
 }
 
-.navBtn {
+.navBtn a {
   display: flex;
   align-items: center;
 }
@@ -24,7 +25,6 @@
 .navBtns a,
 .navBtns a:hover,
 .navBtns a:focus {
-  margin-left: 5px;
   color: #000;
   text-decoration: none;
   font-size: 17px;
@@ -37,7 +37,6 @@
   .navBtns a,
   .navBtns a:hover,
   .navBtns a:focus {
-    margin-left: 5px;
     color: #000;
     text-decoration: none;
     font-size: 15px;
