@@ -13,6 +13,9 @@ import styles from "./category.module.css";
 
 import { getItemsByCategory } from "../../store/items/itemsSlice";
 import { CallbackBlock } from "../../components/CallbackForm/CallbackBlock";
+import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
+
+import { BsPlusLg } from "react-icons/bs";
 
 export const CategoryPage = () => {
   const { categoryName } = useParams();
@@ -37,22 +40,45 @@ export const CategoryPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <ItemCarousel
-          itemsQuantity={16}
-          // title={`Category ${categoryName}`}
-          items={sortedItems}>
-          <Button
-            containerClassName={styles.sortButton}
-            onClick={() => setDesc(!desc)}>
-            {`${
-              desc
-                ? "Сортировать по цене: по убыванию"
-                : "Сортировать по цене: по возрастанию"
-            }`}
-          </Button>
-        </ItemCarousel>
+        <ContentWrapper className={styles.container}>
+          <div className={styles.filter}>
+            <div className={styles.filterTitle}>
+              <h3>Фільтр</h3>
+            </div>
+            <div className={styles.filterBtns}>
+              <div className={styles.filterBtn}>
+                <p>Колір</p>
+                <BsPlusLg />
+              </div>
+              <div className={styles.filterBtn}>
+                <p>Пам'ять</p>
+                <BsPlusLg />
+              </div>
+              <div className={styles.filterBtn}>
+                <p>Модель</p>
+                <BsPlusLg />
+              </div>
+            </div>
+          </div>
+          <div className={styles.items}>
+            <ItemCarousel
+              itemsQuantity={16}
+              title={`Category ${categoryName}`}
+              items={sortedItems}>
+              <Button
+                containerClassName={styles.sortButton}
+                onClick={() => setDesc(!desc)}>
+                {`${
+                  desc
+                    ? "Сортировать по цене: по убыванию"
+                    : "Сортировать по цене: по возрастанию"
+                }`}
+              </Button>
+            </ItemCarousel>
+          </div>
+        </ContentWrapper>
       )}
-      <CallbackBlock/>
+      <CallbackBlock />
       <Footer />
     </React.Fragment>
   );

@@ -3,3 +3,51 @@
   -webkit-box-shadow: 10px 13px 7px -6px rgba(0, 0, 0, 0.26);
   box-shadow: 10px 13px 7px -6px rgba(0, 0, 0, 0.26);
 }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.items {
+  width: 85%;
+}
+
+/* 
+
+*/
+/* 
+
+*/
+/* 
+
+*/
+/* 
+
+*/
+
+.filter {
+  margin: 75px 20px 0 0;
+  width: 300px;
+  height: 400px;
+}
+
+.filterTitle {
+  line-height: 20px;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.filterBtns {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.filterBtn {
+  cursor: pointer;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
