@@ -12,6 +12,7 @@ import { Button } from "../../components/Button/Button";
 import styles from "./category.module.css";
 
 import { getItemsByCategory } from "../../store/items/itemsSlice";
+import { CallbackBlock } from "../../components/CallbackForm/CallbackBlock";
 
 export const CategoryPage = () => {
   const { categoryName } = useParams();
@@ -51,6 +52,7 @@ export const CategoryPage = () => {
           </Button>
         </ItemCarousel>
       )}
+      <CallbackBlock/>
       <Footer />
     </React.Fragment>
   );
