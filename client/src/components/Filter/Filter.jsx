@@ -24,7 +24,7 @@ export const Filter = () => {
           <p>Колір</p>
           <BsPlusLg className={styles.rotateBack} />
           <div className={styles.hide}>
-            <h1>hello</h1>
+            <p>Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
         <div
@@ -34,7 +34,7 @@ export const Filter = () => {
           <p>Пам'ять</p>
           <BsPlusLg className={styles.rotateBack} />
           <div className={styles.hide}>
-            <h1>hello</h1>
+            <p>Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
         <div
@@ -44,7 +44,7 @@ export const Filter = () => {
           <p>Модель</p>
           <BsPlusLg className={styles.rotateBack} />
           <div className={styles.hide}>
-            <h1>hello</h1>
+            <p>Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
       </div>
