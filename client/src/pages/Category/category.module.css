@@ -13,6 +13,11 @@
   width: 85%;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 /* 
 
 */
@@ -28,7 +33,8 @@
 
 .filter {
   margin: 75px 20px 0 0;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   height: 400px;
 }
 
@@ -50,4 +56,9 @@
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+}
+
+.filterBlock {
+  height: 100px;
+  
 }
