@@ -62,6 +62,7 @@ export const CategoryPage = () => {
           </div>
           <div className={styles.items}>
             <ItemCarousel
+              containerClassName={styles.grid}
               itemsQuantity={16}
               title={`Category ${categoryName}`}
               items={sortedItems}>

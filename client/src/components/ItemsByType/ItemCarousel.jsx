@@ -11,6 +11,7 @@ export const ItemCarousel = ({
   items = [],
   itemsQuantity,
   children = "",
+  containerClassName,
 }) => {
   items = items.slice(0, 12);
 
@@ -33,7 +34,10 @@ export const ItemCarousel = ({
       <div className={styles.cardContent}>
         <h1 className={styles.itemsTitle}>{title}</h1>
         {children}
-        <ItemsContainer currentItems={currentItems} />
+        <ItemsContainer
+          containerClassName={containerClassName}
+          currentItems={currentItems}
+        />
         <div
           className={
             itemsQuantity >= items.length

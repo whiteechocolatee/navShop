@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styles from "./main.module.css";
 
 import { Header } from "../../components/Header/Header";
 import { CallbackBlock } from "../../components/CallbackForm/CallbackBlock";
@@ -71,18 +72,21 @@ export const Main = () => {
       <BannersSlider />
       <Brands />
       <ItemCarousel
+        containerClassName={styles.flex}
         itemsQuantity={itemsQuantity}
         title={"Новые товары"}
         items={items}
       />
       <Banner />
       <ItemCarousel
+        containerClassName={styles.flex}
         itemsQuantity={itemsQuantity}
         title={"Зарядные"}
         items={category}
       />
       <CategoryCards />
       <ItemCarousel
+        containerClassName={styles.flex}
         itemsQuantity={itemsQuantity}
         title={"Предложения"}
         items={discount}
