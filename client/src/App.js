@@ -19,9 +19,9 @@ import { Registration } from "./pages/Registration/Registration";
 import { Login } from "./pages/Login/Login";
 import { UserAccount } from "./pages/userAccount/UserAccount";
 import { Order } from "./pages/Order/Order";
-import { Delivery } from './pages/Delivery/Delivery';
 
 import { checkIsAuth } from "./store/users/userAuthSlice";
+import { Delivery } from "./pages/Delivery/Delivery";
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
