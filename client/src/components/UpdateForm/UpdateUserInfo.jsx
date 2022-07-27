@@ -7,8 +7,6 @@ import { Input } from "../../components/Input/Input";
 
 import { updateProfile } from "../../store/users/userAuthSlice";
 
-
-
 export const UpdateUserInfo = ({ user, errors }) => {
   const dispatch = useDispatch();
 
@@ -24,9 +22,10 @@ export const UpdateUserInfo = ({ user, errors }) => {
       id: 1,
       name: "name",
       type: "text",
-      placeholder: "Изменить имя",
+      placeholder: "Змінити ім'я",
       errorMessage:
-        "Имя не должно содержать цифр и символов, длинной до 20 символов!",
+        // "Имя не должно содержать цифр и символов, длинной до 20 символов!",
+        "Ім'я не повинно мати цифри або символи, максимальна довжина 20 символів",
       pattern: "^[ A-Za-zА-Яа-я]{3,20}$",
       required: true,
       error: errors && errors.name && errors.name.message,
@@ -35,8 +34,8 @@ export const UpdateUserInfo = ({ user, errors }) => {
       id: 2,
       name: "email",
       type: "email",
-      placeholder: "Изменить почту",
-      errorMessage: "Укажите корректно почту!",
+      placeholder: "Змінити почту",
+      errorMessage: "Вкажіть почту правильно!",
       required: true,
       error: errors && errors.email && errors.email.message,
     },
@@ -44,9 +43,10 @@ export const UpdateUserInfo = ({ user, errors }) => {
       id: 3,
       name: "password",
       type: "password",
-      placeholder: "Изменить пароль",
+      placeholder: "Змінити пароль",
       errorMessage:
-        "Пароль должен быть 8-20 символов и содержать как минимум - 1 букву, цифру и символ(!@#$%^&*)",
+        // "Пароль должен быть 8-20 символов и содержать как минимум - 1 букву, цифру и символ(!@#$%^&*)",
+        "Пароль повинен складатися з 8-20 символів, та повинен мати наприклад (G1$......)",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       error:
         errors &&
@@ -57,8 +57,8 @@ export const UpdateUserInfo = ({ user, errors }) => {
       id: 4,
       name: "confirmPassword",
       type: "password",
-      placeholder: "Подтвердите пароль",
-      errorMessage: "Пароли не совпадают",
+      placeholder: "Підвердити пароль",
+      errorMessage: "Паролі не співпадають",
       pattern: values.password,
       required: values.password.length > 8 ? true : false,
     },
@@ -80,7 +80,6 @@ export const UpdateUserInfo = ({ user, errors }) => {
     <form
       onSubmit={handleUpdate}
       className={styles.formUpdate}>
-      <h2>Изменить данные?</h2>
       {inputs.map((input) => (
         <Input
           key={input.id}
@@ -92,7 +91,7 @@ export const UpdateUserInfo = ({ user, errors }) => {
       ))}
       <Button
         containerClassName={styles.btn}
-        children={"Изменить данные"}
+        children={"Підвердити"}
       />
     </form>
   );

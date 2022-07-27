@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./user.module.css";
@@ -19,19 +19,20 @@ import { UpdateUserInfo } from "../../components/UpdateForm/UpdateUserInfo";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from "../../components/Button/Button";
 
 export const UserAccount = () => {
   window.scroll(0, 0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const userData = useRef(null);
+
   const { isError, isChanged, user, errors } = useSelector(
     (state) => state.userAuthReducer,
   );
 
   const isAdmin = user.isAdmin;
-
-  console.log(isAdmin);
 
   if (isChanged) {
     toast.success("Данные успешно изменены!", {
@@ -65,6 +66,11 @@ export const UserAccount = () => {
     navigate(paths.main);
   };
 
+  const handleChange = () => {
+    console.log(userData.current);
+    userData.current.classList.toggle(styles.show);
+  };
+
   return (
     <div>
       <Header
@@ -84,9 +90,17 @@ export const UserAccount = () => {
                 <UserInformation {...user} />
               )}
               <div className={styles.userData}>
-                <UpdateUserInfo
-                  user={user}
-                  errors={errors}
+                <h2>Змінити інформацію?</h2>
+                <div className={styles.hide} ref={userData}>
+                  <UpdateUserInfo
+                    user={user}
+                    errors={errors}
+                  />
+                </div>
+                <Button
+                  containerClassName={styles.btn}
+                  onClick={handleChange}
+                  children={"Змінити"}
                 />
               </div>
             </div>
