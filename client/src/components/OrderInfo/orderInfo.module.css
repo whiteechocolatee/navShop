@@ -1,3 +1,25 @@
-.order {
-  padding: 20px 10px;
+.delivery {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderData,
+.customerData {
+  max-width: 640px;
+  width: 100%;
+}
+
+.input {
+}
+
+.btn {
+  width: 200px;
+  border: 1px solid black;
+  margin: 20px auto;
+}
+
+.select {
+  width: 100%;
+  cursor: pointer;
+  outline: none;
 }
