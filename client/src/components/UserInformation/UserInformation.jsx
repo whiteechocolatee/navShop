@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import styles from "./user.module.css";
 import moment from "moment";
 
 import { FaRegUserCircle } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { paths } from "../../paths";
+import { userProfile } from "../../store/users/userAuthSlice";
 
-export const UserInformation = ({ name, createdAt }) => {
+export const UserInformation = () => {
+  const dispatch = useDispatch();
+
+  const { user } = useSelector(
+    (state) => state.userAuthReducer,
+  );
+
+  const { name, createdAt } = user;
+
+  useEffect(() => {
+    dispatch(userProfile());
+  }, [dispatch]);
+
   return (
     <div className={styles.userProfile}>
       <div className={styles.userName}>
@@ -24,7 +39,6 @@ export const UserInformation = ({ name, createdAt }) => {
             <NavLink
               style={({ isActive }) => ({
                 color: isActive ? "#ABAFE9" : "#000",
-                borderBottom: isActive ? "#ABAFE9" : "#000",
               })}
               to={paths.account}>
               Мої дані
@@ -35,7 +49,7 @@ export const UserInformation = ({ name, createdAt }) => {
               style={({ isActive }) => ({
                 color: isActive ? "#ABAFE9" : "#000",
               })}
-              to={`${paths.account}/${paths.userOrders}`}>
+              to={`${paths.userOrders}`}>
               Мої замовлення
             </NavLink>
           </li>
@@ -44,7 +58,7 @@ export const UserInformation = ({ name, createdAt }) => {
               style={({ isActive }) => ({
                 color: isActive ? "#ABAFE9" : "#000",
               })}
-              to={`${paths.account}/${paths.liked}`}>
+              to={`${paths.liked}`}>
               Мені сподобалось
             </NavLink>
           </li>
