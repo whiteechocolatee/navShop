@@ -1,12 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import "./app.css";
 
 import {
   BrowserRouter,
   Routes,
   Route,
-  // Navigate,
 } from "react-router-dom";
 
 import { paths } from "./paths";
@@ -19,9 +17,9 @@ import { Registration } from "./pages/Registration/Registration";
 import { Login } from "./pages/Login/Login";
 import { UserMain } from "./pages/UserMain/UserMain";
 import { Order } from "./pages/Order/Order";
-
 import { Delivery } from "./pages/Delivery/Delivery";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
+import { UserOrders } from "./pages/UserOrders/UserOrders";
 
 function App() {
   return (
@@ -32,6 +30,11 @@ function App() {
             exact
             path={paths.account}
             element={<UserMain />}
+          />
+          <Route
+            exact
+            path={paths.userOrders}
+            element={<UserOrders />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
