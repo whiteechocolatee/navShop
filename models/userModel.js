@@ -35,6 +35,10 @@ userModel.methods.matchPassword = async function (
   );
 };
 
+/* This is a pre-save hook that is being added to the userModel. It is a function that is run before
+the userModel is saved to the database. It checks to see if the password has been modified. If it
+has not been modified, it will run the next function. If it has been modified, it will generate a
+salt and hash the password. */
 userModel.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
