@@ -4,6 +4,7 @@ const createOrder = async ({
   orderItems,
   shippingAddress,
   totalPrice,
+  customerData,
 }) => {
   const token = JSON.parse(
     window.localStorage.getItem("token"),
@@ -17,7 +18,12 @@ const createOrder = async ({
 
   let response = await axios.post(
     "/api/order",
-    { orderItems, shippingAddress, totalPrice },
+    {
+      orderItems,
+      shippingAddress,
+      totalPrice,
+      customerData,
+    },
     config,
   );
 

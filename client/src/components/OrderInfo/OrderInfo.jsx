@@ -77,6 +77,11 @@ export const OrderInfo = () => {
         city: values.city,
         department: values.deliveryDepartment,
       },
+      customerData: {
+        name: values.name,
+        surname: values.surname,
+        phone: values.phone,
+      },
       totalPrice: total,
     };
 

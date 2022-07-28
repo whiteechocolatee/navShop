@@ -27,6 +27,20 @@ const orderModel = mongoose.Schema({
       },
     },
   ],
+  customerData: {
+    name: {
+      type: String,
+      required: true,
+    },
+    surname: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: Number,
+      required: true,
+    },
+  },
   shippingAddress: {
     region: {
       type: String,
