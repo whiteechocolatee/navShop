@@ -28,7 +28,7 @@ const orderModel = mongoose.Schema({
     },
   ],
   shippingAddress: {
-    address: {
+    region: {
       type: String,
       required: true,
     },
@@ -36,7 +36,7 @@ const orderModel = mongoose.Schema({
       type: String,
       required: true,
     },
-    postalCode: {
+    department: {
       type: String,
       required: true,
     },
@@ -55,5 +55,7 @@ const orderModel = mongoose.Schema({
     type: Date,
   },
 });
+
+orderModel.set("timestamps", true);
 
 module.exports = mongoose.model("Order", orderModel);
