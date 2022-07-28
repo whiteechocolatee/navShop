@@ -6,7 +6,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate,
+  // Navigate,
 } from "react-router-dom";
 
 import { paths } from "./paths";
@@ -17,31 +17,23 @@ import { CategoryPage } from "./pages/Category/CategoryPage";
 import { SingleItemPage } from "./pages/SingleItem/SingleItemPage";
 import { Registration } from "./pages/Registration/Registration";
 import { Login } from "./pages/Login/Login";
-import { UserAccount } from "./pages/userAccount/UserAccount";
+import { UserMain } from "./pages/UserMain/UserMain";
 import { Order } from "./pages/Order/Order";
 
-import { checkIsAuth } from "./store/users/userAuthSlice";
 import { Delivery } from "./pages/Delivery/Delivery";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const isAuth = useSelector(checkIsAuth);
-
   return (
     <BrowserRouter>
       <Routes>
-        {isAuth ? (
+        <Route element={<ProtectedRoute />}>
           <Route
             exact
             path={paths.account}
-            element={<UserAccount />}
+            element={<UserMain />}
           />
-        ) : (
-          <Route
-            exact
-            path={paths.account}
-            element={<Navigate replace to={paths.login} />}
-          />
-        )}
+        </Route>
         <Route exact path={paths.main} element={<Main />} />
         <Route
           exact
