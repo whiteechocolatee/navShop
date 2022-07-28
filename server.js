@@ -20,7 +20,8 @@ app
   .use(formData.parse())
   .use(express.urlencoded({ extended: true }))
   .use("/api/items", require("./routes/mainRoutes"))
-  .use("/api/users", require("./routes/userRoutes"));
+  .use("/api/users", require("./routes/userRoutes"))
+  .use("/api/order", require("./routes/orderRoutes"));
 
 app.listen(port, () => {
   console.log(`server was started at port - ${port}`);
