@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./orderInfo.module.css";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import { Loader } from "../Loader/Loader";
 
+import { resetCart } from "../../store/cart/cartSlice";
 import {
   getRegions,
   filteringByRegions,
   filteringByCity,
   filteringDepartments,
 } from "../../store/deliveryAddresses/deliverySlice";
+import { createOrder } from "../../store/order/orderSlice";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { paths } from "../../paths";
 
 export const OrderInfo = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     name: "",
@@ -35,11 +43,77 @@ export const OrderInfo = () => {
     (state) => state.deliveryReducer,
   );
 
+  const cart = useSelector((state) => {
+    return state.cartReducer.itemsInCart;
+  });
+
   const handleSearch = (e) => {
     e.preventDefault();
     dispatch(filteringByRegions(values.region));
     dispatch(filteringByCity(values.city));
     dispatch(filteringDepartments(values.department));
+  };
+
+  const total = cart.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+
+  const orderCart = [];
+
+  cart.map((item) => {
+    return orderCart.push({
+      name: item.title,
+      image: item.itemImage,
+      price: item.price,
+      product: item._id,
+    });
+  });
+
+  const handleOrder = () => {
+    const order = {
+      orderItems: orderCart,
+      shippingAddress: {
+        region: values.region,
+        city: values.city,
+        department: values.deliveryDepartment,
+      },
+      totalPrice: total,
+    };
+
+    dispatch(createOrder(order)).then((res) => {
+      if (!res.error) {
+        toast.success(
+          `Ваше замовлення прийнято!
+          Ви будете направленні на головну`,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          },
+        );
+        setTimeout(() => {
+          dispatch(resetCart());
+          navigate(paths.main);
+        }, 5000);
+      } else {
+        toast.error(res.payload.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          navigate(paths.main);
+        }, 5000);
+      }
+    });
   };
 
   const customerInfo = [
@@ -112,26 +186,14 @@ export const OrderInfo = () => {
 
   return (
     <div>
-      {/* {isLoading ? (
+      <ToastContainer />
+      {isLoading ? (
         <Loader />
-      ) : ( */}
-      <div className={styles.delivery}>
-        <div className={styles.customerData}>
-          <h3>Вкажіть ваші дані</h3>
-          {customerInfo.map((input) => (
-            <Input
-              key={input.id}
-              {...input}
-              className={styles.input}
-              value={values[input.name]}
-              onChange={onChange}
-            />
-          ))}
-        </div>
-        <div className={styles.orderData}>
-          <h3>Знайти відділення (українською мовою)</h3>
-          <form onSubmit={handleSearch}>
-            {orderInfo.map((input) => (
+      ) : (
+        <div className={styles.delivery}>
+          <div className={styles.customerData}>
+            <h3>Вкажіть ваші дані</h3>
+            {customerInfo.map((input) => (
               <Input
                 key={input.id}
                 {...input}
@@ -140,29 +202,43 @@ export const OrderInfo = () => {
                 onChange={onChange}
               />
             ))}
-            <Button containerClassName={styles.btn}>
-              Пошук
-            </Button>
-          </form>
-          {departments.length > 0 ? (
-            <select
-              name='deliveryDepartment'
-              className={styles.select}
-              onChange={onChange}>
-              <option defaultValue='#' selected>
-                Виберіть відділення
-              </option>
-              {departments.map((item) => (
-                <option
-                  key={item.SiteKey}
-                  value={`${item.Description} ( ${item.CityDescription} )`}>
-                  {`${item.Description} ( ${item.CityDescription} )`}
-                </option>
+          </div>
+          <div className={styles.orderData}>
+            <h3>Знайти відділення (українською мовою)</h3>
+            <form onSubmit={handleSearch}>
+              {orderInfo.map((input) => (
+                <Input
+                  key={input.id}
+                  {...input}
+                  className={styles.input}
+                  value={values[input.name]}
+                  onChange={onChange}
+                />
               ))}
-            </select>
-          ) : null}
+              <Button containerClassName={styles.btn}>
+                Пошук
+              </Button>
+            </form>
+            {departments.length > 0 ? (
+              <select
+                name='deliveryDepartment'
+                className={styles.select}
+                onChange={onChange}>
+                <option defaultValue='#' selected>
+                  Виберіть відділення
+                </option>
+                {departments.map((item) => (
+                  <option
+                    key={item.SiteKey}
+                    value={`${item.Description} ( ${item.CityDescription} )`}>
+                    {`${item.Description} ( ${item.CityDescription} )`}
+                  </option>
+                ))}
+              </select>
+            ) : null}
+          </div>
         </div>
-      </div>
+      )}
       {values.name &&
       values.surname &&
       values.phone.length > 9 &&
@@ -181,17 +257,18 @@ export const OrderInfo = () => {
               <h3>Дані для доставки</h3>
               <h5>Область - {values.region}</h5>
               <h5>Місто - {values.city}</h5>
-              <h5>Відділеня - {values.deliveryDepartment}</h5>
+              <h5>
+                Відділеня - {values.deliveryDepartment}
+              </h5>
             </div>
           </div>
           <Button
             containerClassName={styles.btn}
-            onClick={handleSearch}>
+            onClick={handleOrder}>
             Замовити
           </Button>
         </div>
       ) : null}
-      {/* )} */}
     </div>
   );
 };
