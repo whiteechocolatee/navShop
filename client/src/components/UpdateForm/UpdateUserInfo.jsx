@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./update.module.css";
 import { Button } from "../../components/Button/Button";
@@ -7,8 +7,15 @@ import { Input } from "../../components/Input/Input";
 
 import { updateProfile } from "../../store/users/userAuthSlice";
 
-export const UpdateUserInfo = ({ user, errors }) => {
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export const UpdateUserInfo = () => {
   const dispatch = useDispatch();
+
+  const { isError, isChanged, user, errors } = useSelector(
+    (state) => state.userAuthReducer,
+  );
 
   const [values, setValues] = useState({
     name: user.name,
@@ -16,6 +23,28 @@ export const UpdateUserInfo = ({ user, errors }) => {
     password: "",
     confirmPassword: "",
   });
+
+  if (isChanged) {
+    toast.success("Данные успешно изменены!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  } else if (isError) {
+    toast.error("Произошла ошибка попробуйте позже!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   const inputs = [
     {
