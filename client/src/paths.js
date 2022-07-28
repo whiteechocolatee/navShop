@@ -7,7 +7,7 @@ export const paths = {
   account: "/account",
   order: "/order",
   delivery: "delivery/",
-  userOrders: "orders/",
-  changeUserData: "change/",
-  liked: "liked/",
+  userOrders: "/orders",
+  changeUserData: "/change",
+  liked: "/liked",
 };
