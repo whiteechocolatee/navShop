@@ -5,6 +5,7 @@ import itemSlice from "./item/itemSlice";
 import userAuthSlice from "./users/userAuthSlice";
 import cartSlice from "./cart/cartSlice";
 import deliverySlice from "./deliveryAddresses/deliverySlice";
+import orderSlice from "./order/orderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     userAuthReducer: userAuthSlice,
     cartReducer: cartSlice,
     deliveryReducer: deliverySlice,
+    orderReducer: orderSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
