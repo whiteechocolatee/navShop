@@ -1,21 +1,31 @@
 import axios from "axios";
 
+const token = JSON.parse(
+  window.localStorage.getItem("token"),
+);
+
+const config = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
+
+const userOrders = async () => {
+  let { data } = await axios.get("/api/order", config);
+
+  return data;
+};
+
+/**
+ * It sends a POST request to the server with the order details, and returns the response
+ * @returns The response.data is being returned.
+ */
 const createOrder = async ({
   orderItems,
   shippingAddress,
   totalPrice,
   customerData,
 }) => {
-  const token = JSON.parse(
-    window.localStorage.getItem("token"),
-  );
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
   let response = await axios.post(
     "/api/order",
     {
@@ -32,6 +42,7 @@ const createOrder = async ({
 
 const orderService = {
   createOrder,
+  userOrders,
 };
 
 export default orderService;
