@@ -17,8 +17,8 @@ import { UserInformation } from "../../components/UserInformation/UserInformatio
 import { UpdateUserInfo } from "../../components/UpdateForm/UpdateUserInfo";
 
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+
 import { Button } from "../../components/Button/Button";
 
 export const UserAccount = () => {
@@ -67,7 +67,6 @@ export const UserAccount = () => {
   };
 
   const handleChange = () => {
-    console.log(userData.current);
     userData.current.classList.toggle(styles.show);
   };
 
