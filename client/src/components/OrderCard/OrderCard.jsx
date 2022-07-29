@@ -1,36 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./orderCard.module.css";
 
 import { useDispatch } from "react-redux";
 
 import { ImageComponent } from "../Image/Image";
 import { BiTrash, BiPlus, BiMinus } from "react-icons/bi";
-import { removeItemFromCart } from "../../store/cart/cartSlice";
+import {
+  removeItemFromCart,
+  increaseItem,
+  decreaseItem,
+} from "../../store/cart/cartSlice";
 
 export const OrderCard = ({
   itemImage,
   title,
   price,
   id,
+  count,
+  totalPrice,
 }) => {
-  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
   const handleDelete = (e) => {
     e.stopPropagation();
     dispatch(removeItemFromCart(id));
-  };
-
-  const addOne = (e) => {
-    e.stopPropagation();
-    setQty(qty + 1);
-  };
-  const removeOne = (e) => {
-    e.stopPropagation();
-    setQty(qty - 1);
-    if (qty < 2) {
-      dispatch(removeItemFromCart(id));
-    }
   };
 
   return (
@@ -42,11 +35,15 @@ export const OrderCard = ({
         <h6 className={styles.titles}>{title}</h6>
       </div>
       <div className={styles.qty}>
-        <div className={styles.qtyBtns} onClick={removeOne}>
+        <div
+          className={styles.qtyBtns}
+          onClick={() => dispatch(decreaseItem(id))}>
           <BiMinus />
         </div>
-        <div>{qty}</div>
-        <div className={styles.qtyBtns} onClick={addOne}>
+        <div>{count}</div>
+        <div
+          className={styles.qtyBtns}
+          onClick={() => dispatch(increaseItem(id))}>
           <BiPlus />
         </div>
       </div>
@@ -55,7 +52,7 @@ export const OrderCard = ({
       </div>
       <div className={styles.price}>
         <h6 className={styles.titles}>
-          <b>{price * qty}</b>
+          <b>{totalPrice}</b>
         </h6>
       </div>
       <div onClick={handleDelete} className={styles.remove}>
