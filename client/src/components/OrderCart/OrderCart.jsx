@@ -12,7 +12,7 @@ export const OrderCart = () => {
   });
 
   const total = cart.reduce((acc, item) => {
-    return acc + item.price;
+    return acc + item.totalPrice;
   }, 0);
 
   return (
@@ -27,7 +27,7 @@ export const OrderCart = () => {
         </Link>
       </div>
       <div>
-        <h1 className={styles.cartTitle}>Кошик</h1>
+        <h1 className={styles.cartTitle}>Кошик покупок</h1>
       </div>
       {cart.length > 0 ? (
         <div className={styles.orderInfo}>
@@ -43,6 +43,8 @@ export const OrderCart = () => {
                 title={item.title}
                 itemImage={item.itemImage}
                 price={item.price}
+                count={item.count}
+                totalPrice={item.totalPrice}
               />
             ))}
           </div>
