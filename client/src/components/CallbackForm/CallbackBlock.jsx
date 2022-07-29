@@ -84,8 +84,13 @@ export const CallbackBlock = () => {
             ))}
             <Button
               containerClassName={styles.callbackBtn}
-              className={styles.submit}
-              children='Заказать звонок!'
+              children={
+                <input
+                  className={styles.submit}
+                  type='submit'
+                  value='Замовити дзвінок'
+                />
+              }
             />
           </form>
           <div

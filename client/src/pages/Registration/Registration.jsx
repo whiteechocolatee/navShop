@@ -138,8 +138,13 @@ export const Registration = () => {
                 ))}
                 <Button
                   containerClassName={styles.btn}
-                  className={styles.signUp}
-                  children={"Зарегестрироваться"}
+                  children={
+                    <input
+                      type='submit'
+                      className={styles.signUp}
+                      value='Зареєструватися'
+                    />
+                  }
                 />
               </form>
             )}

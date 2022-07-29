@@ -11,7 +11,10 @@ export const Button = ({
     <div
       className={`${containerClassName} ${styles.buttonContainer}`}
       onClick={onClick}>
-      <input type='submit' className={`${styles.button} ${className}`} value={children} />
+      <span className={`${styles.button} ${className}`}>
+        {children}
+      </span>
+      {/* <input type='submit' className={`${styles.button} ${className}`} value={children} /> */}
     </div>
   );
 };

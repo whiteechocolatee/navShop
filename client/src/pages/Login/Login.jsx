@@ -121,8 +121,13 @@ export const Login = () => {
                 ))}
                 <Button
                   containerClassName={styles.btn}
-                  className={styles.submit}
-                  children='Войти'
+                  children={
+                    <input
+                      type='submit'
+                      className={styles.submit}
+                      value='Увійти'
+                    />
+                  }
                 />
                 <div className={styles.mobile}>
                   <Link to={paths.signup}>
