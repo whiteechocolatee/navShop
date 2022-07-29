@@ -57,6 +57,15 @@ const itemModel = mongoose.Schema({
     require: true,
     default: 0,
   },
+  count: {
+    type: Number,
+    default: 1,
+    require: true,
+  },
+  totalPrice: {
+    type: Number,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model("Item", itemModel);
