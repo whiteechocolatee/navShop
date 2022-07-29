@@ -1,16 +1,15 @@
 import axios from "axios";
 
-const token = JSON.parse(
-  window.localStorage.getItem("token"),
-);
-
-const config = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
-
 const userOrders = async () => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   let { data } = await axios.get("/api/order", config);
 
   return data;
@@ -26,6 +25,16 @@ const createOrder = async ({
   totalPrice,
   customerData,
 }) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   let response = await axios.post(
     "/api/order",
     {
