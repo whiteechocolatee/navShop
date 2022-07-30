@@ -1,0 +1,37 @@
+.checkBody {
+  width: 300px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkBorder:not([size]) {
+  transform: matrix(1, 0, 0, -1, 0, 0);
+  height: 0px;
+  border: 1px solid black;
+  opacity: 1;
+}
+
+.checkTitle {
+  font-size: 24px;
+  line-height: 150%;
+  color: #242424;
+}
+
+.btn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  border-radius: 40px;
+}
+
+.link,
+.link:hover,
+.link:focus {
+  color: #242424;
+  text-decoration: none;
+}
