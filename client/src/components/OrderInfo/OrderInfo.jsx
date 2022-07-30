@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import styles from "./orderInfo.module.css";
 import { Input } from "../Input/Input";
@@ -19,6 +19,9 @@ import { createOrder } from "../../store/order/orderSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { paths } from "../../paths";
+import { OrderCheckDelivery } from "../OrderCheckDelivery/OrderCheckDelivery";
+import { CustomerForm } from "../CustomerForm/CustomerForm";
+import { DeliveryMethod } from "../DeliveryMethod/DeliveryMethod";
 
 export const OrderInfo = () => {
   const dispatch = useDispatch();
@@ -35,9 +38,9 @@ export const OrderInfo = () => {
     deliveryDepartment: "",
   });
 
-  useEffect(() => {
-    dispatch(getRegions());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getRegions());
+  // }, [dispatch]);
 
   const { departments, isLoading } = useSelector(
     (state) => state.deliveryReducer,
@@ -55,7 +58,7 @@ export const OrderInfo = () => {
   };
 
   const total = cart.reduce((acc, item) => {
-    return acc + item.price;
+    return acc + item.totalPrice;
   }, 0);
 
   const orderCart = [];
@@ -190,9 +193,34 @@ export const OrderInfo = () => {
   };
 
   return (
-    <div>
+    <div className={styles.deliveryPayment}>
       <ToastContainer />
-      {isLoading ? (
+      <div className={styles.navigation}>
+        <Link className={styles.link} to={paths.main}>
+          Головна
+        </Link>
+        <hr className={styles.border} />
+        <Link className={styles.link} to={paths.order}>
+          Кошик
+        </Link>
+        <hr className={styles.border} />
+        <Link className={styles.link} to={paths.order}>
+          Доставка та оплата
+        </Link>
+      </div>
+      <div>
+        <h1 className={styles.cartTitle}>
+          Доставка та оплата
+        </h1>
+      </div>
+      <div className={styles.orderPayment}>
+        <div className={styles.forms}>
+          <CustomerForm />
+          <DeliveryMethod />
+        </div>
+        <OrderCheckDelivery total={total} cart={cart} />
+      </div>
+      {/* {isLoading ? (
         <Loader />
       ) : (
         <div className={styles.delivery}>
@@ -243,8 +271,8 @@ export const OrderInfo = () => {
             ) : null}
           </div>
         </div>
-      )}
-      {values.name &&
+      )} */}
+      {/* {values.name &&
       values.surname &&
       values.phone.length > 9 &&
       values.region &&
@@ -273,7 +301,7 @@ export const OrderInfo = () => {
             Замовити
           </Button>
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
