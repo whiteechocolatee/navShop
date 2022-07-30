@@ -48,11 +48,11 @@ export const OrderCard = ({
         </div>
       </div>
       <div className={styles.pricePerItem}>
-        <h6 className={styles.titles}>{price}</h6>
+        <h6 className={styles.titles}>{price} ₴</h6>
       </div>
       <div className={styles.price}>
         <h6 className={styles.titles}>
-          <b>{totalPrice}</b>
+          <b>{totalPrice} ₴</b>
         </h6>
       </div>
       <div onClick={handleDelete} className={styles.remove}>
