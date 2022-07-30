@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { OrderCard } from "../OrderCard/OrderCard";
 import { Link } from "react-router-dom";
 import { paths } from "../../paths";
-import { OrderCheck } from "../OrderCheck/OrderCheck";
+import { OrderCheck } from "../OrderCheckCart/OrderCheck";
 
 export const OrderCart = () => {
   const cart = useSelector((state) => {
@@ -27,7 +27,7 @@ export const OrderCart = () => {
         </Link>
       </div>
       <div>
-        <h1 className={styles.cartTitle}>Кошик покупок</h1>
+        <h1 className={styles.cartTitle}>Кошик</h1>
       </div>
       {cart.length > 0 ? (
         <div className={styles.orderInfo}>
