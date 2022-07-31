@@ -4,11 +4,22 @@ import {
 } from "@reduxjs/toolkit";
 import deliveryService from "../services/deliveryService";
 
-export const getRegions = createAsyncThunk(
-  "getRegions",
+export const getAreas = createAsyncThunk(
+  "getAreas",
   async (_, thunkAPI) => {
     try {
-      return await deliveryService.getRegions();
+      return await deliveryService.getAreas();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const getAllDepartments = createAsyncThunk(
+  "getAllDepartments",
+  async (_, thunkAPI) => {
+    try {
+      return await deliveryService.getAllDepartments();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -18,53 +29,71 @@ export const getRegions = createAsyncThunk(
 const deliverySlice = createSlice({
   name: "delivery",
   initialState: {
-    shippingData: [],
-    regions: [],
+    areas: [],
     cities: [],
     departments: [],
+    departmentByCity: [],
     isLoading: false,
   },
   reducers: {
-    filteringByRegions: (state, action) => {
-      state.regions = state.shippingData.filter((item) => {
-        return item.SettlementAreaDescription.toLowerCase().includes(
+    getCitiesByArea: (state, action) => {
+      let cities = state.departments.filter((city) => {
+        return city.SettlementAreaDescription.toLowerCase().includes(
           action.payload.toLowerCase(),
         );
       });
+
+      cities = Array.from(
+        new Set(cities.map((city) => city.CityDescription)),
+      ).sort();
+
+      state.cities = cities;
     },
-    filteringByCity: (state, action) => {
-      state.cities = state.regions.filter((item) => {
-        return item.SettlementDescription.toLowerCase().includes(
-          action.payload.toLowerCase(),
-        );
-      });
-    },
-    filteringDepartments: (state, action) => {
-      state.departments = state.cities.filter((item) => {
-        return item.Number.includes(action.payload);
-      });
+    getDepartmentsByCity: (state, action) => {
+      console.log(action.payload);
+      state.departmentByCity = state.departments.filter(
+        (department) => {
+          return department.CityDescription.toLowerCase().includes(
+            action.payload.toLowerCase(),
+          );
+        },
+      );
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getRegions.pending, (state) => {
+      .addCase(getAreas.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getRegions.fulfilled, (state, action) => {
+      .addCase(getAreas.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.shippingData = action.payload;
+        state.areas = action.payload;
       })
-      .addCase(getRegions.rejected, (state, action) => {
+      .addCase(getAreas.rejected, (state, action) => {
         state.isLoading = false;
-        state.shippingData = action.payload.data;
-      });
+        state.areas = action.payload.data;
+      })
+      .addCase(getAllDepartments.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        getAllDepartments.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.departments = action.payload;
+        },
+      )
+      .addCase(
+        getAllDepartments.rejected,
+        (state, action) => {
+          state.isLoading = false;
+          state.departments = action.payload.data;
+        },
+      );
   },
 });
 
-export const {
-  filteringByRegions,
-  filteringByCity,
-  filteringDepartments,
-} = deliverySlice.actions;
+export const { getCitiesByArea, getDepartmentsByCity } =
+  deliverySlice.actions;
 
 export default deliverySlice.reducer;
