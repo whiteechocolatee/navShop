@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./delivery.module.css";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
 import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
-import { getRegions } from "../../store/deliveryAddresses/deliverySlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { paths } from "../../paths";
 import { OrderCheckDelivery } from "../../components/OrderCheckDelivery/OrderCheckDelivery";
 import { CustomerForm } from "../../components/CustomerForm/CustomerForm";
 import { DeliveryMethod } from "../../components/DeliveryMethod/DeliveryMethod";
+import { Payment } from "../../components/Payment/Payment";
+import { Button } from "../../components/Button/Button";
+import { Input } from "../../components/Input/Input";
 
 export const Delivery = () => {
-  const dispatch = useDispatch();
-
   const cart = useSelector((state) => {
     return state.cartReducer.itemsInCart;
   });
@@ -24,10 +24,6 @@ export const Delivery = () => {
   const total = cart.reduce((acc, item) => {
     return acc + item.totalPrice;
   }, 0);
-
-  // useEffect(() => {
-  //   dispatch(getRegions());
-  // }, [dispatch]);
 
   return (
     <React.Fragment>
@@ -57,10 +53,28 @@ export const Delivery = () => {
             <div className={styles.forms}>
               <CustomerForm />
               <DeliveryMethod />
+              <Payment />
+              <div className={styles.comment}>
+                <h5 className={styles.commentTitle}>
+                  Можливо вам є що додати до вашого
+                  замовлення
+                </h5>
+                <Input className={styles.input} />
+              </div>
             </div>
             <OrderCheckDelivery total={total} cart={cart} />
           </div>
         </div>
+        <Button
+          children={
+            <Link
+              className={styles.btnLink}
+              to={paths.order}>
+              Перейти до оплати
+            </Link>
+          }
+          containerClassName={styles.btn}
+        />
       </ContentWrapper>
       <Footer />
     </React.Fragment>
