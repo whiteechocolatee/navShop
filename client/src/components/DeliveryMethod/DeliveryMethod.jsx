@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Map } from "../MapContainer/Map";
+import { NovaPoshta } from "../NovaPoshta/NovaPoshta";
 import styles from "./deliveryMethod.module.css";
 
 export const DeliveryMethod = () => {
-  const [gender, setGender] = useState("localPickup");
+  const [method, setMethod] = useState("localPickup");
 
   const handleChange = (event) => {
     console.log(event.target);
-    setGender(event.target.value);
+    setMethod(event.target.value);
   };
 
   return (
@@ -17,7 +19,7 @@ export const DeliveryMethod = () => {
           <input
             type='radio'
             value='localPickup'
-            checked={gender === "localPickup"}
+            checked={method === "localPickup"}
             onChange={handleChange}
             id='localPickup'
           />
@@ -29,12 +31,26 @@ export const DeliveryMethod = () => {
             type='radio'
             value='novaPoshta'
             onChange={handleChange}
-            checked={gender === "novaPoshta"}
+            checked={method === "novaPoshta"}
           />
           <label htmlFor='nova'>
-            Доставка новою поштою
+            Доставка Новою Поштою
           </label>
         </div>
+      </div>
+      <div className={styles.wayOfMethod}>
+        {method === "localPickup" && (
+          <div className={styles.mapContainer}>
+            <p>
+              <b>
+                ТРК "Клас" (Проспект Тракторобудівників,
+                128в) , другий поверх.
+              </b>
+            </p>
+            <Map />
+          </div>
+        )}
+        {method === "novaPoshta" && <NovaPoshta />}
       </div>
     </div>
   );

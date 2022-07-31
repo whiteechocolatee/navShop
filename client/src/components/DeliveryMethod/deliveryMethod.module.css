@@ -10,7 +10,7 @@
 }
 
 .label {
-  width: 50%;
+  width: 384px;
 }
 
 .label input {
@@ -54,4 +54,8 @@
   border: solid #242424;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+.mapContainer {
+  margin: 40px 0;
 }
