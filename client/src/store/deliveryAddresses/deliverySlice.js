@@ -26,29 +26,23 @@ const deliverySlice = createSlice({
   },
   reducers: {
     filteringByRegions: (state, action) => {
-      state.isLoading = true;
       state.regions = state.shippingData.filter((item) => {
         return item.SettlementAreaDescription.toLowerCase().includes(
           action.payload.toLowerCase(),
         );
       });
-      state.isLoading = false;
     },
     filteringByCity: (state, action) => {
-      state.isLoading = true;
       state.cities = state.regions.filter((item) => {
         return item.SettlementDescription.toLowerCase().includes(
           action.payload.toLowerCase(),
         );
       });
-      state.isLoading = false;
     },
     filteringDepartments: (state, action) => {
-      state.isLoading = true;
       state.departments = state.cities.filter((item) => {
         return item.Number.includes(action.payload);
       });
-      state.isLoading = false;
     },
   },
   extraReducers: (builder) => {
