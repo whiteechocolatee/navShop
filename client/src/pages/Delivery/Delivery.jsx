@@ -1,29 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./delivery.module.css";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
 import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
-import { useSelector } from "react-redux";
-
-import { paths } from "../../paths";
 import { OrderCheckDelivery } from "../../components/OrderCheckDelivery/OrderCheckDelivery";
 import { CustomerForm } from "../../components/CustomerForm/CustomerForm";
 import { DeliveryMethod } from "../../components/DeliveryMethod/DeliveryMethod";
 import { Payment } from "../../components/Payment/Payment";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
+import { paths } from "../../paths";
+import { Loader } from "../../components/Loader/Loader";
+
+import {
+  getAreas,
+  getAllDepartments,
+} from "../../store/deliveryAddresses/deliverySlice";
 
 export const Delivery = () => {
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => {
     return state.cartReducer.itemsInCart;
+  });
+
+  const { isLoading } = useSelector((state) => {
+    return state.deliveryReducer;
   });
 
   const total = cart.reduce((acc, item) => {
     return acc + item.totalPrice;
   }, 0);
+
+  useEffect(() => {
+    dispatch(getAreas());
+    dispatch(getAllDepartments());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <React.Fragment>
