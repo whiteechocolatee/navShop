@@ -33,6 +33,8 @@ const createOrder = async (req, res) => {
       shippingAddress,
       totalPrice,
       customerData,
+      paymentMethod,
+      commentary,
     } = req.body;
     const user = req.user._id;
 
@@ -46,6 +48,8 @@ const createOrder = async (req, res) => {
         shippingAddress,
         totalPrice,
         customerData,
+        paymentMethod,
+        commentary,
         user,
       });
 

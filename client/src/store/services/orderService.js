@@ -24,6 +24,8 @@ const createOrder = async ({
   shippingAddress,
   totalPrice,
   customerData,
+  paymentMethod,
+  commentary,
 }) => {
   const token = JSON.parse(
     window.localStorage.getItem("token"),
@@ -42,6 +44,8 @@ const createOrder = async ({
       shippingAddress,
       totalPrice,
       customerData,
+      paymentMethod,
+      commentary,
     },
     config,
   );
