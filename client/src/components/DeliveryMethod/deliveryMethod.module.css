@@ -4,13 +4,15 @@
 }
 
 .methods {
-  margin-top: 25px;
   display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
   justify-content: space-between;
 }
 
 .label {
   width: 384px;
+  margin-top: 30px;
 }
 
 .label input {

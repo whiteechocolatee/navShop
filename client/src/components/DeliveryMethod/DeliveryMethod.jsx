@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Courier } from "../CourierDelivery/Courier";
 import { Map } from "../MapContainer/Map";
 import { NovaPoshta } from "../NovaPoshta/NovaPoshta";
 import styles from "./deliveryMethod.module.css";
@@ -37,6 +38,26 @@ export const DeliveryMethod = () => {
             Доставка Новою Поштою
           </label>
         </div>
+        <div className={styles.label}>
+          <input
+            id='poshta'
+            type='radio'
+            value='poshta'
+            onChange={handleChange}
+            checked={method === "poshta"}
+          />
+          <label htmlFor='poshta'>Доставка поштою</label>
+        </div>
+        <div className={styles.label}>
+          <input
+            id='courier'
+            type='radio'
+            value='courier'
+            onChange={handleChange}
+            checked={method === "courier"}
+          />
+          <label htmlFor='courier'>Доставка кур'єром</label>
+        </div>
       </div>
       <div className={styles.wayOfMethod}>
         {method === "localPickup" && (
@@ -51,6 +72,8 @@ export const DeliveryMethod = () => {
           </div>
         )}
         {method === "novaPoshta" && <NovaPoshta />}
+        {method === "courier" && <Courier />}
+        {method === "poshta" && <Courier />}
       </div>
     </div>
   );
