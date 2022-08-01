@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Courier } from "../CourierDelivery/Courier";
 import { Map } from "../MapContainer/Map";
 import { NovaPoshta } from "../NovaPoshta/NovaPoshta";
 import styles from "./deliveryMethod.module.css";
 
-export const DeliveryMethod = () => {
-  const [method, setMethod] = useState("localPickup");
-
-  const handleChange = (event) => {
-    console.log(event.target);
-    setMethod(event.target.value);
-  };
-
+export const DeliveryMethod = ({
+  values,
+  handleChange,
+}) => {
   return (
     <div className={styles.deliveryMethod}>
       <h4 className={styles.deliveryTitle}>Доставка</h4>
       <div className={styles.methods}>
         <div className={styles.label}>
           <input
+            name='shippingMethod'
             type='radio'
             value='localPickup'
-            checked={method === "localPickup"}
+            checked={
+              values.shippingMethod === "localPickup"
+            }
             onChange={handleChange}
             id='localPickup'
           />
@@ -28,11 +27,12 @@ export const DeliveryMethod = () => {
         </div>
         <div className={styles.label}>
           <input
+            name='shippingMethod'
             id='nova'
             type='radio'
             value='novaPoshta'
             onChange={handleChange}
-            checked={method === "novaPoshta"}
+            checked={values.shippingMethod === "novaPoshta"}
           />
           <label htmlFor='nova'>
             Доставка Новою Поштою
@@ -40,27 +40,29 @@ export const DeliveryMethod = () => {
         </div>
         <div className={styles.label}>
           <input
+            name='shippingMethod'
             id='poshta'
             type='radio'
             value='poshta'
             onChange={handleChange}
-            checked={method === "poshta"}
+            checked={values.shippingMethod === "poshta"}
           />
           <label htmlFor='poshta'>Доставка поштою</label>
         </div>
         <div className={styles.label}>
           <input
+            name='shippingMethod'
             id='courier'
             type='radio'
             value='courier'
             onChange={handleChange}
-            checked={method === "courier"}
+            checked={values.shippingMethod === "courier"}
           />
           <label htmlFor='courier'>Доставка кур'єром</label>
         </div>
       </div>
       <div className={styles.wayOfMethod}>
-        {method === "localPickup" && (
+        {values.shippingMethod === "localPickup" && (
           <div className={styles.mapContainer}>
             <p>
               <b>
@@ -71,9 +73,16 @@ export const DeliveryMethod = () => {
             <Map />
           </div>
         )}
-        {method === "novaPoshta" && <NovaPoshta />}
-        {method === "courier" && <Courier />}
-        {method === "poshta" && <Courier />}
+        {values.shippingMethod === "novaPoshta" && (
+          <NovaPoshta handleChange={handleChange} />
+        )}
+        {(values.shippingMethod === "courier" ||
+          values.shippingMethod === "poshta") && (
+          <Courier
+            values={values}
+            handleChange={handleChange}
+          />
+        )}
       </div>
     </div>
   );

@@ -3,37 +3,20 @@ import styles from "./courier.module.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Input } from "../Input/Input";
-import {
-  getCitiesByArea,
-  getDepartmentsByCity,
-} from "../../store/deliveryAddresses/deliverySlice";
+import { getCitiesByArea } from "../../store/deliveryAddresses/deliverySlice";
 
 import { Loader } from "../Loader/Loader";
 
-export const Courier = () => {
+export const Courier = ({ values, handleChange }) => {
   const dispatch = useDispatch();
 
-  const {
-    reducerLoading,
-    areas,
-    cities,
-    departmentByCity,
-  } = useSelector((state) => state.deliveryReducer);
+  const { reducerLoading, areas, cities } = useSelector(
+    (state) => state.deliveryReducer,
+  );
 
   const handleCities = (e) => {
     dispatch(getCitiesByArea(e.target.value));
   };
-
-  const handleDepartments = (e) => {
-    dispatch(getDepartmentsByCity(e.target.value));
-  };
-
-  const [values, setValues] = useState({
-    area: "",
-    city: "",
-    index: "",
-    street: "",
-  });
 
   if (reducerLoading) {
     return <Loader />;
@@ -46,28 +29,21 @@ export const Courier = () => {
       type: "text",
       placeholder: "Вкажіть індекс",
       errorMessage:
-        "Не повинно мати літери або символи, максимальна довжина 6 символів.",
-      pattern: "^[0-9]{6}$",
+        "Не повинно мати літери або символи, максимальна довжина 5 символів.",
+      pattern: "^[0-9]{5}$",
       required: true,
     },
     {
       id: 2,
-      name: "street",
+      name: "department",
       type: "text",
       placeholder: "Вкажіть вулицю",
       errorMessage:
         "Не повинно мати цифри або символи, максимальна довжина 25 символів.",
-      pattern: "^[ A-Za-zА-ЩЬЮЯҐЄІЇа-щьюяґєії0-9]{3,20}$",
+      pattern: "^[ A-Za-zА-ЩЬЮЯҐЄІЇа-щьюяґєії0-9]{3,30}$",
       required: true,
     },
   ];
-
-  const onChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   return (
     <div className={styles.courierBlock}>
@@ -75,7 +51,7 @@ export const Courier = () => {
         <select
           name='area'
           onChange={(e) => {
-            onChange(e);
+            handleChange(e);
             handleCities(e);
           }}>
           <option value='#' disabled selected>
@@ -89,7 +65,7 @@ export const Courier = () => {
         </select>
       </div>
       <div className={styles.dataBlock}>
-        <select name='city' onChange={onChange}>
+        <select name='city' onChange={handleChange}>
           <option value='#' disabled selected>
             Виберіть населенний пункт
           </option>
@@ -107,7 +83,7 @@ export const Courier = () => {
             {...input}
             className={styles.input}
             value={values[input.name]}
-            onChange={onChange}
+            onChange={handleChange}
           />
         </div>
       ))}

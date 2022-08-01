@@ -2,25 +2,11 @@ import React, { useState } from "react";
 import styles from "./customer.module.css";
 import { Input } from "../Input/Input";
 
-export const CustomerForm = () => {
-  const [values, setValues] = useState({
-    name: "",
-    surname: "",
-    phone: "",
-    email: "",
-  });
-
+export const CustomerForm = ({ values, handleChange }) => {
   const [checked, setChecked] = useState(false);
 
   const handleCheckbox = () => {
     setChecked(!checked);
-  };
-
-  const onChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const customerInfo = [
@@ -86,7 +72,7 @@ export const CustomerForm = () => {
               key={input.id}
               {...input}
               value={values[input.name]}
-              onChange={onChange}
+              onChange={handleChange}
             />
           </div>
         ))}

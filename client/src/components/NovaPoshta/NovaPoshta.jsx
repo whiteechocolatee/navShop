@@ -7,11 +7,15 @@ import {
 import styles from "./poshta.module.css";
 import { Loader } from "../Loader/Loader";
 
-export const NovaPoshta = () => {
+export const NovaPoshta = ({ values, handleChange }) => {
   const dispatch = useDispatch();
 
-  const { reducerLoading, areas, cities, departmentByCity } =
-    useSelector((state) => state.deliveryReducer);
+  const {
+    reducerLoading,
+    areas,
+    cities,
+    departmentByCity,
+  } = useSelector((state) => state.deliveryReducer);
 
   const handleCities = (e) => {
     dispatch(getCitiesByArea(e.target.value));
@@ -25,13 +29,19 @@ export const NovaPoshta = () => {
     return <Loader />;
   }
 
+  console.log(departmentByCity);
+
   return (
     <div className={styles.selects}>
       <div>
         <select
+          name='area'
           className={styles.select}
-          onChange={handleCities}>
-          <option value='' disabled selected>
+          onChange={(e) => {
+            handleCities(e);
+            handleChange(e);
+          }}>
+          <option defaultValue='#' disabled selected>
             Виберіть область
           </option>
           {areas.map((area, index) => (
@@ -43,9 +53,13 @@ export const NovaPoshta = () => {
       </div>
       <div>
         <select
+          name='city'
           className={styles.select}
-          onChange={handleDepartments}>
-          <option value='' disabled selected>
+          onChange={(e) => {
+            handleDepartments(e);
+            handleChange(e);
+          }}>
+          <option defaultValue='#' disabled selected>
             Виберіть населенний пункт
           </option>
           {cities.map((city, index) => (
@@ -56,8 +70,11 @@ export const NovaPoshta = () => {
         </select>
       </div>
       <div>
-        <select className={styles.select}>
-          <option value='' disabled selected>
+        <select
+          onChange={handleChange}
+          name='department'
+          className={styles.select}>
+          <option defaultValue='#' disabled selected>
             Виберіть відділення
           </option>
           {departmentByCity.map((department, index) => (
