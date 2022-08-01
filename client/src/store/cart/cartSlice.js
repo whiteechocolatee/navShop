@@ -39,6 +39,10 @@ const cartSlice = createSlice({
         }
         return item;
       });
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.itemsInCart),
+      );
     },
     decreaseItem: (state, action) => {
       state.itemsInCart = state.itemsInCart.map((item) => {
@@ -54,6 +58,10 @@ const cartSlice = createSlice({
         }
         return item;
       });
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.itemsInCart),
+      );
     },
   },
 });
