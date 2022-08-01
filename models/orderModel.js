@@ -20,6 +20,14 @@ const orderModel = mongoose.Schema({
         type: Number,
         required: true,
       },
+      count: {
+        type: Number,
+        required: true,
+      },
+      totalPrice: {
+        type: Number,
+        required: true,
+      },
       product: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -29,6 +37,10 @@ const orderModel = mongoose.Schema({
   ],
   customerData: {
     name: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
     },
@@ -42,6 +54,10 @@ const orderModel = mongoose.Schema({
     },
   },
   shippingAddress: {
+    shippingMethod: {
+      type: String,
+      required: true,
+    },
     region: {
       type: String,
       required: true,
@@ -54,11 +70,23 @@ const orderModel = mongoose.Schema({
       type: String,
       required: true,
     },
+    index: {
+      type: String,
+      required: false,
+    },
   },
   totalPrice: {
     type: Number,
     required: true,
     default: 0.0,
+  },
+  paymentMethod: {
+    type: String,
+    required: true,
+  },
+  commentary: {
+    type: String,
+    required: false,
   },
   isDelivered: {
     type: Boolean,
