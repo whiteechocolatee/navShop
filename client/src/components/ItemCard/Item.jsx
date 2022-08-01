@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { paths } from "../../paths";
 import { ImageComponent } from "../Image/Image";
 import {
-  removeItemFromCart,
   setItemInCart,
 } from "../../store/cart/cartSlice";
 
@@ -31,7 +30,7 @@ export const Item = ({ item }) => {
     e.stopPropagation();
 
     if (isItemInCart) {
-      dispatch(removeItemFromCart(item._id));
+      return false;
     } else {
       dispatch(setItemInCart(item));
     }
@@ -67,7 +66,7 @@ export const Item = ({ item }) => {
           className={styles.btnText}
           containerClassName={styles.btnContainer}
           children={
-            isItemInCart ? `Убрать из корзины` : `В корзину`
+            isItemInCart ? `В кошику` : `Додати в кошик`
           }
         />
         <span className={styles.price}>
