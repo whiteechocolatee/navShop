@@ -6,8 +6,6 @@ import { paths } from "../../paths";
 import { CheckCard } from "../CheckCard/CheckCard";
 
 export const OrderCheckDelivery = ({ total, cart }) => {
-  console.log(cart);
-
   return (
     <div>
       <h3 className={styles.checkTitle}>Ваше замовлення</h3>
