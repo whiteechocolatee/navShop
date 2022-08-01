@@ -1,24 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAreas,
-  getAllDepartments,
   getCitiesByArea,
   getDepartmentsByCity,
 } from "../../store/deliveryAddresses/deliverySlice";
 import styles from "./poshta.module.css";
-import { Loader } from '../Loader/Loader';
+import { Loader } from "../Loader/Loader";
 
 export const NovaPoshta = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, areas, cities, departmentByCity } =
+  const { reducerLoading, areas, cities, departmentByCity } =
     useSelector((state) => state.deliveryReducer);
-
-  useEffect(() => {
-    dispatch(getAreas());
-    dispatch(getAllDepartments());
-  }, [dispatch]);
 
   const handleCities = (e) => {
     dispatch(getCitiesByArea(e.target.value));
@@ -28,7 +21,7 @@ export const NovaPoshta = () => {
     dispatch(getDepartmentsByCity(e.target.value));
   };
 
-  if (isLoading) {
+  if (reducerLoading) {
     return <Loader />;
   }
 
