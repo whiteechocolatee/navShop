@@ -69,6 +69,7 @@ export const CustomerForm = () => {
         </h4>
         <div className={styles.label}>
           <input
+            onChange={handleCheckbox}
             defaultChecked={checked}
             type='checkbox'
             id='signup'
