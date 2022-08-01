@@ -1,0 +1,21 @@
+.courierBlock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.dataBlock {
+  width: 384px;
+}
+
+.dataBlock select {
+  margin-top: 35px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+}
+
+.input {
+  margin-top: 15px;
+}
