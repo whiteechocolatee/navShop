@@ -37,6 +37,7 @@ const deliverySlice = createSlice({
   },
   reducers: {
     getCitiesByArea: (state, action) => {
+      state.isLoading = true;
       let cities = state.departments.filter((city) => {
         return city.SettlementAreaDescription.toLowerCase().includes(
           action.payload.toLowerCase(),
@@ -46,11 +47,12 @@ const deliverySlice = createSlice({
       cities = Array.from(
         new Set(cities.map((city) => city.CityDescription)),
       ).sort();
-
       state.cities = cities;
+      state.isLoading = false;
     },
     getDepartmentsByCity: (state, action) => {
-      console.log(action.payload);
+      state.isLoading = true;
+
       state.departmentByCity = state.departments.filter(
         (department) => {
           return department.CityDescription.toLowerCase().includes(
@@ -58,6 +60,7 @@ const deliverySlice = createSlice({
           );
         },
       );
+      state.isLoading = false;
     },
   },
   extraReducers: (builder) => {
