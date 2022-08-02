@@ -25,6 +25,8 @@ export const Registration = () => {
   const [values, setValues] = useState({
     name: "",
     email: "",
+    surname: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -75,6 +77,22 @@ export const Registration = () => {
     },
     {
       id: 3,
+      name: "surname",
+      placeholder: "Вкажіть призвище",
+      errorMessage: "Укажите корректно почту!",
+      required: true,
+      error: errors && errors.email && errors.email.message,
+    },
+    {
+      id: 4,
+      name: "phoneNumber",
+      placeholder: "Вкажіть номер телефону",
+      errorMessage: "Укажите корректно почту!",
+      required: true,
+      error: errors && errors.email && errors.email.message,
+    },
+    {
+      id: 5,
       name: "password",
       type: "password",
       placeholder: "Укажите пароль",
@@ -88,7 +106,7 @@ export const Registration = () => {
         errors.password.message,
     },
     {
-      id: 4,
+      id: 6,
       name: "confirmPassword",
       type: "password",
       placeholder: "Подтвердите пароль",
