@@ -1,0 +1,27 @@
+.personalBlock {
+  margin-top: 60px;
+  height: 240px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.personalData {
+  display: flex;
+  flex-direction: column;
+}
+
+.personalData span {
+  margin-top: 5px;
+}
+
+.btn {
+  margin-top: 65px;
+  border: 1px solid #abafe9;
+}
+
+.link,
+.link:focus,
+.link:hover {
+  color: #000;
+  text-decoration: none;
+}
