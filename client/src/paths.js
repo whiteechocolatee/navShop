@@ -9,5 +9,5 @@ export const paths = {
   delivery: "delivery/",
   userOrders: "/orders",
   changeUserData: "/change",
-  liked: "/liked",
+  liked: "/favorites",
 };
