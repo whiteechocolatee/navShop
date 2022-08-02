@@ -1,17 +1,31 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  Link,
+  NavLink,
+  useNavigate,
+} from "react-router-dom";
+
 import styles from "./account.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Message } from "react-message-block";
-import { useSelector } from "react-redux";
 import { paths } from "../../paths";
-import { Link, NavLink } from "react-router-dom";
+
+import { logout } from "../../store/users/userAuthSlice";
 
 export const UserAccount = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { errors } = useSelector(
     (state) => state.userAuthReducer,
   );
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    dispatch(logout());
+    window.localStorage.removeItem("token");
+    navigate(paths.main);
+  };
 
   return (
     <div className={styles.profile}>
