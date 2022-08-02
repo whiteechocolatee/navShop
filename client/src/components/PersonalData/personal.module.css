@@ -1,8 +1,9 @@
 .personalBlock {
-  margin-top: 60px;
+  margin: 60px 0;
   height: 240px;
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
 .personalData {
