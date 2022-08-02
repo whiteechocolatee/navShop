@@ -20,6 +20,7 @@ import { Order } from "./pages/Order/Order";
 import { Delivery } from "./pages/Delivery/Delivery";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { UserOrders } from "./pages/UserOrders/UserOrders";
+import { UserUpdate } from "./pages/UserUpdate/UserUpdate";
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
             exact
             path={paths.account}
             element={<UserMain />}
+          />
+          <Route
+            exact
+            path={`${paths.account}${paths.changeUserData}`}
+            element={<UserUpdate />}
           />
           <Route
             exact
