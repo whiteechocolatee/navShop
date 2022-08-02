@@ -52,7 +52,6 @@ const OrderSlice = createSlice({
         state.orders = null;
       })
       .addCase(getUserOrders.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.isLoading = false;
         state.orders = action.payload;
       })
