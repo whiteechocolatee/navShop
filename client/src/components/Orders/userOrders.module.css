@@ -1,15 +1,56 @@
-.orders {
-  height: 80%;
+.wrapper {
+  min-height: 80vh;
+  height: 100%;
+  margin-bottom: 100px;
 }
 
-.order {
-  margin-top: 5px;
-  align-items: center;
-  height: 40px;
-  font-size: 16px;
-  width: 100%;
+.orders {
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
-  padding: 5px;
+  margin-top: 45px;
+  border-bottom: 2px solid black;
+  height: 100%;
+}
+
+.orderDetails {
+  border-left: 2px solid #abafe9;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.orderDetails span {
+  margin-left: 10px;
+}
+
+.isDelivery {
+  color: #abafe9;
+}
+
+.deliveryDetails {
+  width: 300px;
+}
+
+.payment,
+.delivery {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment span,
+.delivery span {
+  margin-top: 5px;
+}
+
+.paymentTitle,
+.deliveryTitle {
+  margin-bottom: 10px;
+}
+
+.deliveryDetails {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
