@@ -7,7 +7,6 @@ import moment from "moment";
 import "moment/locale/uk";
 import { Loader } from "../Loader/Loader";
 import { UserOrderCard } from "../UserOrdersCard/UserOrderCard";
-import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 
 export const Orders = () => {
   const dispatch = useDispatch();
@@ -24,12 +23,10 @@ export const Orders = () => {
     return <Loader />;
   }
 
-  console.log(orders);
-
   return (
-    <ContentWrapper className={styles.wrapper}>
-      <div>
-        {orders.map((order) => {
+    <div className={styles.orderContainer}>
+      {orders.length > 0 ? (
+        orders.map((order) => {
           return (
             <div key={order._id} className={styles.orders}>
               <div className={styles.orderInfo}>
@@ -98,8 +95,12 @@ export const Orders = () => {
               </div>
             </div>
           );
-        })}
-      </div>
-    </ContentWrapper>
+        })
+      ) : (
+        <h1 className={styles.noOrdersTitle}>
+          У вас немає замовлень :(
+        </h1>
+      )}
+    </div>
   );
 };
