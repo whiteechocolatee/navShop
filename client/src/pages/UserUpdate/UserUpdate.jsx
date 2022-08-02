@@ -9,6 +9,7 @@ import { userProfile } from "../../store/users/userAuthSlice";
 
 import { ToastContainer } from "react-toastify";
 import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
+import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
 
 export const UserUpdate = () => {
   window.scroll(0, 0);
@@ -23,7 +24,10 @@ export const UserUpdate = () => {
       <Header />
       <CategoriesNavigation />
       <ToastContainer />
-      <UserAccount children={<UpdateUserInfo />} />
+      <ContentWrapper>
+        <UserAccount />
+        <UpdateUserInfo />
+      </ContentWrapper>
       <Footer />
     </>
   );
