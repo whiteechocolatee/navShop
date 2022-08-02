@@ -89,9 +89,9 @@ const orderModel = mongoose.Schema({
     required: false,
   },
   isDelivered: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false,
+    default: "В процессі",
   },
   deliveredAt: {
     type: Date,
