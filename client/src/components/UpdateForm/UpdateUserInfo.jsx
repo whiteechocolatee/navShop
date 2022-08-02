@@ -9,6 +9,8 @@ import { updateProfile } from "../../store/users/userAuthSlice";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import { paths } from "../../paths";
 
 export const UpdateUserInfo = () => {
   const dispatch = useDispatch();
@@ -124,30 +126,33 @@ export const UpdateUserInfo = () => {
   };
 
   return (
-    <form
-      onSubmit={handleUpdate}
-      className={styles.formUpdate}>
-      {inputs.map((input) => (
-        <div className={styles.inputContainer}>
-          <Input
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-            className={styles.input}
-          />
-        </div>
-      ))}
-      <Button
-        containerClassName={styles.btn}
-        children={
-          <input
-            className={styles.inputSubmit}
-            type='submit'
-            value='Змінити'
-          />
-        }
-      />
-    </form>
+    <div className={styles.formBlock}>
+      <Link className={styles.link} to={paths.account}>Назад</Link>
+      <form
+        onSubmit={handleUpdate}
+        className={styles.formUpdate}>
+        {inputs.map((input) => (
+          <div className={styles.inputContainer}>
+            <Input
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              onChange={onChange}
+              className={styles.input}
+            />
+          </div>
+        ))}
+        <Button
+          containerClassName={styles.btn}
+          children={
+            <input
+              className={styles.inputSubmit}
+              type='submit'
+              value='Змінити'
+            />
+          }
+        />
+      </form>
+    </div>
   );
 };
