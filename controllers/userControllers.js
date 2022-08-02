@@ -61,15 +61,15 @@ const userRegistration = async (req, res) => {
   const errors = {};
 
   if (!req.body.name) {
-    errors.name = { message: "Укажите имя!" };
+    errors.name = { message: "Вкажіть ім'я!" };
   }
 
   if (!req.body.email) {
-    errors.email = { message: "Укажите почту!" };
+    errors.email = { message: "Вкажіть почту!" };
   }
 
   if (!req.body.password) {
-    errors.password = { message: "Укажите пароль!" };
+    errors.password = { message: "Вкажіть пароль!" };
   }
 
   if (Object.keys(errors).length > 0) {
@@ -77,19 +77,21 @@ const userRegistration = async (req, res) => {
   }
 
   try {
-    const { name, email, password } = req.body;
+    const { name, surname, phoneNumber, email, password } =
+      req.body;
 
     const isExists = await User.findOne({ email });
 
     if (isExists) {
       return res.status(400).json({
-        message:
-          "Пользователь с таким email уже существует!",
+        message: "Користувач с такою почтою вже існує!",
       });
     }
 
     const newUser = await User.create({
       name,
+      surname,
+      phoneNumber,
       email,
       password,
     });
@@ -98,6 +100,8 @@ const userRegistration = async (req, res) => {
       return res.status(201).json({
         _id: newUser._id,
         name: newUser.name,
+        surname: newUser.surname,
+        phoneNumber: newUser.phoneNumber,
         email: newUser.email,
         isAdmin: newUser.isAdmin,
         token: generateToken(newUser._id),
@@ -123,6 +127,8 @@ const userProfile = async (req, res) => {
       res.json({
         _id: user._id,
         name: user.name,
+        surname: user.surname,
+        phoneNumber: user.phoneNumber,
         email: user.email,
         isAdmin: user.isAdmin,
         createdAt: user.createdAt,
@@ -130,7 +136,7 @@ const userProfile = async (req, res) => {
     } else {
       res
         .status(404)
-        .json({ message: "Пользователь не найден!" });
+        .json({ message: "Користувач не знайден!" });
     }
   } catch (error) {
     res.status(500).json({
@@ -146,8 +152,6 @@ const userProfile = async (req, res) => {
  */
 const updateProfile = async (req, res) => {
   try {
-    console.log(req.user._id);
-
     const user = await User.findById(req.user._id);
 
     if (user) {
@@ -161,11 +165,14 @@ const updateProfile = async (req, res) => {
     const updatedUser = await user.save();
 
     res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-      createdAt: updatedUser.createdAt,
+      _id: user._id,
+      name: user.name,
+      surname: user.surname,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      createdAt: user.createdAt,
+
       token: generateToken(updatedUser._id),
     });
   } catch (error) {

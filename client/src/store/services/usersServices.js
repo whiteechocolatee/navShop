@@ -32,7 +32,13 @@ const userLogin = async ({ email, password }) => {
  * and then stores the response in localStorage
  * @returns The user's information.
  */
-const userRegister = async ({ name, email, password }) => {
+const userRegister = async ({
+  name,
+  surname,
+  phoneNumber,
+  email,
+  password,
+}) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +47,7 @@ const userRegister = async ({ name, email, password }) => {
 
   let res = await axios.post(
     "/api/users/",
-    { name, email, password },
+    { name, surname, phoneNumber, email, password },
     config,
   );
 
@@ -77,7 +83,13 @@ const userProfile = async () => {
   return data;
 };
 
-const updateProfile = async ({name,email,password}) => {
+const updateProfile = async ({
+  name,
+  surname,
+  phoneNumber,
+  email,
+  password,
+}) => {
   const token = JSON.parse(
     window.localStorage.getItem("token"),
   );
@@ -90,7 +102,7 @@ const updateProfile = async ({name,email,password}) => {
 
   const { data } = await axios.put(
     "/api/users/profile",
-    {name,email,password},
+    { name, surname, phoneNumber, email, password },
     config,
   );
 

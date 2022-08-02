@@ -19,7 +19,9 @@ export const UpdateUserInfo = () => {
 
   const [values, setValues] = useState({
     name: user.name,
+    surname: user.surname,
     email: user.email,
+    phoneNumber: user.phoneNumber,
     password: "",
     confirmPassword: "",
   });
@@ -60,6 +62,16 @@ export const UpdateUserInfo = () => {
     },
     {
       id: 2,
+      name: "surname",
+      type: "text",
+      placeholder: "Змінити призвище",
+      errorMessage:
+        "Не повинно мати цифри або символи, максимальна довжина 20 символів.",
+      pattern: "^[ A-Za-zА-ЩЬЮЯҐЄІЇа-щьюяґєії]{3,20}$",
+      required: true,
+    },
+    {
+      id: 3,
       name: "email",
       type: "email",
       placeholder: "Змінити почту",
@@ -68,7 +80,15 @@ export const UpdateUserInfo = () => {
       error: errors && errors.email && errors.email.message,
     },
     {
-      id: 3,
+      id: 4,
+      name: "phoneNumber",
+      placeholder: "Змінити номер телефону",
+      errorMessage: "Номер повинен складатись з 8-12 цифр.",
+      pattern: "^[0-9]{10,12}$",
+      required: true,
+    },
+    {
+      id: 5,
       name: "password",
       type: "password",
       placeholder: "Змінити пароль",
@@ -81,7 +101,7 @@ export const UpdateUserInfo = () => {
         errors.password.message,
     },
     {
-      id: 4,
+      id: 6,
       name: "confirmPassword",
       type: "password",
       placeholder: "Підвердити пароль",
@@ -108,17 +128,25 @@ export const UpdateUserInfo = () => {
       onSubmit={handleUpdate}
       className={styles.formUpdate}>
       {inputs.map((input) => (
-        <Input
-          key={input.id}
-          {...input}
-          value={values[input.name]}
-          onChange={onChange}
-          className={styles.input}
-        />
+        <div className={styles.inputContainer}>
+          <Input
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+            className={styles.input}
+          />
+        </div>
       ))}
       <Button
         containerClassName={styles.btn}
-        children={"Підвердити"}
+        children={
+          <input
+            className={styles.inputSubmit}
+            type='submit'
+            value='Змінити'
+          />
+        }
       />
     </form>
   );

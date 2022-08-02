@@ -6,6 +6,14 @@ const userModel = mongoose.Schema({
     type: String,
     required: true,
   },
+  surname: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -22,7 +30,7 @@ const userModel = mongoose.Schema({
   },
 });
 
-userModel.set('timestamps', true);
+userModel.set("timestamps", true);
 
 /* This is a method that is being added to the userModel. It is a function that takes in an entered
 password and compares it to the password that is stored in the database. */
