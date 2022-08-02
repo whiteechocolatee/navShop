@@ -44,12 +44,12 @@ const OrderSlice = createSlice({
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.isLoading = false;
-        state.orders = null;
+        state.orders = [];
         state.errors = action.error.message;
       })
       .addCase(getUserOrders.pending, (state) => {
         state.isLoading = true;
-        state.orders = null;
+        state.orders = [];
       })
       .addCase(getUserOrders.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -57,7 +57,7 @@ const OrderSlice = createSlice({
       })
       .addCase(getUserOrders.rejected, (state, action) => {
         state.isLoading = false;
-        state.orders = null;
+        state.orders = [];
         state.errors = action.error.message;
       });
   },
