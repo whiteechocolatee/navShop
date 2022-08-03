@@ -1,0 +1,54 @@
+.orders {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+  border-bottom: 2px solid black;
+  height: 100%;
+}
+
+.orderDetails {
+  border-left: 2px solid #abafe9;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.orderDetails span {
+  margin-left: 10px;
+}
+
+.isDelivery {
+  color: #abafe9;
+}
+
+.deliveryDetails {
+  width: 300px;
+}
+
+h1 {
+}
+
+.payment,
+.delivery {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment span,
+.delivery span {
+  margin-top: 5px;
+}
+
+.paymentTitle,
+.deliveryTitle {
+  margin-bottom: 10px;
+}
+
+.deliveryDetails {
+  width: 420px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
