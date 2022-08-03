@@ -64,8 +64,18 @@ const userRegistration = async (req, res) => {
     errors.name = { message: "Вкажіть ім'я!" };
   }
 
+  if (!req.body.surname) {
+    errors.surname = { message: "Вкажіть призвище!" };
+  }
+
   if (!req.body.email) {
     errors.email = { message: "Вкажіть почту!" };
+  }
+
+  if (!req.body.phoneNumber) {
+    errors.phoneNumber = {
+      message: "Вкажіть номер телефону!",
+    };
   }
 
   if (!req.body.password) {
@@ -152,7 +162,17 @@ const userProfile = async (req, res) => {
  */
 const updateProfile = async (req, res) => {
   try {
+    const { email } = req.body;
+
     const user = await User.findById(req.user._id);
+
+    const isExists = await User.findOne({ email });
+
+    if (isExists) {
+      return res.status(400).json({
+        message: "Користувач с такою почтою вже існує!",
+      });
+    }
 
     if (user) {
       user.name = req.body.name || user.name;
