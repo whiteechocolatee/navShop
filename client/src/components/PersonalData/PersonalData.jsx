@@ -17,7 +17,7 @@ export const PersonalData = () => {
   return (
     <div className={styles.personalBlock}>
       <div className={styles.personalData}>
-        <span>{user.name}</span>
+        <span>{user.name} {user.surname}</span>
         <span>{user.email}</span>
         <span>{user.phoneNumber}</span>
         <Button
