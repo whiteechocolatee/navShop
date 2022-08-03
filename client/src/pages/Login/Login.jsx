@@ -15,6 +15,7 @@ import {
   userLogin,
 } from "../../store/users/userAuthSlice";
 import { Loader } from "../../components/Loader/Loader";
+import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
 
 export const Login = () => {
   window.scroll(0, 0);
@@ -85,8 +86,74 @@ export const Login = () => {
   return (
     <React.Fragment>
       <Header />
+      <CategoriesNavigation />
       <ContentWrapper className={styles.wrapper}>
         <div className={styles.loginPage}>
+          <div className={styles.registrationPage}>
+            <div className={styles.navigation}>
+              <Link className={styles.link} to={paths.main}>
+                Головна
+              </Link>
+              <hr className={styles.border} />
+              <Link
+                className={styles.link}
+                to={paths.login}>
+                Логін
+              </Link>
+            </div>
+          </div>
+          <div className={styles.loginScreen}>
+            <div className={styles.loginBlock}>
+              <div>
+                {message ? (
+                  <Message
+                    text={errors?.message}
+                    type='error'
+                    onClose={() => {
+                      setMessage(false);
+                    }}
+                  />
+                ) : (
+                  <h4 className={styles.loginTitle}>
+                    Логін
+                  </h4>
+                )}
+              </div>
+              <div className={styles.loginForm}>
+                <form
+                  onSubmit={handleSubmit}
+                  className={styles.form}>
+                  {inputs.map((input) => (
+                    <Input
+                      key={input.id}
+                      {...input}
+                      value={values[input.name]}
+                      onChange={onChange}
+                    />
+                  ))}
+                  <Button
+                    containerClassName={styles.btn}
+                    children={
+                      <input
+                        type='submit'
+                        className={styles.submit}
+                        value='Увійти'
+                      />
+                    }
+                  />
+                </form>
+                <div className={styles.signup}>
+                  <Link
+                    className={styles.signupLink}
+                    to={paths.signup}>
+                    Ще немає акаунта?
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className={styles.loginPage}>
           <div className={styles.redirect}>
             <Link to={paths.signup}>
               <h4>Еще нет аккаунта?</h4>
@@ -140,7 +207,7 @@ export const Login = () => {
               </form>
             )}
           </div>
-        </div>
+        </div> */}
       </ContentWrapper>
       <Footer />
     </React.Fragment>
