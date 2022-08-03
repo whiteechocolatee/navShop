@@ -156,7 +156,7 @@ export const Registration = () => {
               <hr className={styles.border} />
               <Link
                 className={styles.link}
-                to={paths.order}>
+                to={paths.signup}>
                 Реєстрація
               </Link>
             </div>
