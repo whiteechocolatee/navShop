@@ -162,17 +162,7 @@ const userProfile = async (req, res) => {
  */
 const updateProfile = async (req, res) => {
   try {
-    const { email } = req.body;
-
     const user = await User.findById(req.user._id);
-
-    const isExists = await User.findOne({ email });
-
-    if (isExists) {
-      return res.status(400).json({
-        message: "Користувач с такою почтою вже існує!",
-      });
-    }
 
     if (user) {
       user.name = req.body.name || user.name;
@@ -197,8 +187,8 @@ const updateProfile = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(404)
-      .json({ message: "Пользователь не найден!" });
+      .status(400)
+      .json({ message: "Такий користувач вже існує!" });
   }
 };
 
