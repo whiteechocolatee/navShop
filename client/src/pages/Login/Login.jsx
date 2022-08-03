@@ -120,28 +120,32 @@ export const Login = () => {
                 )}
               </div>
               <div className={styles.loginForm}>
-                <form
-                  onSubmit={handleSubmit}
-                  className={styles.form}>
-                  {inputs.map((input) => (
-                    <Input
-                      key={input.id}
-                      {...input}
-                      value={values[input.name]}
-                      onChange={onChange}
-                    />
-                  ))}
-                  <Button
-                    containerClassName={styles.btn}
-                    children={
-                      <input
-                        type='submit'
-                        className={styles.submit}
-                        value='Увійти'
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <form
+                    onSubmit={handleSubmit}
+                    className={styles.form}>
+                    {inputs.map((input) => (
+                      <Input
+                        key={input.id}
+                        {...input}
+                        value={values[input.name]}
+                        onChange={onChange}
                       />
-                    }
-                  />
-                </form>
+                    ))}
+                    <Button
+                      containerClassName={styles.btn}
+                      children={
+                        <input
+                          type='submit'
+                          className={styles.submit}
+                          value='Увійти'
+                        />
+                      }
+                    />
+                  </form>
+                )}
                 <div className={styles.signup}>
                   <Link
                     className={styles.signupLink}
@@ -153,61 +157,6 @@ export const Login = () => {
             </div>
           </div>
         </div>
-        {/* <div className={styles.loginPage}>
-          <div className={styles.redirect}>
-            <Link to={paths.signup}>
-              <h4>Еще нет аккаунта?</h4>
-              <p>Создать новый аккаунт</p>
-            </Link>
-          </div>
-          <div className={styles.formBlock}>
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className={styles.form}>
-                {message ? (
-                  <Message
-                    text={errors?.message}
-                    type='error'
-                    onClose={() => {
-                      setMessage(false);
-                    }}
-                  />
-                ) : (
-                  <h4>Рады вас видеть!</h4>
-                )}
-                {inputs.map((input) => (
-                  <Input
-                    key={input.id}
-                    {...input}
-                    value={values[input.name]}
-                    onChange={onChange}
-                  />
-                ))}
-                <Button
-                  containerClassName={styles.btn}
-                  children={
-                    <input
-                      type='submit'
-                      className={styles.submit}
-                      value='Увійти'
-                    />
-                  }
-                />
-                <div className={styles.mobile}>
-                  <Link to={paths.signup}>
-                    <p>
-                      Еще нет аккаунта? Создать новый
-                      аккаунт.
-                    </p>
-                  </Link>
-                </div>
-              </form>
-            )}
-          </div>
-        </div> */}
       </ContentWrapper>
       <Footer />
     </React.Fragment>
