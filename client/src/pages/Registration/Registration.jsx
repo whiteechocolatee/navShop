@@ -12,6 +12,8 @@ import { Input } from "../../components/Input/Input";
 import { paths } from "../../paths";
 import { Loader } from "../../components/Loader/Loader";
 
+import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
+
 import {
   checkIsAuth,
   userRegister,
@@ -59,27 +61,30 @@ export const Registration = () => {
       id: 1,
       name: "name",
       type: "text",
-      placeholder: "Укажите имя",
+      placeholder: "Вкажіть ім'я",
       errorMessage:
-        "Имя не должно содержать цифры и символы.",
+        "Ім'я не повинно мати цифри або символи! Довжина до 25 символів",
       pattern: "^[ A-Za-zА-Яа-я]{3,25}$",
       required: true,
       error: errors && errors.name && errors.name.message,
     },
     {
       id: 2,
-      name: "email",
-      type: "email",
-      placeholder: "Укажите почту",
-      errorMessage: "Укажите корректно почту!",
+      name: "surname",
+      placeholder: "Вкажіть призвище",
+      errorMessage:
+        "Призвище не повинно мати цифри або символи! Довжина до 25 символів ",
+      pattern: "^[ A-Za-zА-Яа-я]{3,25}$",
       required: true,
-      error: errors && errors.email && errors.email.message,
+      error:
+        errors && errors.surname && errors.surname.message,
     },
     {
       id: 3,
-      name: "surname",
-      placeholder: "Вкажіть призвище",
-      errorMessage: "Укажите корректно почту!",
+      name: "email",
+      type: "email",
+      placeholder: "Вкажіть пошту",
+      errorMessage: "Пошта вказана невірно!",
       required: true,
       error: errors && errors.email && errors.email.message,
     },
@@ -87,17 +92,22 @@ export const Registration = () => {
       id: 4,
       name: "phoneNumber",
       placeholder: "Вкажіть номер телефону",
-      errorMessage: "Укажите корректно почту!",
+      errorMessage:
+        "Номер повинен складатися з 10-12 символів!",
+      pattern: "^[0-9]{10,12}$",
       required: true,
-      error: errors && errors.email && errors.email.message,
+      error:
+        errors &&
+        errors.phoneNumber &&
+        errors.phoneNumber.message,
     },
     {
       id: 5,
       name: "password",
       type: "password",
-      placeholder: "Укажите пароль",
+      placeholder: "Вкажіть пароль",
       errorMessage:
-        "Пароль должен быть 8-20 символов и содержать как минимум - 1 букву, цифру и символ(!@#$%^&*)",
+        "Пароль повинен бути 8-20 символов латиницею та мати - 1 велику літеру, цифру та символ(!@#$%^&*)",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
       error:
@@ -109,8 +119,8 @@ export const Registration = () => {
       id: 6,
       name: "confirmPassword",
       type: "password",
-      placeholder: "Подтвердите пароль",
-      errorMessage: "Пароли не совпадают",
+      placeholder: "Підтвердіть пароль",
+      errorMessage: "Пароли не співпадають!",
       pattern: values.password,
       required: true,
     },
@@ -122,63 +132,84 @@ export const Registration = () => {
       [e.target.name]: e.target.value,
     });
   };
+  // <Message
+  //                 text={errors.message}
+  //                 type='error'
+  //                 onClose={() => {
+  //                   setMessage(false);
+  //                 }}
+  //               />
 
   return (
     <React.Fragment>
       <Header />
+      <CategoriesNavigation />
       <ContentWrapper className={styles.wrapper}>
-        <div className={styles.registrationPage}>
-          <div className={styles.formBlock}>
-            {isLoading ? (
-              <Loader />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className={styles.registrationPage}>
+            <div className={styles.navigation}>
+              <Link className={styles.link} to={paths.main}>
+                Головна
+              </Link>
+              <hr className={styles.border} />
+              <Link
+                className={styles.link}
+                to={paths.order}>
+                Реєстрація
+              </Link>
+            </div>
+            <h1 className={styles.title}>Реєстрація</h1>
+            {message ? (
+              <Message
+                text={errors.message}
+                type='error'
+                onClose={() => {
+                  setMessage(false);
+                }}
+              />
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                className={styles.form}>
-                {message ? (
-                  <Message
-                    text={errors.message}
-                    type='error'
-                    onClose={() => {
-                      setMessage(false);
-                    }}
-                  />
-                ) : (
-                  <h4>Впервые на сайте?</h4>
-                )}
-                {inputs.map((input) => (
+              <p className={styles.subtitle}>
+                Якщо ви вже зареєстровані, тоді вам потрібно{" "}
+                <Link
+                  className={styles.loginLink}
+                  to={paths.login}>
+                  <b> увійти</b>
+                </Link>{" "}
+                в акаунт
+              </p>
+            )}
+            <form
+              onSubmit={handleSubmit}
+              className={styles.form}>
+              {inputs.map((input) => (
+                <div className={styles.inputContainer}>
                   <Input
                     key={input.id}
                     {...input}
                     value={values[input.name]}
                     onChange={onChange}
+                    className={styles.input}
                   />
-                ))}
+                </div>
+              ))}
+              <div className={styles.signupDetails}>
+                <div className={styles.subscibe}></div>
                 <Button
                   containerClassName={styles.btn}
                   children={
                     <input
                       type='submit'
                       className={styles.signUp}
-                      value='Зареєструватися'
+                      value='Зберегти'
                     />
                   }
                 />
-              </form>
-            )}
-            <div className={styles.mobile}>
-              <Link to={paths.login}>
-                <p>Уже есть аккаунт? Войти в аккаунт</p>
-              </Link>
-            </div>
+              </div>
+            </form>
           </div>
-          <div className={styles.redirect}>
-            <Link to={paths.login}>
-              <h4>Уже есть аккаунт?</h4>
-              <p>Войти в аккаунт</p>
-            </Link>
-          </div>
-        </div>
+        )}
       </ContentWrapper>
       <Footer />
     </React.Fragment>
