@@ -69,13 +69,16 @@ export const Orders = () => {
                       : "за тарифами пошти"}
                   </span>
                   <span>
-                    До оплати:{" "}
-                    {`${order.totalPrice} ₴ + доставка`}
+                    До cплати: {order.totalPrice} ₴
+                    {order.shippingAddress
+                      .shippingMethod === "localPickup"
+                      ? ""
+                      : "+ за тарифами пошти"}
                   </span>
                   <span>
                     Спосіб оплати: {order.paymentMethod}
                   </span>
-                  <span>Оплачено: - </span>
+                  <span>Cплачено: - </span>
                 </div>
                 <div className={styles.delivery}>
                   <p className={styles.deliveryTitle}>
