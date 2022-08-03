@@ -1,0 +1,33 @@
+.orderPrice,
+.orderDetails {
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.orderDetails {
+  border-left: 2px solid #242424;
+}
+
+.orderDetails span {
+  margin-left: 10px;
+}
+
+.completedOrder {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.completedOrder div {
+  width: 48%;
+}
+
+.repeat {
+  border-bottom: 2px solid #242424;
+  cursor: pointer;
+  width: 100%;
+}
