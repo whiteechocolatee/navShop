@@ -57,8 +57,8 @@ export const UpdateUserInfo = () => {
       type: "text",
       placeholder: "Змінити ім'я",
       errorMessage:
-        "Ім'я не повинно мати цифри або символи, максимальна довжина 20 символів",
-      pattern: "^[ A-Za-zА-Яа-я]{3,20}$",
+        "Ім'я не повинно мати цифри або символи, довжина від 3 до 20 символів",
+      pattern: "^[ A-Za-zА-ЩЬЮЯҐЄІЇа-щьюяґєії]{2,20}$",
       required: true,
       error: errors && errors.name && errors.name.message,
     },
@@ -68,7 +68,7 @@ export const UpdateUserInfo = () => {
       type: "text",
       placeholder: "Змінити призвище",
       errorMessage:
-        "Не повинно мати цифри або символи, максимальна довжина 20 символів.",
+        "Не повинно мати цифри або символи, довжина від 3 до 20 символів",
       pattern: "^[ A-Za-zА-ЩЬЮЯҐЄІЇа-щьюяґєії]{3,20}$",
       required: true,
     },
