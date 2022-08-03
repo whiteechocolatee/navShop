@@ -70,7 +70,7 @@ export const DeliveryMethod = ({
                 128в) , другий поверх.
               </b>
             </p>
-            <Map />
+            {/* <Map /> */}
           </div>
         )}
         {values.shippingMethod === "novaPoshta" && (
