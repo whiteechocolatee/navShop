@@ -39,7 +39,7 @@ export const UpdateUserInfo = () => {
       progress: undefined,
     });
   } else if (isError) {
-    toast.error("Произошла ошибка попробуйте позже!", {
+    toast.error(errors, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -127,7 +127,9 @@ export const UpdateUserInfo = () => {
 
   return (
     <div className={styles.formBlock}>
-      <Link className={styles.link} to={paths.account}>Назад</Link>
+      <Link className={styles.link} to={paths.account}>
+        Назад
+      </Link>
       <form
         onSubmit={handleUpdate}
         className={styles.formUpdate}>
