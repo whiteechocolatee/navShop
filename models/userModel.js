@@ -39,8 +39,15 @@ const userModel = mongoose.Schema({
       department: {
         type: String,
       },
+      street: {
+        type: String,
+      },
       index: {
         type: String,
+      },
+      main: {
+        type: Boolean,
+        default: false,
       },
     },
   ],
