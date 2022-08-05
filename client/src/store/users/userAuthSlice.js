@@ -49,6 +49,17 @@ export const updateProfile = createAsyncThunk(
   },
 );
 
+export const saveAddress = createAsyncThunk(
+  "saveAddress",
+  async (address, thunkAPI) => {
+    try {
+      return await usersServices.saveAddress(address);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const userAuthSlice = createSlice({
   name: "userAuth",
   initialState: {
@@ -140,6 +151,25 @@ const userAuthSlice = createSlice({
         state.token = action.payload?.token;
       })
       .addCase(updateProfile.rejected, (state, action) => {
+        state.errors = action.payload?.message;
+        state.isChanged = null;
+        state.isError = true;
+        state.isLoading = false;
+      })
+      // save address
+      .addCase(saveAddress.pending, (state) => {
+        state.isLoading = true;
+        state.isChanged = false;
+        state.isError = false;
+      })
+      .addCase(saveAddress.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isChanged = true;
+        state.isError = false;
+        state.user = action.payload;
+        state.token = action.payload?.token;
+      })
+      .addCase(saveAddress.rejected, (state, action) => {
         state.errors = action.payload?.message;
         state.isChanged = null;
         state.isError = true;
