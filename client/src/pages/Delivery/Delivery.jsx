@@ -14,13 +14,8 @@ import { Payment } from "../../components/Payment/Payment";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { paths } from "../../paths";
-import { Loader } from "../../components/Loader/Loader";
 
 import { createOrder } from "../../store/order/orderSlice";
-import {
-  getAreas,
-  getAllDepartments,
-} from "../../store/deliveryAddresses/deliverySlice";
 
 export const Delivery = () => {
   const dispatch = useDispatch();
@@ -50,22 +45,9 @@ export const Delivery = () => {
     return state.cartReducer.itemsInCart;
   });
 
-  const { isLoading } = useSelector((state) => {
-    return state.deliveryReducer;
-  });
-
   const total = cart.reduce((acc, item) => {
     return acc + item.totalPrice;
   }, 0);
-
-  useEffect(() => {
-    dispatch(getAreas());
-    dispatch(getAllDepartments());
-  }, [dispatch]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   const orderCart = [];
 
@@ -111,8 +93,6 @@ export const Delivery = () => {
     paymentMethod: values.paymentMethod,
     commentary: values.commentary,
   };
-
-  console.log(order);
 
   const handleOrder = () => {
     dispatch(createOrder(order));
