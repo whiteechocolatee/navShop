@@ -83,6 +83,10 @@ const userProfile = async () => {
   return data;
 };
 
+/**
+ * It updates the user's profile
+ * @returns The data object is being returned.
+ */
 const updateProfile = async ({
   name,
   surname,
@@ -109,11 +113,32 @@ const updateProfile = async ({
   return data;
 };
 
+const saveAddress = async (address) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const { data } = await axios.put(
+    "/api/users/profile/address",
+    address,
+    config,
+  );
+
+  return data;
+};
+
 const userServices = {
   userLogin,
   userRegister,
   userProfile,
   updateProfile,
+  saveAddress,
 };
 
 export default userServices;
