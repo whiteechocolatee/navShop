@@ -114,6 +114,7 @@ const userRegistration = async (req, res) => {
         phoneNumber: newUser.phoneNumber,
         email: newUser.email,
         isAdmin: newUser.isAdmin,
+        addresses: user.addresses,
         token: generateToken(newUser._id),
       });
     }
@@ -141,6 +142,7 @@ const userProfile = async (req, res) => {
         phoneNumber: user.phoneNumber,
         email: user.email,
         isAdmin: user.isAdmin,
+        addresses: user.addresses,
         createdAt: user.createdAt,
       });
     } else {
@@ -167,6 +169,8 @@ const updateProfile = async (req, res) => {
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      user.phoneNumber =
+        req.body.phoneNumber || user.phoneNumber;
       if (req.body.password) {
         user.password = req.body.password;
       }
@@ -181,8 +185,8 @@ const updateProfile = async (req, res) => {
       phoneNumber: user.phoneNumber,
       email: user.email,
       isAdmin: user.isAdmin,
+      addresses: user.addresses,
       createdAt: user.createdAt,
-
       token: generateToken(updatedUser._id),
     });
   } catch (error) {
@@ -192,7 +196,38 @@ const updateProfile = async (req, res) => {
   }
 };
 
+const userAddAddress = async (req, res) => {
+  try {
+    const address = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      user.addresses.push(address);
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      surname: user.surname,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      createdAt: user.createdAt,
+      addresses: user.addresses,
+      token: generateToken(updatedUser._id),
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Щось пішло не так, зверніться пізніше",
+    });
+  }
+};
+
 module.exports = {
+  userAddAddress,
   updateProfile,
   userLogin,
   userRegistration,
