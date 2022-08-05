@@ -6,6 +6,7 @@ import { Input } from "../Input/Input";
 import { getCitiesByArea } from "../../store/deliveryAddresses/deliverySlice";
 
 import { Loader } from "../Loader/Loader";
+import { Select } from "../Select/Select";
 
 export const Courier = ({ values, handleChange }) => {
   const dispatch = useDispatch();
@@ -48,33 +49,31 @@ export const Courier = ({ values, handleChange }) => {
   return (
     <div className={styles.courierBlock}>
       <div className={styles.dataBlock}>
-        <select
+        <Select
           name='area'
           onChange={(e) => {
             handleChange(e);
             handleCities(e);
-          }}>
-          <option value='#' disabled selected>
-            Виберіть область
-          </option>
-          {areas.map((area, index) => (
+          }}
+          optionValue='Виберіть область'
+          options={areas.map((area, index) => (
             <option key={index} value={area.Description}>
               {area.Description}
             </option>
           ))}
-        </select>
+        />
       </div>
       <div className={styles.dataBlock}>
-        <select name='city' onChange={handleChange}>
-          <option value='#' disabled selected>
-            Виберіть населенний пункт
-          </option>
-          {cities.map((city, index) => (
+        <Select
+          name='city'
+          onChange={handleChange}
+          optionValue='Виберіть населенний пункт'
+          options={cities.map((city, index) => (
             <option key={index} value={city}>
               {`${city}`}
             </option>
           ))}
-        </select>
+        />
       </div>
       {customerInfo.map((input) => (
         <div className={styles.dataBlock}>
