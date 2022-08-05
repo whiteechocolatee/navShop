@@ -21,6 +21,7 @@ import { Delivery } from "./pages/Delivery/Delivery";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { UserOrders } from "./pages/UserOrders/UserOrders";
 import { UserUpdate } from "./pages/UserUpdate/UserUpdate";
+import { UserAddress } from "./pages/UserAddress/UserAddress";
 
 function App() {
   return (
@@ -36,6 +37,11 @@ function App() {
             exact
             path={`${paths.account}${paths.changeUserData}`}
             element={<UserUpdate />}
+          />
+          <Route
+            exact
+            path={`${paths.account}/${paths.addAddress}`}
+            element={<UserAddress />}
           />
           <Route
             exact

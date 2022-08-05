@@ -10,4 +10,5 @@ export const paths = {
   userOrders: "/orders",
   changeUserData: "/change",
   liked: "/favorites",
+  addAddress:'address/'
 };
