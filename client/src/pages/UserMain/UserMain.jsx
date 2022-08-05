@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { userProfile } from "../../store/users/userAuthSlice";
+import { getUserOrders } from "../../store/order/orderSlice";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { UserAccount } from "../../components/UserAccount/UserAccount";
@@ -16,6 +17,7 @@ export const UserMain = () => {
 
   useEffect(() => {
     dispatch(userProfile());
+    dispatch(getUserOrders());
   }, [dispatch]);
 
   return (
