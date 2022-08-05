@@ -41,7 +41,7 @@ const createOrder = async (req, res) => {
     if (orderItems && orderItems.length === 0) {
       return res
         .status(400)
-        .json({ message: "Корзина пуста!" });
+        .json({ message: "Кошик пустий!" });
     } else {
       const createOrder = await Order.create({
         orderItems,
@@ -52,8 +52,6 @@ const createOrder = async (req, res) => {
         commentary,
         user,
       });
-
-      console.log(createOrder);
 
       return res.status(201).json(createOrder);
     }
