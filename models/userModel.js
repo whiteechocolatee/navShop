@@ -28,6 +28,22 @@ const userModel = mongoose.Schema({
     required: true,
     default: false,
   },
+  addresses: [
+    {
+      area: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      department: {
+        type: String,
+      },
+      index: {
+        type: String,
+      },
+    },
+  ],
 });
 
 userModel.set("timestamps", true);
