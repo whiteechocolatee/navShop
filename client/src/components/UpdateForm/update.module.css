@@ -1,5 +1,4 @@
 .btn {
-  margin-top: 50px;
   width: 200px;
   background: linear-gradient(
     93.77deg,
@@ -40,7 +39,16 @@
 .link,
 .link:hover,
 .link:focus {
+  height: 25px;
   color: #242424;
   text-decoration: none;
   border-bottom: 2px solid black;
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
 }

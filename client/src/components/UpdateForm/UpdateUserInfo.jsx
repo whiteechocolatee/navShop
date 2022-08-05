@@ -127,9 +127,6 @@ export const UpdateUserInfo = () => {
 
   return (
     <div className={styles.formBlock}>
-      <Link className={styles.link} to={paths.account}>
-        Назад
-      </Link>
       <form
         onSubmit={handleUpdate}
         className={styles.formUpdate}>
@@ -144,16 +141,21 @@ export const UpdateUserInfo = () => {
             />
           </div>
         ))}
-        <Button
-          containerClassName={styles.btn}
-          children={
-            <input
-              className={styles.inputSubmit}
-              type='submit'
-              value='Змінити'
-            />
-          }
-        />
+        <div className={styles.navigation}>
+          <Link className={styles.link} to={paths.account}>
+            Назад
+          </Link>
+          <Button
+            containerClassName={styles.btn}
+            children={
+              <input
+                className={styles.inputSubmit}
+                type='submit'
+                value='Змінити'
+              />
+            }
+          />
+        </div>
       </form>
     </div>
   );
