@@ -19,7 +19,13 @@ import {
   checkIsAuth,
 } from "../../store/users/userAuthSlice";
 
+import {
+  getAreas,
+  getAllDepartments,
+} from "../../store/deliveryAddresses/deliverySlice";
+
 import { getItems } from "../../store/items/itemsSlice";
+
 import { paths } from "../../paths";
 
 export const Main = () => {
@@ -33,6 +39,8 @@ export const Main = () => {
 
   useEffect(() => {
     dispatch(getItems());
+    dispatch(getAreas());
+    dispatch(getAllDepartments());
   }, [dispatch]);
 
   const handleLogout = () => {
