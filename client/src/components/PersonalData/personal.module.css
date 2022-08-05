@@ -1,23 +1,23 @@
 .personalBlock {
-  margin: 60px 0;
-  height: 240px;
+  margin: 20px 0 100px 0;
+  height: 300px;
   display: flex;
-  justify-content: space-between;
   padding: 0 10px;
+  align-items: flex-end;
 }
 
 .personalData {
+  height: 240px;
+  margin-right: 100px;
+  width: 200px;
   display: flex;
   flex-direction: column;
-}
-
-.personalData span {
-  margin-top: 5px;
+  justify-content: space-between;
 }
 
 .btn {
-  margin-top: 65px;
   border: 1px solid #abafe9;
+  width: 135px;
 }
 
 .link,
@@ -25,4 +25,69 @@
 .link:hover {
   color: #000;
   text-decoration: none;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.addAddress {
+  width: 270px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.outline {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 30px;
+}
+
+.addressesContainer {
+  width: 100%;
+}
+
+.addresses {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.addressesWithBtn {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.address {
+  height: 250px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.addressInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.addressNav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteAddress {
+  cursor: pointer;
+  border-bottom: 2px solid black;
 }
