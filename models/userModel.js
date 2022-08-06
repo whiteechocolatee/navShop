@@ -46,8 +46,7 @@ const userModel = mongoose.Schema({
         type: String,
       },
       main: {
-        type: Boolean,
-        default: false,
+        type: String,
       },
     },
   ],
