@@ -4,7 +4,7 @@ const {
   userProfile,
   userRegistration,
   updateProfile,
-  userAddAddress,
+  addAddress,
 } = require("../controllers/userControllers");
 const protection = require("../utils/authMiddleware");
 
@@ -14,6 +14,6 @@ router.post("/", userRegistration);
 router.post("/login", userLogin);
 router.get("/profile", protection, userProfile);
 router.put("/profile", protection, updateProfile);
-router.put("/profile/address", protection, userAddAddress);
+router.put("/profile/address", protection, addAddress);
 
 module.exports = router;
