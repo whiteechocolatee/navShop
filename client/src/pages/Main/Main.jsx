@@ -57,10 +57,6 @@ export const Main = () => {
     return elem.discount > 0;
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   let itemsQuantity = 4;
 
   const width = window.innerWidth;
@@ -75,32 +71,41 @@ export const Main = () => {
 
   return (
     <React.Fragment>
-      <Header handleLogout={handleLogout} isAuth={isAuth} />
-      <CategoriesNavigation />
-      <BannersSlider />
-      <Brands />
-      <ItemCarousel
-        containerClassName={styles.flex}
-        itemsQuantity={itemsQuantity}
-        title={"Новые товары"}
-        items={items}
-      />
-      <Banner />
-      <ItemCarousel
-        containerClassName={styles.flex}
-        itemsQuantity={itemsQuantity}
-        title={"Зарядные"}
-        items={category}
-      />
-      <CategoryCards />
-      <ItemCarousel
-        containerClassName={styles.flex}
-        itemsQuantity={itemsQuantity}
-        title={"Предложения"}
-        items={discount}
-      />
-      <CallbackBlock />
-      <Footer />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header
+            handleLogout={handleLogout}
+            isAuth={isAuth}
+          />
+          <CategoriesNavigation />
+          <BannersSlider />
+          <Brands />
+          <ItemCarousel
+            containerClassName={styles.flex}
+            itemsQuantity={itemsQuantity}
+            title={"Новые товары"}
+            items={items}
+          />
+          <Banner />
+          <ItemCarousel
+            containerClassName={styles.flex}
+            itemsQuantity={itemsQuantity}
+            title={"Зарядные"}
+            items={category}
+          />
+          <CategoryCards />
+          <ItemCarousel
+            containerClassName={styles.flex}
+            itemsQuantity={itemsQuantity}
+            title={"Предложения"}
+            items={discount}
+          />
+          <CallbackBlock />
+          <Footer />
+        </>
+      )}
     </React.Fragment>
   );
 };
