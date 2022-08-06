@@ -168,6 +168,7 @@ const updateProfile = async (req, res) => {
 
     if (user) {
       user.name = req.body.name || user.name;
+      user.surname = req.body.surname || user.surname;
       user.email = req.body.email || user.email;
       user.phoneNumber =
         req.body.phoneNumber || user.phoneNumber;
@@ -196,14 +197,14 @@ const updateProfile = async (req, res) => {
   }
 };
 
-const userAddAddress = async (req, res) => {
+const addAddress = async (req, res) => {
   try {
     const address = req.body;
 
     const user = await User.findById(req.user._id);
 
     if (user) {
-      user.addresses.push(address);
+      user.addresses = address || user.addresses;
     }
 
     const updatedUser = await user.save();
@@ -227,7 +228,7 @@ const userAddAddress = async (req, res) => {
 };
 
 module.exports = {
-  userAddAddress,
+  addAddress,
   updateProfile,
   userLogin,
   userRegistration,
