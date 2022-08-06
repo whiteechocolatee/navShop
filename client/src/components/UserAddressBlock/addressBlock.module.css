@@ -1,0 +1,43 @@
+.addressesWithBtn {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.address {
+  height: 250px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.addressInfo {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+}
+
+.addressInfo span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.addressNav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.deleteAddress {
+  cursor: pointer;
+  border-bottom: 2px solid black;
+}
+
+.btn {
+  border: 1px solid #abafe9;
+  width: 135px;
+}
