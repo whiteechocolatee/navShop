@@ -1,25 +1,24 @@
 import React from "react";
-import styles from "./personal.module.css";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Button } from "../Button/Button";
-import { Link } from "react-router-dom";
-import { paths } from "../../paths";
-import { Loader } from "../Loader/Loader";
-
+import { Link, useNavigate } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 
-export const PersonalData = () => {
+import styles from "./personal.module.css";
+import { Button } from "../Button/Button";
+import { paths } from "../../paths";
+import { Loader } from "../Loader/Loader";
+import { UserAddressBlock } from "../UserAddressBlock/UserAddressBlock";
+
+export const PersonalData = ({
+  isLoading,
+  user,
+  handleDelete,
+  changeMain,
+}) => {
   const navigate = useNavigate();
-  const { user, isLoading } = useSelector(
-    (state) => state.userAuthReducer,
-  );
 
   const addAddress = () => {
     navigate(`${paths.account}/${paths.addAddress}`);
   };
-
-  console.log(user);
 
   return (
     <div>
@@ -50,24 +49,12 @@ export const PersonalData = () => {
             {user?.addresses?.length < 3 ? (
               <div className={styles.addressesWithBtn}>
                 {user?.addresses?.map((address) => (
-                  <div className={styles.address}>
-                    <div className={styles.addressInfo}>
-                      <div>isMain</div>
-                      <span>{address.area}</span>
-                      <span>{address.city}</span>
-                      <span>{address.department}</span>
-                      <span>{address.index}</span>
-                    </div>
-                    <div className={styles.addressNav}>
-                      <Button
-                        containerClassName={styles.btn}
-                        children='Змінити'
-                      />
-                      <div className={styles.deleteAddress}>
-                        Видалити
-                      </div>
-                    </div>
-                  </div>
+                  <UserAddressBlock
+                    handleDelete={handleDelete}
+                    changeMain={changeMain}
+                    key={address._id}
+                    address={address}
+                  />
                 ))}
                 <div className={styles.addAddress}>
                   <p>Додати адресу</p>
@@ -83,24 +70,12 @@ export const PersonalData = () => {
             ) : (
               <div className={styles.addresses}>
                 {user?.addresses?.map((address) => (
-                  <div className={styles.address}>
-                    <div className={styles.addressInfo}>
-                      <div>isMain</div>
-                      <span>{address.area}</span>
-                      <span>{address.city}</span>
-                      <span>{address.department}</span>
-                      <span>{address.index}</span>
-                    </div>
-                    <div className={styles.addressNav}>
-                      <Button
-                        containerClassName={styles.btn}
-                        children='Змінити'
-                      />
-                      <div className={styles.deleteAddress}>
-                        Видалити
-                      </div>
-                    </div>
-                  </div>
+                  <UserAddressBlock
+                    handleDelete={handleDelete}
+                    changeMain={changeMain}
+                    key={address._id}
+                    address={address}
+                  />
                 ))}
               </div>
             )}
