@@ -43,14 +43,14 @@ export const OrdersInProgress = ({ order }) => {
             {order.shippingAddress.shippingMethod ===
             "localPickup"
               ? "Безкоштовно"
-              : "за тарифами пошти"}
+              : "згідно з тарифами пошти"}
           </span>
           <span>
             До cплати: {order.totalPrice} ₴
             {order.shippingAddress.shippingMethod ===
             "localPickup"
               ? ""
-              : "+ за тарифами пошти"}
+              : "+ доставка за тарифами пошти"}
           </span>
           <span>Спосіб оплати: {order.paymentMethod}</span>
           <span>Cплачено: - </span>
