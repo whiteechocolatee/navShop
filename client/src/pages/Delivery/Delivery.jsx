@@ -13,23 +13,44 @@ import { DeliveryMethod } from "../../components/DeliveryMethod/DeliveryMethod";
 import { Payment } from "../../components/Payment/Payment";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
+import { Loader } from "../../components/Loader/Loader";
 import { paths } from "../../paths";
+import { AuthCustomerForm } from "../../components/AuthCustomerForm/AuthCustomerForm";
 
+import {
+  checkIsAuth,
+  userProfile,
+} from "../../store/users/userAuthSlice";
 import { createOrder } from "../../store/order/orderSlice";
 
 export const Delivery = () => {
   const dispatch = useDispatch();
 
+  const isAuth = useSelector(checkIsAuth);
+
+  const { user, isLoading } = useSelector(
+    (state) => state.userAuthReducer,
+  );
+
+  let obj;
+
+  user?.addresses?.filter((address) => {
+    if (address.main === "yes") {
+      obj = address;
+    }
+  });
+
   const [values, setValues] = useState({
-    name: "",
-    surname: "",
-    phone: "",
-    email: "",
+    name: user?.name || "",
+    surname: user?.surname || "",
+    phone: user?.phoneNumber || "",
+    email: user?.email || "",
     shippingMethod: "localPickup",
-    area: "",
-    city: "",
-    index: "",
-    department: "",
+    area: obj?.area || "Виберіть область",
+    city: obj?.city || "Виберіть місто",
+    index: obj?.index || "",
+    department: obj?.department || "Виберіть відділення",
+    street: obj?.street || "",
     paymentMethod: "cardPayment",
     commentary: "",
   });
@@ -40,6 +61,10 @@ export const Delivery = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  useEffect(() => {
+    dispatch(userProfile());
+  }, [dispatch]);
 
   const cart = useSelector((state) => {
     return state.cartReducer.itemsInCart;
@@ -102,68 +127,84 @@ export const Delivery = () => {
     <React.Fragment>
       <Header />
       <CategoriesNavigation />
-      <ContentWrapper className={styles.wrapper}>
-        <div className={styles.deliveryPayment}>
-          <div className={styles.navigation}>
-            <Link className={styles.link} to={paths.main}>
-              Головна
-            </Link>
-            <hr className={styles.border} />
-            <Link className={styles.link} to={paths.order}>
-              Кошик
-            </Link>
-            <hr className={styles.border} />
-            <Link className={styles.link} to={paths.order}>
-              Доставка та оплата
-            </Link>
-          </div>
-          <div>
-            <h1 className={styles.cartTitle}>
-              Доставка та оплата
-            </h1>
-          </div>
-          <div className={styles.orderPayment}>
-            <div className={styles.forms}>
-              <CustomerForm
-                values={values}
-                handleChange={handleChange}
-              />
-              <DeliveryMethod
-                values={values}
-                handleChange={handleChange}
-              />
-              <Payment
-                values={values}
-                handleChange={handleChange}
-              />
-              <div className={styles.comment}>
-                <h5 className={styles.commentTitle}>
-                  Можливо вам є що додати до вашого
-                  замовлення
-                </h5>
-                <Input
-                  name='commentary'
-                  onChange={handleChange}
-                  className={styles.input}
-                />
-              </div>
+      {isLoading ? (
+        <Loader containerClassName={styles.loader} />
+      ) : (
+        <ContentWrapper className={styles.wrapper}>
+          <div className={styles.deliveryPayment}>
+            <div className={styles.navigation}>
+              <Link className={styles.link} to={paths.main}>
+                Головна
+              </Link>
+              <hr className={styles.border} />
+              <Link
+                className={styles.link}
+                to={paths.order}>
+                Кошик
+              </Link>
+              <hr className={styles.border} />
+              <Link
+                className={styles.link}
+                to={paths.order}>
+                Доставка та оплата
+              </Link>
             </div>
-            <OrderCheckDelivery total={total} cart={cart} />
+            <div>
+              <h1 className={styles.cartTitle}>
+                Доставка та оплата
+              </h1>
+            </div>
+            <div className={styles.orderPayment}>
+              <div className={styles.forms}>
+                {isAuth ? (
+                  <AuthCustomerForm values={values} />
+                ) : (
+                  <CustomerForm
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                )}
+                <DeliveryMethod
+                  values={values}
+                  handleChange={handleChange}
+                />
+                <Payment
+                  values={values}
+                  handleChange={handleChange}
+                />
+                <div className={styles.comment}>
+                  <h5 className={styles.commentTitle}>
+                    Можливо вам є що додати до вашого
+                    замовлення
+                  </h5>
+                  <Input
+                    name='commentary'
+                    onChange={handleChange}
+                    className={styles.input}
+                  />
+                </div>
+              </div>
+              <OrderCheckDelivery
+                total={total}
+                cart={cart}
+              />
+            </div>
           </div>
-        </div>
-        <Button
-          onClick={handleOrder}
-          children={
-            // <Link
-            //   className={styles.btnLink}
-            //   to={paths.order}>
-            //   Перейти до оплати
-            // </Link>
-            "Замовити!"
-          }
-          containerClassName={styles.btn}
-        />
-      </ContentWrapper>
+          <Button
+            onClick={handleOrder}
+            children={
+              // <Link
+              //   className={styles.btnLink}
+              //   to={paths.order}>
+              //   Перейти до оплати
+              // </Link>
+              "Замовити!"
+            }
+            containerClassName={styles.btn}
+          />
+        </ContentWrapper>
+      )}
+
       <Footer />
     </React.Fragment>
   );
