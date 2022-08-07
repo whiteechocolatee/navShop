@@ -1,0 +1,19 @@
+.formTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formBlock {
+  height: 300px;
+}
+
+.button {
+  border-bottom: 2px solid black;
+  cursor: pointer;
+  width: 70px;
+  text-align: center;
+}
+
+.customerData {
+  padding: 20px 10px;
+}
