@@ -22,9 +22,16 @@ export const UserMain = () => {
   );
 
   const handleDelete = (id) => {
-    const editedArray = user.addresses.filter((address) => {
+    let editedArray = user.addresses.filter((address) => {
       return address._id !== id;
     });
+
+    if (editedArray.length > 0) {
+      let firstOne = editedArray.shift();
+      firstOne = { ...firstOne, main: "yes" };
+      editedArray.push(firstOne);
+    }
+
     dispatch(saveAddress(editedArray));
   };
 
