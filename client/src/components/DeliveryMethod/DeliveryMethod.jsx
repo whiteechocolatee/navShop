@@ -63,7 +63,10 @@ export const DeliveryMethod = ({
           </div>
         )}
         {values.shippingMethod === "novaPoshta" && (
-          <NovaPoshta handleChange={handleChange} />
+          <NovaPoshta
+            values={values}
+            handleChange={handleChange}
+          />
         )}
         {(values.shippingMethod === "courier" ||
           values.shippingMethod === "poshta") && (

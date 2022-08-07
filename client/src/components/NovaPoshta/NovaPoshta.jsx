@@ -10,7 +10,7 @@ import styles from "./poshta.module.css";
 import { Loader } from "../Loader/Loader";
 import { Select } from "../Select/Select";
 
-export const NovaPoshta = ({ handleChange }) => {
+export const NovaPoshta = ({ values, handleChange }) => {
   const dispatch = useDispatch();
 
   const { isLoading, areas, cities, departmentByCity } =
@@ -32,7 +32,7 @@ export const NovaPoshta = ({ handleChange }) => {
   return (
     <React.Fragment>
       {isLoading ? (
-        <Loader />
+        <Loader containerClassName={styles.loader} />
       ) : (
         <div className={styles.selects}>
           <div>
@@ -43,6 +43,7 @@ export const NovaPoshta = ({ handleChange }) => {
                 handleCities(e);
                 handleChange(e);
               }}
+              value={values.area}
               options={areas.map((area, index) => (
                 <option
                   key={index}
@@ -60,6 +61,7 @@ export const NovaPoshta = ({ handleChange }) => {
                 handleDepartments(e);
                 handleChange(e);
               }}
+              value={values.city}
               options={cities.map((city, index) => (
                 <option key={index} value={city}>
                   {`${city}`}
@@ -72,6 +74,7 @@ export const NovaPoshta = ({ handleChange }) => {
               optionValue='Виберіть відділення'
               onChange={handleChange}
               name='department'
+              value={values.department}
               options={departmentByCity.map(
                 (department, index) => (
                   <option

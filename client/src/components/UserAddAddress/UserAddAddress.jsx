@@ -16,11 +16,11 @@ export const UserAddAddress = () => {
   const dispatch = useDispatch();
 
   const [values, setValues] = useState({
-    area: "",
-    city: "",
+    area: "Виберіть область",
+    city: "Виберіть місто",
     index: "",
     street: "",
-    department: "",
+    department: "Виберіть відділення",
     main: "",
   });
 
@@ -28,9 +28,12 @@ export const UserAddAddress = () => {
     (state) => state.userAuthReducer,
   );
 
-  let addresses = [...user.addresses];
-
   const handleAddress = () => {
+    if (user.addresses.length === 3) {
+      navigate(paths.account);
+      return;
+    }
+    let addresses = [...user.addresses];
     if (values.main === "yes") {
       addresses = addresses.map((address) => {
         if (address.main === "yes") {
@@ -88,7 +91,10 @@ export const UserAddAddress = () => {
     <div className={styles.addressBlock}>
       <div className={styles.addressForm}>
         <div className={styles.columns}>
-          <NovaPoshta handleChange={handleChange} />
+          <NovaPoshta
+            values={values}
+            handleChange={handleChange}
+          />
         </div>
         <div
           className={`${styles.columns} ${styles.inputs} `}>

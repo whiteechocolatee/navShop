@@ -36,7 +36,7 @@ export const Courier = ({ values, handleChange }) => {
     },
     {
       id: 2,
-      name: "department",
+      name: "street",
       type: "text",
       placeholder: "Вкажіть вулицю",
       errorMessage:
@@ -55,6 +55,7 @@ export const Courier = ({ values, handleChange }) => {
             handleChange(e);
             handleCities(e);
           }}
+          value={values.area}
           optionValue='Виберіть область'
           options={areas.map((area, index) => (
             <option key={index} value={area.Description}>
@@ -67,6 +68,7 @@ export const Courier = ({ values, handleChange }) => {
         <Select
           name='city'
           onChange={handleChange}
+          value={values.city}
           optionValue='Виберіть населенний пункт'
           options={cities.map((city, index) => (
             <option key={index} value={city}>
