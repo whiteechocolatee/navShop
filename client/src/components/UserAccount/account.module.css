@@ -41,16 +41,6 @@
   list-style-type: none;
 }
 
-.logout {
-  cursor: pointer;
-  text-align: end;
-  width: 100%;
-  border-bottom: 2px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
 .links {
   padding: 5px 10px;
   text-decoration: none;
@@ -58,24 +48,8 @@
   border-bottom: 2px solid;
 }
 
-.arrow {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-left: 20px;
-}
-
-.arrowBody {
-  width: 65px;
-  border: 1px solid black;
-  height: 0;
-}
-
-.arrowEnd {
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid black;
-  border-top: 2px solid black;
-  transform: rotate(45deg);
-  margin-left: -8px;
+.logout {
+  width: 100%;
+  border-bottom: 2px solid black;
+  justify-content: flex-end;
 }

@@ -1,26 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  Link,
-  NavLink,
-  useNavigate,
-} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import styles from "./account.module.css";
 import { paths } from "../../paths";
-
-import { logout } from "../../store/users/userAuthSlice";
+import { LogoutButton } from "../LogoutButton/LogoutButton";
 
 export const UserAccount = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch(logout());
-    window.localStorage.removeItem("token");
-    navigate(paths.main);
-  };
-
   return (
     <div className={styles.profile}>
       <div>
@@ -60,15 +45,7 @@ export const UserAccount = () => {
               to={`${paths.liked}`}>
               Мені сподобалось
             </NavLink>
-            <div
-              onClick={handleLogout}
-              className={styles.logout}>
-              вийти
-              <div className={styles.arrow}>
-                <div className={styles.arrowBody}></div>
-                <div className={styles.arrowEnd}></div>
-              </div>
-            </div>
+            <LogoutButton containerClassName={styles.logout} />
           </nav>
         </div>
       </div>
