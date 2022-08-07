@@ -21,9 +21,9 @@ export const PersonalData = ({
   };
 
   return (
-    <div>
+    <>
       {isLoading ? (
-        <Loader />
+        <Loader containerClassName={styles.loader} />
       ) : (
         <div className={styles.personalBlock}>
           <div className={styles.personalData}>
@@ -82,6 +82,6 @@ export const PersonalData = ({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

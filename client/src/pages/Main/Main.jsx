@@ -70,9 +70,9 @@ export const Main = () => {
   }
 
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       {isLoading ? (
-        <Loader />
+        <Loader containerClassName={styles.loader} />
       ) : (
         <>
           <Header
@@ -106,6 +106,6 @@ export const Main = () => {
           <Footer />
         </>
       )}
-    </React.Fragment>
+    </div>
   );
 };

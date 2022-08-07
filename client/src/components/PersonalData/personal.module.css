@@ -6,6 +6,10 @@
   align-items: flex-end;
 }
 
+.loader {
+  height: 400px;
+}
+
 .personalData {
   height: 240px;
   margin-right: 100px;

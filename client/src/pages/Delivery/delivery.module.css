@@ -4,6 +4,10 @@
   margin-bottom: 100px;
 }
 
+.loader {
+  height: 100vh;
+}
+
 .delivery {
   display: flex;
   justify-content: space-between;
