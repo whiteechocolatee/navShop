@@ -114,7 +114,7 @@ const userRegistration = async (req, res) => {
         phoneNumber: newUser.phoneNumber,
         email: newUser.email,
         isAdmin: newUser.isAdmin,
-        addresses: user.addresses,
+        addresses: newUser.addresses,
         token: generateToken(newUser._id),
       });
     }
