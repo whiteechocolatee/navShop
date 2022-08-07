@@ -1,0 +1,29 @@
+.logout {
+  cursor: pointer;
+  text-align: end;
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-end; */
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 20px;
+}
+
+.arrowBody {
+  width: 65px;
+  border: 1px solid black;
+  height: 0;
+}
+
+.arrowEnd {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+  transform: rotate(45deg);
+  margin-left: -8px;
+}
