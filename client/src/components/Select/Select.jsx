@@ -6,14 +6,15 @@ export const Select = ({
   optionValue,
   options,
   onChange,
+  value,
 }) => {
   return (
     <select
       className={styles.select}
       onChange={onChange}
       name={name}>
-      <option defaultValue='#' disabled selected>
-        {optionValue}
+      <option defaultValue={value} disabled selected>
+        {value}
       </option>
       {options}
     </select>
