@@ -34,6 +34,7 @@ const deliverySlice = createSlice({
     departments: [],
     departmentByCity: [],
     isLoading: false,
+    areasLoading: false,
     reducerLoading: false,
   },
   reducers: {
@@ -67,14 +68,14 @@ const deliverySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAreas.pending, (state) => {
-        state.isLoading = true;
+        state.areasLoading = true;
       })
       .addCase(getAreas.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.areasLoading = false;
         state.areas = action.payload;
       })
       .addCase(getAreas.rejected, (state, action) => {
-        state.isLoading = false;
+        state.areasLoading = false;
         state.areas = action.payload.data;
       })
       .addCase(getAllDepartments.pending, (state) => {
