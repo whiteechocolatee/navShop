@@ -138,6 +138,9 @@ const userAuthSlice = createSlice({
         state.errors = action.payload.message;
         state.isError = true;
         state.isLoading = false;
+        state.user = null;
+        state.token = null;
+        localStorage.removeItem("token");
       })
       // update profile
       .addCase(updateProfile.pending, (state) => {
