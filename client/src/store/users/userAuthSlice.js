@@ -64,6 +64,7 @@ const userAuthSlice = createSlice({
   name: "userAuth",
   initialState: {
     user: [],
+    chosenAddress: [],
     token: null,
     isLoading: false,
     isError: false,
@@ -78,6 +79,9 @@ const userAuthSlice = createSlice({
       state.isError = false;
       state.errors = null;
       localStorage.removeItem("token");
+    },
+    updateChosenAddress: (state, action) => {
+      state.chosenAddress = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -191,6 +195,7 @@ export const checkIsAuth = (state) =>
   Boolean(state.userAuthReducer.token) ||
   Boolean(window.localStorage.getItem("token"));
 
-export const { logout } = userAuthSlice.actions;
+export const { logout, updateChosenAddress } =
+  userAuthSlice.actions;
 
 export default userAuthSlice.reducer;
