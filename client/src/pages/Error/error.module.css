@@ -1,214 +1,243 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
-.errorBlock {
-  background: black;
+.body {
   height: 100vh;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  background-color: #bfdfec;
+  background-repeat: repeat-x;
+  background-image: url("https://i.stack.imgur.com/b7z29.png");
+  animation: movement 13s linear infinite;
+  font-family: "ICTV", sans-serif;
+  font-weight: 800;
 }
 
-.main {
-  width: 650px;
-  height: 350px;
+.title {
+  font-size: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.centered {
+  color: #000;
   position: absolute;
-  top: 50%;
   left: 50%;
-  margin-top: -175px;
-  margin-left: -325px;
-  overflow: hidden;
-  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
-.btnBack {
-  z-index: 9999;
-  color: white;
-  font-size: 30px;
+@keyframes movement {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 560px 0px;
+  }
 }
 
-.head h1 {
-  font-family: "Oswald";
-  text-align: center;
-  font-size: 100px;
-  width: 100%;
+/* 
+
+.title p {
+  padding: 0;
+  margin: 0;
+}
+
+
+
+.image {
+  animation: break 2s ease-in 6s;
+  z-index: 5;
+  opacity: 0;
+}
+
+@keyframes break {
+  0% {
+    opacity: 0.5;
+  }
+  10% {
+    animation-timing-function: ease-in;
+    opacity: 1;
+    transform: translateY(-45px);
+  }
+
+  24% {
+    opacity: 1;
+  }
+
+  40% {
+    animation-timing-function: ease-in;
+    transform: translateY(-24px);
+  }
+
+  65% {
+    animation-timing-function: ease-in;
+    transform: translateY(-12px);
+  }
+
+  82% {
+    animation-timing-function: ease-in;
+    transform: translateY(-6px);
+  }
+
+  93% {
+    animation-timing-function: ease-in;
+    transform: translateY(-4px);
+  }
+
+  25%,
+  55%,
+  75%,
+  87% {
+    animation-timing-function: ease-out;
+    transform: translateY(0px);
+  }
+
+  95% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  97% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.image img {
+  width: 180px;
+  height: 100%;
+}
+
+.mario {
   position: absolute;
-  overflow: hidden;
-  margin-left: -15px;
-  color: transparent;
-  text-shadow: 0px 0px 3px #eee, 5px 5px 2px teal,
-    -5px -2px 2px maroon;
-  font-weight: 400;
-  -moz-transform: skewX(0deg);
-  -ms-transform: skewX(0deg);
-  -webkit-transform: skewX(0deg);
-  transform: skewX(0deg);
-  -moz-animation: shift 4s ease-in-out infinite alternate;
-  -webkit-animation: shift 4s ease-in-out infinite alternate;
-  animation: shift 4s ease-in-out infinite alternate;
-  cursor: pointer;
+  bottom: -200px;
+  animation: marioJump ease-in-out 10s normal backwards;
 }
 
-.head h2 {
-  font-size: 120px;
-  font-family: "Oswald";
-  text-align: center;
-  width: 100%;
+.mario img {
+  width: 120px;
+  height: 100%;
+}
+
+@keyframes marioJump {
+  0% {
+    bottom: -200px;
+  }
+  15% {
+    bottom: 0;
+    left: 0;
+  }
+  20% {
+    bottom: 200px;
+    left: 0;
+  }
+  25% {
+    bottom: 0px;
+  }
+  40% {
+    bottom: 0;
+    left: 40%;
+  }
+  45% {
+    bottom: 230px;
+    left: 40%;
+  }
+  55% {
+    bottom: 0;
+    left: 43%;
+  }
+  58% {
+    bottom: 260px;
+    left: 45%;
+  }
+  63% {
+    bottom: 0;
+    left: 45%;
+  }
+  75% {
+    bottom: 0;
+    left: 75%;
+  }
+  80% {
+    bottom: 250px;
+    left: 80%;
+  }
+  85% {
+    bottom: 250px;
+    left: 90%;
+  }
+  100% {
+    bottom: -200px;
+    left: 90%;
+  }
+}
+
+.firstNumber {
+  animation: pAnim 2s ease-in-out 4.5s 1 normal forwards;
+}
+
+@keyframes pAnim {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 100% 50%;
+  }
+
+  10% {
+    transform: rotate(2deg);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+
+  80% {
+    transform: rotate(-2deg);
+  }
+
+  90% {
+    transform: rotate(2deg);
+  }
+}
+
+.pipe {
   position: absolute;
-  overflow: hidden;
-  margin: 150px 0 150px -10px;
-  color: transparent;
-  text-shadow: 0px 0px 3px #eee, 5px 5px 2px teal,
-    -5px -2px 2px maroon;
-  font-weight: 100;
-  -moz-transform: skewX(0deg);
-  -ms-transform: skewX(0deg);
-  -webkit-transform: skewX(0deg);
-  transform: skewX(0deg);
-  -moz-animation: shift 4s ease-in-out infinite alternate;
-  -webkit-animation: shift 4s ease-in-out infinite alternate;
-  animation: shift 4s ease-in-out infinite alternate;
+  right: 0;
+  bottom: -30px;
 }
 
-@-moz-keyframes shift {
-  0%,
-  40%,
-  44%,
-  58%,
-  61%,
-  65%,
-  69%,
-  73%,
-  100% {
-    -moz-transform: skewX(0deg);
-    transform: skewX(0deg);
-  }
-  41% {
-    -moz-transform: skewX(10deg);
-    transform: skewX(10deg);
-  }
-  42% {
-    -moz-transform: skewX(-10deg);
-    transform: skewX(-10deg);
-  }
-  59% {
-    -moz-transform: skewX(40deg) skewY(10deg);
-    transform: skewX(40deg) skewY(10deg);
-  }
-  60% {
-    -moz-transform: skewX(-40deg) skewY(-10deg);
-    transform: skewX(-40deg) skewY(-10deg);
-  }
-  63% {
-    -moz-transform: skewX(10deg) skewY(-5deg);
-    transform: skewX(10deg) skewY(-5deg);
-  }
-  70% {
-    -moz-transform: skewX(-50deg) skewY(-20deg);
-    transform: skewX(-50deg) skewY(-20deg);
-  }
-  71% {
-    -moz-transform: skewX(10deg) skewY(-10deg);
-    transform: skewX(10deg) skewY(-10deg);
-  }
+.zero img {
+  width: 200px;
+  height: auto;
 }
-@-webkit-keyframes shift {
-  0%,
-  40%,
-  44%,
-  58%,
-  61%,
-  65%,
-  69%,
-  73%,
-  100% {
-    -webkit-transform: skewX(0deg);
-    transform: skewX(0deg);
+*/
+
+/* .zero { */
+/* display: none; */
+/* opacity: 1;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  animation: display 2s ease-in 7s 1 normal backwards;
+  z-index: 1; */
+/* } */
+
+/* @keyframes display {
+  0% {
+    opacity: 0;
   }
-  41% {
-    -webkit-transform: skewX(10deg);
-    transform: skewX(10deg);
-  }
-  42% {
-    -webkit-transform: skewX(-10deg);
-    transform: skewX(-10deg);
-  }
-  59% {
-    -webkit-transform: skewX(40deg) skewY(10deg);
-    transform: skewX(40deg) skewY(10deg);
-  }
-  60% {
-    -webkit-transform: skewX(-40deg) skewY(-10deg);
-    transform: skewX(-40deg) skewY(-10deg);
-  }
-  63% {
-    -webkit-transform: skewX(10deg) skewY(-5deg);
-    transform: skewX(10deg) skewY(-5deg);
-  }
-  70% {
-    -webkit-transform: skewX(-50deg) skewY(-20deg);
-    transform: skewX(-50deg) skewY(-20deg);
-  }
-  71% {
-    -webkit-transform: skewX(10deg) skewY(-10deg);
-    transform: skewX(10deg) skewY(-10deg);
-  }
-}
-@keyframes shift {
-  0%,
-  40%,
-  44%,
-  58%,
-  61%,
-  65%,
-  69%,
-  73%,
-  100% {
-    -moz-transform: skewX(0deg);
-    -ms-transform: skewX(0deg);
-    -webkit-transform: skewX(0deg);
-    transform: skewX(0deg);
-  }
-  41% {
-    -moz-transform: skewX(10deg);
-    -ms-transform: skewX(10deg);
-    -webkit-transform: skewX(10deg);
-    transform: skewX(10deg);
-  }
-  42% {
-    -moz-transform: skewX(-10deg);
-    -ms-transform: skewX(-10deg);
-    -webkit-transform: skewX(-10deg);
-    transform: skewX(-10deg);
-  }
-  59% {
-    -moz-transform: skewX(40deg) skewY(10deg);
-    -ms-transform: skewX(40deg) skewY(10deg);
-    -webkit-transform: skewX(40deg) skewY(10deg);
-    transform: skewX(40deg) skewY(10deg);
-  }
-  60% {
-    -moz-transform: skewX(-40deg) skewY(-10deg);
-    -ms-transform: skewX(-40deg) skewY(-10deg);
-    -webkit-transform: skewX(-40deg) skewY(-10deg);
-    transform: skewX(-40deg) skewY(-10deg);
-  }
-  63% {
-    -moz-transform: skewX(10deg) skewY(-5deg);
-    -ms-transform: skewX(10deg) skewY(-5deg);
-    -webkit-transform: skewX(10deg) skewY(-5deg);
-    transform: skewX(10deg) skewY(-5deg);
-  }
-  70% {
-    -moz-transform: skewX(-50deg) skewY(-20deg);
-    -ms-transform: skewX(-50deg) skewY(-20deg);
-    -webkit-transform: skewX(-50deg) skewY(-20deg);
-    transform: skewX(-50deg) skewY(-20deg);
-  }
-  71% {
-    -moz-transform: skewX(10deg) skewY(-10deg);
-    -ms-transform: skewX(10deg) skewY(-10deg);
-    -webkit-transform: skewX(10deg) skewY(-10deg);
-    transform: skewX(10deg) skewY(-10deg);
-  }
-}
+} */
