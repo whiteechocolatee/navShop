@@ -1,13 +1,26 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./addressBlock.module.css";
 import { Button } from "../Button/Button";
 import { Checkbox } from "../Checkbox/Checkbox";
+import { updateChosenAddress } from "../../store/users/userAuthSlice";
+import { paths } from "../../paths";
 
 export const UserAddressBlock = ({
   address,
   handleDelete,
   changeMain,
 }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChange = () => {
+    dispatch(updateChosenAddress(address));
+    navigate(`${paths.account}/${paths.updateAddress}`);
+  };
+
   return (
     <div className={styles.address}>
       <div>
@@ -27,6 +40,7 @@ export const UserAddressBlock = ({
       </div>
       <div className={styles.addressNav}>
         <Button
+          onClick={handleChange}
           containerClassName={styles.btn}
           children='Змінити'
         />
