@@ -1,0 +1,62 @@
+.columns {
+  width: 384px;
+}
+
+.input {
+  margin-top: 15px;
+}
+
+.addressBlock {
+  width: 820px;
+  padding: 20px 10px;
+}
+
+.addressForm {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.isMain {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.isMain .label {
+  width: 70px;
+}
+
+.isMainTitle {
+  margin: 0;
+  padding: 0;
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.link,
+.link:hover,
+.link:focus {
+  height: 25px;
+  color: #242424;
+  text-decoration: none;
+  border-bottom: 2px solid black;
+}
+
+.btn {
+  width: 134px;
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+}
