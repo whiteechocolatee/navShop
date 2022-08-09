@@ -1,0 +1,57 @@
+.cardBody {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 10px 10px 20px #f5f5f5;
+  border-radius: 30px;
+  height: 115px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-top: 30px;
+}
+
+.cardContent p {
+  margin: 0;
+  padding: 0;
+}
+
+.cardContent {
+  max-width: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.btn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  border-radius: 40px;
+  width: 134px;
+}
+
+.svgContainer svg {
+  fill: #bbbff3;
+}
+
+.svgContainer {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cardImg img {
+  width: 100px;
+  height: auto;
+}
+
+.title {
+  width: 300px;
+}
