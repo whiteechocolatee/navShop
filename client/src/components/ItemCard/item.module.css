@@ -85,3 +85,44 @@
   font-weight: 700;
   margin: 0 30px 40px 0;
 }
+
+.svg svg {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.svgBg svg {
+  cursor: pointer;
+  fill: #bbbff3;
+}
+
+.popupTitle {
+  font-size: 48px;
+  line-height: 57.6px;
+  text-align: center;
+}
+
+.popupText {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.popupBtn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  border-radius: 40px;
+  width: 212px;
+  margin: 0 auto;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
