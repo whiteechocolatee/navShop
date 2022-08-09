@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Item = require("../models/itemModel");
 const generateToken = require("../utils/generateToken");
 
 /**
@@ -134,6 +135,17 @@ const userProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
 
+    const favorites = user.favorites;
+
+    const ids = favorites.map((item) => {
+      return item.product;
+    });
+
+    const records = await Item.find()
+      .where("_id")
+      .in(ids)
+      .exec();
+
     if (user) {
       res.json({
         _id: user._id,
@@ -143,6 +155,7 @@ const userProfile = async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         addresses: user.addresses,
+        favorites: records,
         createdAt: user.createdAt,
       });
     } else {
@@ -197,6 +210,12 @@ const updateProfile = async (req, res) => {
   }
 };
 
+/**
+ * It adds an address to the user's profile
+ * @param req - The request object. This contains information about the HTTP request that raised the
+ * event.
+ * @param res - the response object
+ */
 const addAddress = async (req, res) => {
   try {
     const address = req.body;
@@ -227,10 +246,69 @@ const addAddress = async (req, res) => {
   }
 };
 
+/**
+ * It adds a product to the user's favorites
+ * @param req - The request object. This contains information about the HTTP request that raised the
+ * event.
+ * @param res - The response object.
+ */
+const addToFavorite = async (req, res) => {
+  try {
+    const favoriteItem = req.body;
+
+    console.log(favoriteItem);
+
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      const alreadyFavorite = user.favorites.find(
+        (item) =>
+          item.product.toString() ===
+          favoriteItem.product.toString(),
+      );
+
+      if (alreadyFavorite) return res.status(400);
+    }
+
+    user.favorites.push(favoriteItem);
+
+    const favorites = user.favorites;
+
+    const ids = favorites.map((item) => {
+      return item.product;
+    });
+
+    const records = await Item.find()
+      .where("_id")
+      .in(ids)
+      .exec();
+
+    const updatedUser = await user.save();
+
+    return res.json({
+      _id: user._id,
+      name: user.name,
+      surname: user.surname,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      createdAt: user.createdAt,
+      favorites: records,
+      addresses: user.addresses,
+      token: generateToken(updatedUser._id),
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Щось пішло не так, зверніться пізніше",
+    });
+  }
+};
+
 module.exports = {
   addAddress,
   updateProfile,
   userLogin,
   userRegistration,
   userProfile,
+  addToFavorite,
 };
