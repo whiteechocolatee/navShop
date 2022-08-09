@@ -160,6 +160,26 @@ const addToFavorite = async (favorite) => {
   return data;
 };
 
+const removeFromFavorites = async (favorite) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const { data } = await axios.put(
+    "/api/users/profile/favorite/remove",
+    favorite,
+    config,
+  );
+
+  return data;
+};
+
 const userServices = {
   userLogin,
   userRegister,
@@ -167,6 +187,7 @@ const userServices = {
   updateProfile,
   saveAddress,
   addToFavorite,
+  removeFromFavorites,
 };
 
 export default userServices;
