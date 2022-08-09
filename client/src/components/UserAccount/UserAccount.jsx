@@ -34,18 +34,20 @@ export const UserAccount = () => {
               style={({ isActive }) => ({
                 color: isActive ? "#ABAFE9" : "#000",
               })}
-              to={paths.userOrders}>
-              Мої замовлення
+              to={paths.updatePassword}>
+              Змінити пароль
             </NavLink>
             <NavLink
               className={styles.links}
               style={({ isActive }) => ({
                 color: isActive ? "#ABAFE9" : "#000",
               })}
-              to={`${paths.liked}`}>
-              Мені сподобалось
+              to={paths.userOrders}>
+              Мої замовлення
             </NavLink>
-            <LogoutButton containerClassName={styles.logout} />
+            <LogoutButton
+              containerClassName={styles.logout}
+            />
           </nav>
         </div>
       </div>
