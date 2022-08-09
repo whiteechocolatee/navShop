@@ -28,6 +28,15 @@ const userModel = mongoose.Schema({
     required: true,
     default: false,
   },
+  favorites: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Item",
+      },
+    },
+  ],
   addresses: [
     {
       area: {
