@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 import styles from "./update.module.css";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
+import "react-toastify/dist/ReactToastify.css";
+import { paths } from "../../paths";
 
 import { updateProfile } from "../../store/users/userAuthSlice";
-
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
-import { paths } from "../../paths";
 
 export const UpdateUserInfo = () => {
   const dispatch = useDispatch();
@@ -88,28 +87,6 @@ export const UpdateUserInfo = () => {
       errorMessage: "Номер повинен складатись з 8-12 цифр.",
       pattern: "^[0-9]{10,12}$",
       required: true,
-    },
-    {
-      id: 5,
-      name: "password",
-      type: "password",
-      placeholder: "Змінити пароль",
-      errorMessage:
-        "Пароль повинен складатися з 8-20 символів, та повинен мати наприклад (G1$......)",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      error:
-        errors &&
-        errors.password &&
-        errors.password.message,
-    },
-    {
-      id: 6,
-      name: "confirmPassword",
-      type: "password",
-      placeholder: "Підвердити пароль",
-      errorMessage: "Паролі не співпадають",
-      pattern: values.password,
-      required: values.password.length > 8 ? true : false,
     },
   ];
 
