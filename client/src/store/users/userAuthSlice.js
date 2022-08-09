@@ -71,6 +71,19 @@ export const addToFavorite = createAsyncThunk(
   },
 );
 
+export const removeFromFavorites = createAsyncThunk(
+  "removeFromFavorites",
+  async (favorite, thunkAPI) => {
+    try {
+      return await usersServices.removeFromFavorites(
+        favorite,
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const userAuthSlice = createSlice({
   name: "userAuth",
   initialState: {
@@ -90,6 +103,7 @@ const userAuthSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
       state.errors = null;
+      state.favorites = [];
       localStorage.removeItem("token");
     },
     updateChosenAddress: (state, action) => {
@@ -224,7 +238,35 @@ const userAuthSlice = createSlice({
         state.isChanged = null;
         state.isError = true;
         state.isLoading = false;
-      });
+      })
+      // remove from favorites
+      .addCase(removeFromFavorites.pending, (state) => {
+        state.isLoading = true;
+        state.isChanged = false;
+        state.isError = false;
+        state.errors = null;
+      })
+      .addCase(
+        removeFromFavorites.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.isChanged = true;
+          state.isError = false;
+          state.user = action.payload;
+          state.favorites = action.payload.favorites;
+          state.token = action.payload?.token;
+          state.errors = null;
+        },
+      )
+      .addCase(
+        removeFromFavorites.rejected,
+        (state, action) => {
+          state.errors = action.payload?.message;
+          state.isChanged = null;
+          state.isError = true;
+          state.isLoading = false;
+        },
+      );
   },
 });
 
