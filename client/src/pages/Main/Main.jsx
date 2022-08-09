@@ -13,20 +13,14 @@ import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
 import { Banner } from "../../components/Banner/Banner";
 import { BannersSlider } from "../../components/BannersSlider/BannersSlider";
 import { Loader } from "../../components/Loader/Loader";
+import { paths } from "../../paths";
 
 import {
   logout,
   checkIsAuth,
+  userProfile,
 } from "../../store/users/userAuthSlice";
-
-import {
-  getAreas,
-  getAllDepartments,
-} from "../../store/deliveryAddresses/deliverySlice";
-
 import { getItems } from "../../store/items/itemsSlice";
-
-import { paths } from "../../paths";
 
 export const Main = () => {
   const isAuth = useSelector(checkIsAuth);
@@ -39,8 +33,7 @@ export const Main = () => {
 
   useEffect(() => {
     dispatch(getItems());
-    dispatch(getAreas());
-    dispatch(getAllDepartments());
+    dispatch(userProfile());
   }, [dispatch]);
 
   const handleLogout = () => {
