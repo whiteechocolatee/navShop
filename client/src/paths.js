@@ -9,7 +9,8 @@ export const paths = {
   delivery: "delivery/",
   userOrders: "/orders",
   changeUserData: "/change",
-  liked: "/favorites",
+  favorite: "/favorites",
   addAddress: "address/",
-  updateAddress: "updateAddress/",
+  updateAddress: "update/address/",
+  updatePassword:'/password'
 };
