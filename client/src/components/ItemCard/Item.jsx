@@ -7,11 +7,12 @@ import styles from "./item.module.css";
 import { Button } from "../Button/Button";
 import { paths } from "../../paths";
 import { ImageComponent } from "../Image/Image";
-import { setItemInCart } from "../../store/cart/cartSlice";
 import { Popup } from "../Popup/Popup";
+import { setItemInCart } from "../../store/cart/cartSlice";
 import {
   checkIsAuth,
   addToFavorite,
+  removeFromFavorites,
 } from "../../store/users/userAuthSlice";
 
 export const Item = ({ item }) => {
@@ -30,7 +31,7 @@ export const Item = ({ item }) => {
 
   const isAuth = useSelector(checkIsAuth);
 
-  const isItemInCart = cart.some(
+  const isItemInCart = cart?.some(
     (itemInCart) => itemInCart._id === item._id,
   );
 
@@ -50,7 +51,11 @@ export const Item = ({ item }) => {
 
   const addToFavoriteFunc = () => {
     if (isAuth) {
-      dispatch(addToFavorite({ product: _id }));
+      if (isItemFavorite) {
+        dispatch(removeFromFavorites({ product: _id }));
+      } else {
+        dispatch(addToFavorite({ product: _id }));
+      }
     } else {
       setButtonPopup(true);
     }
@@ -68,7 +73,7 @@ export const Item = ({ item }) => {
           </div>
           {isItemFavorite ? (
             <div
-              // onClick={addToFavoriteFunc}
+              onClick={addToFavoriteFunc}
               className={styles.svgBg}>
               <FaHeart />
             </div>
@@ -79,23 +84,15 @@ export const Item = ({ item }) => {
               <FaRegHeart />
             </div>
           )}
-          {/* <div className={styles.svg}>
-              <FaRegHeart />
-            </div> */}
-          {/* <div
-            onClick={addToFavoriteFunc}
-            className={styles.svgBg}>
-            <FaHeart />
-          </div> */}
           <Popup
             setTrigger={setButtonPopup}
             trigger={buttonPopup}>
             <div className={styles.popupContent}>
               <h1 className={styles.popupTitle}>
-                Додати у бажане
+                Додати у обране
               </h1>
               <p className={styles.popupText}>
-                Для того щоб додати товар у бажане, вам
+                Для того щоб додати товар у обране, вам
                 потрібно увійти в акаунт або створити його.
                 Тоді усі товари будуть збережені в акаунті
               </p>
