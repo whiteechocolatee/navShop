@@ -23,6 +23,8 @@ import { UserOrders } from "./pages/UserOrders/UserOrders";
 import { UserUpdate } from "./pages/UpdateUserData/UserUpdate";
 import { UserAddress } from "./pages/UserAddress/UserAddress";
 import { UserUpdateAddress } from "./pages/UserUpdateAddress/UserUpdateAddress";
+import { Favorite } from "./pages/Favorite/Favorite";
+import { UserUpdatePassword } from "./pages/UserUpdatePassword/UserUpdatePassword";
 
 function App() {
   return (
@@ -51,8 +53,18 @@ function App() {
           />
           <Route
             exact
+            path={paths.updatePassword}
+            element={<UserUpdatePassword />}
+          />
+          <Route
+            exact
             path={paths.userOrders}
             element={<UserOrders />}
+          />
+          <Route
+            exact
+            path={paths.favorite}
+            element={<Favorite />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
