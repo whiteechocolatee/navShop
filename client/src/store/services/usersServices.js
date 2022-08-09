@@ -133,12 +133,40 @@ const saveAddress = async (address) => {
   return data;
 };
 
+/**
+ * It takes a favorite object as an argument, gets the token from local storage, adds the token to the
+ * config object, and then makes a PUT request to the /api/users/profile/favorite endpoint with the
+ * favorite object and the config object as arguments
+ * @param favorite - the object that we want to add to the user's favorite list.
+ * @returns The data is being returned.
+ */
+const addToFavorite = async (favorite) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const { data } = await axios.put(
+    "/api/users/profile/favorite",
+    favorite,
+    config,
+  );
+
+  return data;
+};
+
 const userServices = {
   userLogin,
   userRegister,
   userProfile,
   updateProfile,
   saveAddress,
+  addToFavorite,
 };
 
 export default userServices;
