@@ -60,11 +60,23 @@ export const saveAddress = createAsyncThunk(
   },
 );
 
+export const addToFavorite = createAsyncThunk(
+  "addToFavorite",
+  async (favorite, thunkAPI) => {
+    try {
+      return await usersServices.addToFavorite(favorite);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const userAuthSlice = createSlice({
   name: "userAuth",
   initialState: {
     user: [],
     chosenAddress: [],
+    favorites: [],
     token: null,
     isLoading: false,
     isError: false,
@@ -135,6 +147,7 @@ const userAuthSlice = createSlice({
         state.isError = false;
         state.errors = null;
         state.user = action.payload;
+        state.favorites = action.payload.favorites;
         state.token = action.payload.token;
       })
       .addCase(userProfile.rejected, (state, action) => {
@@ -159,6 +172,7 @@ const userAuthSlice = createSlice({
         state.isError = false;
         state.errors = null;
         state.user = action.payload;
+        state.favorites = action.payload.favorites;
         state.token = action.payload?.token;
       })
       .addCase(updateProfile.rejected, (state, action) => {
@@ -179,10 +193,33 @@ const userAuthSlice = createSlice({
         state.isChanged = true;
         state.isError = false;
         state.user = action.payload;
+        state.favorites = action.payload.favorites;
         state.token = action.payload?.token;
         state.errors = null;
       })
       .addCase(saveAddress.rejected, (state, action) => {
+        state.errors = action.payload?.message;
+        state.isChanged = null;
+        state.isError = true;
+        state.isLoading = false;
+      })
+      //add to favorites
+      .addCase(addToFavorite.pending, (state) => {
+        state.isLoading = true;
+        state.isChanged = false;
+        state.isError = false;
+        state.errors = null;
+      })
+      .addCase(addToFavorite.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isChanged = true;
+        state.isError = false;
+        state.user = action.payload;
+        state.favorites = action.payload.favorites;
+        state.token = action.payload?.token;
+        state.errors = null;
+      })
+      .addCase(addToFavorite.rejected, (state, action) => {
         state.errors = action.payload?.message;
         state.isChanged = null;
         state.isError = true;
