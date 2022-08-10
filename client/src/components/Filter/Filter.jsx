@@ -13,9 +13,9 @@ export const Filter = () => {
 
   return (
     <div className={styles.filter}>
-      <div className={styles.filterTitle}>
+      {/* <div className={styles.filterTitle}>
         <h3>Фільтр</h3>
-      </div>
+      </div> */}
       <div className={styles.filterBtns}>
         <div
           onClick={handleClick}
