@@ -13,8 +13,6 @@ export const ItemCarousel = ({
   children = "",
   containerClassName,
 }) => {
-  items = items.slice(0, 12);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(itemsQuantity);
 
