@@ -48,7 +48,7 @@ const ItemsSlice = createSlice({
         state.items = null;
         state.isError = action.error.message;
       })
-      // get items by category builder
+      // get items by category 
       .addCase(getItemsByCategory.pending, (state) => {
         state.isLoading = true;
       })
