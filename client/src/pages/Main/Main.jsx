@@ -62,6 +62,12 @@ export const Main = () => {
     itemsQuantity = 2;
   }
 
+  let itemsCarousel = items.slice(0, 12);
+
+  let categoryCarousel = category.slice(0, 12);
+
+  let discountCarousel = discount.slice(0, 12);
+
   return (
     <div className={styles.container}>
       {isLoading ? (
@@ -79,21 +85,21 @@ export const Main = () => {
             containerClassName={styles.flex}
             itemsQuantity={itemsQuantity}
             title={"Новые товары"}
-            items={items}
+            items={itemsCarousel}
           />
           <Banner />
           <ItemCarousel
             containerClassName={styles.flex}
             itemsQuantity={itemsQuantity}
             title={"Зарядные"}
-            items={category}
+            items={categoryCarousel}
           />
           <CategoryCards />
           <ItemCarousel
             containerClassName={styles.flex}
             itemsQuantity={itemsQuantity}
             title={"Предложения"}
-            items={discount}
+            items={discountCarousel}
           />
           <CallbackBlock />
           <Footer />
