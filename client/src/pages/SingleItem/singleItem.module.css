@@ -1,0 +1,188 @@
+.itemContainer {
+  color: #242424;
+  margin: 70px 0;
+}
+
+h1,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.itemTitle {
+  font-size: 48px;
+  line-height: 150%;
+  width: 60%;
+  font-weight: 200;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemPrice {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+.itemPrice h1 {
+  font-size: 48px;
+  line-height: 150%;
+  font-weight: 400;
+}
+
+.itemPriceBtn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  border-radius: 40px;
+  width: 207px;
+}
+
+.itemBody {
+  margin: 50px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemImage img {
+  height: 450px;
+  width: auto;
+  margin-right: 20px;
+}
+
+.itemInfo {
+  width: 100%;
+}
+
+.itemInfoTitle > p:first-child {
+  font-size: 24px;
+  line-height: 150%;
+}
+
+.itemInfoTitle p {
+  margin: 0;
+  padding: 0;
+}
+
+.itemInfoTitle {
+  border-bottom: 2px solid #242424;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemFilter {
+  margin-top: 20px;
+  min-height: 350px;
+}
+
+.itemNavigation {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.itemAddFavorite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  cursor: pointer;
+}
+
+.itemAddFavorite > svg:first-child {
+  font-size: 25px;
+}
+
+.itemAddFavorite p {
+  margin: 0;
+  padding: 0;
+}
+
+.itemBuy p {
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid #242424;
+}
+
+.itemBuy {
+  cursor: pointer;
+}
+
+.additional {
+  border-top: 2px solid #242424;
+  margin-top: 40px;
+  padding-top: 40px;
+}
+
+.colors {
+  display: flex;
+}
+
+.memory,
+.color {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.memories {
+  margin-top: 20px;
+  display: flex;
+}
+
+.itemFooter {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.footerTitle {
+  border-bottom: 2px solid #242424;
+}
+
+.footerTitle h3 {
+  font-size: 24px;
+  line-height: 150%;
+}
+
+.footerBody {
+  padding: 30px 0;
+}
+
+.recommendedTitle {
+  border-bottom: 2px solid #242424;
+}
+
+.recommended {
+  margin-top: 100px;
+}
+
+.recommendedTitle h1 {
+  font-size: 48px;
+  line-height: 150%;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1300px;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 77px;
+}
+
+.favText {
+  margin-left: 10px;
+}
+
+.loader {
+  height: 100vh;
+}
