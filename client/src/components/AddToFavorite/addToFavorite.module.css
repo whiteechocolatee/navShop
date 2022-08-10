@@ -1,0 +1,102 @@
+.svg svg {
+  opacity: 0.5;
+  font-size: 25px;
+  cursor: pointer;
+  animation: removed 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes removed {
+  0% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+    transform-origin: center center;
+  }
+
+  10% {
+    animation-timing-function: ease-in;
+    transform: scale(0.91);
+  }
+
+  17% {
+    animation-timing-function: ease-out;
+    transform: scale(0.98);
+  }
+
+  33% {
+    animation-timing-function: ease-in;
+    transform: scale(0.87);
+  }
+
+  45% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+}
+
+.svgBg svg {
+  cursor: pointer;
+  font-size: 25px;
+  fill: #bbbff3;
+  animation: added 1s ease 0s 1 normal forwards;
+}
+
+@keyframes added {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.popupTitle {
+  font-size: 48px;
+  line-height: 57.6px;
+  text-align: center;
+}
+
+.popupText {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.popupBtn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  border-radius: 40px;
+  width: 212px;
+  margin: 0 auto;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.popupClass {
+  width: 100%;
+  min-height: 350px;
+  max-width: 340px;
+}
