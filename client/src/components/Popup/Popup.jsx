@@ -6,6 +6,7 @@ export const Popup = ({
   children,
   trigger,
   setTrigger,
+  className,
 }) => {
   return trigger ? (
     <div
@@ -13,7 +14,7 @@ export const Popup = ({
       className={styles.popup}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className={styles.popupInner}>
+        className={`${styles.popupInner} ${className}`}>
         <button
           onClick={() => setTrigger(false)}
           className={styles.closeBtn}>

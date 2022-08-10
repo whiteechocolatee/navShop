@@ -15,9 +15,9 @@
   color: #242424;
   position: relative;
   padding: 32px;
-  width: 100%;
+  /* width: 100%;
   min-height: 350px;
-  max-width: 340px;
+  max-width: 340px; */
   background-color: #fff;
   display: flex;
   flex-direction: column;
