@@ -11,8 +11,8 @@ import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { paths } from "../../paths";
 import { Loader } from "../../components/Loader/Loader";
-
 import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
+import { Popup } from "../../components/Popup/Popup";
 
 import {
   checkIsAuth,
@@ -23,6 +23,7 @@ export const Registration = () => {
   window.scroll(0, 0);
   const navigate = useNavigate();
 
+  const [buttonPopup, setButtonPopup] = useState(false);
   const [message, setMessage] = useState(false);
   const [values, setValues] = useState({
     name: "",
@@ -42,7 +43,7 @@ export const Registration = () => {
 
   useEffect(() => {
     if (isAuth) {
-      navigate(paths.account);
+      // navigate(paths.account);
     }
   }, [isAuth, navigate]);
 
@@ -52,6 +53,8 @@ export const Registration = () => {
     dispatch(userRegister(values)).then((res) => {
       if (res.error) {
         setMessage(true);
+      } else {
+        setButtonPopup(true);
       }
     });
   };
@@ -132,13 +135,6 @@ export const Registration = () => {
       [e.target.name]: e.target.value,
     });
   };
-  // <Message
-  //                 text={errors.message}
-  //                 type='error'
-  //                 onClose={() => {
-  //                   setMessage(false);
-  //                 }}
-  //               />
 
   return (
     <React.Fragment>
@@ -149,6 +145,24 @@ export const Registration = () => {
           <Loader />
         ) : (
           <div className={styles.registrationPage}>
+            <Popup
+              className={styles.popupClass}
+              setTrigger={setButtonPopup}
+              trigger={buttonPopup}>
+              <div className={styles.popupContent}>
+                <h1 className={styles.popupTitle}>
+                  Ваш аккаунт було створено!
+                </h1>
+                <Button
+                  onClick={() => {
+                    setButtonPopup(false);
+                    navigate(paths.main);
+                  }}
+                  containerClassName={styles.popupBtn}>
+                  Повернутись до магазину
+                </Button>
+              </div>
+            </Popup>
             <div className={styles.navigation}>
               <Link className={styles.link} to={paths.main}>
                 Головна
