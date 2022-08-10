@@ -52,7 +52,7 @@ export const PersonalData = ({
                   <UserAddressBlock
                     handleDelete={handleDelete}
                     changeMain={changeMain}
-                    key={address._id}
+                    key={address?._id}
                     address={address}
                   />
                 ))}
