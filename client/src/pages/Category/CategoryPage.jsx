@@ -44,7 +44,7 @@ export const CategoryPage = () => {
         <Loader />
       ) : (
         <ContentWrapper className={styles.container}>
-          <Filter />
+          {/* <Filter /> */}
           <div className={styles.items}>
             <ItemCarousel
               containerClassName={styles.grid}
