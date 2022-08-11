@@ -1,53 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./filter.module.css";
 import { BsPlusLg } from "react-icons/bs";
+import { HiMinus } from "react-icons/hi";
 
-export const Filter = () => {
-  const handleClick = (e) => {
-    const filter = e.target.children[2];
-    const svg = e.target.children[1];
+export const Filter = ({ data }) => {
+  const [selected, setSelected] = useState(null);
 
-    svg.classList.toggle(styles.rotateForward);
-    filter.classList.toggle(styles.show);
+  const toggle = (i) => {
+    if (selected === i) {
+      return setSelected(null);
+    }
+
+    setSelected(i);
   };
 
   return (
-    <div className={styles.filter}>
-      {/* <div className={styles.filterTitle}>
-        <h3>Фільтр</h3>
-      </div> */}
-      <div className={styles.filterBtns}>
-        <div
-          onClick={handleClick}
-          className={`${styles.filterBtn} 
-        `}>
-          <p>Колір</p>
-          <BsPlusLg className={styles.rotateBack} />
-          <div className={styles.hide}>
-            <p>Lorem ipsum dolor sit amet.</p>
+    <div className={styles.accordion}>
+      {data.map((item, index) => (
+        <div className={styles.item}>
+          <div
+            className={styles.title}
+            onClick={() => toggle(index)}>
+            <span>{item.question}</span>
+            <span>
+              {selected === index ? (
+                <HiMinus />
+              ) : (
+                <BsPlusLg />
+              )}
+            </span>
+          </div>
+          <div
+            className={
+              selected === index
+                ? `${styles.content} ${styles.show}`
+                : styles.content
+            }>
+            {item.answer}
           </div>
         </div>
-        <div
-          onClick={handleClick}
-          className={`${styles.filterBtn} 
-        `}>
-          <p>Пам'ять</p>
-          <BsPlusLg className={styles.rotateBack} />
-          <div className={styles.hide}>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-        </div>
-        <div
-          onClick={handleClick}
-          className={`${styles.filterBtn} 
-        `}>
-          <p>Модель</p>
-          <BsPlusLg className={styles.rotateBack} />
-          <div className={styles.hide}>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

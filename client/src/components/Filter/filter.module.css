@@ -1,100 +1,32 @@
-.filter {
-  /* margin: 75px 20px 0 0; */
-  max-width: 300px;
-  width: 100%;
-  min-height: 200px;
-  margin-bottom: 20px;
+.accordion {
+  width: 425px;
+  margin: 30px 0;
 }
 
-.filterTitle {
-  line-height: 20px;
-  width: 100%;
-  border-bottom: 2px solid black;
+.item {
+  padding: 10px 0;
 }
 
-.filterBtns {
-  /* margin-top: 40px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.filterBtn {
-  cursor: pointer;
-  margin-top: 20px;
+.title {
+  width: 204px;
+  color: #242424;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  z-index: 5;
+  align-items: flex-end;
+  cursor: pointer;
 }
 
-.filterBlock {
-  height: 100px;
-}
-
-.hide {
-  width: 100%;
-  padding: 10px;
-  animation: slide-top 0.2s
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@keyframes slide-top {
-  0% {
-    transform: translateY(0);
-    height: 100px;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 0;
-    height: 0;
-    padding: 0;
-  }
-}
-
-.rotateBack {
-  animation: rotateBack 0.2s both;
-}
-
-@keyframes rotateBack {
-  0% {
-    transform: rotate(45deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
-}
-
-.rotateForward {
-  animation: rotateForward 0.2s both;
-}
-
-@keyframes rotateForward {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(45deg);
-  }
+.content {
+  margin-top: 15px;
+  color: #676767;
+  max-height: 0;
+  line-height: 25px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0, 1, 0, 1);
 }
 
 .show {
-  display: block;
-  padding: 10px;
-  margin-bottom: 10px;
-  animation: slide-bottom 0.2s
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@keyframes slide-bottom {
-  0% {
-    transform: translateY(0px);
-    opacity: 0;
-    height: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-    height: 100px;
-  }
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s cubic-bezier(1, 0, 1, 0);
 }
