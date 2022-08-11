@@ -48,7 +48,6 @@ export const SingleItemPage = () => {
   const buyPerClick = () => {
     cart = [];
     cart.push(item);
-    
   };
 
   const addToCart = (e) => {
@@ -117,7 +116,7 @@ export const SingleItemPage = () => {
                   <p>артикул : 123123</p>
                 </div>
                 <div className={styles.itemFilter}>
-                  <Filter />
+                  <Filter data={data} />
                 </div>
                 <div className={styles.itemNavigation}>
                   <div className={styles.itemAddFavorite}>
@@ -212,3 +211,34 @@ export const SingleItemPage = () => {
     </React.Fragment>
   );
 };
+
+let data = [
+  {
+    question: "test 1",
+    answer: ` Lorem, ipsum dolor sit amet consectetur
+    adipisicing elit. Ipsum doloribus vero esse
+    ea dolorum. Dolor hic laborum fugiat
+    expedita veritatis,`,
+  },
+  {
+    question: "test 2",
+    answer: ` Lorem, ipsum dolor sit amet consectetur
+    adipisicing elit. Ipsum doloribus vero esse
+    ea dolorum. Dolor hic laborum fugiat
+    expedita veritatis,`,
+  },
+  {
+    question: "test 3",
+    answer: ` Lorem, ipsum dolor sit amet consectetur
+    adipisicing elit. Ipsum doloribus vero esse
+    ea dolorum. Dolor hic laborum fugiat
+    expedita veritatis,`,
+  },
+  {
+    question: "test 4",
+    answer: ` Lorem, ipsum dolor sit amet consectetur
+    adipisicing elit. Ipsum doloribus vero esse
+    ea dolorum. Dolor hic laborum fugiat
+    expedita veritatis,`,
+  },
+];
