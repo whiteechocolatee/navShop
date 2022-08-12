@@ -126,11 +126,52 @@ h3 {
 
 .colors {
   display: flex;
+  align-items: center;
 }
 
-.memory,
-.color {
+.chooseColor {
   margin-left: 10px;
+}
+
+.color {
+  cursor: pointer;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+}
+
+.chosenColor {
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 31px;
+  height: 31px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.memory {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.chosenMemory {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-left: 15px;
+}
+
+.chooseMemory {
+  margin-left: 15px;
   cursor: pointer;
 }
 
