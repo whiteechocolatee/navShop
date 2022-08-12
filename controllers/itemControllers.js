@@ -67,7 +67,16 @@ const createItem = async (req, res) => {
       description,
       itemImage,
       category,
+      discount,
+      count,
+      characteristics,
+      color,
+      company,
+      model,
+      memory,
     } = req.body;
+
+    const totalPrice = price;
 
     const item = await Items.create({
       title,
@@ -75,6 +84,14 @@ const createItem = async (req, res) => {
       description,
       itemImage,
       category,
+      discount,
+      count,
+      characteristics,
+      totalPrice,
+      color,
+      company,
+      model,
+      memory,
     });
 
     res.status(201).json(item);
