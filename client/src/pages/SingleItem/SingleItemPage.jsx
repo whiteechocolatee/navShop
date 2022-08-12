@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import styles from "./singleItem.module.css";
 import { Header } from "../../components/Header/Header";
@@ -17,11 +17,12 @@ import { AddToFavorite } from "../../components/AddToFavorite/AddToFavorite";
 import { setItemInCart } from "../../store/cart/cartSlice";
 import { getItem } from "../../store/item/itemSlice";
 import { getItems } from "../../store/items/itemsSlice";
+import { paths } from "../../paths";
 
 export const SingleItemPage = () => {
-  window.scroll(0, 0);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { item, singleItemLoading } = useSelector(
     (state) => {
@@ -50,6 +51,23 @@ export const SingleItemPage = () => {
     cart.push(item);
   };
 
+  let similarItems = items?.filter((value) => {
+    return (
+      value.model?.toLowerCase() ===
+      item?.model?.toLowerCase()
+    );
+  });
+
+  const filteredColors = [
+    ...new Set(similarItems?.map((value) => value.color)),
+  ];
+
+  const filteredMemory = [
+    ...new Set(
+      similarItems?.map((value) => value.memory).sort(),
+    ),
+  ];
+
   const addToCart = (e) => {
     e.stopPropagation();
 
@@ -58,6 +76,25 @@ export const SingleItemPage = () => {
     } else {
       dispatch(setItemInCart(item));
     }
+  };
+
+  // console.log(filteredMemory);
+
+  const chooseColor = (color) => {
+    let [chosenItem] = similarItems.filter(
+      (item) => item.color === color,
+    );
+    navigate(`${paths.itemPage}/${chosenItem._id}`);
+  };
+
+  const chooseMemory = (memory) => {
+    let [chosenMemory] = similarItems.filter(
+      (value) =>
+        value.memory === memory &&
+        value.color === item.color,
+    );
+
+    navigate(`${paths.itemPage}/${chosenMemory._id}`);
   };
 
   useEffect(() => {
@@ -116,7 +153,9 @@ export const SingleItemPage = () => {
                   <p>артикул : 123123</p>
                 </div>
                 <div className={styles.itemFilter}>
-                  <Filter data={data} />
+                  <Filter
+                    characteristic={item.characteristics}
+                  />
                 </div>
                 <div className={styles.itemNavigation}>
                   <div className={styles.itemAddFavorite}>
@@ -141,30 +180,72 @@ export const SingleItemPage = () => {
                   </div>
                 </div>
                 <div className={styles.additional}>
-                  <div className={styles.colors}>
-                    <div>Color:</div>
-                    <div className={styles.color}>
-                      <input type='color' value='#242424' />
+                  {filteredColors.length > 0 ? (
+                    <div className={styles.colors}>
+                      <div>Color:</div>
+                      {filteredColors?.map((value) => {
+                        return (
+                          <div>
+                            {item.color === value ? (
+                              <div
+                                className={
+                                  styles.chosenColor
+                                }>
+                                <div
+                                  className={styles.color}
+                                  style={{
+                                    backgroundColor: value,
+                                  }}></div>
+                              </div>
+                            ) : (
+                              <div
+                                className={
+                                  styles.chooseColor
+                                }
+                                onClick={() =>
+                                  chooseColor(value)
+                                }>
+                                <div
+                                  className={styles.color}
+                                  style={{
+                                    backgroundColor: value,
+                                  }}></div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
-                    <div className={styles.color}>
-                      <input type='color' value='#f1f1f1' />
+                  ) : null}
+                  {filteredMemory.length > 0 ? (
+                    <div className={styles.memories}>
+                      <div>Memory:</div>
+                      {filteredMemory?.map((value) => {
+                        return (
+                          <div>
+                            {item.memory === value ? (
+                              <div
+                                className={
+                                  styles.chosenMemory
+                                }>
+                                <p>{value} Gb</p>
+                              </div>
+                            ) : (
+                              <div
+                                className={
+                                  styles.chooseMemory
+                                }
+                                onClick={() =>
+                                  chooseMemory(value)
+                                }>
+                                <p>{value} Gb</p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
-                    <div className={styles.color}>
-                      <input type='color' value='#d1d2d9' />
-                    </div>
-                  </div>
-                  <div className={styles.memories}>
-                    <div>Memory:</div>
-                    <div className={styles.memory}>
-                      128gb
-                    </div>
-                    <div className={styles.memory}>
-                      256gb
-                    </div>
-                    <div className={styles.memory}>
-                      512gb
-                    </div>
-                  </div>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -173,25 +254,7 @@ export const SingleItemPage = () => {
                 <h3>Опис</h3>
               </div>
               <p className={styles.footerBody}>
-                Lorem, ipsum dolor sit amet consectetur
-                adipisicing elit. Ipsum doloribus vero esse
-                ea dolorum. Dolor hic laborum fugiat
-                expedita veritatis, sed vero placeat,
-                incidunt repudiandae quae ex mollitia saepe
-                corporis, molestias voluptas odio
-                aspernatur. Corrupti voluptatibus doloremque
-                inventore provident voluptatem, eligendi
-                amet vel. Veritatis ad voluptatum maxime
-                magni dicta quis, officia harum sequi et
-                aperiam enim modi. Vel iste deserunt ut
-                consectetur facere natus quisquam ex
-                quibusdam numquam unde adipisci at beatae,
-                nisi voluptatem. Quae sit, ipsum vel cumque
-                cupiditate, optio nesciunt omnis rerum
-                quisquam voluptates quod sed repudiandae hic
-                obcaecati. Incidunt ad, temporibus repellat
-                similique quos exercitationem necessitatibus
-                molestias.
+                {item.description}
               </p>
             </div>
             <div className={styles.recommended}>
@@ -211,34 +274,3 @@ export const SingleItemPage = () => {
     </React.Fragment>
   );
 };
-
-let data = [
-  {
-    question: "test 1",
-    answer: ` Lorem, ipsum dolor sit amet consectetur
-    adipisicing elit. Ipsum doloribus vero esse
-    ea dolorum. Dolor hic laborum fugiat
-    expedita veritatis,`,
-  },
-  {
-    question: "test 2",
-    answer: ` Lorem, ipsum dolor sit amet consectetur
-    adipisicing elit. Ipsum doloribus vero esse
-    ea dolorum. Dolor hic laborum fugiat
-    expedita veritatis,`,
-  },
-  {
-    question: "test 3",
-    answer: ` Lorem, ipsum dolor sit amet consectetur
-    adipisicing elit. Ipsum doloribus vero esse
-    ea dolorum. Dolor hic laborum fugiat
-    expedita veritatis,`,
-  },
-  {
-    question: "test 4",
-    answer: ` Lorem, ipsum dolor sit amet consectetur
-    adipisicing elit. Ipsum doloribus vero esse
-    ea dolorum. Dolor hic laborum fugiat
-    expedita veritatis,`,
-  },
-];
