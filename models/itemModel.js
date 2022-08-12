@@ -1,25 +1,5 @@
 const mongoose = require("mongoose");
 
-const reviewModel = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    required: true,
-  },
-  comment: {
-    type: String,
-    required: true,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
-});
-
 const itemModel = mongoose.Schema({
   title: {
     type: String,
@@ -46,17 +26,15 @@ const itemModel = mongoose.Schema({
     type: String,
     required: true,
   },
-  reviews: [reviewModel],
-  numReviews: {
-    type: Number,
-    require: true,
-    default: 0,
-  },
-  rating: {
-    type: Number,
-    require: true,
-    default: 0,
-  },
+  characteristics: [
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      description: [{ type: String, required: true }],
+    },
+  ],
   count: {
     type: Number,
     default: 1,
@@ -65,6 +43,20 @@ const itemModel = mongoose.Schema({
   totalPrice: {
     type: Number,
     require: true,
+  },
+  color: {
+    type: String,
+  },
+  company: {
+    type: String,
+    required: true,
+  },
+  model: {
+    type: String,
+    required: true,
+  },
+  memory: {
+    type: Number,
   },
 });
 
