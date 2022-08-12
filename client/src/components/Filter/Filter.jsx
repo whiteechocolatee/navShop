@@ -3,27 +3,26 @@ import styles from "./filter.module.css";
 import { BsPlusLg } from "react-icons/bs";
 import { HiMinus } from "react-icons/hi";
 
-export const Filter = ({ data }) => {
+export const Filter = ({ characteristic }) => {
   const [selected, setSelected] = useState(null);
 
   const toggle = (i) => {
     if (selected === i) {
       return setSelected(null);
     }
-
     setSelected(i);
   };
 
   return (
     <div className={styles.accordion}>
-      {data.map((item, index) => (
+      {characteristic?.map((item) => (
         <div className={styles.item}>
           <div
             className={styles.title}
-            onClick={() => toggle(index)}>
-            <span>{item.question}</span>
+            onClick={() => toggle(item._id)}>
+            <span>{item.name}</span>
             <span>
-              {selected === index ? (
+              {selected === item._id ? (
                 <HiMinus />
               ) : (
                 <BsPlusLg />
@@ -32,11 +31,13 @@ export const Filter = ({ data }) => {
           </div>
           <div
             className={
-              selected === index
+              selected === item._id
                 ? `${styles.content} ${styles.show}`
                 : styles.content
             }>
-            {item.answer}
+            {item?.description?.map((text) => (
+              <p>{text}</p>
+            ))}
           </div>
         </div>
       ))}
