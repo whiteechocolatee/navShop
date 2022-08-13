@@ -4,26 +4,32 @@ import styles from "./popup.module.css";
 
 export const Popup = ({
   children,
-  trigger,
-  setTrigger,
+  active,
+  setActive,
   className,
 }) => {
-  return trigger ? (
+  return (
     <div
-      onClick={() => setTrigger(false)}
-      className={styles.popup}>
+      onClick={() => setActive(false)}
+      className={
+        active
+          ? `${styles.popup} ${styles.active}`
+          : styles.popup
+      }>
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`${styles.popupInner} ${className}`}>
+        className={
+          active
+            ? `${styles.popupInner} ${styles.activeInner} ${className}`
+            : `${styles.popupInner} ${className}`
+        }>
         <button
-          onClick={() => setTrigger(false)}
+          onClick={() => setActive(false)}
           className={styles.closeBtn}>
           <GrFormClose />
         </button>
         {children}
       </div>
     </div>
-  ) : (
-    ""
   );
 };
