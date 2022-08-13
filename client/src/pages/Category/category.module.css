@@ -7,6 +7,7 @@
 .container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .items {
@@ -37,4 +38,22 @@
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.range {
+  margin: 40px 20px;
+}
+
+.filterContent {
+  margin-top: 100px;
+}
+
+.filterTitle {
+  text-transform: capitalize;
+  color: #000000;
+  border-bottom: 2px solid black;
+}
+
+.loader {
+  height: 90vh;
 }
