@@ -3,7 +3,7 @@ import styles from "./filter.module.css";
 import { BsPlusLg } from "react-icons/bs";
 import { HiMinus } from "react-icons/hi";
 
-export const Filter = ({ characteristic }) => {
+export const Filter = ({ characteristic, children }) => {
   const [selected, setSelected] = useState(null);
 
   const toggle = (i) => {
@@ -41,6 +41,7 @@ export const Filter = ({ characteristic }) => {
           </div>
         </div>
       ))}
+      {children}
     </div>
   );
 };
