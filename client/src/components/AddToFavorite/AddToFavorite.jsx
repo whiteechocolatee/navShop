@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./addToFavorite.module.css";
 import { Popup } from "../Popup/Popup";
 import { Button } from "../Button/Button";
+import { paths } from "../../paths";
 
 import {
   checkIsAuth,
@@ -17,7 +19,8 @@ export const AddToFavorite = ({
   alreadyFavorite,
   toBeFavorite,
 }) => {
-  const [buttonPopup, setButtonPopup] = useState(false);
+  const [active, setActive] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const isAuth = useSelector(checkIsAuth);
@@ -40,7 +43,7 @@ export const AddToFavorite = ({
         dispatch(addToFavorite({ product: item._id }));
       }
     } else {
-      setButtonPopup(true);
+      setActive(true);
     }
   };
 
@@ -48,8 +51,8 @@ export const AddToFavorite = ({
     <>
       <Popup
         className={styles.popupClass}
-        setTrigger={setButtonPopup}
-        trigger={buttonPopup}>
+        setActive={setActive}
+        active={active}>
         <div className={styles.popupContent}>
           <h1 className={styles.popupTitle}>
             Додати у обране
@@ -60,9 +63,9 @@ export const AddToFavorite = ({
             товари будуть збережені в акаунті
           </p>
           <Button
-            onClick={() => setButtonPopup(false)}
+            onClick={() => navigate(paths.signup)}
             containerClassName={styles.popupBtn}>
-            Зрозуміло
+            Створити
           </Button>
         </div>
       </Popup>
