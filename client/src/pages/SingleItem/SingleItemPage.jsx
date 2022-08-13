@@ -20,6 +20,7 @@ import { getItems } from "../../store/items/itemsSlice";
 import { paths } from "../../paths";
 
 export const SingleItemPage = () => {
+  window.scroll(0, 0);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,11 +63,25 @@ export const SingleItemPage = () => {
     ...new Set(similarItems?.map((value) => value.color)),
   ];
 
-  const filteredMemory = [
-    ...new Set(
-      similarItems?.map((value) => value.memory).sort(),
-    ),
-  ];
+  let filteredMemory = [];
+
+  const getFilteredMemory = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      const element = arr[i];
+
+      if (element.hasOwnProperty("memory")) {
+        filteredMemory.push(element.memory);
+      }
+    }
+
+    filteredMemory = [...new Set(filteredMemory)].sort();
+
+    return filteredMemory;
+  };
+
+  getFilteredMemory(similarItems);
+
+  console.log(filteredColors, filteredMemory);
 
   const addToCart = (e) => {
     e.stopPropagation();
@@ -77,8 +92,6 @@ export const SingleItemPage = () => {
       dispatch(setItemInCart(item));
     }
   };
-
-  // console.log(filteredMemory);
 
   const chooseColor = (color) => {
     let [chosenItem] = similarItems.filter(
@@ -180,7 +193,7 @@ export const SingleItemPage = () => {
                   </div>
                 </div>
                 <div className={styles.additional}>
-                  {filteredColors.length > 0 ? (
+                  {filteredColors.length !== 0 ? (
                     <div className={styles.colors}>
                       <div>Color:</div>
                       {filteredColors?.map((value) => {
@@ -217,7 +230,7 @@ export const SingleItemPage = () => {
                       })}
                     </div>
                   ) : null}
-                  {filteredMemory.length > 0 ? (
+                  {filteredMemory.length !== 0 ? (
                     <div className={styles.memories}>
                       <div>Memory:</div>
                       {filteredMemory?.map((value) => {
