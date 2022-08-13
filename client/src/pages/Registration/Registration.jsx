@@ -147,8 +147,8 @@ export const Registration = () => {
           <div className={styles.registrationPage}>
             <Popup
               className={styles.popupClass}
-              setTrigger={setButtonPopup}
-              trigger={buttonPopup}>
+              setActive={setButtonPopup}
+              active={buttonPopup}>
               <div className={styles.popupContent}>
                 <h1 className={styles.popupTitle}>
                   Ваш аккаунт було створено!
