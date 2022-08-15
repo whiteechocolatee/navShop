@@ -21,6 +21,7 @@ import {
   userProfile,
 } from "../../store/users/userAuthSlice";
 import { getItems } from "../../store/items/itemsSlice";
+import { ScrollButton } from "../../components/ScrollButton/ScrollButton";
 
 export const Main = () => {
   const isAuth = useSelector(checkIsAuth);
@@ -102,6 +103,7 @@ export const Main = () => {
             items={discountCarousel}
           />
           <CallbackBlock />
+          <ScrollButton />
           <Footer />
         </>
       )}
