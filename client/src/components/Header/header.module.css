@@ -121,6 +121,12 @@
   background: #000;
 }
 
+
+.logoImg img{
+  width: 65px;
+  height: auto;
+}
+
 @media (max-width: 767px) {
   .toggler {
     display: block;

@@ -20,6 +20,7 @@ import {
   logout,
   checkIsAuth,
 } from "../../store/users/userAuthSlice";
+import { ImageComponent } from "../Image/Image";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -50,7 +51,12 @@ export const Header = () => {
         <NavLink
           className={styles.mainLink}
           to={paths.main}>
-          <b>LOGO</b>
+          <div className={styles.logoImg}>
+            <ImageComponent
+              publicId={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1660555989/items/d8fjw6v-516f0d4b-7a4b-4ffb-9376-4213a53021a9-removebg-preview_gvtsqg.png`}
+              alt='logo'
+            />
+          </div>
         </NavLink>
         <button
           className={`${styles.toggler}`}
