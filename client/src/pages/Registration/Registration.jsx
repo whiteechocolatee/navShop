@@ -12,7 +12,7 @@ import { Input } from "../../components/Input/Input";
 import { paths } from "../../paths";
 import { Loader } from "../../components/Loader/Loader";
 import { CategoriesNavigation } from "../../components/CategoriesNav/CategoriesNavigation";
-import { Popup } from "../../components/Popup/Popup";
+import { AccountCreated } from "../../components/Popups/AccountCreated/AccountCreated";
 
 import {
   checkIsAuth,
@@ -145,24 +145,12 @@ export const Registration = () => {
           <Loader />
         ) : (
           <div className={styles.registrationPage}>
-            <Popup
-              className={styles.popupClass}
-              setActive={setButtonPopup}
-              active={buttonPopup}>
-              <div className={styles.popupContent}>
-                <h1 className={styles.popupTitle}>
-                  Ваш аккаунт було створено!
-                </h1>
-                <Button
-                  onClick={() => {
-                    setButtonPopup(false);
-                    navigate(paths.main);
-                  }}
-                  containerClassName={styles.popupBtn}>
-                  Повернутись до магазину
-                </Button>
-              </div>
-            </Popup>
+            <AccountCreated
+              buttonPopup={buttonPopup}
+              setButtonPopup={setButtonPopup}
+              navigate={navigate}
+              paths={paths}
+            />
             <div className={styles.navigation}>
               <Link className={styles.link} to={paths.main}>
                 Головна
