@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -13,17 +13,19 @@ import { Filter } from "../../components/Filter/Filter";
 import { Footer } from "../../components/Footer/Footer";
 import { ItemCarousel } from "../../components/ItemsByType/ItemCarousel";
 import { AddToFavorite } from "../../components/AddToFavorite/AddToFavorite";
+import { paths } from "../../paths";
+import { BuyPerClick } from "../../components/Popups/BuyPerClick/BuyPerClick";
 
 import { setItemInCart } from "../../store/cart/cartSlice";
 import { getItem } from "../../store/item/itemSlice";
 import { getItems } from "../../store/items/itemsSlice";
-import { paths } from "../../paths";
 
 export const SingleItemPage = () => {
   window.scroll(0, 0);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [active, setActive] = useState(false);
 
   const { item, singleItemLoading } = useSelector(
     (state) => {
@@ -48,8 +50,8 @@ export const SingleItemPage = () => {
   });
 
   const buyPerClick = () => {
-    cart = [];
-    cart.push(item);
+    setActive(true);
+    
   };
 
   let similarItems = items?.filter((value) => {
@@ -79,9 +81,11 @@ export const SingleItemPage = () => {
     return filteredMemory;
   };
 
-  getFilteredMemory(similarItems);
+  const discountPrice = Math.ceil(
+    item.price - (item.price / 100) * item.discount,
+  );
 
-  console.log(filteredColors, filteredMemory);
+  getFilteredMemory(similarItems);
 
   const addToCart = (e) => {
     e.stopPropagation();
@@ -133,11 +137,7 @@ export const SingleItemPage = () => {
                   <h1>
                     {" "}
                     {item.discount > 0
-                      ? Math.ceil(
-                          item.price -
-                            (item.price / 100) *
-                              item.discount,
-                        )
+                      ? discountPrice
                       : item.price}{" "}
                     ₴
                   </h1>
@@ -189,8 +189,16 @@ export const SingleItemPage = () => {
                   <div
                     onClick={buyPerClick}
                     className={styles.itemBuy}>
-                    <p>купити в один клік</p>
+                    <p>купити в 1 клік</p>
                   </div>
+                  <BuyPerClick
+                    title={item.title}
+                    itemImage={item.itemImage}
+                    discountPrice={discountPrice}
+                    active={active}
+                    setActive={setActive}
+                    count={item.count}
+                  />
                 </div>
                 <div className={styles.additional}>
                   {filteredColors.length !== 0 ? (
