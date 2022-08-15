@@ -7,12 +7,15 @@
 }
 
 .cardImage {
-  width: 100px;
-  width: 40%;
+  padding: 0 10px;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cardImage img {
-  width: 90px;
+  width: 100%;
   height: auto;
 }
 
