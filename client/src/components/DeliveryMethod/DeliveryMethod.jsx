@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Courier } from "../CourierDelivery/Courier";
 import { Map } from "../MapContainer/Map";
