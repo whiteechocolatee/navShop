@@ -14,10 +14,18 @@ import { ContentWrapper } from "../../components/contentWrapper/ContentWrapper";
 import { Filter } from "../../components/Filter/Filter";
 import styles from "./category.module.css";
 import { RangeSlider } from "../../components/PriceRange/PriceRange";
+import { Checkbox } from "../../components/Checkbox/Checkbox";
 
 import { getItemsByCategory } from "../../store/items/itemsSlice";
+import { ScrollButton } from "../../components/ScrollButton/ScrollButton";
 
 export const CategoryPage = () => {
+  const [filters, setFilters] = useState({
+    brand: "",
+    model: "",
+  });
+  const [filtered, setFiltered] = useState([]);
+
   const { categoryName } = useParams();
   const dispatch = useDispatch();
 
@@ -26,7 +34,7 @@ export const CategoryPage = () => {
   });
 
   const { setDesc, sortedItems } = useSortItems(
-    items || [],
+    filtered.length === 0 ? items : filtered,
   );
 
   const priceFilter = items.map((item) => item.price);
@@ -40,14 +48,59 @@ export const CategoryPage = () => {
     setDesc(JSON.parse(e.target.value));
   };
 
+  const brandFilter = [
+    ...new Set(items.map((item) => item.company)),
+  ].sort();
+
+  const modelFilter = [
+    ...new Set(items.map((item) => item.model)),
+  ];
+
+  const handleReset = () => {
+    setFilters({
+      brand: "",
+      model: "",
+    });
+    setRange([minPrice, maxPrice]);
+    setFiltered([]);
+  };
+
+  const handleFilter = () => {
+    let filteredItems = items.filter(
+      (item) =>
+        item.price >= range[0] && item.price <= range[1],
+    );
+
+    if (filters.brand !== "") {
+      filteredItems = filteredItems.filter(
+        (item) => item.company === filters.brand,
+      );
+    }
+
+    if (filters.model !== "") {
+      filteredItems = filteredItems.filter(
+        (item) => item.model === filters.model,
+      );
+    }
+
+    setFiltered(filteredItems);
+  };
+
   useEffect(() => {
     dispatch(getItemsByCategory(categoryName));
   }, [categoryName, dispatch]);
 
+  const handleChange = (e) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const filterData = [
     {
       _id: 1,
-      name: "По цене",
+      name: "Ціна",
       description: [
         <p className={styles.range}>
           <p>
@@ -64,13 +117,39 @@ export const CategoryPage = () => {
     },
     {
       _id: 2,
-      name: "По приколу",
-      description: [<input type='range' />],
+      name: "Бренд",
+      description: [
+        <p>
+          {brandFilter.map((brand) => (
+            <Checkbox
+              onChange={handleChange}
+              name='brand'
+              checkedValue={filters.brand === brand}
+              value={brand}
+              children={brand}
+              containerClassName={styles.checkbox}
+            />
+          ))}
+        </p>,
+      ],
     },
     {
       _id: 3,
-      name: "Просто так",
-      description: [<input type='range' />],
+      name: "Модель",
+      description: [
+        <p>
+          {modelFilter.map((model) => (
+            <Checkbox
+              onChange={handleChange}
+              name='model'
+              checkedValue={filters.model === model}
+              value={model}
+              children={model}
+              containerClassName={styles.checkbox}
+            />
+          ))}
+        </p>,
+      ],
     },
   ];
 
@@ -84,7 +163,20 @@ export const CategoryPage = () => {
         <ContentWrapper className={styles.container}>
           <div className={styles.filterContent}>
             <h3 className={styles.filterTitle}>Фільтри</h3>
-            <Filter characteristic={filterData} />
+            <Filter characteristic={filterData}>
+              <div className={styles.filterBtns}>
+                <Button
+                  onClick={handleFilter}
+                  containerClassName={styles.btnApply}
+                  children='Пошук'
+                />
+                <Button
+                  onClick={handleReset}
+                  containerClassName={styles.btnReset}
+                  children='Скинути'
+                />
+              </div>
+            </Filter>
           </div>
           <div className={styles.items}>
             <ItemCarousel
@@ -106,6 +198,9 @@ export const CategoryPage = () => {
                 </select>
               </div>
             </ItemCarousel>
+          </div>
+          <div className={styles.scrollUp}>
+            <ScrollButton />
           </div>
         </ContentWrapper>
       )}
