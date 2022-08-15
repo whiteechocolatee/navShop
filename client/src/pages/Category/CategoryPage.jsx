@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSortItems } from "../../hooks/useSort";
@@ -25,6 +30,10 @@ export const CategoryPage = () => {
     model: "",
   });
   const [filtered, setFiltered] = useState([]);
+
+  const [quantity, setQuantity] = useState(12);
+
+  const ref = useRef(null);
 
   const { categoryName } = useParams();
   const dispatch = useDispatch();
@@ -86,9 +95,18 @@ export const CategoryPage = () => {
     setFiltered(filteredItems);
   };
 
+  const updateQuantity = useCallback(() => {
+    let newPageLimit = Number(ref.current?.value);
+
+    setQuantity(newPageLimit);
+  }, [quantity]);
+
+  const pages = [12, 24, 36];
+
   useEffect(() => {
     dispatch(getItemsByCategory(categoryName));
-  }, [categoryName, dispatch]);
+    updateQuantity();
+  }, [categoryName, dispatch, updateQuantity]);
 
   const handleChange = (e) => {
     setFilters({
@@ -181,21 +199,50 @@ export const CategoryPage = () => {
           <div className={styles.items}>
             <ItemCarousel
               containerClassName={styles.grid}
-              itemsQuantity={12}
+              itemsQuantity={quantity}
               title={`Category ${categoryName}`}
               items={sortedItems}>
               <div className={styles.sortBlock}>
-                <label htmlFor='sort'>Відсортувати: </label>
-                <select
-                  name='sort'
-                  onChange={handleSortByPrice}>
-                  <option value={`true`}>
-                    найдорожче - найдешевше
-                  </option>
-                  <option value='false'>
-                    найдешевше - найдорожче
-                  </option>
-                </select>
+                <div>
+                  <label htmlFor='sort'>
+                    Відсортувати:{" "}
+                  </label>
+                  <select
+                    name='sort'
+                    onChange={handleSortByPrice}>
+                    <option value={`true`}>
+                      найдорожче - найдешевше
+                    </option>
+                    <option value='false'>
+                      найдешевше - найдорожче
+                    </option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor='sortQuantity'>
+                    На сторінці:
+                  </label>
+                  <select
+                    ref={ref}
+                    name='sortQuantity'
+                    onChange={updateQuantity}>
+                    {pages.map((page) => {
+                      if (page === quantity) {
+                        return (
+                          <option selected value={page}>
+                            {page}
+                          </option>
+                        );
+                      } else {
+                        return (
+                          <option value={page}>
+                            {page}
+                          </option>
+                        );
+                      }
+                    })}
+                  </select>
+                </div>
               </div>
             </ItemCarousel>
           </div>
