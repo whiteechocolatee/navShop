@@ -9,7 +9,19 @@ const cartSlice = createSlice({
   },
   reducers: {
     setItemInCart: (state, action) => {
-      state.itemsInCart.push(action.payload);
+      if (action.payload.discount > 0) {
+        let item = {
+          ...action.payload,
+          totalPrice: Math.ceil(
+            action.payload.price -
+              (action.payload.price / 100) *
+                action.payload.discount,
+          ),
+        };
+        state.itemsInCart.push(item);
+      } else {
+        state.itemsInCart.push(action.payload);
+      }
       localStorage.setItem(
         "cart",
         JSON.stringify(state.itemsInCart),
@@ -34,7 +46,12 @@ const cartSlice = createSlice({
           return {
             ...item,
             count: ++item.count,
-            totalPrice: item.count * item.price,
+            totalPrice:
+              item.count *
+              Math.ceil(
+                item.price -
+                  (item.price / 100) * item.discount,
+              ),
           };
         }
         return item;
@@ -53,7 +70,12 @@ const cartSlice = createSlice({
           return {
             ...item,
             count: newCount,
-            totalPrice: newCount * item.price,
+            totalPrice:
+              newCount *
+              Math.ceil(
+                item.price -
+                  (item.price / 100) * item.discount,
+              ),
           };
         }
         return item;
