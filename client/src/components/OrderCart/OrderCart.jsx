@@ -38,6 +38,7 @@ export const OrderCart = () => {
             <hr className={styles.orderBorder} />
             {cart.map((item) => (
               <OrderCard
+                discount={item.discount}
                 key={item._id}
                 id={item._id}
                 title={item.title}

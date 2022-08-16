@@ -71,7 +71,7 @@
 .btnContainer {
   z-index: 2;
   width: 120px;
-  margin: 0 0 38px 10px;
+  margin: 0 10px 38px 0;
 }
 
 .addToCart {
@@ -83,5 +83,17 @@
 .price {
   font-size: 18px;
   font-weight: 700;
-  margin: 0 30px 40px 0;
+  margin: 0 0 40px 20px;
+}
+
+.discountPrice {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.lineThrough {
+  font-weight: 400;
+  text-decoration: line-through solid 1.5px #828282;
+  color: #828282;
 }

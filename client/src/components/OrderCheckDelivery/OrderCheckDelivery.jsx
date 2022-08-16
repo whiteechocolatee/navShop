@@ -17,6 +17,7 @@ export const OrderCheckDelivery = ({ total, cart }) => {
             price={product.price}
             count={product.count}
             title={product.title}
+            discount={product.discount}
           />
         ))}
         <div className={styles.checkTotal}>

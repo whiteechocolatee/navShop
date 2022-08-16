@@ -10,7 +10,12 @@ export const CheckCard = ({
   title,
   imageClass,
   bodyClass,
+  discount,
 }) => {
+  let discountPrice = Math.ceil(
+    price - (price / 100) * discount,
+  );
+
   return (
     <div className={styles.cardBody}>
       <div className={`${styles.cardImage} ${imageClass}`}>
@@ -19,7 +24,7 @@ export const CheckCard = ({
       <div className={`${styles.cardInfo} ${bodyClass}`}>
         <div className={styles.cardTitle}>{title}</div>
         <div className={styles.cardDesc}>
-          <p>{price} ₴</p>
+          <p>{discountPrice} ₴</p>
           <p>К-ть: {count}</p>
         </div>
       </div>

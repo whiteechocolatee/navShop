@@ -23,6 +23,10 @@ export const Item = ({ item }) => {
     (itemInCart) => itemInCart._id === item._id,
   );
 
+  let discountPrice = Math.ceil(
+    price - (price / 100) * discount,
+  );
+
   const addToCart = (e) => {
     e.stopPropagation();
 
@@ -62,6 +66,20 @@ export const Item = ({ item }) => {
         <div className={styles.description}>{title}</div>
       </Link>
       <div className={styles.addToCart}>
+        <div className={styles.price}>
+          {discount === 0 ? (
+            <span>{price} ₴</span>
+          ) : (
+            <span>
+              <span className={styles.discountPrice}>
+                {discountPrice} ₴
+              </span>
+              <p className={styles.lineThrough}>
+                {price} ₴
+              </p>
+            </span>
+          )}
+        </div>
         <Button
           onClick={addToCart}
           className={styles.btnText}
@@ -70,12 +88,6 @@ export const Item = ({ item }) => {
             isItemInCart ? `В кошику` : `Додати в кошик`
           }
         />
-        <span className={styles.price}>
-          {discount > 0
-            ? Math.ceil(price - (price / 100) * discount)
-            : price}{" "}
-          ₴
-        </span>
       </div>
     </div>
   );

@@ -55,3 +55,16 @@
 .title {
   width: 300px;
 }
+
+.title a:hover,
+.title a:focus,
+.title a {
+  color: #242424;
+  text-decoration: none;
+}
+
+.priceLine {
+  text-decoration: line-through 2px solid black;
+  font-size: 18px;
+  margin-right: 30px;
+}

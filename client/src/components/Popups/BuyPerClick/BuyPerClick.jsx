@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 import { Popup } from "../../Popup/Popup";
 import styles from "./popup.module.css";
 import { CheckCard } from "../../CheckCard/CheckCard";
 import { Input } from "../../Input/Input";
 import { Button } from "../../Button/Button";
+import { paths } from "../../../paths";
 
 export const BuyPerClick = ({
   active,
@@ -13,7 +15,7 @@ export const BuyPerClick = ({
   title,
   itemImage,
   count,
-  handleSubmit,
+  addToCart,
 }) => {
   const [values, setValues] = useState({
     name: "",
@@ -21,6 +23,8 @@ export const BuyPerClick = ({
     phone: "",
     email: "",
   });
+
+  const navigate = useNavigate();
 
   const inputs = [
     {
@@ -60,6 +64,16 @@ export const BuyPerClick = ({
     },
   ];
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sessionStorage.setItem(
+      "buyPerClick",
+      JSON.stringify(values),
+    );
+    addToCart();
+    navigate(`${paths.order}/${paths.delivery}`);
+  };
+
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -93,8 +107,12 @@ export const BuyPerClick = ({
               />
             </div>
           ))}
-          <Button containerClassName={styles.btn} >
-            <input className={styles.submit} type="submit" value='Купити' />
+          <Button containerClassName={styles.btn}>
+            <input
+              className={styles.submit}
+              type='submit'
+              value='Купити'
+            />
           </Button>
         </form>
       </div>

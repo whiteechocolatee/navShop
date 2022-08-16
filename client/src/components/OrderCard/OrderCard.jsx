@@ -18,6 +18,7 @@ export const OrderCard = ({
   id,
   count,
   totalPrice,
+  discount,
 }) => {
   const dispatch = useDispatch();
 
@@ -25,6 +26,10 @@ export const OrderCard = ({
     e.stopPropagation();
     dispatch(removeItemFromCart(id));
   };
+
+  let discountPrice = Math.ceil(
+    price - (price / 100) * discount,
+  );
 
   return (
     <div className={styles.orderCard}>
@@ -48,7 +53,7 @@ export const OrderCard = ({
         </div>
       </div>
       <div className={styles.pricePerItem}>
-        <h6 className={styles.titles}>{price} ₴</h6>
+        <h6 className={styles.titles}>{discountPrice} ₴</h6>
       </div>
       <div className={styles.price}>
         <h6 className={styles.titles}>
