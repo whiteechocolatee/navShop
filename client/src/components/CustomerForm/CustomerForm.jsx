@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./customer.module.css";
 import { Input } from "../Input/Input";
+import { paths } from "../../paths";
 
 export const CustomerForm = ({ values, handleChange }) => {
+  const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
 
   const handleCheckbox = () => {
     setChecked(!checked);
   };
+
+  if (checked) {
+    sessionStorage.setItem(
+      "newUser",
+      JSON.stringify({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        surname: values.surname,
+      }),
+    );
+
+    navigate(paths.signup);
+  }
 
   const customerInfo = [
     {
