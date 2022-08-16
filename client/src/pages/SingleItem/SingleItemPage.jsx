@@ -51,7 +51,6 @@ export const SingleItemPage = () => {
 
   const buyPerClick = () => {
     setActive(true);
-    
   };
 
   let similarItems = items?.filter((value) => {
@@ -88,7 +87,7 @@ export const SingleItemPage = () => {
   getFilteredMemory(similarItems);
 
   const addToCart = (e) => {
-    e.stopPropagation();
+    e?.stopPropagation();
 
     if (isItemInCart) {
       return false;
@@ -133,15 +132,16 @@ export const SingleItemPage = () => {
                 {item.title}
               </div>
               <div className={styles.itemPrice}>
-                <div>
-                  <h1>
-                    {" "}
-                    {item.discount > 0
-                      ? discountPrice
-                      : item.price}{" "}
-                    ₴
-                  </h1>
-                </div>
+                {item.discount > 0 ? (
+                  <div className={styles.priceDiscount}>
+                    <h3>{discountPrice} ₴</h3>
+                    <h1>{item.price} ₴</h1>
+                  </div>
+                ) : (
+                  <div>
+                    <h1>{item.price} ₴</h1>
+                  </div>
+                )}
                 <Button
                   onClick={addToCart}
                   containerClassName={styles.itemPriceBtn}
@@ -198,6 +198,7 @@ export const SingleItemPage = () => {
                     active={active}
                     setActive={setActive}
                     count={item.count}
+                    addToCart={addToCart}
                   />
                 </div>
                 <div className={styles.additional}>
