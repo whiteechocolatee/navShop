@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
+import { IoIosArrowUp } from "react-icons/io";
 
 import styles from "./scroll.module.css";
 
@@ -33,7 +34,7 @@ export const ScrollButton = () => {
       <div
         className={styles.scrollBtn}
         onClick={scrollToTop}>
-        <FaArrowCircleUp className={styles.svg} />
+        <IoIosArrowUp className={styles.svg} />
       </div>
     </div>
   );
