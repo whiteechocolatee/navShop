@@ -227,19 +227,13 @@ export const CategoryPage = () => {
                     name='sortQuantity'
                     onChange={updateQuantity}>
                     {pages.map((page) => {
-                      if (page === quantity) {
-                        return (
-                          <option selected value={page}>
-                            {page}
-                          </option>
-                        );
-                      } else {
-                        return (
-                          <option value={page}>
-                            {page}
-                          </option>
-                        );
-                      }
+                      return page === quantity ? (
+                        <option selected value={page}>
+                          {page}
+                        </option>
+                      ) : (
+                        <option value={page}>{page}</option>
+                      );
                     })}
                   </select>
                 </div>
