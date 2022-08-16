@@ -23,13 +23,17 @@ export const Registration = () => {
   window.scroll(0, 0);
   const navigate = useNavigate();
 
+  const newUser = JSON.parse(
+    sessionStorage.getItem("newUser"),
+  );
+
   const [buttonPopup, setButtonPopup] = useState(false);
   const [message, setMessage] = useState(false);
   const [values, setValues] = useState({
-    name: "",
-    email: "",
-    surname: "",
-    phoneNumber: "",
+    name: newUser?.name || "",
+    email: newUser?.email || "",
+    surname: newUser?.surname || "",
+    phoneNumber: newUser?.phone || "",
     password: "",
     confirmPassword: "",
   });
