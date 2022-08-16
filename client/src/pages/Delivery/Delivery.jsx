@@ -40,11 +40,17 @@ export const Delivery = () => {
     }
   });
 
+  const unregisteredUser = JSON.parse(
+    sessionStorage.getItem("buyPerClick"),
+  );
+
   const [values, setValues] = useState({
-    name: user?.name || "",
-    surname: user?.surname || "",
-    phone: user?.phoneNumber || "",
-    email: user?.email || "",
+    name: user?.name || unregisteredUser?.name || "",
+    surname:
+      user?.surname || unregisteredUser?.surname || "",
+    phone:
+      user?.phoneNumber || unregisteredUser?.phone || "",
+    email: user?.email || unregisteredUser?.email || "",
     shippingMethod: "localPickup",
     area: obj?.area || "Виберіть область",
     city: obj?.city || "Виберіть місто",
@@ -183,6 +189,13 @@ export const Delivery = () => {
                     className={styles.input}
                   />
                 </div>
+                <div className={styles.btnContainer}>
+                  <Button
+                    onClick={handleOrder}
+                    children={"Замовити!"}
+                    containerClassName={styles.btn}
+                  />
+                </div>
               </div>
               <OrderCheckDelivery
                 total={total}
@@ -190,18 +203,6 @@ export const Delivery = () => {
               />
             </div>
           </div>
-          <Button
-            onClick={handleOrder}
-            children={
-              // <Link
-              //   className={styles.btnLink}
-              //   to={paths.order}>
-              //   Перейти до оплати
-              // </Link>
-              "Замовити!"
-            }
-            containerClassName={styles.btn}
-          />
         </ContentWrapper>
       )}
 
