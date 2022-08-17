@@ -95,6 +95,11 @@ export const CategoryPage = () => {
     setFiltered(filteredItems);
   };
 
+  const setPrices = useCallback(
+    () => setRange([minPrice, maxPrice]),
+    [maxPrice, minPrice],
+  );
+
   const updateQuantity = useCallback(() => {
     let newPageLimit = Number(ref.current?.value);
 
@@ -102,6 +107,10 @@ export const CategoryPage = () => {
   }, [quantity]);
 
   const pages = [12, 24, 36];
+
+  useEffect(() => {
+    setPrices();
+  }, [setPrices]);
 
   useEffect(() => {
     dispatch(getItemsByCategory(categoryName));
