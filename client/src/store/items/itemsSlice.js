@@ -48,19 +48,26 @@ const ItemsSlice = createSlice({
         state.items = null;
         state.isError = action.error.message;
       })
-      // get items by category 
+      // get items by category
       .addCase(getItemsByCategory.pending, (state) => {
         state.isLoading = true;
+        state.items = [];
       })
-      .addCase(getItemsByCategory.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload;
-      })
-      .addCase(getItemsByCategory.rejected, (state, action) => {
-        state.isLoading = false;
-        state.items = null;
-        state.isError = action.error.message;
-      })
+      .addCase(
+        getItemsByCategory.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.items = action.payload;
+        },
+      )
+      .addCase(
+        getItemsByCategory.rejected,
+        (state, action) => {
+          state.isLoading = false;
+          state.items = null;
+          state.isError = action.error.message;
+        },
+      );
   },
 });
 
