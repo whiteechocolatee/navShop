@@ -13,13 +13,14 @@
 }
 
 .navBtn svg {
-  font-size: 30px;
+  font-size: 25px;
   margin-right: 5px;
 }
 
-.navBtn a {
+.navBtn li a {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .navBtns a,
@@ -27,7 +28,7 @@
 .navBtns a:focus {
   color: #000;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 @media (max-width: 1050px) {

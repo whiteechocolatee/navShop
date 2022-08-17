@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
-  RiBattery2ChargeLine,
   RiDeviceRecoverLine,
   RiComputerLine,
 } from "react-icons/ri";
@@ -9,7 +8,9 @@ import {
   GiPowerGenerator,
   GiAudioCassette,
 } from "react-icons/gi";
-import { FaCarSide } from "react-icons/fa";
+import { FaCarSide, FaHome } from "react-icons/fa";
+import { FiSmartphone } from "react-icons/fi";
+import { GrGamepad } from "react-icons/gr";
 
 import styles from "./nav.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
@@ -23,12 +24,12 @@ export const CategoriesNavigation = () => {
           <ul className={styles.navBtns}>
             <li className={styles.navBtn}>
               <NavLink
-                to={`${paths.category}/charger`}
+                to={`${paths.category}/smartphones`}
                 style={({ isActive }) => ({
                   color: isActive ? "#ABAFE9" : "#000",
                 })}>
-                <RiBattery2ChargeLine />
-                Зарядные
+                <FiSmartphone />
+                Смартфони
               </NavLink>
             </li>
             <li className={styles.navBtn}>
@@ -38,17 +39,17 @@ export const CategoriesNavigation = () => {
                   color: isActive ? "#ABAFE9" : "#000",
                 })}>
                 <RiDeviceRecoverLine />
-                Защитные акссесуары
+                Аксесуари
               </NavLink>
             </li>
             <li className={styles.navBtn}>
               <NavLink
-                to={`${paths.category}/gadget`}
+                to={`${paths.category}/gadgets`}
                 style={({ isActive }) => ({
                   color: isActive ? "#ABAFE9" : "#000",
                 })}>
                 <GiPowerGenerator />
-                Гаджеты
+                Гаджети
               </NavLink>
             </li>
             <li className={styles.navBtn}>
@@ -58,7 +59,17 @@ export const CategoriesNavigation = () => {
                   color: isActive ? "#ABAFE9" : "#000",
                 })}>
                 <GiAudioCassette />
-                Аудио
+                Аудіо
+              </NavLink>
+            </li>
+            <li className={styles.navBtn}>
+              <NavLink
+                to={`${paths.category}/home`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <FaHome />
+                Для дому
               </NavLink>
             </li>
             <li className={styles.navBtn}>
@@ -68,7 +79,17 @@ export const CategoriesNavigation = () => {
                   color: isActive ? "#ABAFE9" : "#000",
                 })}>
                 <RiComputerLine />
-                Для компьютеров
+                Для компьютерів
+              </NavLink>
+            </li>
+            <li className={styles.navBtn}>
+              <NavLink
+                to={`${paths.category}/game`}
+                style={({ isActive }) => ({
+                  color: isActive ? "#ABAFE9" : "#000",
+                })}>
+                <GrGamepad />
+                Для геймерів
               </NavLink>
             </li>
             <li className={styles.navBtn}>
