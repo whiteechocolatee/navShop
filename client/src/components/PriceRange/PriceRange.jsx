@@ -7,9 +7,9 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
   height: 2,
   padding: "15px 0",
   "& .MuiSlider-thumb": {
-    height: 28,
-    width: 28,
-    backgroundColor: "#fff",
+    height: 10,
+    width: 10,
+    background: "#242424",
     "&:focus, &:hover, &.Mui-active": {
       boxShadow:
         "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)",
@@ -30,10 +30,12 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
   },
   "& .MuiSlider-track": {
     border: "none",
+    background: "#242424",
   },
   "& .MuiSlider-rail": {
-    opacity: 0.5,
-    backgroundColor: "#bfbfbf",
+    opacity: 1,
+    background:
+      "linear-gradient(93.77deg, #ABAFE9 5.59%, #B5E0FD 99.02%)",
   },
   "& .MuiSlider-mark": {
     backgroundColor: "#bfbfbf",
