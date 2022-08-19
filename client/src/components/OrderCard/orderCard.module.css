@@ -41,3 +41,36 @@
 .qtyBtns {
   cursor: pointer;
 }
+
+@media (max-width: 1000px) {
+  .orderCard {
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .orderCard {
+    height: 200px;
+    flex-wrap: wrap;
+  }
+
+  .title {
+    width: 80%;
+  }
+
+  .imageBlock img {
+    width: 70px;
+  }
+
+  .qty {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 470px) {
+  /* .orderCard {
+    flex-wrap: nowrap;
+  } */
+}

@@ -56,3 +56,24 @@
 .emptyCart {
   text-align: center;
 }
+
+@media (max-width: 1220px) {
+  .orderCards {
+    width: 750px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .orderCards {
+    width: 650px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .orderInfo {
+    flex-wrap: wrap;
+  }
+  .orderCards {
+    width: 100%;
+  }
+}
