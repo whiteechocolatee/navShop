@@ -53,7 +53,7 @@ export const Header = () => {
           to={paths.main}>
           <div className={styles.logoImg}>
             <ImageComponent
-              publicId={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1660555989/items/d8fjw6v-516f0d4b-7a4b-4ffb-9376-4213a53021a9-removebg-preview_gvtsqg.png`}
+              publicId={`https://res.cloudinary.com/dmhqzwtnd/image/upload/v1660824642/items/output-onlinepngtools_goyo9x.png`}
               alt='logo'
             />
           </div>
@@ -88,43 +88,73 @@ export const Header = () => {
               aria-labelledby='dropdownMenuButton1'>
               <li>
                 <NavLink
-                  className={`dropdown-item ${styles.dropdownLink}`}
-                  to={"/as"}>
-                  Зарядные
+                  to={`${paths.category}/smartphones`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Смартфони
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  className={`dropdown-item`}
-                  to={"/asd"}>
-                  Защитные акссесуары
+                  to={`${paths.category}/cover`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Аксесуари
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  className={`dropdown-item`}
-                  to={"/asdf"}>
-                  Гаджеты
+                  to={`${paths.category}/gadgets`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Гаджети
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  className={`dropdown-item`}
-                  to={"/asdfg"}>
-                  Аудио
+                  to={`${paths.category}/audio`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Аудіо
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  className={`dropdown-item`}
-                  to={"/asdasd"}>
-                  Для компьютеров
+                  to={`${paths.category}/home`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Для дому
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  className={`dropdown-item`}
-                  to={"/ыфвфывфыв"}>
+                  to={`${paths.category}/pc`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Для компьютерів
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`${paths.category}/game`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
+                  Для геймерів
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`${paths.category}/auto`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ABAFE9" : "#000",
+                  })}>
                   Для авто
                 </NavLink>
               </li>
