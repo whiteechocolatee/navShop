@@ -3,7 +3,11 @@ import styles from "./filter.module.css";
 import { BsPlusLg } from "react-icons/bs";
 import { HiMinus } from "react-icons/hi";
 
-export const Filter = ({ characteristic, children }) => {
+export const Filter = ({
+  characteristic,
+  children,
+  containerClassName,
+}) => {
   const [selected, setSelected] = useState(null);
 
   const toggle = (i) => {
@@ -14,7 +18,8 @@ export const Filter = ({ characteristic, children }) => {
   };
 
   return (
-    <div className={styles.accordion}>
+    <div
+      className={`${styles.accordion} ${containerClassName}`}>
       {characteristic?.map((item) => (
         <div className={styles.item}>
           <div
