@@ -76,3 +76,40 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+@media (max-width: 1130px) {
+  .input {
+    width: 320px;
+    margin-top: 20px;
+  }
+
+  .label {
+    width: 50%;
+  }
+
+  .formBlock {
+    width: 680px;
+    height: 160px;
+    margin-bottom: 70px;
+  }
+  .formBlock {
+    width: 680px;
+    height: 160px;
+    margin-bottom: 70px;
+  }
+}
+
+@media (max-width: 1015px) {
+  .formTitle,
+  .customerForm {
+    /* flex-direction: column; */
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .formBlock {
+    height: 100%;
+    width: 100%;
+  }
+}

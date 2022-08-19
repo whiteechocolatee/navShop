@@ -197,10 +197,12 @@ export const Delivery = () => {
                   />
                 </div>
               </div>
-              <OrderCheckDelivery
-                total={total}
-                cart={cart}
-              />
+              <div className={styles.deliveryCart}>
+                <OrderCheckDelivery
+                  total={total}
+                  cart={cart}
+                />
+              </div>
             </div>
           </div>
         </ContentWrapper>
