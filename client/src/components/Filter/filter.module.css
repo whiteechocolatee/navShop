@@ -1,6 +1,6 @@
 .accordion {
-  max-width: 425px;
-  min-width: 330px;
+  width: 100%;
+  /* min-width: 330px; */
   margin: 30px 0;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .title {
-  width: 204px;
+  width: 100%;
   color: #242424;
   display: flex;
   justify-content: space-between;
@@ -18,7 +18,8 @@
 }
 
 .content {
-  margin-top: 15px;
+  width: 100%;
+  margin: 15px 0;
   color: #676767;
   max-height: 0;
   line-height: 25px;
