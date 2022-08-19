@@ -55,7 +55,7 @@ export const RangeSlider = ({
   };
 
   return (
-    <Box sx={{ width: 250 }}>
+    <Box sx={{ width: 220 }}>
       <IOSSlider
         value={range}
         min={min}
