@@ -3,12 +3,6 @@
   margin: 70px 0;
 }
 
-h1,
-h3 {
-  margin: 0;
-  padding: 0;
-}
-
 .itemTitle {
   font-size: 48px;
   line-height: 150%;
@@ -53,8 +47,8 @@ h3 {
 }
 
 .itemImage img {
-  height: 450px;
-  width: auto;
+  height: auto;
+  max-width: 450px;
   margin-right: 20px;
 }
 
@@ -82,6 +76,7 @@ h3 {
 .itemFilter {
   margin-top: 20px;
   min-height: 350px;
+  width: 50%;
 }
 
 .itemNavigation {
@@ -236,4 +231,81 @@ h3 {
   font-weight: 200;
   text-decoration: line-through 4px solid #242424;
   color: #24242492;
+}
+
+@media (max-width: 1000px) {
+  .itemPrice {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+  }
+
+  .recommendedTitle h1,
+  .itemPrice h1,
+  .itemTitle {
+    font-size: 42px;
+    line-height: 130%;
+  }
+}
+
+@media (max-width: 880px) {
+  .itemBody {
+    flex-wrap: wrap;
+  }
+  .itemImage {
+    margin: 0 auto;
+  }
+  .itemImage img {
+    margin: 0;
+  }
+  .itemFilter {
+    width: 70%;
+  }
+}
+
+@media (max-width: 685px) {
+  .itemHeader {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .itemTitle,
+  .itemPrice {
+    width: 100%;
+    text-align: center;
+  }
+
+  .itemTitle {
+    margin-bottom: 30px;
+  }
+
+  .recommendedTitle h1,
+  .itemPrice h1,
+  .itemTitle {
+    font-size: 38px;
+    line-height: 100%;
+  }
+
+  .itemImage img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .recommendedTitle h1,
+  .itemPrice h1,
+  .itemTitle {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 400px) {
+  .recommendedTitle h1,
+  .itemPrice h1,
+  .itemTitle {
+    font-size: 30px;
+  }
 }

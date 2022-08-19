@@ -1,5 +1,6 @@
 .popupBody {
-  width: 460px;
+  max-width: 460px;
+  width: 100%;
   min-height: 600px;
 }
 
