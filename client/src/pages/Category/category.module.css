@@ -20,13 +20,12 @@
 }
 
 .sortBlock {
-  margin: 50px 0;
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
-.sortBlock div {
+.select {
   border-bottom: 2px solid black;
 }
 
@@ -50,11 +49,13 @@
 }
 
 .range {
-  margin: 40px 20px;
+  margin: 20px 10px;
+  font-size: 14px;
 }
 
 .filterContent {
   margin-top: 100px;
+  width: 375px;
 }
 
 .filterTitle {
@@ -74,7 +75,7 @@
     #b5e0fd 99.02%
   );
   border-radius: 40px;
-  width: 138px;
+  width: 118px;
   height: 44px;
 }
 
@@ -82,7 +83,7 @@
   background: transparent;
   border: #b5e0fd 1px solid;
   border-radius: 40px;
-  width: 138px;
+  width: 118px;
   height: 44px;
 }
 
@@ -95,4 +96,90 @@
 .checkbox {
   margin-top: 20px;
   color: #242424;
+}
+
+.carouselNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.showFilter {
+  margin-left: 20px;
+  width: 130px;
+  border: 1px solid #b5e0fd;
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .filterContent {
+    max-width: 250px;
+  }
+  .btnApply,
+  .btnReset {
+    width: 100px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .filterContent {
+    display: none;
+  }
+  .showFilter {
+    display: block;
+  }
+  .container {
+    display: block;
+    width: 100%;
+  }
+  .items {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 770px) {
+  .carouselNav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px 0;
+  }
+
+  .FilterBlock {
+    width: 100%;
+    margin: 0 20px;
+  }
+
+  .showFilter {
+    max-width: 770px;
+    width: 100%;
+    border: 1px solid #b5e0fd;
+    margin: 0;
+  }
+
+  .sortBlock {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 610px) {
+  .sortBlock {
+    width: 100%;
+  }
+  .sortBlock label {
+    display: none;
+  }
 }

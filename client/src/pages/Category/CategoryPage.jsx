@@ -23,6 +23,7 @@ import { Checkbox } from "../../components/Checkbox/Checkbox";
 
 import { getItemsByCategory } from "../../store/items/itemsSlice";
 import { ScrollButton } from "../../components/ScrollButton/ScrollButton";
+import { FilterPopup } from "../../components/Popups/FiltersAccordion/FilterPopup";
 
 export const CategoryPage = () => {
   const [filters, setFilters] = useState({
@@ -30,7 +31,7 @@ export const CategoryPage = () => {
     model: "",
   });
   const [filtered, setFiltered] = useState([]);
-
+  const [activeFilter, setActiveFilter] = useState(false);
   const [quantity, setQuantity] = useState(12);
 
   const ref = useRef(null);
@@ -95,10 +96,14 @@ export const CategoryPage = () => {
     setFiltered(filteredItems);
   };
 
-  const setPrices = useCallback(
-    () => setRange([minPrice, maxPrice]),
-    [maxPrice, minPrice],
-  );
+  const setPrices = useCallback(() => {
+    setRange([minPrice, maxPrice]);
+    setFiltered([]);
+    setFilters({
+      brand: "",
+      model: "",
+    });
+  }, [maxPrice, minPrice]);
 
   const updateQuantity = useCallback(() => {
     let newPageLimit = Number(ref.current?.value);
@@ -190,7 +195,9 @@ export const CategoryPage = () => {
         <ContentWrapper className={styles.container}>
           <div className={styles.filterContent}>
             <h3 className={styles.filterTitle}>Фільтри</h3>
-            <Filter characteristic={filterData}>
+            <Filter
+              containerClassName={styles.filter}
+              characteristic={filterData}>
               <div className={styles.filterBtns}>
                 <Button
                   onClick={handleFilter}
@@ -205,46 +212,64 @@ export const CategoryPage = () => {
               </div>
             </Filter>
           </div>
-          <div className={styles.items}>
+          <div className={styles}>
             <ItemCarousel
               containerClassName={styles.grid}
               itemsQuantity={quantity}
               title={`Category ${categoryName}`}
               items={sortedItems}>
-              <div className={styles.sortBlock}>
-                <div>
-                  <label htmlFor='sort'>
-                    Відсортувати:{" "}
-                  </label>
-                  <select
-                    name='sort'
-                    onChange={handleSortByPrice}>
-                    <option value={`true`}>
-                      найдорожче - найдешевше
-                    </option>
-                    <option value='false'>
-                      найдешевше - найдорожче
-                    </option>
-                  </select>
+              <div className={styles.carouselNav}>
+                <div className={styles.FilterBlock}>
+                  <Button
+                    onClick={() => setActiveFilter(true)}
+                    containerClassName={styles.showFilter}>
+                    Фільтри
+                  </Button>
+                  <FilterPopup
+                    handleFilter={handleFilter}
+                    handleReset={handleReset}
+                    filterData={filterData}
+                    setActive={setActiveFilter}
+                    active={activeFilter}
+                  />
                 </div>
-                <div>
-                  <label htmlFor='sortQuantity'>
-                    На сторінці:
-                  </label>
-                  <select
-                    ref={ref}
-                    name='sortQuantity'
-                    onChange={updateQuantity}>
-                    {pages.map((page) => {
-                      return page === quantity ? (
-                        <option selected value={page}>
-                          {page}
-                        </option>
-                      ) : (
-                        <option value={page}>{page}</option>
-                      );
-                    })}
-                  </select>
+                <div className={styles.sortBlock}>
+                  <div className={styles.select}>
+                    <label htmlFor='sort'>
+                      Відсортувати:{" "}
+                    </label>
+                    <select
+                      name='sort'
+                      onChange={handleSortByPrice}>
+                      <option value={`true`}>
+                        найдорожче - найдешевше
+                      </option>
+                      <option value='false'>
+                        найдешевше - найдорожче
+                      </option>
+                    </select>
+                  </div>
+                  <div className={styles.select}>
+                    <label htmlFor='sortQuantity'>
+                      На сторінці:
+                    </label>
+                    <select
+                      ref={ref}
+                      name='sortQuantity'
+                      onChange={updateQuantity}>
+                      {pages.map((page) => {
+                        return page === quantity ? (
+                          <option selected value={page}>
+                            {page}
+                          </option>
+                        ) : (
+                          <option value={page}>
+                            {page}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
                 </div>
               </div>
             </ItemCarousel>
