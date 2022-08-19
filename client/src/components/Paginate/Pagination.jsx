@@ -45,14 +45,12 @@ export const Pagination = ({
     if (currentPage < maxPages) {
       paginate(currentPage + 1);
     }
-    window.scroll(0, 0);
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
       paginate(currentPage - 1);
     }
-    window.scroll(0, 0);
   };
 
   return (
