@@ -8,12 +8,14 @@ export const Block = ({
   img = "",
   alt = "",
   title = "",
+  onClick = () => null,
 }) => {
   return (
     <div
       className={`${styles.accessories} ${containerClass}`}>
       <h3 className={styles.accessoriesTitle}>{title}</h3>
       <Button
+        onClick={onClick}
         children={"Еще"}
         containerClassName={styles.btn}
       />
