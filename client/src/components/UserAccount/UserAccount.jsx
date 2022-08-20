@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import { logout } from "../../store/users/userAuthSlice";
 import styles from "./account.module.css";
 import { paths } from "../../paths";
 import { LogoutButton } from "../LogoutButton/LogoutButton";
+import { Button } from "../Button/Button";
+import { UserNavigation } from "../Popups/UserNavigation/UserNavigation";
 
 export const UserAccount = () => {
+  const [active, setActive] = useState();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    window.localStorage.removeItem("token");
+    navigate(paths.main);
+  };
+
   return (
     <div className={styles.profile}>
-      <div>
+      <div className={styles.mainNav}>
         <div className={styles.navigation}>
           <Link className={styles.link} to={paths.main}>
             Головна
@@ -50,6 +66,18 @@ export const UserAccount = () => {
             />
           </nav>
         </div>
+      </div>
+      <div className={styles.mobileNav}>
+        <Button
+          onClick={() => setActive(true)}
+          containerClassName={styles.navBtn}
+          children='Навігація'
+        />
+        <UserNavigation
+          logout={handleLogout}
+          setActive={setActive}
+          active={active}
+        />
       </div>
     </div>
   );

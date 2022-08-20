@@ -53,3 +53,18 @@
   border-bottom: 2px solid black;
   justify-content: flex-end;
 }
+
+.navBtn {
+  border: 1px solid #b5e0fd;
+  display: none;
+}
+
+@media (max-width: 670px) {
+  .userNavigation {
+    display: none;
+  }
+
+  .navBtn {
+    display: block;
+  }
+}
