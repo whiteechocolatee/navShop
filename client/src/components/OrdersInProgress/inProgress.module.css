@@ -52,3 +52,30 @@ h1 {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+@media (max-width: 920px) {
+  .orders {
+    flex-wrap: wrap;
+  }
+
+  .deliveryDetails {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .delivery {
+    width: 50%;
+  }
+}
+
+@media (max-width: 550px) {
+  .deliveryDetails {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .delivery,
+  .payment {
+    width: 100%;
+  }
+}
