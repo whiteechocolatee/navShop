@@ -5,6 +5,7 @@
 }
 
 .address {
+  margin-top: 20px;
   height: 250px;
   width: 270px;
   display: flex;
