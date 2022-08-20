@@ -137,6 +137,10 @@
     justify-content: space-between;
   }
 
+  .links{
+    width: 200px;
+  }
+
   .imgGadget,
   .imgPhone,
   .imgGame,

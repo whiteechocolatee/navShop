@@ -3,10 +3,12 @@ import styles from "./categoryCards.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Block } from "./block/Block";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { BsArrowUpRight } from "react-icons/bs";
+import { paths } from "../../paths";
 
 export const CategoryCards = () => {
+  const navigate = useNavigate();
   return (
     <ContentWrapper>
       <div className={`${styles.content}`}>
@@ -16,6 +18,9 @@ export const CategoryCards = () => {
           alt={`Для телефона`}
           title={`Для телефона`}
           imgClassList={styles.imgPhone}
+          onClick={() =>
+            navigate(`${paths.category}/cover`)
+          }
         />
         <Block
           containerClass={styles.main}
@@ -23,6 +28,9 @@ export const CategoryCards = () => {
           alt={`Гаджеты`}
           title={`Гаджеты`}
           imgClassList={styles.imgGadget}
+          onClick={() =>
+            navigate(`${paths.category}/gadgets`)
+          }
         />
         <div className={styles.smallerBlocks}>
           <div className={styles.smallerBlocksTitle}>
@@ -40,6 +48,9 @@ export const CategoryCards = () => {
             alt={`Для геймеров`}
             title={`Для геймеров`}
             imgClassList={styles.imgGame}
+            onClick={() =>
+              navigate(`${paths.category}/game`)
+            }
           />
           <Block
             containerClass={styles.home}
@@ -47,6 +58,9 @@ export const CategoryCards = () => {
             alt={`Для дома`}
             title={`Для дома`}
             imgClassList={styles.imgHome}
+            onClick={() =>
+              navigate(`${paths.category}/home`)
+            }
           />
         </div>
       </div>
