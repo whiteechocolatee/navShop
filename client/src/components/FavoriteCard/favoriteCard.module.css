@@ -17,12 +17,10 @@
 }
 
 .cardContent {
-  max-width: 70%;
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
 }
 
 .btn {
@@ -67,4 +65,44 @@
   text-decoration: line-through 2px solid black;
   font-size: 18px;
   margin-right: 30px;
+}
+
+@media (max-width: 1080px) {
+  .cardBody {
+    flex-wrap: wrap;
+    height: 220px;
+  }
+  .cardContent {
+    width: 80%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .cardBody {
+    width: 320px;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    margin: 30px auto;
+  }
+
+  .cardContent {
+    height: 150px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cardContent p,
+  .cardContent span {
+    text-align: center;
+  }
+
+  .btn {
+    width: 180px;
+  }
 }

@@ -46,7 +46,6 @@ export const FavoriteCard = ({
         ) : (
           <span>{item.price} ₴</span>
         )}
-
         <div
           onClick={() => removeItem({ product: item._id })}
           className={styles.svgContainer}>
