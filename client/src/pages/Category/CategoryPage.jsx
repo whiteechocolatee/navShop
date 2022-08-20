@@ -26,6 +26,7 @@ import { ScrollButton } from "../../components/ScrollButton/ScrollButton";
 import { FilterPopup } from "../../components/Popups/FiltersAccordion/FilterPopup";
 
 export const CategoryPage = () => {
+  window.scroll(0, 0);
   const [filters, setFilters] = useState({
     brand: "",
     model: "",
