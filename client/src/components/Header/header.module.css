@@ -121,8 +121,7 @@
   background: #000;
 }
 
-
-.logoImg img{
+.logoImg img {
   width: 65px;
   height: auto;
 }
@@ -133,6 +132,10 @@
   }
   .dropdownMenu {
     display: block;
+  }
+
+  .header {
+    position: static !important;
   }
 }
 
