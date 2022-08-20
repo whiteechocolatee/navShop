@@ -6,3 +6,9 @@
   height: 20px;
   outline: none;
 }
+
+@media (max-width: 470px) {
+  .select {
+    width: 320px;
+  }
+}
