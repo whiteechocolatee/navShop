@@ -7,7 +7,8 @@
 }
 
 .addressBlock {
-  width: 820px;
+  max-width: 820px;
+  width: 100%;
   padding: 20px 10px;
 }
 
@@ -59,4 +60,10 @@
     #abafe9 5.59%,
     #b5e0fd 99.02%
   );
+}
+
+@media (max-width: 850px) {
+  .addressForm {
+    flex-wrap: wrap;
+  }
 }
