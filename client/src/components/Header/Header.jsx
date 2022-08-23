@@ -10,6 +10,8 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 
+import { GrUserAdmin } from "react-icons/gr";
+
 import styles from "./header.module.css";
 import { ContentWrapper } from "../contentWrapper/ContentWrapper";
 import { Search } from "../SearchBar/Search";
@@ -19,6 +21,7 @@ import { Cart } from "../Cart/Cart";
 import {
   logout,
   checkIsAuth,
+  checkIsAdmin,
 } from "../../store/users/userAuthSlice";
 import { ImageComponent } from "../Image/Image";
 
@@ -26,6 +29,8 @@ export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuth = useSelector(checkIsAuth);
+  const isAdmin = useSelector(checkIsAdmin);
+
   const [small, setSmall] = useState(false);
 
   const handleLogout = () => {
@@ -217,6 +222,14 @@ export const Header = () => {
                   )}
                 </ul>
               </div>
+              {isAdmin ? (
+                <NavLink
+                  aria-current='page'
+                  className={`nav-link`}
+                  to={paths.admin}>
+                  <GrUserAdmin />
+                </NavLink>
+              ) : null}
               <NavLink
                 aria-current='page'
                 className={`nav-link`}
