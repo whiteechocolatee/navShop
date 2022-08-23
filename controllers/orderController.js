@@ -1,4 +1,5 @@
 const Order = require("../models/orderModel");
+const User = require("../models/userModel");
 
 /**
  * It finds all orders that have the same user id as the user that's logged in and sorts them by the
@@ -62,4 +63,32 @@ const createOrder = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, userOrders };
+/**
+ * It gets all orders from the database
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns an array of orders.
+ */
+const getOrders = async (req, res) => {
+  try {
+    const user = req.user._id;
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const orders = await Order.find().sort({ _id: -1 });
+
+      return res.status(200).json(orders);
+    } else {
+      return res.status(404).json({
+        message: "Помилка! Такого запита не існує.",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
+module.exports = { createOrder, userOrders, getOrders };
