@@ -1,4 +1,5 @@
 const Callback = require("../models/callbackForm");
+const User = require("../models/userModel");
 
 const createCallback = async (req, res) => {
   const errors = {};
@@ -26,10 +27,41 @@ const createCallback = async (req, res) => {
     res.status(201).json(callbackForm);
   } catch (error) {
     res.status(500).json({
-      message:
-        "Не удалось отправить заявку повторите позже.",
+      message: "Помилка сервера, зверніться пізніше.",
     });
   }
 };
 
-module.exports = { createCallback };
+/**
+ * It gets all callbacks from the database
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns const getCallbacks = async (req, res) => {
+ *   try {
+ *     const user = req.user._id;
+ */
+const getCallbacks = async (req, res) => {
+  try {
+    const user = req.user._id;
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const callbacks = await Callback.find().sort({
+        _id: -1,
+      });
+
+      return res.status(200).json(callbacks);
+    } else {
+      return res.status(404).json({
+        message: "Помилка! Такого запита не існує.",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
+module.exports = { createCallback, getCallbacks };
