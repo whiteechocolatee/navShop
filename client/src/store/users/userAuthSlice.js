@@ -274,6 +274,14 @@ export const checkIsAuth = (state) =>
   Boolean(state.userAuthReducer.token) ||
   Boolean(window.localStorage.getItem("token"));
 
+/**
+ * If the userAuthReducer object exists, and the user object exists, and the isAdmin property exists,
+ * then return true, otherwise return false.
+ * @param state - The state of the Redux store.
+ */
+export const checkIsAdmin = (state) =>
+  Boolean(state.userAuthReducer?.user?.isAdmin);
+
 export const { logout, updateChosenAddress } =
   userAuthSlice.actions;
 
