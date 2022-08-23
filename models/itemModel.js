@@ -60,4 +60,6 @@ const itemModel = mongoose.Schema({
   },
 });
 
+itemModel.set("timestamps", true);
+
 module.exports = mongoose.model("Item", itemModel);

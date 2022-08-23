@@ -15,4 +15,6 @@ const CallbackModel = mongoose.Schema({
   },
 });
 
+CallbackModel.set("timestamps", true);
+
 module.exports = mongoose.model("Callback", CallbackModel);
