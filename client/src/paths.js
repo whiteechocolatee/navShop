@@ -12,5 +12,6 @@ export const paths = {
   favorite: "/favorites",
   addAddress: "address/",
   updateAddress: "update/address/",
-  updatePassword:'/password'
+  updatePassword: "/password",
+  admin: "/admin",
 };
