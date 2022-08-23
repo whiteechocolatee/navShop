@@ -1,14 +1,13 @@
 import React from "react";
-import "./app.css";
-
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { paths } from "./paths";
-
+import "./app.css";
 import { Main } from "./pages/Main/Main";
 import { Error } from "./pages/Error/Error";
 import { CategoryPage } from "./pages/Category/CategoryPage";
@@ -25,12 +24,21 @@ import { UserAddress } from "./pages/UserAddress/UserAddress";
 import { UserUpdateAddress } from "./pages/UserUpdateAddress/UserUpdateAddress";
 import { Favorite } from "./pages/Favorite/Favorite";
 import { UserUpdatePassword } from "./pages/UserUpdatePassword/UserUpdatePassword";
+import { MainAdmin } from "./pages/AdminPages/Main/MainAdmin";
+import {
+  checkIsAuth,
+  checkIsAdmin,
+} from "./store/users/userAuthSlice";
 
 function App() {
+  const isAuth = useSelector(checkIsAuth);
+  const isAdmin = useSelector(checkIsAdmin);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<ProtectedRoute />}>
+        <Route
+          element={<ProtectedRoute condition={isAuth} />}>
           <Route
             exact
             path={paths.account}
@@ -65,6 +73,17 @@ function App() {
             exact
             path={paths.favorite}
             element={<Favorite />}
+          />
+        </Route>
+        {/* ADMIN ROUTES */}
+        <Route
+          element={
+            <ProtectedRoute condition={isAuth && isAdmin} />
+          }>
+          <Route
+            exact
+            path={paths.admin}
+            element={<MainAdmin />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
