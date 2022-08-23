@@ -15,13 +15,8 @@ router
   .get("/", getItems)
   .get("/:id", getItem)
   .get("/existingItems/:category", getItemsByCategory)
-
-  /* 
-    admin routes
-  */
-
-  /* Creating a new item. */
   .post("/createCallback", createCallback)
-  .post("/createItem", createItem);
+
+  
 
 module.exports = router;
