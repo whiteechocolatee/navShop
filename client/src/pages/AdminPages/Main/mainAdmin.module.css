@@ -1,0 +1,81 @@
+.contentWrapper {
+  margin-top: 100px;
+  min-height: 90vh;
+}
+
+.loader {
+  height: 90vh;
+}
+
+.statisticNav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.totalOrders svg,
+.totalItems svg,
+.totalSales svg {
+  font-size: 55px;
+  width: 100px;
+}
+
+.totalOrders svg {
+  fill: coral;
+}
+
+.totalSales svg {
+  fill: rgb(47, 255, 61);
+}
+
+.totalItems svg {
+  fill: olivedrab;
+}
+
+.chartNav {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ordersChart {
+  max-width: 45%;
+  width: 100%;
+}
+
+.requests {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orders,
+.callbacks {
+  width: 40%;
+}
+
+.callback {
+  margin: 0 auto;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  width: 450px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0px 2px 24px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 24px 5px rgba(0, 0, 0, 0.05);
+}
+
+.more {
+  text-align: center;
+}
+
+.more a,
+.more a:hover,
+.more a:focus {
+  color: #242424;
+  text-decoration: none;
+  border-bottom: 2px solid #242424;
+}
