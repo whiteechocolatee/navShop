@@ -26,6 +26,17 @@ export const getUserOrders = createAsyncThunk(
   },
 );
 
+export const getOrders = createAsyncThunk(
+  "getOrders",
+  async (_, thunkAPI) => {
+    try {
+      return await orderService.getOrders();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const OrderSlice = createSlice({
   name: "orderSlice",
   initialState: {
@@ -34,6 +45,7 @@ const OrderSlice = createSlice({
     errors: null,
   },
   extraReducers: (builder) => {
+    // create order
     builder
       .addCase(createOrder.pending, (state) => {
         state.isLoading = true;
@@ -47,6 +59,7 @@ const OrderSlice = createSlice({
         state.orders = [];
         state.errors = action.error.message;
       })
+      //get user orders
       .addCase(getUserOrders.pending, (state) => {
         state.isLoading = true;
         state.orders = [];
@@ -56,6 +69,21 @@ const OrderSlice = createSlice({
         state.orders = action.payload;
       })
       .addCase(getUserOrders.rejected, (state, action) => {
+        state.isLoading = false;
+        state.orders = [];
+        state.errors = action.error.message;
+      })
+      //get orders by admin
+      .addCase(getOrders.pending, (state) => {
+        state.orders = [];
+        state.isLoading = true;
+        state.errors = null;
+      })
+      .addCase(getOrders.fulfilled, (state, action) => {
+        state.orders = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getOrders.rejected, (state, action) => {
         state.isLoading = false;
         state.orders = [];
         state.errors = action.error.message;
