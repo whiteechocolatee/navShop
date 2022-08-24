@@ -10,6 +10,7 @@ import { BsCartPlus, BsBag, BsShop } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import styles from "./navbar.module.css";
+import { paths } from "../../paths";
 
 export const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -36,7 +37,7 @@ export const Navbar = () => {
           <li className={styles.navItem}>
             <AiOutlineHome />
             <span>
-              <Link to='#'>Головна</Link>
+              <Link to={paths.admin}>Головна</Link>
             </span>
           </li>
           <li className={styles.navItem}>
