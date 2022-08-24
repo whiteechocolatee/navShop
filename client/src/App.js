@@ -29,6 +29,7 @@ import {
   checkIsAuth,
   checkIsAdmin,
 } from "./store/users/userAuthSlice";
+import { SingleOrder } from "./pages/AdminPages/SingleOrder/SingleOrder";
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
@@ -84,6 +85,11 @@ function App() {
             exact
             path={paths.admin}
             element={<MainAdmin />}
+          />
+          <Route
+            exact
+            path={`${paths.admin}/order/:id`}
+            element={<SingleOrder />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
