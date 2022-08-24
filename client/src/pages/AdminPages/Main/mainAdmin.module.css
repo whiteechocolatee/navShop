@@ -1,5 +1,5 @@
 .contentWrapper {
-  margin-top: 100px;
+  padding: 100px 0;
   min-height: 90vh;
 }
 
@@ -49,7 +49,15 @@
   justify-content: space-between;
 }
 
-.orders,
+/* .orders,
+.callbacks {
+  width: 45%;
+} */
+
+.orders {
+  width: 55%;
+}
+
 .callbacks {
   width: 40%;
 }
@@ -61,7 +69,7 @@
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  width: 450px;
+  width: 100%;
   border-radius: 5px;
   margin-bottom: 20px;
   -webkit-box-shadow: 0px 2px 24px 5px rgba(0, 0, 0, 0.1);
@@ -78,4 +86,20 @@
   color: #242424;
   text-decoration: none;
   border-bottom: 2px solid #242424;
+}
+
+.table {
+  margin: 20px 0;
+  text-align: center;
+}
+
+td a svg,
+td a svg:focus {
+  color: #242424;
+  transition: 0.3s;
+}
+
+td a svg:hover {
+  color: green;
+  transition: 0.3s;
 }
