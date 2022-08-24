@@ -33,6 +33,10 @@ const orderModel = mongoose.Schema({
         required: true,
         ref: "Item",
       },
+      discount: {
+        type: Number,
+        required: true,
+      },
     },
   ],
   customerData: {
@@ -88,10 +92,11 @@ const orderModel = mongoose.Schema({
     type: String,
     required: false,
   },
+
   isDelivered: {
-    type: String,
+    type: Boolean,
     required: true,
-    default: "В процессі",
+    default: false,
   },
   deliveredAt: {
     type: Date,
