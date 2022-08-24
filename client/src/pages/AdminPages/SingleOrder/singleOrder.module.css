@@ -1,0 +1,68 @@
+.contentWrapper {
+  padding: 100px 0;
+  min-height: 90vh;
+}
+
+.customerInfo p a,
+.customerInfo p a:hover,
+.customerInfo p a:focus {
+  color: #242424;
+  text-decoration: none;
+  border-bottom: 2px solid #242424;
+}
+
+.customerInfo {
+  width: 350px;
+}
+
+.orderHeader {
+  width: 100%;
+  background: linear-gradient(
+    94.56deg,
+    #abafe9 0%,
+    #b5e0fd 29.87%,
+    #b1cdf5 64.79%,
+    #abafe9 100%
+  );
+  padding: 10px 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deliveryInfo {
+  width: 30%;
+}
+
+.orderBody {
+  margin: 50px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderItems {
+  width: 400px;
+}
+
+.orderStatus {
+  width: 500px;
+}
+
+.loader {
+  height: 90vh;
+}
+
+.btn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  border-radius: 40px;
+}
+
+.btn .disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
