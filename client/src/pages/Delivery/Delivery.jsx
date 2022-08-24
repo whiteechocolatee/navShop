@@ -90,6 +90,7 @@ export const Delivery = () => {
       count: item.count,
       totalPrice: item.totalPrice,
       product: item._id,
+      discount: item.discount,
     });
   });
 
