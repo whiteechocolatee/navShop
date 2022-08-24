@@ -4,7 +4,9 @@ import {
   MdPointOfSale,
   MdProductionQuantityLimits,
 } from "react-icons/md";
-import { BsFillBasket3Fill } from "react-icons/bs";
+import { BsFillBasket3Fill, BsEye } from "react-icons/bs";
+import moment from "moment";
+import "moment/locale/uk";
 
 import styles from "./mainAdmin.module.css";
 import { Navbar } from "../../../components/AdminNav/Navbar";
@@ -14,8 +16,6 @@ import { AnnualReport } from "../../../components/Charts/AnnualReport/AnnualRepo
 import { Loader } from "../../../components/Loader/Loader";
 import { StatisticBlock } from "./StatisticBlocks/StatisticBlock";
 import { MonthlyReport } from "../../../components/Charts/MonthlyReport/MonthlyReport";
-import moment from "moment";
-import "moment/locale/uk";
 
 import { getOrders } from "../../../store/order/orderSlice";
 import { getItems } from "../../../store/items/itemsSlice";
@@ -25,6 +25,12 @@ import { Link } from "react-router-dom";
 export const MainAdmin = () => {
   window.scroll(0, 0);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOrders());
+    dispatch(getItems());
+    dispatch(getCallbacks());
+  }, [dispatch]);
 
   const { orders, isLoading } = useSelector((state) => {
     return state.orderReducer;
@@ -38,7 +44,13 @@ export const MainAdmin = () => {
     (callback) => callback.isCalled === false,
   );
 
-  let cuttedArr = needToCall.slice(0, 5);
+  let needToDeliver = Array.isArray(orders)
+    ? orders?.filter((order) => order.isDelivered === false)
+    : [];
+
+  let recentCallbacks = needToCall.slice(0, 5);
+
+  let recentOrders = needToDeliver.slice(0, 5);
 
   const { items } = useSelector((state) => {
     return state.itemsReducer;
@@ -46,9 +58,11 @@ export const MainAdmin = () => {
 
   const totalOrders = orders?.length;
   const totalItems = items?.length;
-  const totalSales = orders.reduce((prev, item) => {
-    return prev + item.totalPrice;
-  }, 0);
+  const totalSales = Array.isArray(orders)
+    ? orders?.reduce((prev, item) => {
+        return prev + item.totalPrice;
+      }, 0)
+    : [];
 
   const statisticBlocks = [
     {
@@ -74,17 +88,11 @@ export const MainAdmin = () => {
     },
   ];
 
-  useEffect(() => {
-    dispatch(getOrders());
-    dispatch(getItems());
-    dispatch(getCallbacks());
-  }, [dispatch]);
-
   return (
     <>
       <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
-        {isLoading ? (
+        {isLoading && orders ? (
           <Loader containerClassName={styles.loader} />
         ) : (
           <>
@@ -113,31 +121,74 @@ export const MainAdmin = () => {
             <div className={styles.requests}>
               <div className={styles.orders}>
                 <h3>Чекають на відправлення</h3>
+                <table
+                  className={`table table-striped ${styles.table}`}>
+                  <thead>
+                    <tr>
+                      <th scope='col'>Ім'я</th>
+                      <th scope='col'>Сумма замовлення</th>
+                      <th scope='col'>Дата створення</th>
+                      <th scope='col'>Переглянути</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentOrders.map((order) => (
+                      <tr>
+                        <td>{order.customerData.name}</td>
+                        <td>{order.totalPrice} ₴</td>
+                        <td>
+                          {moment(order.createdAt).format(
+                            "L",
+                          )}
+                        </td>
+                        <td>
+                          <Link to={`order/${order._id}`}>
+                            <BsEye />
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {needToDeliver.length > 5 ? (
+                  <p className={styles.more}>
+                    <Link to={`/order`}>Дивитись усі</Link>
+                  </p>
+                ) : null}
               </div>
               <div className={styles.callbacks}>
                 <h3>Чекають на дзвінок</h3>
-                {cuttedArr?.map((callback) => {
-                  return (
-                    <div className={styles.callback}>
-                      <span>
-                        <b>{callback.name}</b>
-                      </span>
-                      <span>
-                        <b>
-                          <a
-                            href={`tel:+${callback.phone}`}>
-                            {callback.phone}
-                          </a>
-                        </b>
-                      </span>
-                      <span>
-                        {moment(callback.createdAt).format(
-                          "L",
-                        )}
-                      </span>
-                    </div>
-                  );
-                })}
+                <table
+                  className={`table table-striped ${styles.table}`}>
+                  <thead>
+                    <tr>
+                      <th scope='col'>Ім'я</th>
+                      <th scope='col'>Телефон</th>
+                      <th scope='col'>Дата звернення</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentCallbacks?.map((callback) => {
+                      return (
+                        <tr>
+                          <td>{callback.name}</td>
+                          <td>
+                            {" "}
+                            <a
+                              href={`tel:+${callback.phone}`}>
+                              {callback.phone}
+                            </a>{" "}
+                          </td>
+                          <td>
+                            {moment(
+                              callback.createdAt,
+                            ).format("L")}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
                 {needToCall.length > 5 ? (
                   <p className={styles.more}>
                     <Link to='#'>Дивитись усі</Link>
