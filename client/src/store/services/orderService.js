@@ -76,10 +76,61 @@ const getOrders = async () => {
   return data;
 };
 
+/**
+ * It gets a single order from the database
+ * @param id - The id of the order you want to get.
+ * @returns The data is being returned.
+ */
+const getSingleOrder = async (id) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let { data } = await axios.get(
+    `/api/order/${id}`,
+    config,
+  );
+
+  return data;
+};
+
+/**
+ * It takes an order id, gets the token from local storage, and then makes a PUT request to the server
+ * to mark the order as delivered
+ * @param id - The id of the order you want to mark as delivered.
+ * @returns The data is being returned.
+ */
+const markAsDelivered = async (id) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let { data } = await axios.put(
+    `/api/admin/delivered/${id}`,
+    config,
+  );
+
+  return data;
+};
+
 const orderService = {
   createOrder,
   userOrders,
   getOrders,
+  getSingleOrder,
+  markAsDelivered,
 };
 
 export default orderService;
