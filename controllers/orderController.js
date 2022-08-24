@@ -36,6 +36,7 @@ const createOrder = async (req, res) => {
       customerData,
       paymentMethod,
       commentary,
+      discount,
     } = req.body;
     const user = req.user._id;
 
@@ -52,6 +53,7 @@ const createOrder = async (req, res) => {
         paymentMethod,
         commentary,
         user,
+        discount,
       });
 
       return res.status(201).json(createOrder);
@@ -91,4 +93,79 @@ const getOrders = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, userOrders, getOrders };
+/**
+ * It gets a single order by id.
+ * @param req - The request object represents the HTTP request and has properties for the request query
+ * string, parameters, body, HTTP headers, and so on.
+ * @param res - The response object.
+ */
+const singleOrder = async (req, res) => {
+  try {
+    const user = req.user._id;
+    const id = req.params.id;
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const order = await Order.findById(id);
+
+      res.status(200).json(order);
+    } else {
+      const order = await Order.find({ user: user });
+
+      let singleOrder = order.filter(
+        (single) => single._id.toString() === id.toString(),
+      );
+
+      res.status(200).json(singleOrder);
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
+/**
+ * It marks an order as delivered
+ * @param req - The request object. This contains information about the HTTP request that raised the
+ * event.
+ * @param res - The response object.
+ */
+const markAsDelivered = async (req, res) => {
+  try {
+    const user = req.user._id;
+    const id = req.params.id;
+
+    console.log(id);
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const order = await Order.findById(id);
+
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
+
+      const updatedOrder = await order.save();
+
+      return res.status(201).json(updatedOrder);
+    } else {
+      return res
+        .status(404)
+        .json({ message: "Такого запиту не існує!" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
+module.exports = {
+  createOrder,
+  userOrders,
+  getOrders,
+  singleOrder,
+  markAsDelivered,
+};
