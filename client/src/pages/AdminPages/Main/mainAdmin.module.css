@@ -49,11 +49,10 @@
   justify-content: space-between;
 }
 
-/* .orders,
-.callbacks {
-  width: 45%;
-} */
-
+.empty {
+  margin: 30px 0;
+  text-align: center;
+}
 .orders {
   width: 55%;
 }

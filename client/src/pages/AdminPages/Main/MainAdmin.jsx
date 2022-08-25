@@ -121,40 +121,44 @@ export const MainAdmin = () => {
             <div className={styles.requests}>
               <div className={styles.orders}>
                 <h3>Чекають на відправлення</h3>
-                <table
-                  className={`table table-striped ${styles.table}`}>
-                  <thead>
-                    <tr>
-                      <th scope='col'>Ім'я</th>
-                      <th scope='col'>Сумма замовлення</th>
-                      <th scope='col'>Дата створення</th>
-                      <th scope='col'>Переглянути</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentOrders.map((order) => (
+                {needToDeliver?.length > 0 ? (
+                  <table
+                    className={`table table-striped ${styles.table}`}>
+                    <thead>
                       <tr>
-                        <td>{order.customerData.name}</td>
-                        <td>{order.totalPrice} ₴</td>
-                        <td>
-                          {moment(order.createdAt).format(
-                            "L",
-                          )}
-                        </td>
-                        <td>
-                          <Link to={`order/${order._id}`}>
-                            <BsEye />
-                          </Link>
-                        </td>
+                        <th scope='col'>Ім'я</th>
+                        <th scope='col'>
+                          Сумма замовлення
+                        </th>
+                        <th scope='col'>Дата створення</th>
+                        <th scope='col'>Переглянути</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {needToDeliver.length > 5 ? (
-                  <p className={styles.more}>
-                    <Link to={`/order`}>Дивитись усі</Link>
-                  </p>
-                ) : null}
+                    </thead>
+                    <tbody>
+                      {recentOrders.map((order) => (
+                        <tr>
+                          <td>{order.customerData.name}</td>
+                          <td>{order.totalPrice} ₴</td>
+                          <td>
+                            {moment(order.createdAt).format(
+                              "L",
+                            )}
+                          </td>
+                          <td>
+                            <Link to={`order/${order._id}`}>
+                              <BsEye />
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <h4 className={styles.empty}>Наразі таких замовлень нема :(</h4>
+                )}
+                <p className={styles.more}>
+                  <Link to={`recent-orders`}>Дивитись усі</Link>
+                </p>
               </div>
               <div className={styles.callbacks}>
                 <h3>Чекають на дзвінок</h3>
