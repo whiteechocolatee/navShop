@@ -24,12 +24,15 @@ import { UserAddress } from "./pages/UserAddress/UserAddress";
 import { UserUpdateAddress } from "./pages/UserUpdateAddress/UserUpdateAddress";
 import { Favorite } from "./pages/Favorite/Favorite";
 import { UserUpdatePassword } from "./pages/UserUpdatePassword/UserUpdatePassword";
-import { MainAdmin } from "./pages/AdminPages/Main/MainAdmin";
+
 import {
   checkIsAuth,
   checkIsAdmin,
 } from "./store/users/userAuthSlice";
+
+import { MainAdmin } from "./pages/AdminPages/Main/MainAdmin";
 import { SingleOrder } from "./pages/AdminPages/SingleOrder/SingleOrder";
+import { AdminOrders } from "./pages/AdminPages/AdminOrders/AdminOrders";
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
@@ -90,6 +93,11 @@ function App() {
             exact
             path={`${paths.admin}/order/:id`}
             element={<SingleOrder />}
+          />
+          <Route
+            exact
+            path={`${paths.admin}/recent-orders`}
+            element={<AdminOrders />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
