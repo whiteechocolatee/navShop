@@ -1,0 +1,45 @@
+.wrapper {
+  min-height: 90vh;
+  padding: 100px 0;
+}
+
+.loader {
+  height: 100vh;
+}
+
+.table {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.table tr {
+  height: 60px;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchTo,
+.searchSince {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchSinceInput {
+  width: 60px;
+}
+
+.btn {
+  width: 350px;
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+}
