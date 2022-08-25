@@ -118,7 +118,8 @@ const markAsDelivered = async (id) => {
   };
 
   let { data } = await axios.put(
-    `/api/admin/delivered/${id}`,
+    `/api/order/delivered/${id}`,
+    {},
     config,
   );
 
