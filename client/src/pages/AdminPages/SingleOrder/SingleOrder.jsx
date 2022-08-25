@@ -72,19 +72,6 @@ export const SingleOrder = () => {
                       )}
                     </b>
                   </p>
-                  {orders?.createdAt ===
-                  orders?.updatedAt ? (
-                    <p>Не оброблений</p>
-                  ) : (
-                    <p>
-                      Оброблений :
-                      <b>
-                        {moment(orders?.updatedAt).format(
-                          "LLLL",
-                        )}
-                      </b>
-                    </p>
-                  )}
                   <p>
                     Загальна вартість:{" "}
                     <b> {orders?.totalPrice}</b>
@@ -139,7 +126,14 @@ export const SingleOrder = () => {
                     ) : (
                       <Button
                         containerClassName={`${styles.btn} ${styles.disabled}`}>
-                        <span>Вже оброблено</span>
+                        <span>
+                          Оброблений :
+                          <b>
+                            {moment(
+                              orders?.updatedAt,
+                            ).format("LLLL")}
+                          </b>
+                        </span>
                       </Button>
                     )}
                   </div>
