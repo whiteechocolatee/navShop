@@ -61,7 +61,7 @@ export const Navbar = () => {
           <li className={styles.navItem}>
             <BsBag />
             <span>
-              <Link to='#'>Замовлення</Link>
+              <Link to={`${paths.admin}/recent-orders`}>Замовлення</Link>
             </span>
           </li>
           <li className={styles.navItem}>
