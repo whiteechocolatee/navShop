@@ -137,8 +137,6 @@ const markAsDelivered = async (req, res) => {
     const user = req.user._id;
     const id = req.params.id;
 
-    console.log(id);
-
     const { isAdmin } = await User.findById(user);
 
     if (isAdmin) {
