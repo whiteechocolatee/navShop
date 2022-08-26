@@ -84,12 +84,24 @@ export const removeFromFavorites = createAsyncThunk(
   },
 );
 
+export const getUsers = createAsyncThunk(
+  "getUsers",
+  async (_, thunkAPI) => {
+    try {
+      return await usersServices.getUsers();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const userAuthSlice = createSlice({
   name: "userAuth",
   initialState: {
     user: [],
     chosenAddress: [],
     favorites: [],
+    users: [],
     token: null,
     isLoading: false,
     isError: false,
@@ -266,7 +278,25 @@ const userAuthSlice = createSlice({
           state.isError = true;
           state.isLoading = false;
         },
-      );
+      )
+      // get all users
+      .addCase(getUsers.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.users = [];
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.users = action.payload;
+      })
+      .addCase(getUsers.rejected, (state, action) => {
+        state.errors = action.payload?.message;
+        state.isChanged = null;
+        state.isError = true;
+        state.isLoading = false;
+        state.users = [];
+      });
   },
 });
 
