@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 100px 0;
+  min-height: 90vh;
+}
+
+.userCard {
+  width: 350px;
+  text-align: center;
+}
+
+.usersContainer {
+  z-index: 0;
+  padding: 50px 0;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+  row-gap: 1em;
+}
