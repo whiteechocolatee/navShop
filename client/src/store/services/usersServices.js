@@ -180,6 +180,25 @@ const removeFromFavorites = async (favorite) => {
   return data;
 };
 
+const getUsers = async () => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const { data } = await axios.get(
+    "/api/admin/users",
+    config,
+  );
+
+  return data;
+};
+
 const userServices = {
   userLogin,
   userRegister,
@@ -188,6 +207,7 @@ const userServices = {
   saveAddress,
   addToFavorite,
   removeFromFavorites,
+  getUsers,
 };
 
 export default userServices;
