@@ -11,6 +11,7 @@
   padding: 0 30px;
   font-size: 35px;
   position: sticky;
+  z-index: 999999;
 }
 
 .navbar {
@@ -84,6 +85,6 @@ li svg {
   color: #242424;
 }
 
-span {
+li span {
   margin-left: 16px;
 }
