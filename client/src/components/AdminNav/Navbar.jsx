@@ -61,13 +61,17 @@ export const Navbar = () => {
           <li className={styles.navItem}>
             <BsBag />
             <span>
-              <Link to={`${paths.admin}/recent-orders`}>Замовлення</Link>
+              <Link to={`${paths.admin}/recent-orders`}>
+                Замовлення
+              </Link>
             </span>
           </li>
           <li className={styles.navItem}>
             <FiUsers />
             <span>
-              <Link to='#'>Користувачі</Link>
+              <Link to={`${paths.admin}/users`}>
+                Користувачі
+              </Link>
             </span>
           </li>
           <li className={styles.navItem}>
