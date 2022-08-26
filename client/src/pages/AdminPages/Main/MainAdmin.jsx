@@ -59,9 +59,11 @@ export const MainAdmin = () => {
   const totalOrders = orders?.length;
   const totalItems = items?.length;
   const totalSales = Array.isArray(orders)
-    ? orders?.reduce((prev, item) => {
-        return prev + item.totalPrice;
-      }, 0)
+    ? orders
+        ?.filter((order) => order.isDelivered === true)
+        .reduce((prev, item) => {
+          return prev + item.totalPrice;
+        }, 0)
     : [];
 
   const statisticBlocks = [
@@ -154,10 +156,14 @@ export const MainAdmin = () => {
                     </tbody>
                   </table>
                 ) : (
-                  <h4 className={styles.empty}>Наразі таких замовлень нема :(</h4>
+                  <h4 className={styles.empty}>
+                    Наразі таких замовлень нема :(
+                  </h4>
                 )}
                 <p className={styles.more}>
-                  <Link to={`recent-orders`}>Дивитись усі</Link>
+                  <Link to={`recent-orders`}>
+                    Дивитись усі
+                  </Link>
                 </p>
               </div>
               <div className={styles.callbacks}>
