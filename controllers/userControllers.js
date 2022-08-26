@@ -375,6 +375,28 @@ const removeFromFavorite = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    const user = req.user._id;
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const users = await User.find();
+
+      return res.status(201).json(users);
+    } else {
+      return res
+        .status(404)
+        .json({ message: "Такого запиту не існує!" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
 module.exports = {
   addAddress,
   updateProfile,
@@ -383,4 +405,5 @@ module.exports = {
   userProfile,
   addToFavorite,
   removeFromFavorite,
+  getUsers,
 };
