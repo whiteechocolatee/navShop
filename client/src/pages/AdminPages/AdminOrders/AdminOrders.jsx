@@ -1,4 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import "moment/locale/uk";
@@ -21,25 +25,35 @@ export const AdminOrders = () => {
   const dispatch = useDispatch();
 
   const [date, setDate] = useState({
-    fDay: "",
-    fMonth: "",
-    fYear: "",
-    toDay: "",
-    toMonth: "",
-    toYear: "",
+    day: "",
+    month: "",
+    year: "",
   });
+
+  const [filteredOrders, setFilteredOrders] = useState([]);
 
   const { orders, isLoading } = useSelector((state) => {
     return state.orderReducer;
   });
 
-  console.log(orders);
+  const selectedOrders =
+    filteredOrders.length === 0 ? orders : filteredOrders;
+
+  const handleSearch = useCallback(() => {
+    const findByDate = `${date.day}.${date.month}.${date.year}`;
+
+    const filterByDate = orders.filter((order) => {
+      return (
+        moment(order.createdAt).format("L") === findByDate
+      );
+    });
+
+    setFilteredOrders(filterByDate);
+  }, [date.day, date.month, date.year, orders]);
 
   useEffect(() => {
     dispatch(getOrders());
   }, [dispatch]);
-
-  // const today = Date.now();
 
   return (
     <>
@@ -51,38 +65,70 @@ export const AdminOrders = () => {
           <>
             <h1>Замовлення</h1>
             <div className={styles.filter}>
-              {/* Сьогодні : {moment(today).format("L")} */}
               <div className={styles.searchSince}>
-                <span>Знайти від :</span>
+                <span>Знайти замовлення від:</span>
                 <div className={styles.searchSinceInput}>
                   <Input
-                    value={date.fDay}
+                    onChange={(e) =>
+                      setDate({
+                        ...date,
+                        day: e.target.value,
+                      })
+                    }
+                    maxLength={2}
+                    name='day'
+                    value={date.day}
                     placeholder='ДД'
                   />
                 </div>
                 <div className={styles.searchSinceInput}>
-                  <Input placeholder='ММ' />
+                  <Input
+                    onChange={(e) =>
+                      setDate({
+                        ...date,
+                        month: e.target.value,
+                      })
+                    }
+                    maxLength={2}
+                    name='month'
+                    value={date.month}
+                    placeholder='ММ'
+                  />
                 </div>
                 <div className={styles.searchSinceInput}>
-                  <Input placeholder='РРРР' />
+                  <Input
+                    onChange={(e) =>
+                      setDate({
+                        ...date,
+                        year: e.target.value,
+                      })
+                    }
+                    maxLength={4}
+                    name='year'
+                    value={date.year}
+                    placeholder='РРРР'
+                  />
                 </div>
               </div>
-              <div className={styles.searchTo}>
-                <span>Знайти до :</span>
-                <div className={styles.searchSinceInput}>
-                  <Input placeholder='ДД' />
-                </div>
-                <div className={styles.searchSinceInput}>
-                  <Input placeholder='ММ' />
-                </div>
-                <div className={styles.searchSinceInput}>
-                  <Input placeholder='РРРР' />
-                </div>
+              <div className={styles.btns}>
+                <Button
+                  containerClassName={styles.btn}
+                  children='Пошук'
+                  onClick={handleSearch}
+                />
+                <Button
+                  containerClassName={styles.btn}
+                  children='Скинути фільтри'
+                  onClick={() => {
+                    setFilteredOrders([]);
+                    setDate({
+                      day: "",
+                      month: "",
+                      year: "",
+                    });
+                  }}
+                />
               </div>
-              <Button
-                containerClassName={styles.btn}
-                children='Пошук'
-              />
             </div>
             <table
               className={`table table-hover ${styles.table}`}>
@@ -98,7 +144,7 @@ export const AdminOrders = () => {
               </thead>
               <tbody>
                 {Array.isArray(orders) &&
-                  orders?.map((order) => (
+                  selectedOrders?.map((order) => (
                     <tr>
                       <td>{order?.customerData?.name}</td>
                       <td>{order?.customerData?.email}</td>
@@ -109,9 +155,19 @@ export const AdminOrders = () => {
                         )}
                       </td>
                       <td>
-                        {order?.isDelivered
-                          ? "Відправлено"
-                          : "Не відправлено"}{" "}
+                        {order?.isDelivered ? (
+                          <span
+                            className={
+                              styles.alreadyDelivered
+                            }>
+                            Відправлено
+                          </span>
+                        ) : (
+                          <span
+                            className={styles.notDelivered}>
+                            Hе відправлено
+                          </span>
+                        )}
                       </td>
                       <td>
                         <Link
