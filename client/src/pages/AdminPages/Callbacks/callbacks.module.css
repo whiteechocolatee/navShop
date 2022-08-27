@@ -1,0 +1,29 @@
+.wrapper {
+  min-height: 90vh;
+  padding: 100px 0;
+}
+
+.table {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.table tr {
+  height: 60px;
+}
+
+.alreadyDelivered {
+  padding: 5px;
+  background: rgb(0, 194, 0);
+}
+
+.notDelivered {
+  padding: 5px;
+  background: rgb(255, 50, 50);
+  color: white;
+}
+
+.loader {
+  height: 100vh;
+}
