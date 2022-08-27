@@ -39,7 +39,7 @@
   width: 100%;
 }
 
-div svg,
+.header svg,
 li svg {
   font-size: 25px;
   cursor: pointer;
