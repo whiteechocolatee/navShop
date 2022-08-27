@@ -64,4 +64,40 @@ const getCallbacks = async (req, res) => {
   }
 };
 
-module.exports = { createCallback, getCallbacks };
+/**
+ * It gets a single callback by id
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns const getSingleCallback = async (req, res) => {
+ *   try {
+ *     const user = req.user._id;
+ *     const id = req.params.id;
+ */
+const getSingleCallback = async (req, res) => {
+  try {
+    const user = req.user._id;
+    const id = req.params.id;
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const callback = await Callback.findById(id);
+
+      return res.status(200).json(callback);
+    } else {
+      return res.status(404).json({
+        message: "Помилка! Такого запита не існує.",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
+module.exports = {
+  createCallback,
+  getCallbacks,
+  getSingleCallback,
+};
