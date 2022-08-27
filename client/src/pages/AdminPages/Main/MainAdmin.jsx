@@ -201,7 +201,7 @@ export const MainAdmin = () => {
                 </table>
                 {needToCall.length > 5 ? (
                   <p className={styles.more}>
-                    <Link to='#'>Дивитись усі</Link>
+                    <Link to='callbacks/'>Дивитись усі</Link>
                   </p>
                 ) : null}
               </div>
