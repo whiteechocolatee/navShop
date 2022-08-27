@@ -13,6 +13,9 @@ const CallbackModel = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  adminCommentary: {
+    type: String,
+  },
 });
 
 CallbackModel.set("timestamps", true);
