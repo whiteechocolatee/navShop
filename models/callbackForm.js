@@ -13,9 +13,15 @@ const CallbackModel = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  adminCommentary: {
-    type: String,
+  calledAt: {
+    type: Date,
   },
+  adminCommentary: [
+    {
+      comment: { type: String },
+      date: { type: Date },
+    },
+  ],
 });
 
 CallbackModel.set("timestamps", true);
