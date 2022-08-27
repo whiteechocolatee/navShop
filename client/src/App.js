@@ -34,6 +34,8 @@ import { MainAdmin } from "./pages/AdminPages/Main/MainAdmin";
 import { SingleOrder } from "./pages/AdminPages/SingleOrder/SingleOrder";
 import { AdminOrders } from "./pages/AdminPages/AdminOrders/AdminOrders";
 import { UserList } from './pages/AdminPages/UsersList/UserList';
+import { Callbacks } from './pages/AdminPages/Callbacks/Callbacks';
+import { SingleCallback } from './pages/AdminPages/SingleCallback/SingleCallback';
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
@@ -104,6 +106,16 @@ function App() {
             exact
             path={`${paths.admin}/users`}
             element={<UserList />}
+          />
+          <Route
+            exact
+            path={`${paths.admin}/callbacks`}
+            element={<Callbacks />}
+          />
+          <Route
+            exact
+            path={`${paths.admin}/callbacks/:id`}
+            element={<SingleCallback />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
