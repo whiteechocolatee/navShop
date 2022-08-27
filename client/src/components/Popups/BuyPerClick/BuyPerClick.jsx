@@ -12,6 +12,8 @@ export const BuyPerClick = ({
   active,
   setActive,
   discountPrice,
+  discount,
+  price,
   title,
   itemImage,
   count,
@@ -91,7 +93,8 @@ export const BuyPerClick = ({
         <CheckCard
           imageClass={styles.popupImage}
           title={title}
-          price={discountPrice}
+          price={price}
+          discount={discount}
           alt={title}
           publicId={itemImage}
           count={count}

@@ -194,7 +194,8 @@ export const SingleItemPage = () => {
                   <BuyPerClick
                     title={item.title}
                     itemImage={item.itemImage}
-                    discountPrice={discountPrice}
+                    discount={item.discount}
+                    price={item.price}
                     active={active}
                     setActive={setActive}
                     count={item.count}
