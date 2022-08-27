@@ -40,9 +40,11 @@ export const MainAdmin = () => {
     return state.formReducer;
   });
 
-  let needToCall = callbacks?.filter(
-    (callback) => callback.isCalled === false,
-  );
+  let needToCall = Array.isArray(callbacks)
+    ? callbacks?.filter(
+        (callback) => callback.isCalled === false,
+      )
+    : [];
 
   let needToDeliver = Array.isArray(orders)
     ? orders?.filter((order) => order.isDelivered === false)
@@ -201,7 +203,9 @@ export const MainAdmin = () => {
                 </table>
                 {needToCall.length > 5 ? (
                   <p className={styles.more}>
-                    <Link to='callbacks/'>Дивитись усі</Link>
+                    <Link to='callbacks/'>
+                      Дивитись усі
+                    </Link>
                   </p>
                 ) : null}
               </div>
