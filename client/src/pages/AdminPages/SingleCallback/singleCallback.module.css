@@ -2,3 +2,67 @@
   min-height: 90vh;
   padding: 100px 0;
 }
+
+.loader {
+  height: 100vh;
+}
+
+.callbackContainer {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.adminData {
+  width: 60%;
+}
+
+.adminData h4 {
+  color: #242424;
+}
+
+.adminData h3 {
+  color: #242424;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.called {
+  color: green;
+}
+
+.notCalled {
+  color: red;
+}
+
+.commentaryList {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  border: 1px solid #242424;
+  width: 134px;
+  margin: 0 auto;
+}
+
+.commentaryInput {
+  width: 100%;
+}
+
+.comment span {
+  color: grey;
+  font-size: 12px;
+}
+
+.comment {
+  background: #fadc6fc6;
+  min-height: 50px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+  -webkit-box-shadow: 11px 9px 42px -8px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 11px 9px 42px -8px rgba(0, 0, 0, 0.21);
+  box-shadow: 11px 9px 42px -8px rgba(0, 0, 0, 0.21);
+}
