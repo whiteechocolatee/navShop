@@ -55,7 +55,9 @@ export const Navbar = () => {
           <li className={styles.navItem}>
             <FiPhoneCall />
             <span>
-              <Link to='#'>Дзвінки</Link>
+              <Link to={`${paths.admin}/callbacks`}>
+                Дзвінки
+              </Link>
             </span>
           </li>
           <li className={styles.navItem}>
