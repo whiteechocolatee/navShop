@@ -21,7 +21,7 @@ export const Orders = () => {
               <div className={styles.inProgress}>
                 {orders
                   .filter((order) => {
-                    return order.isDelivered !== "Виконано";
+                    return order.isDelivered === false;
                   })
                   .map((order) => {
                     return (
@@ -32,7 +32,7 @@ export const Orders = () => {
               <div className={styles.completed}>
                 {orders
                   .filter((order) => {
-                    return order.isDelivered === "Виконано";
+                    return order.isDelivered === true;
                   })
                   .map((order) => {
                     return <CompletedOrder order={order} />;
