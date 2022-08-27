@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getCallbacks,
+  getSingleCallback,
 } = require("../controllers/formControllers");
 const {
   createItem,
@@ -20,6 +21,7 @@ router
   .post("/createItem", createItem)
   .get("/orders", protection, getOrders)
   .get("/callbacks", protection, getCallbacks)
+  .get("/callbacks/:id", protection, getSingleCallback)
   .get("/users", protection, getUsers);
 
 module.exports = router;
