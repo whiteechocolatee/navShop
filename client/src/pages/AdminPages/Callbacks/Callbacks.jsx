@@ -26,6 +26,8 @@ export const Callbacks = () => {
     (state) => state.formReducer,
   );
 
+  console.log(callbacks);
+
   return (
     <>
       <Navbar />
@@ -75,7 +77,8 @@ export const Callbacks = () => {
                       </td>
                       <td>
                         {callback &&
-                        callback?.adminCommentary ? (
+                        callback?.adminCommentary.length >
+                          0 ? (
                           <span
                             className={
                               styles.alreadyDelivered
