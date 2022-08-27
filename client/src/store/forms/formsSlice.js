@@ -40,6 +40,15 @@ export const getSingleCallback = createAsyncThunk(
   },
 );
 
+export const updateCallbackData = createAsyncThunk(
+  "updateCallback",
+  async (data, thunkAPI) => {
+    try {
+      return await formService.updateSingleCallback(data);
+    } catch (error) {}
+  },
+);
+
 const formSlice = createSlice({
   name: "form",
   initialState: {
@@ -98,6 +107,30 @@ const formSlice = createSlice({
       )
       .addCase(
         getSingleCallback.rejected,
+        (state, action) => {
+          state.callbacks = [];
+          state.isLoading = false;
+          state.isError = true;
+          state.errors = action.payload?.message;
+        },
+      )
+      .addCase(updateCallbackData.pending, (state) => {
+        state.callbacks = [];
+        state.isLoading = true;
+        state.isError = false;
+        state.errors = null;
+      })
+      .addCase(
+        updateCallbackData.fulfilled,
+        (state, action) => {
+          state.callbacks = action.payload;
+          state.isLoading = false;
+          state.isError = false;
+          state.errors = null;
+        },
+      )
+      .addCase(
+        updateCallbackData.rejected,
         (state, action) => {
           state.callbacks = [];
           state.isLoading = false;

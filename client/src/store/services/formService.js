@@ -51,10 +51,31 @@ const getSingleCallback = async (id) => {
   return res.data;
 };
 
+const updateSingleCallback = async (data) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.put(
+    "/api/admin/callback/edit",
+    data,
+    config,
+  );
+
+  return res.data;
+};
+
 const formService = {
   createCallbackRequest,
   getCallbacks,
   getSingleCallback,
+  updateSingleCallback,
 };
 
 export default formService;
