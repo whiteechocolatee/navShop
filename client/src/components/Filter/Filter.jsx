@@ -40,8 +40,8 @@ export const Filter = ({
                 ? `${styles.content} ${styles.show}`
                 : styles.content
             }>
-            {item?.description?.map((text) => (
-              <p>{text}</p>
+            {item?.description?.map((text, index) => (
+              <p key={index}>{text}</p>
             ))}
           </div>
         </div>
