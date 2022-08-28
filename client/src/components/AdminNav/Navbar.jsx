@@ -49,7 +49,9 @@ export const Navbar = () => {
           <li className={styles.navItem}>
             <AiOutlineShoppingCart />
             <span>
-              <Link to='#'>Товари</Link>
+              <Link to={`${paths.admin}/items`}>
+                Товари
+              </Link>
             </span>
           </li>
           <li className={styles.navItem}>
