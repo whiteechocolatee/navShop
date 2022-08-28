@@ -44,6 +44,14 @@ export const CategoryPage = () => {
     return state.itemsReducer;
   });
 
+  const categoryTitle = [
+    ...new Set(
+      items.map((item) => {
+        return item.categoryUA;
+      }),
+    ),
+  ];
+
   const { setDesc, sortedItems } = useSortItems(
     filtered.length === 0 ? items : filtered,
   );
@@ -217,7 +225,7 @@ export const CategoryPage = () => {
             <ItemCarousel
               containerClassName={styles.grid}
               itemsQuantity={quantity}
-              title={`Category ${categoryName}`}
+              title={categoryTitle}
               items={sortedItems}>
               <div className={styles.carouselNav}>
                 <div className={styles.FilterBlock}>
