@@ -3,7 +3,6 @@ import styles from "./select.module.css";
 
 export const Select = ({
   name,
-  optionValue,
   options,
   onChange,
   value,
