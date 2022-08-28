@@ -25,6 +25,7 @@ const itemSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getItem.pending, (state) => {
+        state.item = [];
         state.isLoading = true;
       })
       .addCase(getItem.fulfilled, (state, action) => {
@@ -33,7 +34,7 @@ const itemSlice = createSlice({
       })
       .addCase(getItem.rejected, (state, action) => {
         state.isLoading = false;
-        state.item = null;
+        state.item = [];
         state.isError = action.payload.data;
       });
   },
