@@ -1,0 +1,107 @@
+.wrapper {
+  padding: 100px 0;
+  min-height: 90vh;
+}
+
+.filterData {
+  width: 250px;
+}
+
+.checkbox {
+  margin: 10px 0;
+}
+
+.loader {
+  height: 90vh;
+}
+
+.itemContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.items {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  padding: 20px 10px;
+  width: 30%;
+  border-radius: 20px;
+  margin: 10px;
+  -webkit-box-shadow: -1px -1px 15px 0px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: -1px -1px 15px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: -1px -1px 15px 0px rgba(0, 0, 0, 0.12);
+}
+
+.itemNav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.itemEdit,
+.itemRemove {
+  height: 30px;
+  width: 60px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.itemEdit svg,
+.itemRemove svg {
+  font-size: 25px;
+}
+
+.itemEdit {
+  background: orange;
+}
+
+.itemRemove {
+  background: rgb(252, 40, 40);
+}
+
+.itemInfo {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.itemImage {
+  width: 70%;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.itemImage img {
+  width: 100%;
+  height: auto;
+}
+
+.itemDescription {
+  margin: 10px 0;
+}
+
+.itemDescription p {
+  font-size: 12px;
+}
+
+.btnApply {
+  border: 1px solid #242424;
+}
+
+.btnReset {
+  margin-top: 10px;
+  border: 1px solid rgb(250, 73, 73);
+}
+
+.itemNav a:hover,
+.itemNav a:focus,
+.itemNav a {
+  text-decoration: none;
+  color: inherit;
+}
