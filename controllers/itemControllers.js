@@ -1,4 +1,5 @@
 const Items = require("../models/itemModel");
+const User = require("../models/userModel");
 
 /**
  * It gets all items from the database and returns them to the client
@@ -102,6 +103,14 @@ const createItem = async (req, res) => {
         "Произошла ошибка при создании товара. Попробуйте позже.",
     });
   }
+};
+
+const updateItem = async (req, res) => {
+  try {
+    const user = req.user._id;
+
+    const { isAdmin } = await User.findById(user);
+  } catch (error) {}
 };
 
 module.exports = {
