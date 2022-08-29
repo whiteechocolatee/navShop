@@ -97,7 +97,6 @@ const createItem = async (req, res) => {
 
     res.status(201).json(item);
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message:
         "Произошла ошибка при создании товара. Попробуйте позже.",
@@ -105,12 +104,48 @@ const createItem = async (req, res) => {
   }
 };
 
-const updateItem = async (req, res) => {
+const updateItems = async (req, res) => {
   try {
     const user = req.user._id;
+    const editedItem = req.body;
+
+    console.log(editedItem);
 
     const { isAdmin } = await User.findById(user);
-  } catch (error) {}
+
+    if (isAdmin) {
+      const item = await Items.findById(editedItem.id);
+
+      if (item) {
+        item.title = editedItem.title;
+        item.price = editedItem.price;
+        item.discount = editedItem.discount;
+        item.description = editedItem.description;
+        item.itemImage = editedItem.itemImage;
+        item.categoryUA = editedItem.categoryUA;
+        item.category = editedItem.category;
+        item.characteristics = editedItem.characteristics;
+        item.count = editedItem.count;
+        item.totalPrice = editedItem.totalPrice;
+        item.color = editedItem.color;
+        item.company = editedItem.company;
+        item.model = editedItem.model;
+
+        if (editedItem.memory) {
+          item.memory = editedItem.memory;
+        }
+      }
+
+      const updatedItem = await item.save();
+
+      res.status(200).json(updatedItem);
+    }
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Произошла ошибка при создании товара. Попробуйте позже.",
+    });
+  }
 };
 
 module.exports = {
@@ -118,4 +153,5 @@ module.exports = {
   getItem,
   getItemsByCategory,
   createItem,
+  updateItems,
 };
