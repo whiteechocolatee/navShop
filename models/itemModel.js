@@ -26,6 +26,10 @@ const itemModel = mongoose.Schema({
     type: String,
     required: true,
   },
+  categoryUA: {
+    type: String,
+    required: true,
+  },
   characteristics: [
     {
       name: {
