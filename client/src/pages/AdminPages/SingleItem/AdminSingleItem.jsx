@@ -6,19 +6,21 @@ import React, {
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import styles from "./adminSingleItem.module.css";
 import { Navbar } from "../../../components/AdminNav/Navbar";
 import { ContentWrapper } from "../../../components/contentWrapper/ContentWrapper";
 import { Footer } from "../../../components/Footer/Footer";
-import styles from "./adminSingleItem.module.css";
 import { Input } from "../../../components/Input/Input";
-
-import { getItem } from "../../../store/item/itemSlice";
 import { Loader } from "../../../components/Loader/Loader";
 import { Button } from "../../../components/Button/Button";
 import { Select } from "../../../components/Select/Select";
 
+import {
+  getItem,
+  updateItem,
+} from "../../../store/item/itemSlice";
+
 export const AdminSingleItem = () => {
-  // window.scroll(0, 0);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -26,11 +28,14 @@ export const AdminSingleItem = () => {
     (state) => state.singleItemReducer,
   );
 
+  const [formActive, setFormActive] = useState(false);
+
   useEffect(() => {
     dispatch(getItem(id));
   }, [dispatch, id]);
 
   const [values, setValues] = useState({
+    id: item?._id,
     title: item?.title,
     price: item?.price,
     discount: item?.discount,
@@ -39,10 +44,16 @@ export const AdminSingleItem = () => {
     color: item?.color,
     company: item?.company,
     model: item?.model,
+    memory: item && item?.memory ? item?.memory : "",
     category: "",
     categoryUA: "",
-    characteristics: item?.characteristics,
+    characteristics: [],
   });
+
+  const characteristicsList =
+    values.characteristics.length > 0
+      ? values.characteristics
+      : item?.characteristics;
 
   const [characteristic, setCharacteristic] = useState({
     name: "",
@@ -129,10 +140,18 @@ export const AdminSingleItem = () => {
       errorMessage: "Модель не вказана!",
       required: true,
     },
+    {
+      id: 9,
+      name: "memory",
+      type: "number",
+      placeholder: "Вкажіть пам'ять пристрою",
+      errorMessage: "Пам'ять не вказана!",
+    },
   ];
 
   const updateState = useCallback(() => {
     setValues({
+      id: item?._id,
       title: item?.title,
       price: item?.price,
       discount: item?.discount,
@@ -141,13 +160,16 @@ export const AdminSingleItem = () => {
       color: item?.color,
       company: item?.company,
       model: item?.model,
+      memory: item?.memory,
       category: "",
       categoryUA: "",
       characteristics: [],
     });
   }, [
+    item?._id,
     item?.color,
     item?.company,
+    item?.memory,
     item?.description,
     item?.discount,
     item?.itemImage,
@@ -156,13 +178,7 @@ export const AdminSingleItem = () => {
     item?.title,
   ]);
 
-  useEffect(() => {
-    updateState();
-  }, [updateState]);
-
-  const handleCreate = (e) => {
-    e.preventDefault();
-
+  const createCharacteristic = () => {
     const newCharacteristics = {
       name: characteristic.name,
       description: [
@@ -172,11 +188,45 @@ export const AdminSingleItem = () => {
       ],
     };
 
-    values.characteristics = [...item.characteristics];
+    const editedCharacteristics = [
+      ...item.characteristics,
+      newCharacteristics,
+    ];
 
-    values.characteristics.push(newCharacteristics);
+    setValues({
+      ...values,
+      characteristics: editedCharacteristics,
+    });
+    setFormActive(false);
+  };
+
+  useEffect(() => {
+    updateState();
+  }, [updateState]);
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    if (
+      values.category === "" ||
+      values.categoryUA === ""
+    ) {
+      alert("Вкажіть категорію!!!");
+      return;
+    }
 
     console.log(values);
+
+    if (values.characteristics.length === 0) {
+      dispatch(
+        updateItem({
+          ...values,
+          characteristics: item?.characteristics,
+        }),
+      );
+    } else {
+      dispatch(updateItem(values));
+    }
   };
 
   const onChange = (e) => {
@@ -222,7 +272,7 @@ export const AdminSingleItem = () => {
                 )}
               />
               <form
-                onSubmit={handleCreate}
+                onSubmit={handleUpdate}
                 className={styles.updateForm}>
                 {inputs.map((input) => (
                   <div key={input.id}>
@@ -236,23 +286,26 @@ export const AdminSingleItem = () => {
                 ))}
                 <div className={styles.addCharacteristics}>
                   <h4>Харакетристики</h4>
-                  {item?.characteristics?.map(
-                    (characteristic) => (
-                      <div
-                        className={styles.characteristic}
-                        key={characteristic._id}>
-                        {characteristic.name}
-                        {characteristic.description.map(
-                          (desc, index) => (
-                            <p key={index}>{desc}</p>
-                          ),
-                        )}
-                      </div>
-                    ),
-                  )}
+                  {Array.isArray(characteristicsList) &&
+                    characteristicsList.map(
+                      (characteristic, index) => (
+                        <div
+                          className={styles.characteristic}
+                          key={index}>
+                          {characteristic.name}
+                          {characteristic.description.map(
+                            (desc, index) => (
+                              <p key={index}>{desc}</p>
+                            ),
+                          )}
+                        </div>
+                      ),
+                    )}
                   <div
                     className={
-                      styles.addCharacteristicsForm
+                      formActive
+                        ? `${styles.addCharacteristicsForm}`
+                        : `${styles.hide}`
                     }>
                     <p
                       className={
@@ -310,13 +363,25 @@ export const AdminSingleItem = () => {
                         type='text'
                       />
                     </p>
+
+                    <Button
+                      onClick={createCharacteristic}
+                      containerClassName={
+                        styles.btnAddCharacteristic
+                      }
+                      children='Додати'
+                    />
                   </div>
-                  <Button
-                    containerClassName={
-                      styles.btnAddCharacteristic
-                    }
-                    children='Додати характеристику'
-                  />
+                  {Array.isArray(characteristicsList) &&
+                  characteristicsList.length >= 3 ? null : (
+                    <Button
+                      containerClassName={
+                        styles.btnAddCharacteristic
+                      }
+                      onClick={(e) => setFormActive(true)}
+                      children='Додати нову характеристику'
+                    />
+                  )}
                 </div>
                 <Button
                   containerClassName={styles.btn}
@@ -324,7 +389,7 @@ export const AdminSingleItem = () => {
                     <input
                       type='submit'
                       className={styles.signUp}
-                      value='Створити товар'
+                      value='Зберегти'
                     />
                   }
                 />
