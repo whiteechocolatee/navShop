@@ -32,10 +32,31 @@ const getItem = async (id) => {
   return res.data;
 };
 
+const updateItem = async (item) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let { data } = await axios.post(
+    `/api/admin/item/edit`,
+    item,
+    config,
+  );
+
+  return data;
+};
+
 const mainService = {
   getItems,
   getItemsByCategory,
   getItem,
+  updateItem,
 };
 
 export default mainService;
