@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   createOrder,
+  createOrderUnregisteredUser,
   userOrders,
   singleOrder,
   markAsDelivered,
@@ -10,6 +11,7 @@ const protection = require("../utils/authMiddleware");
 const router = express.Router();
 
 router
+  .post("/unregistered-user", createOrderUnregisteredUser)
   .post("/", protection, createOrder)
   .get("/", protection, userOrders)
   .get("/:id", protection, singleOrder)
