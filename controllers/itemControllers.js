@@ -65,37 +65,49 @@ const createItem = async (req, res) => {
     const {
       title,
       price,
+      discount,
       description,
       itemImage,
-      category,
-      discount,
-      count,
-      characteristics,
       color,
       company,
       model,
       memory,
+      category,
+      categoryUA,
+      characteristics,
+      count,
     } = req.body;
 
-    const totalPrice = price;
+    const user = req.user._id;
 
-    const item = await Items.create({
-      title,
-      price,
-      description,
-      itemImage,
-      category,
-      discount,
-      count,
-      characteristics,
-      totalPrice,
-      color,
-      company,
-      model,
-      memory,
-    });
+    const { isAdmin } = await User.findById(user);
 
-    res.status(201).json(item);
+    if (isAdmin) {
+      const totalPrice = price;
+
+      const item = await Items.create({
+        title, // title
+        price, // price
+        discount, // discount
+        description, // description
+        itemImage, // itemImage
+        color, // color
+        company, // company
+        model, // model
+        memory, /// memory
+        category, // category
+        categoryUA, // categoryUA
+        characteristics, // characteristics
+        count, // count
+        totalPrice, // totalPrice
+      });
+
+      res.status(201).json(item);
+    } else {
+      res
+        .status(400)
+        .json({ message: "Такого статуса не існує" });
+    }
   } catch (error) {
     res.status(500).json({
       message:
@@ -104,12 +116,41 @@ const createItem = async (req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = req.user._id;
+
+    const { isAdmin } = await User.findById(user);
+
+    if (isAdmin) {
+      const product = await Items.findById(id);
+
+      if (product) {
+        await product.remove();
+
+        const items = await Items.find();
+
+        res.status(200).json(items);
+      }
+    }
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Виникла помилка при запиті. Спробуйте пізніше!",
+    });
+  }
+};
+
+/**
+ * It updates an item in the database
+ * @param req - The request object.
+ * @param res - the response object
+ */
 const updateItems = async (req, res) => {
   try {
     const user = req.user._id;
     const editedItem = req.body;
-
-    console.log(editedItem);
 
     const { isAdmin } = await User.findById(user);
 
@@ -154,4 +195,5 @@ module.exports = {
   getItemsByCategory,
   createItem,
   updateItems,
+  deleteProduct,
 };
