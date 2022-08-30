@@ -43,7 +43,9 @@ export const Navbar = () => {
           <li className={styles.navItem}>
             <BsCartPlus />
             <span>
-              <Link to='#'>Додати товар</Link>
+              <Link to={`${paths.admin}/items/add-item`}>
+                Додати товар
+              </Link>
             </span>
           </li>
           <li className={styles.navItem}>
