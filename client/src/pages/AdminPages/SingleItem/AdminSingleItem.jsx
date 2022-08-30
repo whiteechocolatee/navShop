@@ -57,9 +57,9 @@ export const AdminSingleItem = () => {
 
   const [characteristic, setCharacteristic] = useState({
     name: "",
-    description1: "",
-    description2: "",
-    description3: "",
+    fLine: "",
+    sLine: "",
+    thrdLine: "",
   });
 
   const categories = [
@@ -182,9 +182,9 @@ export const AdminSingleItem = () => {
     const newCharacteristics = {
       name: characteristic.name,
       description: [
-        characteristic.description1,
-        characteristic.description2,
-        characteristic.description3,
+        characteristic.fLine,
+        characteristic.sLine,
+        characteristic.thrdLine,
       ],
     };
 
@@ -214,8 +214,6 @@ export const AdminSingleItem = () => {
       alert("Вкажіть категорію!!!");
       return;
     }
-
-    console.log(values);
 
     if (values.characteristics.length === 0) {
       dispatch(
@@ -336,7 +334,7 @@ export const AdminSingleItem = () => {
                             [e.target.name]: e.target.value,
                           });
                         }}
-                        name='description1'
+                        name='fLine'
                         id='title'
                         type='text'
                       />
@@ -347,7 +345,7 @@ export const AdminSingleItem = () => {
                             [e.target.name]: e.target.value,
                           });
                         }}
-                        name='description2'
+                        name='sLine'
                         id='title'
                         type='text'
                       />
@@ -358,12 +356,11 @@ export const AdminSingleItem = () => {
                             [e.target.name]: e.target.value,
                           });
                         }}
-                        name='description3'
+                        name='thrdLine'
                         id='title'
                         type='text'
                       />
                     </p>
-
                     <Button
                       onClick={createCharacteristic}
                       containerClassName={
