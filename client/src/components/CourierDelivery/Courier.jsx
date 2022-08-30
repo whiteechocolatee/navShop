@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./courier.module.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Input } from "../Input/Input";
-import { getCitiesByArea } from "../../store/deliveryAddresses/deliverySlice";
+import {
+  getCitiesByArea,
+  getAreas,
+  getAllDepartments,
+} from "../../store/deliveryAddresses/deliverySlice";
 
 import { Loader } from "../Loader/Loader";
 import { Select } from "../Select/Select";
@@ -11,16 +15,20 @@ import { Select } from "../Select/Select";
 export const Courier = ({ values, handleChange }) => {
   const dispatch = useDispatch();
 
-  const { reducerLoading, areas, cities } = useSelector(
-    (state) => state.deliveryReducer,
-  );
+  const { isLoading, reducerLoading, areas, cities } =
+    useSelector((state) => state.deliveryReducer);
 
   const handleCities = (e) => {
     dispatch(getCitiesByArea(e.target.value));
   };
 
-  if (reducerLoading) {
-    return <Loader />;
+  useEffect(() => {
+    dispatch(getAreas());
+    dispatch(getAllDepartments());
+  }, [dispatch]);
+
+  if (reducerLoading || isLoading) {
+    return <Loader containerClassName={styles.loader} />;
   }
 
   const customerInfo = [

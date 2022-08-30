@@ -19,3 +19,7 @@
 .input {
   margin-top: 15px;
 }
+
+.loader {
+  height: 250px;
+}
