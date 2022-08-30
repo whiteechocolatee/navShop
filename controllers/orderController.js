@@ -21,6 +21,42 @@ const userOrders = async (req, res) => {
   }
 };
 
+const createOrderUnregisteredUser = async (req, res) => {
+  try {
+    const {
+      orderItems,
+      shippingAddress,
+      totalPrice,
+      customerData,
+      paymentMethod,
+      commentary,
+      discount,
+    } = req.body;
+
+    if (orderItems && orderItems.length === 0) {
+      return res
+        .status(400)
+        .json({ message: "Кошик пустий!" });
+    } else {
+      const createOrder = await Order.create({
+        orderItems,
+        shippingAddress,
+        totalPrice,
+        customerData,
+        paymentMethod,
+        commentary,
+        discount,
+      });
+
+      return res.status(201).json(createOrder);
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Помилка сервера, зверніться пізніше.",
+    });
+  }
+};
+
 /**
  * It creates an order
  * @param req - The request object.
@@ -162,6 +198,7 @@ const markAsDelivered = async (req, res) => {
 
 module.exports = {
   createOrder,
+  createOrderUnregisteredUser,
   userOrders,
   getOrders,
   singleOrder,
