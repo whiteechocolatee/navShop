@@ -7,6 +7,7 @@ const {
 const {
   createItem,
   updateItems,
+  deleteProduct,
 } = require("../controllers/itemControllers");
 const {
   getOrders,
@@ -20,7 +21,8 @@ const protection = require("../utils/authMiddleware");
 const router = express.Router();
 
 router
-  .post("/item/createItem", createItem)
+  .post("/item/createItem", protection, createItem)
+  .delete("/item/delete/:id", protection, deleteProduct)
   .post("/item/edit", protection, updateItems)
   .get("/orders", protection, getOrders)
   .get("/callbacks", protection, getCallbacks)
