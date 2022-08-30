@@ -37,20 +37,36 @@ const createOrder = async ({
     },
   };
 
-  let response = await axios.post(
-    "/api/order",
-    {
-      orderItems,
-      shippingAddress,
-      totalPrice,
-      customerData,
-      paymentMethod,
-      commentary,
-    },
-    config,
-  );
+  if (token) {
+    let response = await axios.post(
+      "/api/order",
+      {
+        orderItems,
+        shippingAddress,
+        totalPrice,
+        customerData,
+        paymentMethod,
+        commentary,
+      },
+      config,
+    );
 
-  return response.data;
+    return response.data;
+  } else {
+    let response = await axios.post(
+      "/api/order/unregistered-user",
+      {
+        orderItems,
+        shippingAddress,
+        totalPrice,
+        customerData,
+        paymentMethod,
+        commentary,
+      },
+    );
+
+    return response.data;
+  }
 };
 
 /**
