@@ -21,10 +21,18 @@ import {
   checkIsAuth,
   userProfile,
 } from "../../store/users/userAuthSlice";
+
+import { resetCart } from "../../store/cart/cartSlice";
+
 import { createOrder } from "../../store/order/orderSlice";
+import { EmptyForm } from "../../components/Popups/EmptyDataForm/EmptyForm";
+import { OrderSuccess } from "../../components/Popups/OrderSuccess/OrderSuccess";
 
 export const Delivery = () => {
   const dispatch = useDispatch();
+
+  const [popupError, setPopupError] = useState(false);
+  const [popupSuccess, setPopupSuccess] = useState(false);
 
   const isAuth = useSelector(checkIsAuth);
 
@@ -127,7 +135,28 @@ export const Delivery = () => {
   };
 
   const handleOrder = () => {
-    dispatch(createOrder(order));
+    if (
+      values.name === "" ||
+      values.surname === "" ||
+      values.phone === "" ||
+      values.surname === "" ||
+      values.email === "" ||
+      order.shippingAddress.area === "Виберіть область" ||
+      order.shippingAddress.city === "Виберіть місто" ||
+      order.shippingAddress.department ===
+        "Виберіть відділення"
+    ) {
+      setPopupError(true);
+      return;
+    } else {
+      dispatch(createOrder(order)).then((res) => {
+        console.log(res);
+        if (!res.error) {
+          setPopupSuccess(true);
+          dispatch(resetCart());
+        }
+      });
+    }
   };
 
   return (
@@ -195,6 +224,14 @@ export const Delivery = () => {
                     onClick={handleOrder}
                     children={"Замовити!"}
                     containerClassName={styles.btn}
+                  />
+                  <EmptyForm
+                    setActive={setPopupError}
+                    active={popupError}
+                  />
+                  <OrderSuccess
+                    setActive={setPopupSuccess}
+                    active={popupSuccess}
                   />
                 </div>
               </div>
