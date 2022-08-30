@@ -38,6 +38,7 @@ import { Callbacks } from "./pages/AdminPages/Callbacks/Callbacks";
 import { SingleCallback } from "./pages/AdminPages/SingleCallback/SingleCallback";
 import { AdminItems } from "./pages/AdminPages/Items/AdminItems";
 import { AdminSingleItem } from "./pages/AdminPages/SingleItem/AdminSingleItem";
+import { AddItem } from "./pages/AdminPages/AddItems/AddItem";
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
@@ -128,6 +129,11 @@ function App() {
             exact
             path={`${paths.admin}/items/:id`}
             element={<AdminSingleItem />}
+          />
+          <Route
+            exact
+            path={`${paths.admin}/items/add-item`}
+            element={<AddItem />}
           />
         </Route>
         <Route exact path={paths.main} element={<Main />} />
