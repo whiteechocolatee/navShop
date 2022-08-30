@@ -26,6 +26,17 @@ export const updateItem = createAsyncThunk(
   },
 );
 
+export const createItem = createAsyncThunk(
+  "createItem",
+  async (item, thunkAPI) => {
+    try {
+      return await mainService.createItem(item);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const itemSlice = createSlice({
   name: "item",
   initialState: {
@@ -48,6 +59,7 @@ const itemSlice = createSlice({
         state.item = [];
         state.isError = action.payload.data;
       })
+      // update item
       .addCase(updateItem.pending, (state) => {
         state.item = [];
         state.isLoading = true;
@@ -60,6 +72,20 @@ const itemSlice = createSlice({
         state.isLoading = false;
         state.item = [];
         state.isError = action.payload.data;
+      })
+      // create item
+      .addCase(createItem.pending, (state) => {
+        state.item = [];
+        state.isLoading = true;
+      })
+      .addCase(createItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.item = action.payload;
+      })
+      .addCase(createItem.rejected, (state, action) => {
+        state.item = [];
+        state.isLoading = true;
+        state.error = action.payload;
       });
   },
 });
