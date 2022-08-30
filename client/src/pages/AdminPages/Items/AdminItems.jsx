@@ -8,18 +8,21 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 import styles from "./adminItems.module.css";
 import { Navbar } from "../../../components/AdminNav/Navbar";
 import { ContentWrapper } from "../../../components/contentWrapper/ContentWrapper";
 import { Footer } from "../../../components/Footer/Footer";
 import { Filter } from "../../../components/Filter/Filter";
-import { getItems } from "../../../store/items/itemsSlice";
+import {
+  getItems,
+  deleteProductById,
+} from "../../../store/items/itemsSlice";
 import { Checkbox } from "../../../components/Checkbox/Checkbox";
 import { Loader } from "../../../components/Loader/Loader";
 import { ImageComponent } from "../../../components/Image/Image";
 import { Button } from "../../../components/Button/Button";
-import { Link } from "react-router-dom";
 
 export const AdminItems = () => {
   const dispatch = useDispatch();
@@ -129,8 +132,17 @@ export const AdminItems = () => {
                           <AiOutlineEdit />
                         </div>
                       </Link>
-                      <div className={styles.itemRemove}>
-                        <AiOutlineDelete />
+                      <div
+                        
+                        className={styles.itemRemove}>
+                        <Button
+                          onClick={() =>
+                            dispatch(
+                              deleteProductById(item._id),
+                            )
+                          }>
+                          <AiOutlineDelete />
+                        </Button>
                       </div>
                     </div>
                   </div>

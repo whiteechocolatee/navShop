@@ -52,11 +52,52 @@ const updateItem = async (item) => {
   return data;
 };
 
+const createItem = async (item) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let { data } = await axios.post(
+    `/api/admin/item/createItem`,
+    item,
+    config,
+  );
+
+  return data;
+};
+
+const deleteProductById = async (id) => {
+  const token = JSON.parse(
+    window.localStorage.getItem("token"),
+  );
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  let { data } = await axios.delete(
+    `/api/admin/item/delete/${id}`,
+    config,
+  );
+
+  return data;
+};
+
 const mainService = {
   getItems,
   getItemsByCategory,
   getItem,
   updateItem,
+  createItem,
+  deleteProductById,
 };
 
 export default mainService;
