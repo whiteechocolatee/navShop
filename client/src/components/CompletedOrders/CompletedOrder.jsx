@@ -21,11 +21,11 @@ export const CompletedOrder = ({ order }) => {
           {order.totalPrice} ₴
         </span>
       </div>
-      <div className={styles.repeatOrder}>
+      {/* <div className={styles.repeatOrder}>
         <div className={styles.repeat}>
           Повторити замовлення
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

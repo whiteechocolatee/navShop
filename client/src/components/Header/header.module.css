@@ -126,6 +126,18 @@
   height: auto;
 }
 
+.dropDownList li {
+  padding: 10px 10px;
+}
+
+.dropDownList li a {
+  text-decoration: none;
+}
+
+.dropDownList li a:hover {
+  color: #abafe9;
+}
+
 @media (max-width: 767px) {
   .toggler {
     display: block;

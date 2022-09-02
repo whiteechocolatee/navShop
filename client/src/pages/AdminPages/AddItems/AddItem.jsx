@@ -9,9 +9,12 @@ import { Button } from "../../../components/Button/Button";
 import { Input } from "../../../components/Input/Input";
 import { Select } from "../../../components/Select/Select";
 import { createItem } from "../../../store/item/itemSlice";
+import { paths } from "../../../paths";
+import { useNavigate } from 'react-router-dom';
 
 export const AddItem = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formActive, setFormActive] = useState(false);
 
@@ -166,8 +169,11 @@ export const AddItem = () => {
       alert("Вкажіть категорію!!!");
       return;
     } else {
-      console.log(values);
-      dispatch(createItem(values));
+      dispatch(createItem(values)).then((res) => {
+        if (!res.error) {
+          navigate(`${paths.admin}/items`);
+        }
+      });
     }
   };
 

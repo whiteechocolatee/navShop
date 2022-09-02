@@ -89,7 +89,7 @@ export const Header = () => {
               Категории
             </button>
             <ul
-              className={`dropdown-menu`}
+              className={`dropdown-menu ${styles.dropDownList}`}
               aria-labelledby='dropdownMenuButton1'>
               <li>
                 <NavLink

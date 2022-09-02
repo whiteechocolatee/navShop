@@ -37,7 +37,7 @@ export const Payment = ({ values, handleChange }) => {
             <TbCashBanknote /> Оплата готівкою
           </label>
         </div>
-        <div className={styles.label}>
+        {/* <div className={styles.label}>
           <input
             name='paymentMethod'
             id='paypal'
@@ -49,7 +49,7 @@ export const Payment = ({ values, handleChange }) => {
           <label htmlFor='paypal'>
             <FaCcPaypal /> PayPal
           </label>
-        </div>
+        </div> */}
       </div>
     </div>
   );

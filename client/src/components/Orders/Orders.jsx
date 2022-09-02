@@ -16,11 +16,11 @@ export const Orders = () => {
         <Loader />
       ) : (
         <div>
-          {orders.length !== 0 ? (
+          {orders?.length !== 0 ? (
             <div>
               <div className={styles.inProgress}>
                 {orders
-                  .filter((order) => {
+                  ?.filter((order) => {
                     return order.isDelivered === false;
                   })
                   .map((order) => {
@@ -31,7 +31,7 @@ export const Orders = () => {
               </div>
               <div className={styles.completed}>
                 {orders
-                  .filter((order) => {
+                  ?.filter((order) => {
                     return order.isDelivered === true;
                   })
                   .map((order) => {

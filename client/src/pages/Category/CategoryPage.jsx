@@ -268,11 +268,14 @@ export const CategoryPage = () => {
                       onChange={updateQuantity}>
                       {pages.map((page) => {
                         return page === quantity ? (
-                          <option selected value={page}>
+                          <option
+                            key={page}
+                            selected
+                            value={page}>
                             {page}
                           </option>
                         ) : (
-                          <option value={page}>
+                          <option key={page} value={page}>
                             {page}
                           </option>
                         );

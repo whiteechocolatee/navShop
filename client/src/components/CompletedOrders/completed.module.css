@@ -31,3 +31,19 @@
   cursor: pointer;
   width: 100%;
 }
+
+@media (max-width: 550px) {
+  .completedOrder {
+    flex-wrap: wrap;
+    height: 150px;
+  }
+
+  .orderDetails {
+    min-width: 300px;
+    width: 100%;
+  }
+
+  .orderPrice {
+    margin: 0 auto;
+  }
+}

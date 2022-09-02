@@ -3,7 +3,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./adminSingleItem.module.css";
@@ -14,6 +14,7 @@ import { Input } from "../../../components/Input/Input";
 import { Loader } from "../../../components/Loader/Loader";
 import { Button } from "../../../components/Button/Button";
 import { Select } from "../../../components/Select/Select";
+import { paths } from "../../../paths";
 
 import {
   getItem,
@@ -23,6 +24,7 @@ import {
 export const AdminSingleItem = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { item, isLoading } = useSelector(
     (state) => state.singleItemReducer,
@@ -221,9 +223,17 @@ export const AdminSingleItem = () => {
           ...values,
           characteristics: item?.characteristics,
         }),
-      );
+      ).then((res) => {
+        if (!res.error) {
+          navigate(`${paths.admin}/items`);
+        }
+      });
     } else {
-      dispatch(updateItem(values));
+      dispatch(updateItem(values)).then((res) => {
+        if (!res.error) {
+          navigate(`${paths.admin}/items`);
+        }
+      });
     }
   };
 

@@ -11,7 +11,6 @@ export const Search = ({
   navStyles,
   searchStyles,
 }) => {
-  
   let data = useSelector((state) => {
     return state.itemsReducer.items;
   });
@@ -48,7 +47,9 @@ export const Search = ({
               <Link
                 key={el._id}
                 to={`${paths.itemPage}/${el._id}`}>
-                <li className={styles.searchElement}>
+                <li
+                  onClick={() => setFilteredData([])}
+                  className={styles.searchElement}>
                   <span>{el.title}</span>
                   <span>{el.price}</span>
                 </li>
