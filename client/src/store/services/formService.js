@@ -1,8 +1,10 @@
 import axios from "axios";
+import { URL } from "../../App";
+
 
 const createCallbackRequest = async (formData) => {
   const res = await axios.post(
-    "/api/items/createCallback",
+    `${URL}/api/items/createCallback`,
     formData,
   );
 
@@ -25,7 +27,7 @@ const getCallbacks = async () => {
   };
 
   const res = await axios.get(
-    "/api/admin/callbacks",
+    `${URL}/api/admin/callbacks`,
     config,
   );
 
@@ -44,7 +46,7 @@ const getSingleCallback = async (id) => {
   };
 
   const res = await axios.get(
-    `/api/admin/callbacks/${id}`,
+    `${URL}/api/admin/callbacks/${id}`,
     config,
   );
 
@@ -63,7 +65,7 @@ const updateSingleCallback = async (data) => {
   };
 
   const res = await axios.put(
-    "/api/admin/callback/edit",
+    `${URL}/api/admin/callback/edit`,
     data,
     config,
   );

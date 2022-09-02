@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URL } from "../../App";
 
 const userOrders = async () => {
   const token = JSON.parse(
@@ -10,7 +11,7 @@ const userOrders = async () => {
       Authorization: `Bearer ${token}`,
     },
   };
-  let { data } = await axios.get("/api/order", config);
+  let { data } = await axios.get(`${URL}/api/order`, config);
 
   return data;
 };
@@ -39,7 +40,7 @@ const createOrder = async ({
 
   if (token) {
     let response = await axios.post(
-      "/api/order",
+      `${URL}/api/order`,
       {
         orderItems,
         shippingAddress,
@@ -54,7 +55,7 @@ const createOrder = async ({
     return response.data;
   } else {
     let response = await axios.post(
-      "/api/order/unregistered-user",
+      `${URL}/api/order/unregistered-user`,
       {
         orderItems,
         shippingAddress,
@@ -85,7 +86,7 @@ const getOrders = async () => {
   };
 
   let { data } = await axios.get(
-    "/api/admin/orders",
+    `${URL}/api/admin/orders`,
     config,
   );
 
@@ -109,7 +110,7 @@ const getSingleOrder = async (id) => {
   };
 
   let { data } = await axios.get(
-    `/api/order/${id}`,
+    `${URL}/api/order/${id}`,
     config,
   );
 
@@ -134,7 +135,7 @@ const markAsDelivered = async (id) => {
   };
 
   let { data } = await axios.put(
-    `/api/order/delivered/${id}`,
+    `${URL}/api/order/delivered/${id}`,
     {},
     config,
   );

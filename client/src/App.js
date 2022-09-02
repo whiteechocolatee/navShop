@@ -40,6 +40,8 @@ import { AdminItems } from "./pages/AdminPages/Items/AdminItems";
 import { AdminSingleItem } from "./pages/AdminPages/SingleItem/AdminSingleItem";
 import { AddItem } from "./pages/AdminPages/AddItems/AddItem";
 
+export const URL = process.env.REACT_APP_SERVER_URL;
+
 function App() {
   const isAuth = useSelector(checkIsAuth);
   const isAdmin = useSelector(checkIsAdmin);
@@ -136,6 +138,7 @@ function App() {
             element={<AddItem />}
           />
         </Route>
+          
         <Route exact path={paths.main} element={<Main />} />
         <Route
           exact

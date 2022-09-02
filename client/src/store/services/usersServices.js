@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URL } from "../../App";
 
 /**
  * It sends a POST request to the /api/users/login endpoint with the email and password as the body,
@@ -14,7 +15,7 @@ const userLogin = async ({ email, password }) => {
   };
 
   let res = await axios.post(
-    "/api/users/login",
+    `${URL}/api/users/login`,
     { email, password },
     config,
   );
@@ -46,7 +47,7 @@ const userRegister = async ({
   };
 
   let res = await axios.post(
-    "/api/users/",
+    `${URL}/api/users/`,
     { name, surname, phoneNumber, email, password },
     config,
   );
@@ -76,7 +77,7 @@ const userProfile = async () => {
   };
 
   const { data } = await axios.get(
-    "/api/users/profile",
+    `${URL}/api/users/profile`,
     config,
   );
 
@@ -105,7 +106,7 @@ const updateProfile = async ({
   };
 
   const { data } = await axios.put(
-    "/api/users/profile",
+    `${URL}/api/users/profile`,
     { name, surname, phoneNumber, email, password },
     config,
   );
@@ -125,7 +126,7 @@ const saveAddress = async (address) => {
   };
 
   const { data } = await axios.put(
-    "/api/users/profile/address",
+    `${URL}/api/users/profile/address`,
     address,
     config,
   );
@@ -152,7 +153,7 @@ const addToFavorite = async (favorite) => {
   };
 
   const { data } = await axios.put(
-    "/api/users/profile/favorite",
+    `${URL}/api/users/profile/favorite`,
     favorite,
     config,
   );
@@ -172,7 +173,7 @@ const removeFromFavorites = async (favorite) => {
   };
 
   const { data } = await axios.put(
-    "/api/users/profile/favorite/remove",
+    `${URL}/api/users/profile/favorite/remove`,
     favorite,
     config,
   );
@@ -192,7 +193,7 @@ const getUsers = async () => {
   };
 
   const { data } = await axios.get(
-    "/api/admin/users",
+    `${URL}/api/admin/users`,
     config,
   );
 

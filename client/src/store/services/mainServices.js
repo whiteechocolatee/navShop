@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URL } from "../../App";
 
 /**
  * GetNewItems is an async function that uses axios to make a GET request to the /api/items/ route,
@@ -6,7 +7,7 @@ import axios from "axios";
  * @returns An array of objects
  */
 const getItems = async () => {
-  let res = await axios.get("/api/items/");
+  let res = await axios.get(`${URL}/api/items/`);
   return res.data;
 };
 
@@ -17,7 +18,7 @@ const getItems = async () => {
  */
 const getItemsByCategory = async (category) => {
   let res = await axios.get(
-    `/api/items/existingItems/${category}`,
+    `${URL}/api/items/existingItems/${category}`,
   );
   return res.data;
 };
@@ -28,7 +29,7 @@ const getItemsByCategory = async (category) => {
  * @returns a promise.
  */
 const getItem = async (id) => {
-  let res = await axios.get(`/api/items/${id}`);
+  let res = await axios.get(`${URL}/api/items/${id}`);
   return res.data;
 };
 
@@ -44,7 +45,7 @@ const updateItem = async (item) => {
   };
 
   let { data } = await axios.post(
-    `/api/admin/item/edit`,
+    `${URL}/api/admin/item/edit`,
     item,
     config,
   );
@@ -64,7 +65,7 @@ const createItem = async (item) => {
   };
 
   let { data } = await axios.post(
-    `/api/admin/item/createItem`,
+    `${URL}/api/admin/item/createItem`,
     item,
     config,
   );
@@ -84,7 +85,7 @@ const deleteProductById = async (id) => {
   };
 
   let { data } = await axios.delete(
-    `/api/admin/item/delete/${id}`,
+    `${URL}/api/admin/item/delete/${id}`,
     config,
   );
 
