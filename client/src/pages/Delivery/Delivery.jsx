@@ -142,9 +142,7 @@ export const Delivery = () => {
       values.surname === "" ||
       values.email === "" ||
       order.shippingAddress.area === "Виберіть область" ||
-      order.shippingAddress.city === "Виберіть місто" ||
-      order.shippingAddress.department ===
-        "Виберіть відділення"
+      order.shippingAddress.city === "Виберіть місто"
     ) {
       setPopupError(true);
       return;

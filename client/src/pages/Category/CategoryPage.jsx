@@ -46,7 +46,7 @@ export const CategoryPage = () => {
 
   const categoryTitle = [
     ...new Set(
-      items.map((item) => {
+      items?.map((item) => {
         return item.categoryUA;
       }),
     ),

@@ -29,6 +29,8 @@ export const SingleOrder = () => {
   const { customerData, orderItems, shippingAddress } =
     orders;
 
+    
+
   useEffect(() => {
     dispatch(getSingleOrder(id));
   }, [dispatch, id]);

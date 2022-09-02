@@ -1,11 +1,13 @@
 import React from "react";
-import { ContentWrapper } from "../contentWrapper/ContentWrapper";
-import styles from "./footer.module.css";
+import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaTelegramPlane,
   FaFacebook,
 } from "react-icons/fa";
+
+import { ContentWrapper } from "../contentWrapper/ContentWrapper";
+import styles from "./footer.module.css";
 
 export const Footer = () => {
   return (
@@ -32,19 +34,19 @@ export const Footer = () => {
           <div className={styles.menu}>
             <p className={styles.menuTitle}>Меню</p>
             <p className={styles.links}>
-              <a href='#'>Каталог</a>
+              <Link to='#'>Каталог</Link>
             </p>
             <p className={styles.links}>
-              <a href='#'>О нас</a>
+              <Link to='#'>О нас</Link>
             </p>
             <p className={styles.links}>
-              <a href='#'>Доставка и оплата</a>
+              <Link to='#'>Доставка и оплата</Link>
             </p>
             <p className={styles.links}>
-              <a href='#'>Обмен и возврат</a>
+              <Link to='#'>Обмен и возврат</Link>
             </p>
             <p className={styles.links}>
-              <a href='#'>Политика конфидециальности</a>
+              <Link to='#'>Политика конфидециальности</Link>
             </p>
           </div>
           <div

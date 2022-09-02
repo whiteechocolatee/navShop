@@ -44,7 +44,7 @@ export const Courier = ({ values, handleChange }) => {
     },
     {
       id: 2,
-      name: "street",
+      name: "department",
       type: "text",
       placeholder: "Вкажіть вулицю",
       errorMessage:

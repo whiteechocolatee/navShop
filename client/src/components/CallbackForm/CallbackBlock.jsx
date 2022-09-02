@@ -35,9 +35,9 @@ export const CallbackBlock = () => {
     {
       id: 1,
       name: "name",
-      placeholder: "Укажите имя",
+      placeholder: "Вкажіть ім'я",
       errorMessage:
-        "Имя не должно содержать цифр и символов.",
+        "Ім'я не повинно мати цифри, або символи.",
       pattern: "^[ A-Za-zА-Яа-я]{3,16}$",
       required: true,
       error: errors && errors.name.message,
@@ -45,8 +45,9 @@ export const CallbackBlock = () => {
     {
       id: 2,
       name: "phone",
-      placeholder: "Укажите номер телефона",
-      errorMessage: "Номер должен состоять из 10-12 цифр.",
+      placeholder: "Вкажіть номер телефона",
+      errorMessage:
+        "Номер повинен складатися з 10-12 цифр.",
       pattern: "^[0-9]{10,12}$",
       required: true,
       error: errors && errors.phone.message,
@@ -64,9 +65,9 @@ export const CallbackBlock = () => {
     <div className={`container-fluid ${styles.callback}`}>
       <ContentWrapper className={styles.wrapper}>
         <div className={styles.bannerBlock}>
-          <h1 className={styles.advice}>Нужен совет?</h1>
+          <h1 className={styles.advice}>Є питання?</h1>
           <p className={styles.description}>
-            {`Оставьте свои контакты и\n мы вам перезвоним `}
+            {`Залиште свої контакти і\n та ми вам зателфонуємо `}
           </p>
         </div>
         <div>
@@ -95,9 +96,9 @@ export const CallbackBlock = () => {
           </form>
           <div
             className={`${styles.changeForm} ${lineClass}`}>
-            <h1 className={styles.advice}>Благодарим!</h1>
+            <h1 className={styles.advice}>Дякуємо!</h1>
             <p className={styles.description}>
-              {`Как только мы получим заявку -\n сразу же вам перезвоним!  `}
+              {`Як тільки ми отримаємо заявку -\n одразу вам передзвонимо!  `}
             </p>
           </div>
         </div>

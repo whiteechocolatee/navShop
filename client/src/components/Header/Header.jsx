@@ -178,7 +178,7 @@ export const Header = () => {
                 aria-current='page'
                 className={`nav-link`}
                 to='#contact'>
-                Позвонить
+                Дзвінок
               </NavLink>
             </li>
             <li className={`nav-item ${styles.navBtn}`}>

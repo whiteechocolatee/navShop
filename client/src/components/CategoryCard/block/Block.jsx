@@ -16,7 +16,7 @@ export const Block = ({
       <h3 className={styles.accessoriesTitle}>{title}</h3>
       <Button
         onClick={onClick}
-        children={"Еще"}
+        children={"Більше"}
         containerClassName={styles.btn}
       />
       <img className={imgClassList} src={img} alt={alt} />

@@ -75,6 +75,10 @@
   margin-right: 10px;
 }
 
+.links {
+  cursor: pointer;
+}
+
 .links svg {
   font-weight: bold;
 }
@@ -137,7 +141,7 @@
     justify-content: space-between;
   }
 
-  .links{
+  .links {
     width: 200px;
   }
 

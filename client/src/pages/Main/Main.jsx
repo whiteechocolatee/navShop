@@ -43,11 +43,11 @@ export const Main = () => {
     navigate(paths.main);
   };
 
-  const category = items.filter((elem) => {
-    return elem.category === "charger";
+  const category = items?.filter((elem) => {
+    return elem.category === "smartphones";
   });
 
-  const discount = items.filter((elem) => {
+  const discount = items?.filter((elem) => {
     return elem.discount > 0;
   });
 
@@ -63,11 +63,11 @@ export const Main = () => {
     itemsQuantity = 2;
   }
 
-  let itemsCarousel = items.slice(0, 12);
+  let itemsCarousel = items?.slice(0, 12);
 
-  let categoryCarousel = category.slice(0, 12);
+  let categoryCarousel = category?.slice(0, 12);
 
-  let discountCarousel = discount.slice(0, 12);
+  let discountCarousel = discount?.slice(0, 12);
 
   return (
     <div className={styles.container}>
@@ -85,21 +85,21 @@ export const Main = () => {
           <ItemCarousel
             containerClassName={styles.flex}
             itemsQuantity={itemsQuantity}
-            title={"Новые товары"}
+            title={"Нові товари"}
             items={itemsCarousel}
           />
           <Banner />
           <ItemCarousel
             containerClassName={styles.flex}
             itemsQuantity={itemsQuantity}
-            title={"Зарядные"}
+            title={"Телефони"}
             items={categoryCarousel}
           />
           <CategoryCards />
           <ItemCarousel
             containerClassName={styles.flex}
             itemsQuantity={itemsQuantity}
-            title={"Предложения"}
+            title={"Пропозиції"}
             items={discountCarousel}
           />
           <CallbackBlock />

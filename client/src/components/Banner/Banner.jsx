@@ -8,7 +8,7 @@ export const Banner = () => {
   return (
     <div className={`container-fluid ${styles.banner}`}>
       <div className={styles.bannerContent}>
-        <h1 className={styles.title}>Заказать товар</h1>
+        <h1 className={styles.title}>Замовити товар</h1>
         <div className={styles.offer}>
           <img
             src={oculusImg}
@@ -17,11 +17,11 @@ export const Banner = () => {
           />
           <div className={styles.offerText}>
             <h6 className={styles.offerTitle}>
-              Специальные предложения только на сайте
+              Спеціальні пропозиції тільки на сайті
             </h6>
             <Button
               containerClassName={styles.button}
-              children='Связаться'
+              children={`Зв'язатися`}
             />
           </div>
         </div>

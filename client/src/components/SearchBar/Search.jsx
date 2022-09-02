@@ -35,7 +35,7 @@ export const Search = ({
     <li className={`${navStyles} ${searchStyles}`}>
       <Input
         type={`text`}
-        placeholder={`Поиск`}
+        placeholder={`Пошук`}
         className={inputStyles}
         onChange={handleFilter}
       />

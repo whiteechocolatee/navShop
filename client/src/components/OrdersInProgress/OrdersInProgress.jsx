@@ -52,7 +52,12 @@ export const OrdersInProgress = ({ order }) => {
               ? ""
               : "+ доставка за тарифами пошти"}
           </span>
-          <span>Спосіб оплати: {order.paymentMethod}</span>
+          <span>
+            Спосіб оплати:{" "}
+            {order.paymentMethod === "cardPayment"
+              ? "Карткою"
+              : "Готівкою"}
+          </span>
           <span>Cплачено: - </span>
         </div>
         <div className={styles.delivery}>
@@ -61,7 +66,10 @@ export const OrdersInProgress = ({ order }) => {
           </p>
           <span>
             Спосіб доставки:{" "}
-            {order.shippingAddress.shippingMethod}
+            {order.shippingAddress.shippingMethod ===
+            "localPickup"
+              ? "Самовивіз"
+              : "Доставка поштою"}
           </span>
           <span>
             Адресса: {order.shippingAddress.region} область
