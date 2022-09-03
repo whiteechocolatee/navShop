@@ -34,19 +34,25 @@ export const Footer = () => {
           <div className={styles.menu}>
             <p className={styles.menuTitle}>Меню</p>
             <p className={styles.links}>
-              <Link to='#'>Каталог</Link>
+              <Link className={styles.showCatalog} to='/'>
+                Каталог
+              </Link>
             </p>
             <p className={styles.links}>
-              <Link to='#'>О нас</Link>
+              <Link to='/about-us'>О нас</Link>
             </p>
             <p className={styles.links}>
-              <Link to='#'>Доставка и оплата</Link>
+              <Link to='/payment'>Доставка та оплата</Link>
             </p>
             <p className={styles.links}>
-              <Link to='#'>Обмен и возврат</Link>
+              <Link to='/exchange'>
+                Обмін та повернення
+              </Link>
             </p>
             <p className={styles.links}>
-              <Link to='#'>Политика конфидециальности</Link>
+              <Link to='/privacy-policy'>
+                Політика конфіденційності
+              </Link>
             </p>
           </div>
           <div

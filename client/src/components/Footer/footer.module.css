@@ -61,6 +61,10 @@
   font-weight: 400;
 }
 
+.showCatalog {
+  cursor: pointer;
+}
+
 @media (max-width: 500px) {
   .contact,
   .menu {

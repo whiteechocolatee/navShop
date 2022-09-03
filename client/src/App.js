@@ -39,6 +39,10 @@ import { SingleCallback } from "./pages/AdminPages/SingleCallback/SingleCallback
 import { AdminItems } from "./pages/AdminPages/Items/AdminItems";
 import { AdminSingleItem } from "./pages/AdminPages/SingleItem/AdminSingleItem";
 import { AddItem } from "./pages/AdminPages/AddItems/AddItem";
+import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { PaymentAndDelivery } from "./pages/PaymentAndDelivery/PaymentAndDelivery";
+import { Exchange } from "./pages/Exchange/Exchange";
+import { Privacy } from "./pages/PrivacyRules/Privacy";
 
 export const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -138,8 +142,27 @@ function App() {
             element={<AddItem />}
           />
         </Route>
-          
         <Route exact path={paths.main} element={<Main />} />
+        <Route
+          exact
+          path='/about-us'
+          element={<AboutUs />}
+        />
+        <Route
+          exact
+          path='/payment'
+          element={<PaymentAndDelivery />}
+        />
+        <Route
+          exact
+          path='/exchange'
+          element={<Exchange />}
+        />
+        <Route
+          exact
+          path='/privacy-policy'
+          element={<Privacy />}
+        />
         <Route
           exact
           path={`${paths.category}/:categoryName`}

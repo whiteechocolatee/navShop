@@ -1,0 +1,74 @@
+.bannerBody {
+  padding: 0;
+  height: 358px;
+  width: 100%;
+  font-family: "ICTV";
+  font-style: normal;
+  margin: 100px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bannerTitle {
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 80px;
+  color: #242424;
+}
+
+.newIphones {
+  margin-left: 70px;
+}
+
+.btn {
+  background: linear-gradient(
+    93.77deg,
+    #abafe9 5.59%,
+    #b5e0fd 99.02%
+  );
+  width: 138px;
+}
+
+.image img {
+  height: 250px;
+  width: auto;
+  margin-top: 80px;
+  padding: 0;
+}
+
+@media (max-width: 1700px) {
+  .image img {
+    height: 220px;
+  }
+
+  .bannerTitle {
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .image img {
+    height: 180px;
+  }
+
+  .bannerTitle {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .bannerBody {
+    flex-wrap: wrap;
+  }
+
+  .image img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .bannerTitle {
+    font-size: 35px;
+  }
+}
