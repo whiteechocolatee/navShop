@@ -38,7 +38,8 @@ export const CallbackBlock = () => {
       placeholder: "Вкажіть ім'я",
       errorMessage:
         "Ім'я не повинно мати цифри, або символи.",
-      pattern: "^[ A-Za-zА-Яа-я]{3,16}$",
+      pattern:
+        "^[ A-Za-zА-Яа-яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ']{3,16}$",
       required: true,
       error: errors && errors.name.message,
     },

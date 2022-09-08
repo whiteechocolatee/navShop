@@ -71,7 +71,8 @@ export const Registration = () => {
       placeholder: "Вкажіть ім'я",
       errorMessage:
         "Ім'я не повинно мати цифри або символи! Довжина до 25 символів",
-      pattern: "^[ A-Za-zА-Яа-я]{3,25}$",
+      pattern:
+        "^[ A-Za-zА-Яа-яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ']{3,25}$",
       required: true,
       error: errors && errors.name && errors.name.message,
     },
@@ -81,7 +82,8 @@ export const Registration = () => {
       placeholder: "Вкажіть призвище",
       errorMessage:
         "Призвище не повинно мати цифри або символи! Довжина до 25 символів ",
-      pattern: "^[ A-Za-zА-Яа-я]{3,25}$",
+      pattern:
+        "^[ A-Za-zА-Яа-яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ']{3,25}$",
       required: true,
       error:
         errors && errors.surname && errors.surname.message,
@@ -114,7 +116,7 @@ export const Registration = () => {
       type: "password",
       placeholder: "Вкажіть пароль",
       errorMessage:
-        "Пароль повинен бути 8-20 символов латиницею та мати - 1 велику літеру, цифру та символ(!@#$%^&*)",
+        "Пароль повинен бути 8-20 символов латиницею та мати - 1 велику літеру, цифру та один з символів (!@#$%^&*)",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
       error:
