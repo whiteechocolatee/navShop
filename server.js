@@ -13,6 +13,16 @@ connectionDataBase();
 /* Setting the port to 5000 if the environment variable PORT is not set. */
 const port = process.env.PORT || 5000;
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+
+  app.get("*", (req, res) => {
+    req.sendFile(
+      path.resolve(__dirname, "build", "index.html"),
+    );
+  });
+}
+
 /* This is a chain of middleware functions. */
 app
   .use(cors())
