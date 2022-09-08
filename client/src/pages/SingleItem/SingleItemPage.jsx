@@ -71,7 +71,9 @@ export const SingleItemPage = () => {
       const element = arr[i];
 
       if (element.hasOwnProperty("memory")) {
-        filteredMemory.push(element.memory);
+        if (element.memory > 0) {
+          filteredMemory.push(element.memory);
+        }
       }
     }
 
