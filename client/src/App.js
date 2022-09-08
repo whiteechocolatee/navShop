@@ -44,7 +44,7 @@ import { PaymentAndDelivery } from "./pages/PaymentAndDelivery/PaymentAndDeliver
 import { Exchange } from "./pages/Exchange/Exchange";
 import { Privacy } from "./pages/PrivacyRules/Privacy";
 
-export const URL = process.env.REACT_APP_SERVER_URL;
+export const URL = process.env.REACT_APP_SERVER_URL || 5000;
 
 function App() {
   const isAuth = useSelector(checkIsAuth);
