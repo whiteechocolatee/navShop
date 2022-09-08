@@ -1,0 +1,9 @@
+.popupInner {
+  padding: 20px 10px;
+  max-width: 350px;
+  width: 100%;
+}
+
+.popupInner h5 {
+  text-decoration: underline;
+}
