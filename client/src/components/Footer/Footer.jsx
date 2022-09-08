@@ -16,19 +16,25 @@ export const Footer = () => {
       <ContentWrapper className={styles.wrapper}>
         <div className={`${styles.aboutUs}`}>
           <div className={`${styles.networks}`}>
-            HERE WILL BE LOGO
+            Наші соц. мережі
             <div className={`${styles.socials}`}>
-              <FaInstagram />
-              <FaTelegramPlane />
-              <FaFacebook />
+              {/* <FaInstagram /> */}
+              <a
+                className={styles.sendToTelegram}
+                href='https://t.me/gribuastore'>
+                <FaTelegramPlane />
+              </a>
+              {/* <FaFacebook /> */}
             </div>
           </div>
           <div className={styles.contact}>
             <p className={styles.contactTitle}>
-              Наши контакты
+              Наші контакти
             </p>
             <p id='contact' className={styles.links}>
-              <a href='tel:+380500300777'>380500300777</a>
+              <a href='tel:+380975753558'>
+                +380-97-575-35-58
+              </a>
             </p>
           </div>
           <div className={styles.menu}>
@@ -58,7 +64,7 @@ export const Footer = () => {
           <div
             className={`d-flex align-items-end ${styles.description}`}>
             <p className={styles.descriptionTitle}>
-              © electronics store 2022
+              © Всі права захищені 2022
             </p>
           </div>
         </div>

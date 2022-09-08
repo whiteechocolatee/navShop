@@ -95,3 +95,13 @@
     height: 20px;
   }
 }
+
+.sendToTelegram {
+  text-decoration: none;
+  color: white;
+}
+
+.sendToTelegram:hover {
+  color: #1e9fe0;
+  transition: 0.4s ease-in;
+}
