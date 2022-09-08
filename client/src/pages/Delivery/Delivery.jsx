@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./delivery.module.css";
@@ -30,6 +30,7 @@ import { OrderSuccess } from "../../components/Popups/OrderSuccess/OrderSuccess"
 
 export const Delivery = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [popupError, setPopupError] = useState(false);
   const [popupSuccess, setPopupSuccess] = useState(false);
@@ -228,7 +229,7 @@ export const Delivery = () => {
                     active={popupError}
                   />
                   <OrderSuccess
-                    setActive={setPopupSuccess}
+                    setActive={() => navigate(paths.main)}
                     active={popupSuccess}
                   />
                 </div>
