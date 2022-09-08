@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import styles from "./slider.module.css";
-import Carousel from "react-elastic-carousel";
+// import Carousel from "react-elastic-carousel";
 import { Banner } from "../Banner/Banner";
 import { BannerIphone } from "../BannerIphone/BannerIphone";
 
 export const BannersSlider = () => {
-  const carouselRef = useRef(null);
-  const totalPages = 5;
-  let resetTimeout;
+  // const carouselRef = useRef(null);
+  // const totalPages = 5;
+  // let resetTimeout;
   return (
     //  <div className={`container-fluid ${styles.slider}`}>
     //   <Carousel
