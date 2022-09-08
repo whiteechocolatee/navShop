@@ -1,10 +1,13 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import styles from "./check.module.css";
 import { Button } from "../Button/Button";
-import { Link } from "react-router-dom";
 import { paths } from "../../paths";
 
 export const OrderCheck = ({ total }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.checkBody}>
       <h3 className={styles.checkTitle}>Інформація</h3>
@@ -33,8 +36,9 @@ export const OrderCheck = ({ total }) => {
         <hr className={styles.checkBorder} />
       </div>
       <Button
+        onClick={() => navigate(paths.delivery)}
         containerClassName={styles.btn}
-        children={<Link className={styles.link} to={paths.delivery}>Наступна</Link>}
+        children={"Наступна"}
       />
     </div>
   );

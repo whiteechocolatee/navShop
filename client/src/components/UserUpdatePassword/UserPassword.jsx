@@ -23,7 +23,7 @@ export const UserPassword = () => {
   });
 
   if (isChanged) {
-    toast.success("Данные успешно изменены!", {
+    toast.success("Ваш пароль було успішно змінено!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import styles from "./order.module.css";
 import { paths } from "../../paths";
 import { CheckCard } from "../CheckCard/CheckCard";
 
 export const OrderCheckDelivery = ({ total, cart }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h3 className={styles.checkTitle}>Ваше замовлення</h3>
@@ -42,15 +44,10 @@ export const OrderCheckDelivery = ({ total, cart }) => {
             </p>
           </div>
           <Button
+            onClick={() => navigate(paths.order)}
             className={styles.btnBg}
             containerClassName={styles.btn}
-            children={
-              <Link
-                to={paths.order}
-                className={styles.link}>
-                Редагувати
-              </Link>
-            }
+            children={"Редагувати"}
           />
         </div>
       </div>

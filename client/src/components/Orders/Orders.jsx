@@ -25,7 +25,10 @@ export const Orders = () => {
                   })
                   .map((order) => {
                     return (
-                      <OrdersInProgress order={order} />
+                      <OrdersInProgress
+                        key={order._id}
+                        order={order}
+                      />
                     );
                   })}
               </div>
@@ -35,7 +38,12 @@ export const Orders = () => {
                     return order.isDelivered === true;
                   })
                   .map((order) => {
-                    return <CompletedOrder order={order} />;
+                    return (
+                      <CompletedOrder
+                        key={order._id}
+                        order={order}
+                      />
+                    );
                   })}
               </div>
             </div>
