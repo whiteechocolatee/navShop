@@ -24,6 +24,7 @@ import {
   checkIsAdmin,
 } from "../../store/users/userAuthSlice";
 import { ImageComponent } from "../Image/Image";
+import { ContactUs } from "../Popups/ContactUs/ContactUs";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export const Header = () => {
   const isAuth = useSelector(checkIsAuth);
   const isAdmin = useSelector(checkIsAdmin);
 
+  const [active, setActive] = useState(false);
   const [small, setSmall] = useState(false);
 
   const handleLogout = () => {
@@ -174,13 +176,14 @@ export const Header = () => {
             <li
               className={`nav-item ${styles.navBtn} ${styles.callBlock}`}>
               <FaPhoneAlt />
-              <NavLink
-                aria-current='page'
-                className={`nav-link`}
-                to='#contact'>
+              <div onClick={() => setActive(true)}>
                 Дзвінок
-              </NavLink>
+              </div>
             </li>
+            <ContactUs
+              active={active}
+              setActive={setActive}
+            />
             <li className={`nav-item ${styles.navBtn}`}>
               <div className='btn-group'>
                 <button

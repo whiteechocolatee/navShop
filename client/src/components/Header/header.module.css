@@ -53,9 +53,10 @@
   justify-content: space-between;
 }
 
-.callBlock a {
+.callBlock div {
   border-bottom: 2px dashed black;
   margin: 0;
+  cursor: pointer;
   padding: 0;
 }
 
